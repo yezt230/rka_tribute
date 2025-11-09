@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://dmydmpg5baofc"]
+[gd_scene load_steps=7 format=3 uid="uid://dmydmpg5baofc"]
 
 [ext_resource type="Texture2D" uid="uid://dbqdrvurumts6" path="res://assets/spritesheet-characters-default.png" id="1_3vyb7"]
+[ext_resource type="Script" uid="uid://cgm5y75wob1ca" path="res://scenes/player.gd" id="1_g2els"]
 
 [sub_resource type="Animation" id="Animation_g2els"]
 resource_name = "idle"
@@ -41,6 +42,8 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_3vyb7"]
 
 [node name="Player" type="CharacterBody2D"]
+collision_layer = 0
+script = ExtResource("1_g2els")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(2, -60)
