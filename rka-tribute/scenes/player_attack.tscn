@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://snkt0hfqpvi1"]
+
+[ext_resource type="Texture2D" uid="uid://i11gw34oh753" path="res://assets/tile_0027.png" id="1_2tl33"]
+[ext_resource type="Script" uid="uid://r411nakck563" path="res://scenes/player_attack.gd" id="1_pqjam"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2tl33"]
+radius = 11.045361
+
+[node name="PlayerAttack" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_pqjam")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_2tl33")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_2tl33")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
