@@ -3,19 +3,20 @@
 [ext_resource type="Texture2D" uid="uid://ck6k7rkit5nv6" path="res://assets/spritesheet-backgrounds-default.png" id="1_pybca"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mi8v4"]
+size = Vector2(1316, 138)
 
 [node name="Ground" type="StaticBody2D"]
 collision_mask = 0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(572, 331)
-scale = Vector2(3, 3)
+texture_filter = 1
+position = Vector2(695, 404)
+scale = Vector2(4, 4)
 texture = ExtResource("1_pybca")
 hframes = 4
 vframes = 4
 frame = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(565, 536)
-scale = Vector2(33, 4)
+position = Vector2(697, 719)
 shape = SubResource("RectangleShape2D_mi8v4")

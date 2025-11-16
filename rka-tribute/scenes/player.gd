@@ -5,6 +5,7 @@ const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 @onready var player_dir: float = 1.0
 @onready var player_sprite = $Sprite2D
+@onready var animation_player = $AnimationPlayer
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -21,8 +22,10 @@ func _physics_process(delta: float) -> void:
 	get_orientation(direction)
 	if direction:
 		velocity.x = direction * SPEED
+		animation_player.play("run")
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
+		animation_player.play("idle")
 
 	move_and_slide()
 
