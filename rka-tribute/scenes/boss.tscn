@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://by4gln0b1msvl"]
+
+[ext_resource type="Script" path="res://scenes/boss.gd" id="1_mjk3t"]
+[ext_resource type="Texture2D" uid="uid://cfsj0vdy34gwr" path="res://assets/bafkreifzfipvfqtbeior7a33atddj2uotcxfy7vntrdhhts2qjryj3ipi4.jpg" id="1_o80su"]
+[ext_resource type="PackedScene" uid="uid://dq03gh0iixoi" path="res://scenes/hit_flash_component.tscn" id="3_vikoi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j2wj7"]
+size = Vector2(474, 290)
+
+[node name="Boss" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_mjk3t")
+
+[node name="HitFlashComponent" parent="." instance=ExtResource("3_vikoi")]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.23382, 0.23382)
+texture = ExtResource("1_o80su")
+
+[node name="BossHurtbox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BossHurtbox"]
+shape = SubResource("RectangleShape2D_j2wj7")
+
+[connection signal="area_entered" from="BossHurtbox" to="." method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="BossHurtbox" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="BossHurtbox" to="HitFlashComponent" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="BossHurtbox" to="HitFlashComponent" method="_on_boss_hurtbox_body_entered"]

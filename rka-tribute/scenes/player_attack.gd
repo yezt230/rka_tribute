@@ -10,6 +10,7 @@ func _ready():
 	if direction == -1.0:
 		scale.x = -1
 
+
 func _physics_process(delta: float) -> void:
 	velocity.x = (MOVE_SPEED * direction) * delta
 	move_and_slide()
