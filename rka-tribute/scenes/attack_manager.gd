@@ -7,14 +7,14 @@ extends Node2D
 @onready var v_offset = collision_shape_2d.shape.radius
 
 func _ready():
-	print(str(v_offset))
+	pass
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_pressed("SPACE"):
 		var attack_instance = attack.instantiate()
 		var direction: float = player.player_dir
-		#print(str(player.player_dir))
+		
 		attack_instance.direction = direction
 		level_layer.get_parent().add_child(attack_instance)
 		

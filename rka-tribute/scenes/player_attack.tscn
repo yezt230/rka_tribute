@@ -1,10 +1,37 @@
-[gd_scene load_steps=4 format=3 uid="uid://snkt0hfqpvi1"]
+[gd_scene load_steps=7 format=3 uid="uid://snkt0hfqpvi1"]
 
 [ext_resource type="Texture2D" uid="uid://i11gw34oh753" path="res://assets/tile_0027.png" id="1_2tl33"]
-[ext_resource type="Script" uid="uid://r411nakck563" path="res://scenes/player_attack.gd" id="1_pqjam"]
+[ext_resource type="Script" path="res://scenes/player_attack.gd" id="1_pqjam"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2tl33"]
-radius = 11.045361
+radius = 11.0454
+
+[sub_resource type="Animation" id="Animation_hb4ip"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_pqjam"]
+resource_name = "spin"
+length = 0.4
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.26573]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qywsn"]
+_data = {
+"RESET": SubResource("Animation_hb4ip"),
+"spin": SubResource("Animation_pqjam")
+}
 
 [node name="PlayerAttack" type="CharacterBody2D"]
 collision_layer = 2
@@ -22,5 +49,11 @@ shape = SubResource("CircleShape2D_2tl33")
 wait_time = 1.5
 one_shot = true
 autostart = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_qywsn")
+}
+autoplay = "spin"
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

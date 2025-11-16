@@ -4,6 +4,7 @@ extends CharacterBody2D
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 @onready var player_dir: float = 0
+@onready var player_sprite = $Sprite2D
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -30,3 +31,4 @@ func get_orientation(dir):
 	# direction can only be -1 or 1
 	if dir != 0.0:
 		player_dir = dir
+		player_sprite.scale.x = dir
