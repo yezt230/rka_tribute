@@ -1,6 +1,83 @@
-[gd_scene load_steps=3 format=3 uid="uid://b2rs7dvgxbqqq"]
+[gd_scene load_steps=10 format=3 uid="uid://b2rs7dvgxbqqq"]
 
-[ext_resource type="Texture2D" uid="uid://ck6k7rkit5nv6" path="res://assets/spritesheet-backgrounds-default.png" id="1_pybca"]
+[ext_resource type="Texture2D" uid="uid://br5dp37ox66is" path="res://assets/bg_1.png" id="1_c0g56"]
+[ext_resource type="Texture2D" uid="uid://beopr6j0mmfnx" path="res://assets/bg_2.png" id="2_u1nax"]
+
+[sub_resource type="Animation" id="Animation_0kfwo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2392, 400)]
+}
+
+[sub_resource type="Animation" id="Animation_me3id"]
+resource_name = "pan"
+length = 30.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 30),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(2392, 400), Vector2(0, 400)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_n3f0d"]
+_data = {
+&"RESET": SubResource("Animation_0kfwo"),
+&"pan": SubResource("Animation_me3id")
+}
+
+[sub_resource type="Animation" id="Animation_7p8rx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2392, 400)]
+}
+
+[sub_resource type="Animation" id="Animation_i5epy"]
+resource_name = "pan"
+length = 10.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(2392, 400), Vector2(0, 400)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sh2r1"]
+_data = {
+&"RESET": SubResource("Animation_7p8rx"),
+&"pan": SubResource("Animation_i5epy")
+}
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mi8v4"]
 size = Vector2(1316, 138)
@@ -10,12 +87,25 @@ collision_mask = 0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(695, 404)
-scale = Vector2(4, 4)
-texture = ExtResource("1_pybca")
-hframes = 4
-vframes = 4
-frame = 10
+position = Vector2(2392, 400)
+texture = ExtResource("1_c0g56")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(2392, 400)
+texture = ExtResource("2_u1nax")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_n3f0d")
+}
+autoplay = "pan"
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Sprite2D2")
+libraries = {
+&"": SubResource("AnimationLibrary_sh2r1")
+}
+autoplay = "pan"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(697, 719)
