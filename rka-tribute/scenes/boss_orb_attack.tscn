@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://cox4v8ruwgnde"]
+[gd_scene load_steps=4 format=3 uid="uid://cox4v8ruwgnde"]
 
 [ext_resource type="Texture2D" uid="uid://c5tr2th00f1et" path="res://assets/train/train_wheel_sprite.png" id="1_cr6si"]
+[ext_resource type="Script" uid="uid://bhwg4oq4xmh8l" path="res://scenes/boss_orb_attack.gd" id="1_gl5au"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cr6si"]
 radius = 17.0
@@ -8,6 +9,7 @@ radius = 17.0
 [node name="BossOrbAttack" type="CharacterBody2D"]
 collision_layer = 8
 collision_mask = 0
+script = ExtResource("1_gl5au")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.2, 0.2)
@@ -15,3 +17,8 @@ texture = ExtResource("1_cr6si")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_cr6si")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+autostart = true
