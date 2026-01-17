@@ -6,7 +6,6 @@ const MOVE_SPEED: float = 35000
 @onready var direction: float
 
 func _ready():
-	print(str(direction))
 	if direction == -1.0:
 		scale.x = -1
 

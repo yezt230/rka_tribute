@@ -10,7 +10,7 @@
 position = Vector2(0, -1)
 
 [node name="Player" parent="." instance=ExtResource("1_o5qli")]
-position = Vector2(742, 517)
+position = Vector2(740, 402)
 
 [node name="Boss" parent="." instance=ExtResource("2_o8jyo")]
-position = Vector2(182, 443)
+position = Vector2(95, 409)
