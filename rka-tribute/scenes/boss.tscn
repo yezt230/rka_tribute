@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://by4gln0b1msvl"]
+[gd_scene load_steps=12 format=3 uid="uid://by4gln0b1msvl"]
 
 [ext_resource type="Script" uid="uid://cqhq85a6q0xi7" path="res://scenes/boss.gd" id="1_mjk3t"]
 [ext_resource type="Texture2D" uid="uid://c6qdd8jfdxs7e" path="res://assets/train/train_body_sprite.png" id="3_jncid"]
 [ext_resource type="PackedScene" uid="uid://dq03gh0iixoi" path="res://scenes/hit_flash_component.tscn" id="3_vikoi"]
 [ext_resource type="Texture2D" uid="uid://c5tr2th00f1et" path="res://assets/train/train_wheel_sprite.png" id="4_qnbj4"]
 [ext_resource type="Texture2D" uid="uid://s5kyf1nvlk4d" path="res://assets/train/coupling_rod.png" id="5_r3bxh"]
+[ext_resource type="PackedScene" uid="uid://drp84e0ipv3tv" path="res://scenes/boss_orb_attack_manager.tscn" id="6_wqpjq"]
 
 [sub_resource type="Animation" id="Animation_wqpjq"]
 length = 0.001
@@ -117,6 +118,11 @@ shape = SubResource("RectangleShape2D_j2wj7")
 visible = false
 position = Vector2(-7, 26)
 shape = SubResource("RectangleShape2D_qnbj4")
+
+[node name="BossOrbAttackManager" parent="." instance=ExtResource("6_wqpjq")]
+
+[node name="OrbSpawner" type="Marker2D" parent="." groups=["orbspawner"]]
+position = Vector2(-11, -83)
 
 [connection signal="area_entered" from="BossHurtbox" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="BossHurtbox" to="." method="_on_area_2d_body_entered"]

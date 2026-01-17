@@ -10,7 +10,6 @@ func _physics_process(delta: float) -> void:
 		
 	else:
 		velocity.y = 0
-		print("velocity.ycontact")
 		
 	coupling_rod_orbit.rotation += 7.5 * delta
 	coupling_rod_sprite.rotation = -coupling_rod_orbit.rotation
