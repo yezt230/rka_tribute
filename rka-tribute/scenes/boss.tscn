@@ -1,8 +1,48 @@
-[gd_scene load_steps=5 format=3 uid="uid://by4gln0b1msvl"]
+[gd_scene load_steps=9 format=3 uid="uid://by4gln0b1msvl"]
 
-[ext_resource type="Script" path="res://scenes/boss.gd" id="1_mjk3t"]
-[ext_resource type="Texture2D" uid="uid://cfsj0vdy34gwr" path="res://assets/bafkreifzfipvfqtbeior7a33atddj2uotcxfy7vntrdhhts2qjryj3ipi4.jpg" id="1_o80su"]
+[ext_resource type="Script" uid="uid://cqhq85a6q0xi7" path="res://scenes/boss.gd" id="1_mjk3t"]
+[ext_resource type="Texture2D" uid="uid://c6qdd8jfdxs7e" path="res://assets/train/train_body_sprite.png" id="3_jncid"]
 [ext_resource type="PackedScene" uid="uid://dq03gh0iixoi" path="res://scenes/hit_flash_component.tscn" id="3_vikoi"]
+[ext_resource type="Texture2D" uid="uid://c5tr2th00f1et" path="res://assets/train/train_wheel_sprite.png" id="4_qnbj4"]
+
+[sub_resource type="Animation" id="Animation_r3bxh"]
+resource_name = "rotate"
+length = 0.8
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.19999999, 0.5, 0.79999995),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 2.0943951023931953, 4.1887902047863905, 6.265732014659643]
+}
+
+[sub_resource type="Animation" id="Animation_wqpjq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2cdgk"]
+_data = {
+&"RESET": SubResource("Animation_wqpjq"),
+&"rotate": SubResource("Animation_r3bxh")
+}
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j2wj7"]
 size = Vector2(474, 290)
@@ -14,18 +54,53 @@ script = ExtResource("1_mjk3t")
 
 [node name="HitFlashComponent" parent="." instance=ExtResource("3_vikoi")]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.23382, 0.23382)
-texture = ExtResource("1_o80su")
+[node name="TrainBodySprite" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_jncid")
+
+[node name="WheelSprite" type="Sprite2D" parent="."]
+position = Vector2(-190, 82)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_qnbj4")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="WheelSprite"]
+libraries = {
+&"": SubResource("AnimationLibrary_2cdgk")
+}
+autoplay = "rotate"
+
+[node name="WheelSprite2" type="Sprite2D" parent="."]
+position = Vector2(-46.000004, 82.00003)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_qnbj4")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="WheelSprite2"]
+libraries = {
+&"": SubResource("AnimationLibrary_2cdgk")
+}
+autoplay = "rotate"
+
+[node name="WheelSprite3" type="Sprite2D" parent="."]
+position = Vector2(94, 82)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_qnbj4")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="WheelSprite3"]
+libraries = {
+&"": SubResource("AnimationLibrary_2cdgk")
+}
+autoplay = "rotate"
 
 [node name="BossHurtbox" type="Area2D" parent="."]
 collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BossHurtbox"]
+visible = false
 shape = SubResource("RectangleShape2D_j2wj7")
 
 [connection signal="area_entered" from="BossHurtbox" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="BossHurtbox" to="." method="_on_area_2d_body_entered"]
-[connection signal="body_entered" from="BossHurtbox" to="HitFlashComponent" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="BossHurtbox" to="HitFlashComponent" method="_on_boss_hurtbox_body_entered"]
+[connection signal="body_entered" from="BossHurtbox" to="HitFlashComponent" method="_on_area_2d_body_entered"]
