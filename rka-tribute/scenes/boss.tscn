@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://by4gln0b1msvl"]
+[gd_scene load_steps=11 format=3 uid="uid://by4gln0b1msvl"]
 
 [ext_resource type="Script" uid="uid://cqhq85a6q0xi7" path="res://scenes/boss.gd" id="1_mjk3t"]
 [ext_resource type="Texture2D" uid="uid://c6qdd8jfdxs7e" path="res://assets/train/train_body_sprite.png" id="3_jncid"]
 [ext_resource type="PackedScene" uid="uid://dq03gh0iixoi" path="res://scenes/hit_flash_component.tscn" id="3_vikoi"]
 [ext_resource type="Texture2D" uid="uid://c5tr2th00f1et" path="res://assets/train/train_wheel_sprite.png" id="4_qnbj4"]
+[ext_resource type="Texture2D" uid="uid://s5kyf1nvlk4d" path="res://assets/train/coupling_rod.png" id="5_r3bxh"]
 
 [sub_resource type="Animation" id="Animation_wqpjq"]
 length = 0.001
@@ -95,7 +96,16 @@ libraries = {
 }
 autoplay = "rotate"
 
+[node name="CouplingRodOrbit" type="Node2D" parent="."]
+position = Vector2(-46, 82)
+
+[node name="CouplingRodSprite" type="Sprite2D" parent="CouplingRodOrbit"]
+position = Vector2(-2, -25)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_r3bxh")
+
 [node name="BossHurtbox" type="Area2D" parent="."]
+visible = false
 collision_layer = 2
 collision_mask = 2
 
@@ -104,6 +114,7 @@ visible = false
 shape = SubResource("RectangleShape2D_j2wj7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(-7, 26)
 shape = SubResource("RectangleShape2D_qnbj4")
 

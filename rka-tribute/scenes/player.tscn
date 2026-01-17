@@ -103,3 +103,6 @@ scale = Vector2(4, 4)
 shape = SubResource("CircleShape2D_3vyb7")
 
 [node name="AttackManager" parent="." instance=ExtResource("3_qhqgy")]
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(0, -61)

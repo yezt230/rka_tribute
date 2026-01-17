@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://b17n67k5nu2ru"]
 
-[ext_resource type="Script" path="res://scenes/attack_manager.gd" id="1_6l1w0"]
+[ext_resource type="Script" uid="uid://ch8xpnxh6wpwi" path="res://scenes/attack_manager.gd" id="1_6l1w0"]
 [ext_resource type="PackedScene" uid="uid://snkt0hfqpvi1" path="res://scenes/player_attack.tscn" id="2_y8qid"]
 
 [node name="AttackManager" type="Node2D"]
