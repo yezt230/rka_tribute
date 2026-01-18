@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dmydmpg5baofc"]
+[gd_scene load_steps=18 format=3 uid="uid://dmydmpg5baofc"]
 
 [ext_resource type="Script" uid="uid://cgm5y75wob1ca" path="res://scenes/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://b2ox58jfloh2c" path="res://assets/squirrel_sprite_fin.png" id="2_s4pf1"]
@@ -74,11 +74,62 @@ tracks/0/keys = {
 "values": [7, 6, 5, 4]
 }
 
+[sub_resource type="Animation" id="Animation_smehm"]
+resource_name = "midair_rising"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [11]
+}
+
+[sub_resource type="Animation" id="Animation_ur7pv"]
+resource_name = "midair_mid"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [10]
+}
+
+[sub_resource type="Animation" id="Animation_y4r1p"]
+resource_name = "midair_falling"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [9]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dqkch"]
 _data = {
 &"RESET": SubResource("Animation_qhqgy"),
 &"idle": SubResource("Animation_g2els"),
 &"jump": SubResource("Animation_dqkch"),
+&"midair_falling": SubResource("Animation_y4r1p"),
+&"midair_mid": SubResource("Animation_ur7pv"),
+&"midair_rising": SubResource("Animation_smehm"),
 &"run": SubResource("Animation_48jsh")
 }
 

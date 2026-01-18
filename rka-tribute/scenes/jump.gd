@@ -13,17 +13,17 @@ func _physics_process(delta):
 		#animation handling section
 	if parent.velocity:
 		if parent.velocity.y != 0:
-			if parent.velocity.y  * delta < -400:
-				#print("rising")
+			if parent.velocity.y < -400:
+				print("rising")
 				if parent.player_sprite:
-					parent.player_sprite.frame = 11
-			elif parent.velocity.y * delta > 400:
+					parent.animation_player.play("midair_rising")
+			elif parent.velocity.y > 400:
 				if parent.player_sprite:
-					parent.player_sprite.frame = 9
+					parent.animation_player.play("midair_falling")
 			else:
-				#print("falling")
+				print("falling")
 				if parent.player_sprite:
-					parent.player_sprite.frame = 10
+					parent.animation_player.play("midair_mid")
 
 
 func physics_update(_delta: float) -> State:	
