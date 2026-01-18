@@ -129,10 +129,11 @@ run_state = NodePath("../Run")
 shoot_state = NodePath("../Shoot")
 metadata/_custom_type_script = "uid://dn5lg0ejp6p73"
 
-[node name="Jump" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "shoot_state")]
+[node name="Jump" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "shoot_state", "run_state")]
 script = ExtResource("5_tuyoq")
 idle_state = NodePath("../Idle")
 shoot_state = NodePath("../Shoot")
+run_state = NodePath("../Run")
 metadata/_custom_type_script = "uid://dn5lg0ejp6p73"
 
 [node name="Run" type="Node" parent="StateMachine" node_paths=PackedStringArray("jump_state", "idle_state", "shoot_state")]

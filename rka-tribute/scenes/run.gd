@@ -4,13 +4,11 @@ extends State
 @export var idle_state: State
 @export var shoot_state: State
 
-var	player_sprite
-var	sprite_scale
-var collision
-var collision_coords
-
 func enter() -> void:
 	super()
+	print("run enetered")
+	if parent.is_on_floor():
+		parent.animation_player.play("run")
 	
 
 func process_input(_event: InputEvent) -> State:
@@ -18,6 +16,6 @@ func process_input(_event: InputEvent) -> State:
 		return jump_state		
 	elif Input.is_action_just_pressed('SPACE'):
 		return shoot_state		
-	else:
+	if not Input.is_action_pressed("LEFT") and not Input.is_action_pressed("RIGHT"):
 		return idle_state
 	return null

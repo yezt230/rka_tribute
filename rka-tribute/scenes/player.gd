@@ -35,24 +35,9 @@ func _physics_process(delta: float) -> void:
 
 	if direction:
 		velocity.x = direction * SPEED
-		animation_player.play("run")
+
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
-		animation_player.play("idle")
-
-	#animation handling section
-	if velocity.y != 0:
-		if velocity.y < -400:
-			player_sprite.frame = 11
-		elif velocity.y > 400:
-			player_sprite.frame = 9
-		else:
-			player_sprite.frame = 10
-	elif direction:
-		animation_player.play("run")
-	else:
-		animation_player.play("idle")
-
 	move_and_slide()
 
 

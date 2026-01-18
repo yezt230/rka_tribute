@@ -4,13 +4,9 @@ extends State
 @export var run_state: State
 @export var shoot_state: State
 
-var	player_sprite
-var	sprite_scale
-var collision
-var collision_coords
-
 func enter() -> void:
 	super()
+	parent.animation_player.play("idle")
 	
 
 func process_input(_event: InputEvent) -> State:
