@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dmydmpg5baofc"]
+[gd_scene load_steps=14 format=3 uid="uid://dmydmpg5baofc"]
 
 [ext_resource type="Script" uid="uid://cgm5y75wob1ca" path="res://scenes/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://b2ox58jfloh2c" path="res://assets/squirrel_sprite_fin.png" id="2_s4pf1"]
@@ -7,7 +7,6 @@
 [ext_resource type="Script" uid="uid://b48k1tv3jlp1m" path="res://scenes/idle.gd" id="4_qlg0r"]
 [ext_resource type="Script" uid="uid://dn5lg0ejp6p73" path="res://resources/state.gd" id="4_tuyoq"]
 [ext_resource type="Script" uid="uid://b543svu4u3aks" path="res://scenes/jump.gd" id="5_tuyoq"]
-[ext_resource type="Script" uid="uid://cix65aplrmy4c" path="res://scenes/run.gd" id="6_smehm"]
 
 [sub_resource type="Animation" id="Animation_qhqgy"]
 length = 0.001
@@ -129,17 +128,12 @@ run_state = NodePath("../Run")
 shoot_state = NodePath("../Shoot")
 metadata/_custom_type_script = "uid://dn5lg0ejp6p73"
 
-[node name="Jump" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "shoot_state")]
+[node name="Jump" type="Node" parent="StateMachine"]
 script = ExtResource("5_tuyoq")
-idle_state = NodePath("../Idle")
-shoot_state = NodePath("../Shoot")
 metadata/_custom_type_script = "uid://dn5lg0ejp6p73"
 
-[node name="Run" type="Node" parent="StateMachine" node_paths=PackedStringArray("jump_state", "idle_state", "shoot_state")]
-script = ExtResource("6_smehm")
-jump_state = NodePath("../Jump")
-idle_state = NodePath("../Idle")
-shoot_state = NodePath("../Shoot")
+[node name="Run" type="Node" parent="StateMachine"]
+script = ExtResource("4_tuyoq")
 metadata/_custom_type_script = "uid://dn5lg0ejp6p73"
 
 [node name="Shoot" type="Node" parent="StateMachine"]

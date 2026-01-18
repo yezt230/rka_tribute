@@ -8,6 +8,16 @@ const GRAV_ADJUSTMENT: float = 2.0
 @onready var player_sprite = $Sprite2D
 @onready var animation_player = $AnimationPlayer
 @onready var debug_label = $DebugLabel
+@onready var state_machine = $StateMachine
+
+func _ready():
+	state_machine.init(self)
+	
+
+func _process(_delta):
+	var current_state_name = state_machine.get_current_state()
+	debug_label.text = current_state_name
+
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.

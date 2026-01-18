@@ -24,7 +24,11 @@ func change_state(new_state: State) -> void:
 	
 	current_state = new_state
 	current_state.enter()
+	
 		
+func _input(event: InputEvent) -> void:
+	process_input(event)
+
 
 func process_input(event: InputEvent) -> void:
 	var new_state = current_state.process_input(event)
