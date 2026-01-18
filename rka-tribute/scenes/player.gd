@@ -1,4 +1,4 @@
-extends CharacterBody2D
+class_name Player extends CharacterBody2D
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -1000.0
@@ -7,6 +7,7 @@ const GRAV_ADJUSTMENT: float = 2.0
 @onready var player_dir: float = 1.0
 @onready var player_sprite = $Sprite2D
 @onready var animation_player = $AnimationPlayer
+@onready var debug_label = $DebugLabel
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.

@@ -1,8 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://dmydmpg5baofc"]
+[gd_scene load_steps=12 format=3 uid="uid://dmydmpg5baofc"]
 
 [ext_resource type="Script" uid="uid://cgm5y75wob1ca" path="res://scenes/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://b2ox58jfloh2c" path="res://assets/squirrel_sprite_fin.png" id="2_s4pf1"]
 [ext_resource type="PackedScene" uid="uid://b17n67k5nu2ru" path="res://scenes/attack_manager.tscn" id="3_qhqgy"]
+[ext_resource type="PackedScene" uid="uid://b7j6x1p18is77" path="res://scenes/state_machine.tscn" id="3_qlg0r"]
+[ext_resource type="Script" uid="uid://b48k1tv3jlp1m" path="res://scenes/idle.gd" id="4_qlg0r"]
 
 [sub_resource type="Animation" id="Animation_qhqgy"]
 length = 0.001
@@ -84,6 +86,17 @@ collision_layer = 0
 collision_mask = 9
 script = ExtResource("1_g2els")
 
+[node name="DebugLabel" type="Label" parent="."]
+offset_left = 27.0
+offset_top = -96.0
+offset_right = 67.0
+offset_bottom = -73.0
+theme_override_colors/font_color = Color(0.3764706, 0.49019608, 0.1254902, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 32
+text = "state"
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 position = Vector2(8, -61)
@@ -102,6 +115,12 @@ autoplay = "jump"
 position = Vector2(-1, -37)
 scale = Vector2(4, 4)
 shape = SubResource("CircleShape2D_3vyb7")
+
+[node name="StateMachine" parent="." instance=ExtResource("3_qlg0r")]
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("4_qlg0r")
+metadata/_custom_type_script = "uid://dn5lg0ejp6p73"
 
 [node name="AttackManager" parent="." instance=ExtResource("3_qhqgy")]
 
