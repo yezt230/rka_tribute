@@ -11,7 +11,6 @@ var collision_coords
 
 func enter() -> void:
 	super()
-	print("idle entered")
 	
 
 func process_input(_event: InputEvent) -> State:

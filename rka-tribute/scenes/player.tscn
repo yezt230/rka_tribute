@@ -119,7 +119,7 @@ position = Vector2(-1, -37)
 scale = Vector2(4, 4)
 shape = SubResource("CircleShape2D_3vyb7")
 
-[node name="StateMachine" parent="." node_paths=PackedStringArray("starting_state") instance=ExtResource("3_qlg0r")]
+[node name="StateMachine" parent="." node_paths=PackedStringArray("starting_state") groups=["player"] instance=ExtResource("3_qlg0r")]
 starting_state = NodePath("Idle")
 
 [node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("jump_state", "run_state", "shoot_state")]

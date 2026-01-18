@@ -12,5 +12,9 @@ func exit() -> void:
 	pass
 
 
+func physics_update(_delta: float) -> State:
+	return null
+
+
 func process_input(_event: InputEvent) -> State:
 	return null
