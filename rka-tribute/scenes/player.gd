@@ -8,7 +8,10 @@ const GRAV_ADJUSTMENT: float = 2.0
 @onready var player_sprite = $Sprite2D
 @onready var animation_player = $AnimationPlayer
 @onready var debug_label = $DebugLabel
+@onready var debug_label_2 = $DebugLabel2
 @onready var state_machine = $StateMachine
+
+var reserved_state: State = null
 
 func _ready():
 	state_machine.init(self)
@@ -17,6 +20,8 @@ func _ready():
 func _process(_delta):
 	var current_state_name = state_machine.get_current_state()
 	debug_label.text = current_state_name
+	if reserved_state:
+		debug_label_2.text = str(reserved_state)
 
 
 func _physics_process(delta: float) -> void:

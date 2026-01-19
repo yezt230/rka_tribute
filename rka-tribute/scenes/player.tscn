@@ -1,13 +1,13 @@
-[gd_scene load_steps=18 format=3 uid="uid://dmydmpg5baofc"]
+[gd_scene load_steps=19 format=3 uid="uid://dmydmpg5baofc"]
 
 [ext_resource type="Script" uid="uid://cgm5y75wob1ca" path="res://scenes/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://b2ox58jfloh2c" path="res://assets/squirrel_sprite_fin.png" id="2_s4pf1"]
 [ext_resource type="PackedScene" uid="uid://b17n67k5nu2ru" path="res://scenes/attack_manager.tscn" id="3_qhqgy"]
 [ext_resource type="PackedScene" uid="uid://b7j6x1p18is77" path="res://scenes/state_machine.tscn" id="3_qlg0r"]
 [ext_resource type="Script" uid="uid://b48k1tv3jlp1m" path="res://scenes/idle.gd" id="4_qlg0r"]
-[ext_resource type="Script" uid="uid://dn5lg0ejp6p73" path="res://resources/state.gd" id="4_tuyoq"]
 [ext_resource type="Script" uid="uid://b543svu4u3aks" path="res://scenes/jump.gd" id="5_tuyoq"]
 [ext_resource type="Script" uid="uid://cix65aplrmy4c" path="res://scenes/run.gd" id="6_smehm"]
+[ext_resource type="Script" uid="uid://bpy74jhgxgy0v" path="res://scenes/shoot.gd" id="7_smehm"]
 
 [sub_resource type="Animation" id="Animation_qhqgy"]
 length = 0.001
@@ -122,6 +122,23 @@ tracks/0/keys = {
 "values": [9]
 }
 
+[sub_resource type="Animation" id="Animation_d2wvv"]
+resource_name = "shoot"
+length = 0.6
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [15, 14]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dqkch"]
 _data = {
 &"RESET": SubResource("Animation_qhqgy"),
@@ -130,7 +147,8 @@ _data = {
 &"midair_falling": SubResource("Animation_y4r1p"),
 &"midair_mid": SubResource("Animation_ur7pv"),
 &"midair_rising": SubResource("Animation_smehm"),
-&"run": SubResource("Animation_48jsh")
+&"run": SubResource("Animation_48jsh"),
+&"shoot": SubResource("Animation_d2wvv")
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3vyb7"]
@@ -141,10 +159,21 @@ collision_mask = 9
 script = ExtResource("1_g2els")
 
 [node name="DebugLabel" type="Label" parent="."]
-offset_left = 27.0
-offset_top = -96.0
-offset_right = 67.0
-offset_bottom = -73.0
+offset_left = 75.0
+offset_top = -152.0
+offset_right = 153.0
+offset_bottom = -107.0
+theme_override_colors/font_color = Color(0.3764706, 0.49019608, 0.1254902, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 32
+text = "state"
+
+[node name="DebugLabel2" type="Label" parent="."]
+offset_left = 75.0
+offset_top = -120.0
+offset_right = 153.0
+offset_bottom = -75.0
 theme_override_colors/font_color = Color(0.3764706, 0.49019608, 0.1254902, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 2
@@ -157,7 +186,7 @@ position = Vector2(8, -61)
 scale = Vector2(-1, 1)
 texture = ExtResource("2_s4pf1")
 hframes = 4
-vframes = 3
+vframes = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -171,7 +200,7 @@ scale = Vector2(4, 4)
 shape = SubResource("CircleShape2D_3vyb7")
 
 [node name="StateMachine" parent="." node_paths=PackedStringArray("starting_state") groups=["player"] instance=ExtResource("3_qlg0r")]
-starting_state = NodePath("Idle")
+starting_state = NodePath("Jump")
 
 [node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("jump_state", "run_state", "shoot_state")]
 script = ExtResource("4_qlg0r")
@@ -194,11 +223,14 @@ idle_state = NodePath("../Idle")
 shoot_state = NodePath("../Shoot")
 metadata/_custom_type_script = "uid://dn5lg0ejp6p73"
 
-[node name="Shoot" type="Node" parent="StateMachine"]
-script = ExtResource("4_tuyoq")
+[node name="Shoot" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state")]
+script = ExtResource("7_smehm")
+idle_state = NodePath("../Idle")
 metadata/_custom_type_script = "uid://dn5lg0ejp6p73"
 
 [node name="AttackManager" parent="." instance=ExtResource("3_qhqgy")]
 
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(0, -61)
+
+[connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/Shoot" method="_on_animation_player_animation_finished"]

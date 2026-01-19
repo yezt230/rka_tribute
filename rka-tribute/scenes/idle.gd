@@ -12,8 +12,14 @@ func enter() -> void:
 func process_input(_event: InputEvent) -> State:
 	if Input.is_action_just_pressed('UP'):
 		return jump_state		
+	elif Input.is_action_just_pressed('SPACE'):
+		return shoot_state
 	elif Input.is_action_just_pressed('LEFT'):
 		return run_state		
 	elif Input.is_action_just_pressed('RIGHT'):
 		return run_state
 	return null
+
+
+func exit() -> void:
+	parent.reserved_state = self
