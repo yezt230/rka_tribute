@@ -10,5 +10,5 @@ func enter() -> void:
 func _on_animation_finished(anim_name: String) -> void:
 	if anim_name == "shoot":
 		parent.state_machine.change_state(
-			parent.state_machine.previous_state
+			parent.resolve_locomotion_state()
 		)

@@ -50,3 +50,15 @@ func get_orientation(dir):
 	if dir != 0.0:
 		player_dir = dir
 		player_sprite.scale.x = dir
+		
+		
+func resolve_locomotion_state() -> State:
+	# Airborne beats everything
+	if not is_on_floor():
+		return state_machine.get_node("Jump")
+
+	# Horizontal input
+	if Input.is_action_pressed("LEFT") or Input.is_action_pressed("RIGHT"):
+		return state_machine.get_node("Run")
+
+	return state_machine.get_node("Idle")
