@@ -56,26 +56,8 @@ tracks/0/keys = {
 "values": [9, 10, 11]
 }
 
-[sub_resource type="Animation" id="Animation_48jsh"]
-resource_name = "run"
-length = 0.8
-loop_mode = 1
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [7, 6, 5, 4]
-}
-
-[sub_resource type="Animation" id="Animation_smehm"]
-resource_name = "midair_rising"
+[sub_resource type="Animation" id="Animation_y4r1p"]
+resource_name = "midair_falling"
 step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -87,7 +69,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [11]
+"values": [9]
 }
 
 [sub_resource type="Animation" id="Animation_ur7pv"]
@@ -106,8 +88,8 @@ tracks/0/keys = {
 "values": [10]
 }
 
-[sub_resource type="Animation" id="Animation_y4r1p"]
-resource_name = "midair_falling"
+[sub_resource type="Animation" id="Animation_smehm"]
+resource_name = "midair_rising"
 step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -119,7 +101,25 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [9]
+"values": [11]
+}
+
+[sub_resource type="Animation" id="Animation_48jsh"]
+resource_name = "run"
+length = 0.8
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [7, 6, 5, 4]
 }
 
 [sub_resource type="Animation" id="Animation_d2wvv"]
@@ -174,6 +174,17 @@ offset_left = 75.0
 offset_top = -120.0
 offset_right = 153.0
 offset_bottom = -75.0
+theme_override_colors/font_color = Color(0.3764706, 0.49019608, 0.1254902, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 32
+text = "state"
+
+[node name="DebugLabel3" type="Label" parent="."]
+offset_left = 75.0
+offset_top = -90.0
+offset_right = 153.0
+offset_bottom = -45.0
 theme_override_colors/font_color = Color(0.3764706, 0.49019608, 0.1254902, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 2

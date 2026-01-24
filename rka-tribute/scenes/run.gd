@@ -6,7 +6,7 @@ extends State
 
 func enter() -> void:
 	super()
-	print("run enetered")
+	#print("run enetered")
 	if parent.is_on_floor():
 		parent.animation_player.play("run")
 	
@@ -19,3 +19,10 @@ func process_input(_event: InputEvent) -> State:
 	if not Input.is_action_pressed("LEFT") and not Input.is_action_pressed("RIGHT"):
 		return idle_state
 	return null
+	
+	
+func exit() -> void:
+	print("should be saved2")
+	if not parent.not_in_hp_state:
+		print("should be saved")
+		parent.reserved_state = self

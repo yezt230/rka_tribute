@@ -6,24 +6,25 @@ extends State
 
 func enter() -> void:
 	super()
-	print("jump")
+	#print("jump")
 	
 
 func _physics_process(delta):
 		#animation handling section
 	if parent.velocity:
-		if parent.velocity.y != 0:
-			if parent.velocity.y < -400:
-				print("rising")
-				if parent.player_sprite:
-					parent.animation_player.play("midair_rising")
-			elif parent.velocity.y > 400:
-				if parent.player_sprite:
-					parent.animation_player.play("midair_falling")
-			else:
-				print("falling")
-				if parent.player_sprite:
-					parent.animation_player.play("midair_mid")
+		if parent.not_in_hp_state:
+			if parent.velocity.y != 0:
+				if parent.velocity.y < -400:
+					if parent.player_sprite:
+						parent.animation_player.play("midair_rising")
+					#print("rising")
+				elif parent.velocity.y > 400:
+					if parent.player_sprite:
+						parent.animation_player.play("midair_falling")
+				else:
+					#print("falling")
+					if parent.player_sprite:
+						parent.animation_player.play("midair_mid")
 
 
 func physics_update(_delta: float) -> State:	
@@ -37,5 +38,6 @@ func physics_update(_delta: float) -> State:
 
 func process_input(_event: InputEvent) -> State:
 	if Input.is_action_just_pressed('SPACE'):
+		#print("shoot")
 		return shoot_state
 	return null

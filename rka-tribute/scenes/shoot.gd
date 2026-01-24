@@ -7,6 +7,7 @@ var reserved_state: State = null
 func enter() -> void:
 	super()
 	parent.animation_player.play("shoot")
+	parent.not_in_hp_state = false
 	if parent.reserved_state:
 		reserved_state = parent.reserved_state
 		
@@ -23,5 +24,6 @@ func enter() -> void:
 
 
 func _on_animation_player_animation_finished(anim_name):
+	parent.not_in_hp_state = true
 	if parent.reserved_state:
 		parent.state_machine.change_state(parent.reserved_state)

@@ -22,4 +22,5 @@ func process_input(_event: InputEvent) -> State:
 
 
 func exit() -> void:
-	parent.reserved_state = self
+	if parent.not_in_hp_state == false:
+		parent.reserved_state = self
