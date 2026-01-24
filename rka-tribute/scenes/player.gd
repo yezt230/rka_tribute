@@ -13,23 +13,15 @@ const GRAV_ADJUSTMENT: float = 2.0
 @onready var state_machine = $StateMachine
 @onready var idle = $StateMachine/Idle
 
-var reserved_state: State
-#hp (high priority) states: Shoot, Hurt
-var not_in_hp_state: bool = true
-
 func _ready():
 	print("print this once")
 	state_machine.init(self)
-	reserved_state = idle
 	
 
 func _process(_delta):
 	var current_state_name = state_machine.get_current_state()
 	debug_label.text = current_state_name
-	if reserved_state:
-		debug_label_2.text = str(reserved_state)
-	debug_label_3.text = str(not_in_hp_state)
-
+	
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.

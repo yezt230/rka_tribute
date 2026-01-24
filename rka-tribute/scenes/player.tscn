@@ -234,9 +234,8 @@ idle_state = NodePath("../Idle")
 shoot_state = NodePath("../Shoot")
 metadata/_custom_type_script = "uid://dn5lg0ejp6p73"
 
-[node name="Shoot" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state")]
+[node name="Shoot" type="Node" parent="StateMachine"]
 script = ExtResource("7_smehm")
-idle_state = NodePath("../Idle")
 metadata/_custom_type_script = "uid://dn5lg0ejp6p73"
 
 [node name="AttackManager" parent="." instance=ExtResource("3_qhqgy")]
