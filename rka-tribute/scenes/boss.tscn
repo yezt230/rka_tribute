@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://by4gln0b1msvl"]
+[gd_scene load_steps=14 format=3 uid="uid://by4gln0b1msvl"]
 
 [ext_resource type="Script" uid="uid://cqhq85a6q0xi7" path="res://scenes/boss.gd" id="1_mjk3t"]
 [ext_resource type="Texture2D" uid="uid://c6qdd8jfdxs7e" path="res://assets/train/train_body_sprite.png" id="3_jncid"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://c5tr2th00f1et" path="res://assets/train/train_wheel_sprite.png" id="4_qnbj4"]
 [ext_resource type="Texture2D" uid="uid://s5kyf1nvlk4d" path="res://assets/train/coupling_rod.png" id="5_r3bxh"]
 [ext_resource type="PackedScene" uid="uid://drp84e0ipv3tv" path="res://scenes/boss_orb_attack_manager.tscn" id="6_wqpjq"]
+[ext_resource type="Texture2D" uid="uid://cnrfjnyatkh2u" path="res://assets/misc/orb2.png" id="7_2cdgk"]
 
 [sub_resource type="Animation" id="Animation_wqpjq"]
 length = 0.001
@@ -51,6 +52,19 @@ size = Vector2(474, 290)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qnbj4"]
 size = Vector2(598, 210)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wqpjq"]
+particle_flag_disable_z = true
+particle_flag_damping_as_friction = true
+direction = Vector3(150, -150, 0)
+initial_velocity_min = 230.29999
+initial_velocity_max = 318.18
+angular_velocity_min = -1.6093254e-05
+angular_velocity_max = -1.6093254e-05
+damping_min = 0.4
+damping_max = 0.5
+scale_min = 0.29999998
+scale_max = 0.59999996
 
 [node name="Boss" type="CharacterBody2D"]
 collision_layer = 0
@@ -123,6 +137,17 @@ shape = SubResource("RectangleShape2D_qnbj4")
 
 [node name="OrbSpawner" type="Marker2D" parent="." groups=["orbspawner"]]
 position = Vector2(-11, -83)
+
+[node name="CannonParticles" type="GPUParticles2D" parent="OrbSpawner"]
+modulate = Color(1, 1, 1, 0.7058824)
+position = Vector2(-16, 16)
+emitting = false
+amount = 6
+texture = ExtResource("7_2cdgk")
+lifetime = 0.8
+one_shot = true
+explosiveness = 0.85
+process_material = SubResource("ParticleProcessMaterial_wqpjq")
 
 [connection signal="area_entered" from="BossHurtbox" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="BossHurtbox" to="." method="_on_area_2d_body_entered"]
