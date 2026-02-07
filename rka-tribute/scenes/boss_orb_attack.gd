@@ -31,7 +31,7 @@ func weighted_random_away(
     strength > 1.0  = stronger repulsion
     strength = 1.0  = linear
     strength < 1.0  = softer bias
-    """
+	"""
 
 	# No history → pure random
 	if history.size() == 0:

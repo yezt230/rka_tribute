@@ -1,0 +1,71 @@
+[gd_scene load_steps=8 format=3 uid="uid://b0dme80t0eusm"]
+
+[ext_resource type="Texture2D" uid="uid://b6hu1egxlm425" path="res://assets/misc/squirrel_cart.png" id="1_bttn7"]
+[ext_resource type="Script" uid="uid://blxipui5jblhr" path="res://scenes/cart.gd" id="1_p2bbo"]
+[ext_resource type="Texture2D" uid="uid://c5tr2th00f1et" path="res://assets/train/train_wheel_sprite.png" id="2_p2bbo"]
+
+[sub_resource type="Animation" id="Animation_wuvqt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WheelSprite:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_e671f"]
+resource_name = "rotate"
+length = 0.6
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WheelSprite:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.283185307179586]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_766cb"]
+_data = {
+&"RESET": SubResource("Animation_wuvqt"),
+&"rotate": SubResource("Animation_e671f")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bttn7"]
+size = Vector2(20, 121)
+
+[node name="Cart" type="CharacterBody2D"]
+collision_layer = 0
+script = ExtResource("1_p2bbo")
+
+[node name="CartSprite" type="Sprite2D" parent="."]
+position = Vector2(0, -96)
+texture = ExtResource("1_bttn7")
+
+[node name="WheelSprite" type="Sprite2D" parent="."]
+position = Vector2(0, -43)
+scale = Vector2(0.42512083, 0.42512077)
+texture = ExtResource("2_p2bbo")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="WheelSprite"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_766cb")
+}
+autoplay = "rotate"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -60.5)
+shape = SubResource("RectangleShape2D_bttn7")

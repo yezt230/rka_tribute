@@ -155,7 +155,7 @@ _data = {
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 0
-collision_mask = 9
+collision_mask = 264
 script = ExtResource("1_g2els")
 
 [node name="DebugLabel" type="Label" parent="."]
