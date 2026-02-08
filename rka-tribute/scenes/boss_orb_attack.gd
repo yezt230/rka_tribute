@@ -11,8 +11,11 @@ var velocity: Vector2
 var history: Array[float] = []
 
 func _ready() -> void:
-	velocity = Vector2(get_next_velocity_x(), initial_y_velocity)
+	#DEBUG
+	#velocity = Vector2(get_next_velocity_x(), initial_y_velocity)
+	velocity = Vector2(500, initial_y_velocity)
 	timer.timeout.connect(on_timer_timeout)
+
 
 func _physics_process(delta: float) -> void:
 	# Apply gravity
@@ -20,6 +23,7 @@ func _physics_process(delta: float) -> void:
 	
 	# Integrate position
 	global_position += velocity * delta
+
 
 func on_timer_timeout() -> void:
 	queue_free()
@@ -55,6 +59,7 @@ func weighted_random_away(
 		t = clamp(center_t + weight, 0.0, 1.0)
 
 	return lerp(min_value, max_value, t)
+
 
 func get_next_velocity_x() -> float:
 	var value := weighted_random_away(

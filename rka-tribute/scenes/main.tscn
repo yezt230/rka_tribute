@@ -11,6 +11,7 @@
 position = Vector2(0, -1)
 
 [node name="Player" parent="." instance=ExtResource("1_o5qli")]
+visible = true
 position = Vector2(740, 402)
 
 [node name="Boss" parent="." instance=ExtResource("2_o8jyo")]

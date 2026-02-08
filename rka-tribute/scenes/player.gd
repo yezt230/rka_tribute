@@ -12,6 +12,7 @@ const GRAV_ADJUSTMENT: float = 2.0
 @onready var debug_label_3 = $DebugLabel3
 @onready var state_machine = $StateMachine
 @onready var idle = $StateMachine/Idle
+@onready var knockback_stall_timer = $KnockbackStallTimer
 
 func _ready():
 	print("print this once")
@@ -24,24 +25,28 @@ func _process(_delta):
 	
 
 func _physics_process(delta: float) -> void:
-	# Add the gravity.
+	# Gravity always applies
 	if not is_on_floor():
 		velocity += get_gravity() * GRAV_ADJUSTMENT * delta
 
-	# Handle jump.
+	# 🚫 Disable player input during Hurt
+	if state_machine.current_state.name == "Hurt":
+		move_and_slide()
+		return
+
+	# Handle jump
 	if Input.is_action_just_pressed("UP") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
+	# Horizontal movement
 	var direction := Input.get_axis("LEFT", "RIGHT")
-	get_orientation(direction)	
+	get_orientation(direction)
 
 	if direction:
 		velocity.x = direction * SPEED
-
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
+
 	move_and_slide()
 
 
@@ -75,3 +80,14 @@ func take_damage() -> void:
 
 	var hurt_state: State = state_machine.get_node("Hurt")
 	state_machine.change_state(hurt_state)
+
+
+func apply_knockback(force: float) -> void:
+	knockback_stall_timer.start()
+	# Push opposite facing direction
+	velocity.x = -player_dir * force
+
+
+func _on_knockback_stall_timer_timeout():
+	print("knockback timer")
+	velocity.x = 0
