@@ -5,13 +5,16 @@ extends Node2D
 @onready var collision_shape_2d = $"../CollisionShape2D" as CollisionShape2D
 @onready var marker_2d = $"../Marker2D" as Marker2D
 @onready var level_layer = get_tree().get_first_node_in_group("level")
-
+@onready var state_machine = $"../StateMachine"
 
 func _ready():
 	pass
 
 
 func _physics_process(_delta: float) -> void:
+	var current_state = state_machine.current_state
+	if current_state and current_state.name == "Hurt":
+		return
 	if Input.is_action_just_pressed("SPACE"):
 		var attack_instance = attack.instantiate()
 		var direction: float = player.player_dir

@@ -89,5 +89,4 @@ func apply_knockback(force: float) -> void:
 
 
 func _on_knockback_stall_timer_timeout():
-	print("knockback timer")
 	velocity.x = 0
