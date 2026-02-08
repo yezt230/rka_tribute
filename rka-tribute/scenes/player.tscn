@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dmydmpg5baofc"]
+[gd_scene load_steps=22 format=3 uid="uid://dmydmpg5baofc"]
 
 [ext_resource type="Script" uid="uid://cgm5y75wob1ca" path="res://scenes/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://b2ox58jfloh2c" path="res://assets/squirrel_sprite_fin.png" id="2_s4pf1"]
@@ -35,6 +35,35 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_3v2ag"]
+resource_name = "hurt"
+length = 1.2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -28), Vector2(0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_g2els"]
@@ -152,35 +181,6 @@ tracks/0/keys = {
 "values": [15, 14]
 }
 
-[sub_resource type="Animation" id="Animation_3v2ag"]
-resource_name = "hurt"
-length = 1.2
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [8]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:position")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(0, -28), Vector2(0, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dqkch"]
 _data = {
 &"RESET": SubResource("Animation_qhqgy"),
@@ -195,6 +195,9 @@ _data = {
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3vyb7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ur7pv"]
+radius = 26.019224
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 0
@@ -268,4 +271,14 @@ metadata/_custom_type_script = "uid://dn5lg0ejp6p73"
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(0, -61)
 
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -37)
+shape = SubResource("CircleShape2D_ur7pv")
+
 [connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/Shoot" method="_on_animation_player_animation_finished"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

@@ -62,3 +62,7 @@ func resolve_locomotion_state() -> State:
 		return state_machine.get_node("Run")
 
 	return state_machine.get_node("Idle")
+
+
+func _on_area_2d_area_entered(area):
+	print("hit")
