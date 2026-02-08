@@ -65,4 +65,13 @@ func resolve_locomotion_state() -> State:
 
 
 func _on_area_2d_area_entered(area):
-	print("hit")
+	take_damage()
+
+
+func take_damage() -> void:
+	# Prevent re-entry if already hurt
+	if state_machine.get_current_state() == "Hurt":
+		return
+
+	var hurt_state: State = state_machine.get_node("Hurt")
+	state_machine.change_state(hurt_state)
