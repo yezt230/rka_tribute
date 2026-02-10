@@ -1,10 +1,19 @@
 shader_type canvas_item;
 
-uniform float top_scale : hint_range(0.0, 2.0) = 1.2;
-uniform float bottom_scale : hint_range(0.0, 2.0) = 1.0;
-
 void vertex() {
-    float t = UV.y; // 0 = top, 1 = bottom
-    float scale = mix(top_scale, bottom_scale, t);
-    VERTEX.x *= scale;
+	// Called for every vertex the material is visible on.
 }
+
+uniform float lerp_percent : hint_range(0.0, 1.0);
+
+void fragment() {
+	vec4 texture_color = texture(TEXTURE, UV);
+	vec4 final_color = mix(texture_color, vec4(1.0, 0.2, 0.2, texture_color.a), lerp_percent);
+	COLOR = final_color.rgba;
+	// Called for every pixel the material is visible on.
+}
+
+//void light() {
+	// Called for every pixel for every light affecting the CanvasItem.
+	// Uncomment to replace the default light processing function with this one.
+//}
