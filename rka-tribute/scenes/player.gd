@@ -1,5 +1,7 @@
 class_name Player extends CharacterBody2D
 
+#collision for ground is on layer 3, orb attack is 4
+
 const SPEED = 300.0
 const JUMP_VELOCITY = -1000.0
 const GRAV_ADJUSTMENT: float = 2.0

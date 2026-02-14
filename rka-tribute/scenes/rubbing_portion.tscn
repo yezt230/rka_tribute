@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://g5yk3i1ykscg"]
+
+[ext_resource type="PackedScene" uid="uid://t5nds2n2g21q" path="res://scenes/bear_relaxing.tscn" id="1_kawjh"]
+[ext_resource type="PackedScene" uid="uid://dmydmpg5baofc" path="res://scenes/player.tscn" id="2_qb70t"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kawjh"]
+size = Vector2(1696.5, 20)
+
+[node name="RubbingPortion" type="Node2D"]
+
+[node name="BearRelaxing" parent="." instance=ExtResource("1_kawjh")]
+position = Vector2(896, 397)
+
+[node name="Player" parent="." instance=ExtResource("2_qb70t")]
+position = Vector2(682, 427)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(-14, 16)
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(792, 495)
+shape = SubResource("RectangleShape2D_kawjh")
