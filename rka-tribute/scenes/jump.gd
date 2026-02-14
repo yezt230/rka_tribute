@@ -1,7 +1,7 @@
 extends State
 
 @export var idle_state: State
-@export var shoot_state: State
+@export var jump_shoot_state: State
 @export var run_state: State
 
 func enter() -> void:
@@ -24,5 +24,5 @@ func physics_update(_delta: float) -> State:
 
 func process_input(_event: InputEvent) -> State:
 	if Input.is_action_just_pressed("SPACE"):
-		return shoot_state
+		return jump_shoot_state
 	return null
