@@ -11,7 +11,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.y = 0
 		
-	coupling_rod_orbit.rotation += 7.5 * delta
+	coupling_rod_orbit.rotation += 8.0 * delta
 	coupling_rod_sprite.rotation = -coupling_rod_orbit.rotation
 		
 	move_and_slide()

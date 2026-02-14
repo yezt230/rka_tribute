@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dmydmpg5baofc"]
+[gd_scene load_steps=26 format=3 uid="uid://dmydmpg5baofc"]
 
 [ext_resource type="Script" uid="uid://cgm5y75wob1ca" path="res://scenes/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://b2ox58jfloh2c" path="res://assets/squirrel_sprite_fin.png" id="2_s4pf1"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://bycfkgmmym6fy" path="res://scenes/hurt.gd" id="5_ur7pv"]
 [ext_resource type="Script" uid="uid://cix65aplrmy4c" path="res://scenes/run.gd" id="6_smehm"]
 [ext_resource type="Script" uid="uid://bpy74jhgxgy0v" path="res://scenes/shoot.gd" id="7_smehm"]
+[ext_resource type="Script" uid="uid://yt7u0y78xha0" path="res://scenes/run_shoot.gd" id="9_y4r1p"]
 
 [sub_resource type="Animation" id="Animation_qhqgy"]
 length = 0.001
@@ -181,6 +182,58 @@ tracks/0/keys = {
 "values": [15, 14]
 }
 
+[sub_resource type="Animation" id="Animation_jej6c"]
+resource_name = "run_shoot"
+length = 0.4
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [19, 18, 17]
+}
+
+[sub_resource type="Animation" id="Animation_f1ej7"]
+resource_name = "shoot_2"
+length = 0.4
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [15, 14]
+}
+
+[sub_resource type="Animation" id="Animation_oprun"]
+resource_name = "run_2"
+length = 0.8
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [7, 6, 5, 4]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dqkch"]
 _data = {
 &"RESET": SubResource("Animation_qhqgy"),
@@ -191,7 +244,10 @@ _data = {
 &"midair_mid": SubResource("Animation_ur7pv"),
 &"midair_rising": SubResource("Animation_smehm"),
 &"run": SubResource("Animation_48jsh"),
-&"shoot": SubResource("Animation_d2wvv")
+&"run_2": SubResource("Animation_oprun"),
+&"run_shoot": SubResource("Animation_jej6c"),
+&"shoot": SubResource("Animation_d2wvv"),
+&"shoot_2": SubResource("Animation_f1ej7")
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3vyb7"]
@@ -221,7 +277,7 @@ position = Vector2(8, -61)
 scale = Vector2(-1, 1)
 texture = ExtResource("2_s4pf1")
 hframes = 4
-vframes = 4
+vframes = 5
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -255,15 +311,19 @@ shoot_state = NodePath("../Shoot")
 run_state = NodePath("../Run")
 metadata/_custom_type_script = "uid://dn5lg0ejp6p73"
 
-[node name="Run" type="Node" parent="StateMachine" node_paths=PackedStringArray("jump_state", "idle_state", "shoot_state")]
+[node name="Run" type="Node" parent="StateMachine" node_paths=PackedStringArray("jump_state", "idle_state", "run_shoot_state")]
 script = ExtResource("6_smehm")
 jump_state = NodePath("../Jump")
 idle_state = NodePath("../Idle")
-shoot_state = NodePath("../Shoot")
+run_shoot_state = NodePath("../RunShoot")
 metadata/_custom_type_script = "uid://dn5lg0ejp6p73"
 
 [node name="Shoot" type="Node" parent="StateMachine"]
 script = ExtResource("7_smehm")
+metadata/_custom_type_script = "uid://dn5lg0ejp6p73"
+
+[node name="RunShoot" type="Node" parent="StateMachine"]
+script = ExtResource("9_y4r1p")
 metadata/_custom_type_script = "uid://dn5lg0ejp6p73"
 
 [node name="AttackManager" parent="." instance=ExtResource("3_qhqgy")]

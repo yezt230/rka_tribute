@@ -2,7 +2,7 @@ extends State
 
 @export var jump_state: State
 @export var idle_state: State
-@export var shoot_state: State
+@export var run_shoot_state: State
 
 func enter() -> void:
 	super()
@@ -13,7 +13,7 @@ func process_input(_event: InputEvent) -> State:
 	if Input.is_action_just_pressed("UP"):
 		return jump_state
 	elif Input.is_action_just_pressed("SPACE"):
-		return shoot_state
+		return run_shoot_state
 	elif not Input.is_action_pressed("LEFT") and not Input.is_action_pressed("RIGHT"):
 		return idle_state
 	return null
