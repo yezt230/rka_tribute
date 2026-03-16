@@ -370,10 +370,8 @@ metadata/_custom_type_script = "uid://dn5lg0ejp6p73"
 script = ExtResource("10_d2wvv")
 metadata/_custom_type_script = "uid://dn5lg0ejp6p73"
 
-[node name="RubStanding" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "run_state")]
+[node name="RubStanding" type="Node" parent="StateMachine"]
 script = ExtResource("11_3v2ag")
-idle_state = NodePath("../Idle")
-run_state = NodePath("../Run")
 metadata/_custom_type_script = "uid://dn5lg0ejp6p73"
 
 [node name="AttackManager" parent="." instance=ExtResource("3_qhqgy")]
