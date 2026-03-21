@@ -15,12 +15,8 @@ const GRAV_ADJUSTMENT: float = 2.0
 @onready var state_machine = $StateMachine
 @onready var idle = $StateMachine/Idle
 @onready var knockback_stall_timer = $KnockbackStallTimer
-	#probably change canAttackYet from a boolean to an array or three-way condition
-	#so the player can't attack in the ending sequence
-@onready var canAttackYet : bool = false 
 
 func _ready():
-	print("print this once")
 	state_machine.init(self)
 	
 

@@ -4,6 +4,6 @@ extends Node2D
 @onready var bear_relaxing = $BearRelaxing
 
 func _ready():
-	player.canAttackYet = true
+	pass
  
- 
+  

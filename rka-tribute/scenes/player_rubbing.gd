@@ -1,6 +1,8 @@
 class_name PlayerRubbing extends CharacterBody2D
 
 #collision for ground is on layer 3, orb attack is 4
+signal rubbing_started
+signal rubbing_stopped
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -1000.0
@@ -15,18 +17,28 @@ const GRAV_ADJUSTMENT: float = 2.0
 @onready var state_machine = $StateMachineRubbing
 @onready var idle = $StateMachineRubbing/IdleRubbing
 @onready var knockback_stall_timer = $KnockbackStallTimer
-	#probably change canAttackYet from a boolean to an array or three-way condition
-	#so the player can't attack in the ending sequence
-@onready var canAttackYet : bool = false 
+@onready var current_state_name : String
+@onready var rub_hitbox = $Area2D/RubHitbox
+
+var is_overlapping_bear := false
+var is_rubbing := false
 
 func _ready():
-	print("print this once")
 	state_machine.init(self)
 	
 
 func _process(_delta):
-	var current_state_name = state_machine.get_current_state()
+	#print("bear overlap: " + str(is_overlapping_bear))
+	current_state_name = state_machine.get_current_state()
 	debug_label.text = current_state_name
+	
+	var current = state_machine.get_current_state()
+
+	var now_rubbing = current == "RubStanding"
+
+	if now_rubbing != is_rubbing:
+		is_rubbing = now_rubbing
+		evaluate_rub_state()
 	
 
 func _physics_process(delta: float) -> void:
@@ -40,9 +52,11 @@ func _physics_process(delta: float) -> void:
 
 	# Horizontal movement
 	var direction := Input.get_axis("LEFT", "RIGHT")
-	get_orientation(direction)
+	get_orientation(direction)	
 
-	if direction:
+	rub_hitbox.position.x = 35 * player_dir
+
+	if direction and (current_state_name != "RubStanding" and current_state_name != "IdleRubbing"):
 		velocity.x = direction * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
@@ -69,6 +83,30 @@ func resolve_locomotion_state() -> State:
 	return state_machine.get_node("Idle")
 
 
-func _on_area_2d_area_entered(area):
-	#take_dam
-	pass
+#func _on_area_2d_area_entered(area):
+	##take_dam
+	#pass
+	
+func _on_area_2d_body_entered(body):
+	print(body.name)
+	if body.name == "BearRelaxing":
+		is_overlapping_bear = true
+		evaluate_rub_state()
+
+
+func _on_area_2d_body_exited(body):
+	print("body.nameleft")
+	if body.name == "BearRelaxing":
+		is_overlapping_bear = false
+		stop_rubbing()
+
+
+func evaluate_rub_state():
+	if is_overlapping_bear and is_rubbing:
+		emit_signal("rubbing_started")
+	else:
+		stop_rubbing()
+		
+
+func stop_rubbing():
+	emit_signal("rubbing_stopped")

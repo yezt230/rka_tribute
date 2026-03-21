@@ -8,9 +8,10 @@ func enter() -> void:
 	parent.animation_player.play("rub_standing")
 
 func process_input(_event: InputEvent) -> State:
-	print("rubbing state")
 	if Input.is_action_just_released("SPACE"):
-		print("stopped")
-		return idle_state
+		if Input.is_action_just_pressed("LEFT") or Input.is_action_just_pressed("RIGHT"):
+			return run_state
+		else:
+			return idle_state
 	else:
 		return self

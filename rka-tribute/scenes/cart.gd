@@ -3,8 +3,7 @@ extends CharacterBody2D
 @onready var player = $"../Player"
 
 func _ready():
-	print("player")
-	print(player)
+	pass
 	
 
 #func _process(delta: float) -> void:

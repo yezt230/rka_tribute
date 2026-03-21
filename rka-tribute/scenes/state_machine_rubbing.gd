@@ -9,9 +9,6 @@ var previous_state: State
 # parent object it belongs to and enter the default starting_state.
 func init(parent: PlayerRubbing) -> void:
 	for child in get_children():
-		print(parent)
-		print(child)
-		#print('thing')
 		child.parent = parent
 
 	if starting_state:

@@ -11,20 +11,11 @@ func enter() -> void:
 	parent.animation_player.play("idle")
 
 func process_input(_event: InputEvent) -> State:
-	if not player.canAttackYet:
-		if Input.is_action_just_pressed("UP"):
-			return jump_state
-		elif Input.is_action_just_pressed("SPACE"):
-			return shoot_state
-		elif Input.is_action_just_pressed("LEFT") or Input.is_action_just_pressed("RIGHT"):
-			return run_state
+	if Input.is_action_just_pressed("UP"):
+		return jump_state
+	elif Input.is_action_just_pressed("SPACE"):
+		return shoot_state
+	elif Input.is_action_just_pressed("LEFT") or Input.is_action_just_pressed("RIGHT"):
+		return run_state
 	else:
-		if Input.is_action_just_pressed("UP"):
-			return jump_state
-		elif Input.is_action_just_pressed("LEFT") or Input.is_action_just_pressed("RIGHT"):
-			return run_state
-		elif Input.is_action_pressed("SPACE"):
-			return rub_standing_state
-		else:
-			return self
-	return null
+		return self

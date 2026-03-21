@@ -16,18 +16,15 @@ func _physics_process(_delta: float) -> void:
 	if current_state and current_state.name == "Hurt":
 		return
 	if Input.is_action_just_pressed("SPACE"):
-		if not player.canAttackYet:
-				#if canAttackYet:
-			var attack_instance = attack.instantiate()
-			var direction: float = player.player_dir
-			
-			attack_instance.direction = direction
-			level_layer.get_parent().add_child(attack_instance)
-			
-			var attack_spawn_coords: Vector2 = marker_2d.global_position
-			#attack_spawn_coords.y = attack_spawn_coords.y - (v_offset * 3)
-			attack_spawn_coords.y = attack_spawn_coords.y
-			attack_instance.global_position = attack_spawn_coords
-		else:
-			return
+		var attack_instance = attack.instantiate()
+		var direction: float = player.player_dir
+		
+		attack_instance.direction = direction
+		level_layer.get_parent().add_child(attack_instance)
+		
+		var attack_spawn_coords: Vector2 = marker_2d.global_position
+		#attack_spawn_coords.y = attack_spawn_coords.y - (v_offset * 3)
+		attack_spawn_coords.y = attack_spawn_coords.y
+		attack_instance.global_position = attack_spawn_coords
+
 	

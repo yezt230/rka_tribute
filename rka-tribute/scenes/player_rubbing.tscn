@@ -183,9 +183,8 @@ _data = {
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3vyb7"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_d2wvv"]
-radius = 21.0
-height = 94.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_46iy2"]
+radius = 16.0
 
 [node name="PlayerRubbing" type="CharacterBody2D"]
 collision_layer = 0
@@ -226,18 +225,18 @@ shape = SubResource("CircleShape2D_3vyb7")
 script = ExtResource("3_gynt0")
 starting_state = NodePath("IdleRubbing")
 
-[node name="RunRubbing" type="Node" parent="StateMachineRubbing" node_paths=PackedStringArray("idle_state", "rub_state", "run_state")]
-script = ExtResource("7_gynt0")
-idle_state = NodePath("../IdleRubbing")
-rub_state = NodePath("../RubStanding")
-run_state = NodePath(".")
-metadata/_custom_type_script = "uid://dn5lg0ejp6p73"
-
 [node name="IdleRubbing" type="Node" parent="StateMachineRubbing" node_paths=PackedStringArray("jump_state", "run_state", "rub_standing_state")]
 script = ExtResource("7_46iy2")
 jump_state = NodePath("../JumpRubbing")
 run_state = NodePath("../RunRubbing")
 rub_standing_state = NodePath("../RubStanding")
+metadata/_custom_type_script = "uid://dn5lg0ejp6p73"
+
+[node name="RunRubbing" type="Node" parent="StateMachineRubbing" node_paths=PackedStringArray("idle_state", "rub_state", "jump_state")]
+script = ExtResource("7_gynt0")
+idle_state = NodePath("../IdleRubbing")
+rub_state = NodePath("../RubStanding")
+jump_state = NodePath("../JumpRubbing")
 metadata/_custom_type_script = "uid://dn5lg0ejp6p73"
 
 [node name="JumpRubbing" type="Node" parent="StateMachineRubbing" node_paths=PackedStringArray("idle_state", "run_state")]
@@ -256,12 +255,14 @@ metadata/_custom_type_script = "uid://dn5lg0ejp6p73"
 position = Vector2(0, -61)
 
 [node name="Area2D" type="Area2D" parent="."]
-collision_layer = 0
+collision_layer = 8
 collision_mask = 8
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0, -63)
-shape = SubResource("CapsuleShape2D_d2wvv")
+[node name="RubHitbox" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(35, -98)
+shape = SubResource("CircleShape2D_46iy2")
+debug_color = Color(0.8734306, 0.30273995, 0.44753277, 0.41960785)
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
