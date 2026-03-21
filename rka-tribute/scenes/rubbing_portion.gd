@@ -1,5 +1,7 @@
 extends Node2D
-@onready var player = $Player
+
+@onready var player = $PlayerRubbing
+@onready var bear_relaxing = $BearRelaxing
 
 func _ready():
 	player.canAttackYet = true
