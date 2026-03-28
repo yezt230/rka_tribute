@@ -20,6 +20,9 @@ const GRAV_ADJUSTMENT: float = 2.0
 @onready var current_state_name : String
 @onready var rub_hitbox = $Area2D/RubHitbox
 @onready var debug_label_4 = $DebugLabel2
+@onready var collision_shape_2d = $CollisionShape2D
+@onready var drop_down_timer = $DropDownTimer
+@onready var bear_belly_collision_shape_2d = $"../BearBellyPlatform/CollisionShape2D"
 
 var is_overlapping_bear := false
 var is_rubbing := false
@@ -51,6 +54,10 @@ func _physics_process(delta: float) -> void:
 	# Handle jump
 	if Input.is_action_just_pressed("UP") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
+
+	if Input.is_action_just_pressed("DOWN") and is_on_floor():
+		bear_belly_collision_shape_2d.disabled = true
+		drop_down_timer.start()
 
 	# Horizontal movement
 	var direction := Input.get_axis("LEFT", "RIGHT")
@@ -116,3 +123,7 @@ func evaluate_rub_state():
 
 func stop_rubbing():
 	emit_signal("rubbing_stopped")
+
+
+func _on_drop_down_timer_timeout():
+	bear_belly_collision_shape_2d.disabled = false
