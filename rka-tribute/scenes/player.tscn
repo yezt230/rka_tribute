@@ -315,7 +315,7 @@ position = Vector2(8, -61)
 scale = Vector2(-1, 1)
 texture = ExtResource("2_s4pf1")
 hframes = 4
-vframes = 6
+vframes = 7
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

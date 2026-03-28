@@ -3,6 +3,7 @@ extends State
 @export var jump_state: State
 @export var run_state: State
 @export var rub_standing_state: State
+@export var rub_crouching_state: State
 @onready var player = $"../.."
 
 func enter() -> void:
@@ -15,6 +16,9 @@ func process_input(_event: InputEvent) -> State:
 	elif Input.is_action_just_pressed("LEFT") or Input.is_action_just_pressed("RIGHT"):
 		return run_state
 	elif Input.is_action_pressed("SPACE"):
-		return rub_standing_state
+		if parent.is_on_belly_platform:
+			return rub_crouching_state
+		else:
+			return rub_standing_state
 	else:
 		return self

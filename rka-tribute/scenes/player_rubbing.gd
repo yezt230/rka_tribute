@@ -24,6 +24,8 @@ const GRAV_ADJUSTMENT: float = 2.0
 @onready var drop_down_timer = $DropDownTimer
 @onready var bear_belly_collision_shape_2d = $"../BearBellyPlatform/CollisionShape2D"
 
+var is_on_belly_platform := false
+var current_floor_collider: Object = null
 var is_overlapping_bear := false
 var is_rubbing := false
 
@@ -35,7 +37,8 @@ func _process(_delta):
 	#print("bear overlap: " + str(is_overlapping_bear))
 	current_state_name = state_machine.get_current_state()
 	debug_label.text = current_state_name
-	debug_label_4.text = str(is_on_floor())
+	debug_label_4.text = str(is_on_belly_platform)
+	#debug_label_4.text = str(is_on_floor())
 	
 	var current = state_machine.get_current_state()
 
@@ -76,6 +79,18 @@ func _physics_process(delta: float) -> void:
 
 	if not is_on_floor():
 		state_machine.change_state(jump_state)
+		
+	# check if on the platform specfically
+	for i in get_slide_collision_count():
+		var collision = get_slide_collision(i)
+		if collision.get_normal().y < 0:
+			var collider = collision.get_collider()
+			current_floor_collider = collider
+
+			if collider and collider.name == "BearBellyPlatform":
+				is_on_belly_platform = true
+			else:
+				is_on_belly_platform = false
 
 func get_orientation(dir):
 	# direction can only be -1 or 1
@@ -115,7 +130,7 @@ func _on_area_2d_body_exited(body):
 
 
 func evaluate_rub_state():
-	if is_overlapping_bear and is_rubbing:
+	if (is_overlapping_bear or is_on_belly_platform) and is_rubbing :
 		emit_signal("rubbing_started")
 	else:
 		stop_rubbing()
