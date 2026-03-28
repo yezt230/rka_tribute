@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://qund22av1htg" path="res://scenes/player_rubbing.gd" id="1_4tvg3"]
 [ext_resource type="Texture2D" uid="uid://b2ox58jfloh2c" path="res://assets/squirrel_sprite_fin.png" id="2_ah84s"]
 [ext_resource type="Script" uid="uid://cqg84oppl0yed" path="res://scenes/state_machine_rubbing.gd" id="3_gynt0"]
-[ext_resource type="Script" uid="uid://bplbeg7ouelqu" path="res://scenes/state.gd" id="6_46iy2"]
+[ext_resource type="Script" uid="uid://d0qrowafkp1id" path="res://scenes/jump_rubbing.gd" id="6_46iy2"]
 [ext_resource type="Script" uid="uid://bxw4t7xdamyah" path="res://scenes/idle_rubbing.gd" id="7_46iy2"]
 [ext_resource type="Script" uid="uid://bgg06yvbywt8w" path="res://scenes/run_rubbing.gd" id="7_gynt0"]
 [ext_resource type="Script" uid="uid://bj3vptxqs713l" path="res://scenes/rub_standing.gd" id="11_067sh"]
@@ -239,10 +239,8 @@ rub_state = NodePath("../RubStanding")
 jump_state = NodePath("../JumpRubbing")
 metadata/_custom_type_script = "uid://dn5lg0ejp6p73"
 
-[node name="JumpRubbing" type="Node" parent="StateMachineRubbing" node_paths=PackedStringArray("idle_state", "run_state")]
+[node name="JumpRubbing" type="Node" parent="StateMachineRubbing"]
 script = ExtResource("6_46iy2")
-idle_state = NodePath("../IdleRubbing")
-run_state = NodePath("../RunRubbing")
 metadata/_custom_type_script = "uid://dn5lg0ejp6p73"
 
 [node name="RubStanding" type="Node" parent="StateMachineRubbing" node_paths=PackedStringArray("idle_state", "run_state")]
@@ -262,6 +260,14 @@ collision_mask = 8
 position = Vector2(35, -98)
 shape = SubResource("CircleShape2D_46iy2")
 debug_color = Color(0.8734306, 0.30273995, 0.44753277, 0.41960785)
+
+[node name="DebugLabel2" type="Label" parent="."]
+offset_left = 76.0
+offset_top = -100.0
+offset_right = 116.0
+offset_bottom = -77.0
+theme_override_font_sizes/font_size = 26
+text = "text"
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

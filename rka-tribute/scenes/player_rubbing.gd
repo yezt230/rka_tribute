@@ -15,10 +15,12 @@ const GRAV_ADJUSTMENT: float = 2.0
 @onready var debug_label_2 = $DebugLabel2
 @onready var debug_label_3 = $DebugLabel3
 @onready var state_machine = $StateMachineRubbing
+@onready var jump_rubbing = $StateMachineRubbing/JumpRubbing
 @onready var idle = $StateMachineRubbing/IdleRubbing
 @onready var knockback_stall_timer = $KnockbackStallTimer
 @onready var current_state_name : String
 @onready var rub_hitbox = $Area2D/RubHitbox
+@onready var debug_label_4 = $DebugLabel2
 
 var is_overlapping_bear := false
 var is_rubbing := false
@@ -31,10 +33,14 @@ func _process(_delta):
 	#print("bear overlap: " + str(is_overlapping_bear))
 	current_state_name = state_machine.get_current_state()
 	debug_label.text = current_state_name
+	debug_label_4.text = str(is_on_floor())
 	
 	var current = state_machine.get_current_state()
 
 	var now_rubbing = current == "RubStanding"
+
+	if not is_on_floor():
+		state_machine.change_state(jump_rubbing)
 
 	if now_rubbing != is_rubbing:
 		is_rubbing = now_rubbing
