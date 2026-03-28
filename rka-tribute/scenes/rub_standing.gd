@@ -6,6 +6,7 @@ extends State
 func enter() -> void:
 	super()
 	parent.animation_player.play("rub_standing")
+	parent.is_rubbing = true
 
 func process_input(_event: InputEvent) -> State:
 	if Input.is_action_just_released("SPACE"):
@@ -15,3 +16,7 @@ func process_input(_event: InputEvent) -> State:
 			return idle_state
 	else:
 		return self
+		
+		
+func exit() -> void:
+	parent.is_rubbing = false
