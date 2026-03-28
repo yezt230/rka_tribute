@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://qund22av1htg" path="res://scenes/player_rubbing.gd" id="1_4tvg3"]
 [ext_resource type="Texture2D" uid="uid://b2ox58jfloh2c" path="res://assets/squirrel_sprite_fin.png" id="2_ah84s"]
 [ext_resource type="Script" uid="uid://cqg84oppl0yed" path="res://scenes/state_machine_rubbing.gd" id="3_gynt0"]
-[ext_resource type="Script" uid="uid://d0qrowafkp1id" path="res://scenes/jump_rubbing.gd" id="6_46iy2"]
 [ext_resource type="Script" uid="uid://bxw4t7xdamyah" path="res://scenes/idle_rubbing.gd" id="7_46iy2"]
 [ext_resource type="Script" uid="uid://bgg06yvbywt8w" path="res://scenes/run_rubbing.gd" id="7_gynt0"]
 [ext_resource type="Script" uid="uid://bj3vptxqs713l" path="res://scenes/rub_standing.gd" id="11_067sh"]
@@ -183,6 +182,34 @@ _data = {
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3vyb7"]
 
+[sub_resource type="GDScript" id="GDScript_7jqic"]
+script/source = "extends State
+
+@export var idle_state: State
+@export var run_state: State
+
+func enter() -> void:
+	parent.animation_player.play(\"midair_mid\")
+
+func physics_update(_delta: float) -> State:
+	# Animation selection
+	if parent.velocity.y < -400:
+		print(\"rising\")
+		parent.animation_player.play(\"midair_rising\")
+	elif parent.velocity.y > 400:
+		print(\"falling\")
+		parent.animation_player.play(\"midair_falling\")
+	else:
+		print(\"mid\")
+		parent.animation_player.play(\"midair_mid\")
+
+	# Landing logic
+	if parent.is_on_floor():
+		return run_state if parent.velocity.x != 0 else idle_state
+
+	return null
+"
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_46iy2"]
 radius = 16.0
 
@@ -239,8 +266,10 @@ rub_state = NodePath("../RubStanding")
 jump_state = NodePath("../JumpRubbing")
 metadata/_custom_type_script = "uid://dn5lg0ejp6p73"
 
-[node name="JumpRubbing" type="Node" parent="StateMachineRubbing"]
-script = ExtResource("6_46iy2")
+[node name="JumpRubbing" type="Node" parent="StateMachineRubbing" node_paths=PackedStringArray("idle_state", "run_state")]
+script = SubResource("GDScript_7jqic")
+idle_state = NodePath("../IdleRubbing")
+run_state = NodePath("../RunRubbing")
 metadata/_custom_type_script = "uid://dn5lg0ejp6p73"
 
 [node name="RubStanding" type="Node" parent="StateMachineRubbing" node_paths=PackedStringArray("idle_state", "run_state")]

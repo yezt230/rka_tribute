@@ -15,7 +15,6 @@ const GRAV_ADJUSTMENT: float = 2.0
 @onready var debug_label_2 = $DebugLabel2
 @onready var debug_label_3 = $DebugLabel3
 @onready var state_machine = $StateMachineRubbing
-@onready var jump_rubbing = $StateMachineRubbing/JumpRubbing
 @onready var idle = $StateMachineRubbing/IdleRubbing
 @onready var knockback_stall_timer = $KnockbackStallTimer
 @onready var current_state_name : String
@@ -38,9 +37,6 @@ func _process(_delta):
 	var current = state_machine.get_current_state()
 
 	var now_rubbing = current == "RubStanding"
-
-	if not is_on_floor():
-		state_machine.change_state(jump_rubbing)
 
 	if now_rubbing != is_rubbing:
 		is_rubbing = now_rubbing
@@ -68,7 +64,11 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	move_and_slide()
+	
+	var jump_state = state_machine.get_node("JumpRubbing")
 
+	if not is_on_floor():
+		state_machine.change_state(jump_state)
 
 func get_orientation(dir):
 	# direction can only be -1 or 1
@@ -80,13 +80,13 @@ func get_orientation(dir):
 func resolve_locomotion_state() -> State:
 	# Airborne beats everything
 	if not is_on_floor():
-		return state_machine.get_node("Jump")
+		return state_machine.get_node("JumpRubbing")
 
 	# Horizontal input
 	if Input.is_action_pressed("LEFT") or Input.is_action_pressed("RIGHT"):
-		return state_machine.get_node("Run")
+		return state_machine.get_node("RunRubbing")
 
-	return state_machine.get_node("Idle")
+	return state_machine.get_node("IdleRubbing")
 
 
 #func _on_area_2d_area_entered(area):
