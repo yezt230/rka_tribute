@@ -109,14 +109,12 @@ func resolve_locomotion_state() -> State:
 	#pass
 	
 func _on_area_2d_body_entered(body):
-	print(body.name)
 	if body.name == "BearRelaxing":
 		is_overlapping_bear = true
 		evaluate_rub_state()
 
 
 func _on_area_2d_body_exited(body):
-	print("body.nameleft")
 	if body.name == "BearRelaxing":
 		is_overlapping_bear = false
 		stop_rubbing()
