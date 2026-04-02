@@ -213,13 +213,10 @@ func enter() -> void:
 func physics_update(_delta: float) -> State:
 	# Animation selection
 	if parent.velocity.y < -400:
-		print(\"rising\")
 		parent.animation_player.play(\"midair_rising\")
 	elif parent.velocity.y > 400:
-		print(\"falling\")
 		parent.animation_player.play(\"midair_falling\")
 	else:
-		print(\"mid\")
 		parent.animation_player.play(\"midair_mid\")
 
 	# Landing logic
