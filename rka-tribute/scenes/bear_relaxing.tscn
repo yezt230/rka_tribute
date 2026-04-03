@@ -60,24 +60,6 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_p8h3i"]
 radius = 168.07439
 
-[sub_resource type="Animation" id="Animation_5wjx5"]
-resource_name = "shake_1"
-length = 1.2
-loop_mode = 1
-step = 0.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.10787877, 0.2, 0.30892557, 0.3996418, 0.49771342, 0.5982368, 0.6999861, 0.79805773, 0.91451776, 1.0076858, 1.1131128, 2),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [Vector2(-12, 19), Vector2(6, 20), Vector2(0, 0), Vector2(10, 13), Vector2(11, -14), Vector2(4, 19), Vector2(-30, -9), Vector2(7, 18), Vector2(-21, 4), Vector2(20, 4), Vector2(-8, -17), Vector2(-41, -2), Vector2(19, 0)]
-}
-
 [sub_resource type="Animation" id="Animation_yywtl"]
 length = 0.001
 tracks/0/type = "value"
@@ -133,6 +115,24 @@ tracks/0/keys = {
 "values": [Vector2(6, 4), Vector2(8, 0), Vector2(9, 3), Vector2(3, -3), Vector2(6, -3), Vector2(6, 0), Vector2(13, -1), Vector2(10, 4), Vector2(10, 0), Vector2(4, 4), Vector2(1, 2), Vector2(2, 9)]
 }
 
+[sub_resource type="Animation" id="Animation_5wjx5"]
+resource_name = "shake_1"
+length = 1.2
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.10787877, 0.2, 0.30892557, 0.3996418, 0.49771342, 0.5982368, 0.6999861, 0.79805773, 0.91451776, 1.0076858, 1.1131128, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(-12, 19), Vector2(6, 20), Vector2(0, 0), Vector2(10, 13), Vector2(11, -14), Vector2(4, 19), Vector2(-30, -9), Vector2(7, 18), Vector2(-21, 4), Vector2(20, 4), Vector2(-8, -17), Vector2(-41, -2), Vector2(19, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yywtl"]
 _data = {
 &"RESET": SubResource("Animation_yywtl"),
@@ -165,4 +165,3 @@ shape = SubResource("CircleShape2D_p8h3i")
 libraries = {
 &"": SubResource("AnimationLibrary_yywtl")
 }
-autoplay = "rub_3"
