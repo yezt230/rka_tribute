@@ -2,10 +2,12 @@ extends State
 
 @export var idle_state: State
 @export var run_state: State
+@onready var rubbing_shake_inc_timer = $"../../RubbingShakeIncTimer"
 
 func enter() -> void:
 	super()
 	parent.animation_player.play("rub_crouching")
+	#rubbing_shake_inc_timer.start()
 	parent.is_rubbing = true
 
 func process_input(_event: InputEvent) -> State:

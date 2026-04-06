@@ -12,32 +12,34 @@ const GRAV_ADJUSTMENT: float = 2.0
 @onready var player_sprite = $Sprite2D
 @onready var animation_player = $AnimationPlayer
 @onready var debug_label = $DebugLabel
-@onready var debug_label_2 = $DebugLabel2
-@onready var debug_label_3 = $DebugLabel3
 @onready var state_machine = $StateMachineRubbing
 @onready var idle = $StateMachineRubbing/IdleRubbing
-@onready var knockback_stall_timer = $KnockbackStallTimer
 @onready var current_state_name : String
 @onready var rub_hitbox = $Area2D/RubHitbox
 @onready var debug_label_4 = $DebugLabel2
 @onready var collision_shape_2d = $CollisionShape2D
+@onready var rubbing_shake_inc_timer = $RubbingShakeIncTimer
 @onready var drop_down_timer = $DropDownTimer
+@onready var bear_shake_animation_player : AnimationPlayer = $"../BearRelaxing/ShakeAnimationPlayer"
+@onready var bear_shake_tracker : int = 0
 @onready var bear_belly_collision_shape_2d = $"../BearBellyPlatform/CollisionShape2D"
 
 var is_on_belly_platform := false
 var current_floor_collider: Object = null
 var is_overlapping_bear := false
 var is_rubbing := false
+var has_rubbing_timer_started = false
 
 func _ready():
 	state_machine.init(self)
+	rubbing_shake_inc_timer.timeout.connect(_on_rubbing_shake_inc_timer_timeout)
 	
 
 func _process(_delta):
-	#print("bear overlap: " + str(is_overlapping_bear))
 	current_state_name = state_machine.get_current_state()
 	debug_label.text = current_state_name
-	debug_label_4.text = str(is_rubbing)
+	#debug_label_4.text = str(is_rubbing)
+	debug_label_4.text = str(rubbing_shake_inc_timer.time_left)
 	#debug_label_4.text = str(is_on_floor())
 	evaluate_rub_state()
 	
@@ -121,15 +123,40 @@ func _on_area_2d_body_exited(body):
 
 
 func evaluate_rub_state():
-	if (is_overlapping_bear or is_on_belly_platform) and is_rubbing :
-		emit_signal("rubbing_started")
+	if (is_overlapping_bear or is_on_belly_platform) and is_rubbing:
+		start_rubbing()
 	else:
 		stop_rubbing()
 		
 
+func start_rubbing():
+	if not has_rubbing_timer_started:
+		rubbing_shake_inc_timer.start()
+		has_rubbing_timer_started = true
+	rubbing_shake_inc_timer.paused = false
+	emit_signal("rubbing_started")
+
+
 func stop_rubbing():
+	rubbing_shake_inc_timer.paused = true
 	emit_signal("rubbing_stopped")
 
 
 func _on_drop_down_timer_timeout():
 	bear_belly_collision_shape_2d.disabled = false
+
+
+func _on_rubbing_shake_inc_timer_timeout():
+	if bear_shake_animation_player:
+		print("bear shake animation")
+
+		match bear_shake_tracker:
+			0:
+				bear_shake_animation_player.play("rub_4")
+				bear_shake_tracker = 1
+			1:
+				bear_shake_animation_player.play("rub_3")
+				bear_shake_tracker = 2
+			2:
+				bear_shake_animation_player.play("rub_2")
+				bear_shake_tracker = 3
