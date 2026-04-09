@@ -23,6 +23,8 @@ const GRAV_ADJUSTMENT: float = 2.0
 @onready var bear_shake_animation_player : AnimationPlayer = $"../BearRelaxing/ShakeAnimationPlayer"
 @onready var bear_shake_tracker : int = 0
 @onready var bear_belly_collision_shape_2d = $"../BearBellyPlatform/CollisionShape2D"
+@onready var boss = $"../Boss"
+@onready var boss_animation_player = $"../Boss/AnimationPlayer"
 
 var is_on_belly_platform := false
 var current_floor_collider: Object = null
@@ -54,7 +56,8 @@ func _physics_process(delta: float) -> void:
 		velocity.y = JUMP_VELOCITY
 
 	if Input.is_action_just_pressed("DOWN") and is_on_floor():
-		bear_belly_collision_shape_2d.disabled = true
+		if bear_belly_collision_shape_2d:
+			bear_belly_collision_shape_2d.disabled = true
 		drop_down_timer.start()
 
 	# Horizontal movement
@@ -143,7 +146,8 @@ func stop_rubbing():
 
 
 func _on_drop_down_timer_timeout():
-	bear_belly_collision_shape_2d.disabled = false
+	if bear_belly_collision_shape_2d:
+		bear_belly_collision_shape_2d.disabled = false
 
 
 func _on_rubbing_shake_inc_timer_timeout():
@@ -160,3 +164,5 @@ func _on_rubbing_shake_inc_timer_timeout():
 			2:
 				bear_shake_animation_player.play("rub_2")
 				bear_shake_tracker = 3
+			3:
+				boss_animation_player.play("travel_right")

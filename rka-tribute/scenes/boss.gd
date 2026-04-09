@@ -4,7 +4,7 @@ extends CharacterBody2D
 @onready var coupling_rod_sprite = $CouplingRodOrbit/CouplingRodSprite
 
 func _physics_process(delta: float) -> void:
-	# Add the gravity.
+	# Add the gravity. 
 	if not is_on_floor():
 		velocity.y += get_gravity().y * 2.0 * delta
 		

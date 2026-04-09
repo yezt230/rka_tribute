@@ -1,6 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://t5nds2n2g21q"]
+[gd_scene load_steps=17 format=3 uid="uid://t5nds2n2g21q"]
 
+[ext_resource type="Script" uid="uid://cpfn0belo4xbl" path="res://scenes/bear_relaxing.gd" id="1_ifw4b"]
 [ext_resource type="Texture2D" uid="uid://cmcw35edm25de" path="res://assets/bear_relaxing_sprites.png" id="1_p8h3i"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_p8h3i"]
+radius = 168.07439
 
 [sub_resource type="Animation" id="Animation_ifw4b"]
 length = 0.001
@@ -57,8 +61,8 @@ _data = {
 &"still": SubResource("Animation_00c77")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_p8h3i"]
-radius = 168.07439
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p8h3i"]
+size = Vector2(44, 105)
 
 [sub_resource type="Animation" id="Animation_yywtl"]
 length = 0.001
@@ -182,7 +186,12 @@ _data = {
 
 [node name="BearRelaxing" type="CharacterBody2D"]
 collision_layer = 8
-collision_mask = 8
+collision_mask = 12
+script = ExtResource("1_ifw4b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-78, -3)
+shape = SubResource("CircleShape2D_p8h3i")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(2, 2)
@@ -195,9 +204,14 @@ libraries = {
 }
 autoplay = "still"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-78, -3)
-shape = SubResource("CircleShape2D_p8h3i")
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-65, 0)
+shape = SubResource("RectangleShape2D_p8h3i")
+debug_color = Color(0.8096516, 0.39273453, 0.34859973, 0.41960785)
 
 [node name="ShakeAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -210,3 +224,6 @@ offset_top = -225.0
 offset_right = 225.0
 offset_bottom = -202.0
 text = "text"
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
