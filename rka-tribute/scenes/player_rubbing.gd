@@ -25,6 +25,7 @@ const GRAV_ADJUSTMENT: float = 2.0
 @onready var bear_belly_collision_shape_2d = $"../BearBellyPlatform/CollisionShape2D"
 @onready var boss = $"../Boss"
 @onready var boss_animation_player = $"../Boss/AnimationPlayer"
+@onready var wood_scroller = $"../BG/WoodScroller"
 
 var is_on_belly_platform := false
 var current_floor_collider: Object = null
@@ -72,6 +73,17 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	move_and_slide()
+	
+	#DEBUG: just getting collision names
+	for i in range(get_slide_collision_count()):
+		var collision = get_slide_collision(i)
+		var collider = collision.get_collider()
+		
+		if collider is StaticBody2D:
+			print("Hit a static body:", collider.name)
+			if collider.name == "BG":
+				wood_scroller.velocity.x = -(direction * SPEED)
+	#end
 	
 	var jump_state = state_machine.get_node("JumpRubbing")
 

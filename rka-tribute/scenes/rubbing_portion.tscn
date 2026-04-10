@@ -1,9 +1,14 @@
-[gd_scene load_steps=10 format=3 uid="uid://g5yk3i1ykscg"]
+[gd_scene load_steps=13 format=3 uid="uid://g5yk3i1ykscg"]
 
 [ext_resource type="PackedScene" uid="uid://t5nds2n2g21q" path="res://scenes/bear_relaxing.tscn" id="1_kawjh"]
 [ext_resource type="Script" uid="uid://co2vry3052bes" path="res://scenes/rubbing_portion.gd" id="1_qb70t"]
+[ext_resource type="Texture2D" uid="uid://b0wm2ycqub1gb" path="res://assets/woods_bg.png" id="2_nx7g2"]
+[ext_resource type="Script" uid="uid://ck085rhnq2gpq" path="res://scenes/wood_scroller.gd" id="2_xtdjp"]
 [ext_resource type="PackedScene" uid="uid://c1akb236jofvd" path="res://scenes/player_rubbing.tscn" id="3_qb70t"]
 [ext_resource type="PackedScene" uid="uid://by4gln0b1msvl" path="res://scenes/boss.tscn" id="5_nx7g2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nx7g2"]
+size = Vector2(248, 951.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kawjh"]
 size = Vector2(1696.5, 20)
@@ -51,11 +56,29 @@ size = Vector2(266, 20)
 [node name="RubbingPortion" type="Node2D"]
 script = ExtResource("1_qb70t")
 
+[node name="BG" type="StaticBody2D" parent="."]
+collision_layer = 256
+collision_mask = 256
+
+[node name="WoodScroller" type="CharacterBody2D" parent="BG"]
+script = ExtResource("2_xtdjp")
+
+[node name="WoodsBg" type="Sprite2D" parent="BG/WoodScroller"]
+modulate = Color(1, 1, 1, 0.32156864)
+position = Vector2(1176, 244)
+scale = Vector2(1.5570654, 1.5570654)
+texture = ExtResource("2_nx7g2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BG"]
+position = Vector2(1298, 377.25)
+shape = SubResource("RectangleShape2D_nx7g2")
+debug_color = Color(0.31935605, 0.6058224, 0.44652468, 0.41960785)
+
 [node name="BearRelaxing" parent="." instance=ExtResource("1_kawjh")]
 position = Vector2(741, 414)
 
 [node name="PlayerRubbing" parent="." instance=ExtResource("3_qb70t")]
-position = Vector2(658, 312)
+position = Vector2(1029, 578)
 floor_stop_on_slope = false
 floor_snap_length = 22.0
 
@@ -95,5 +118,10 @@ disabled = true
 one_way_collision = true
 one_way_collision_margin = 16.3
 
+[node name="StallTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
 [connection signal="rubbing_started" from="PlayerRubbing" to="BearRelaxing" method="_on_player_rubbing_rubbing_started"]
 [connection signal="rubbing_stopped" from="PlayerRubbing" to="BearRelaxing" method="_on_player_rubbing_rubbing_stopped"]
+[connection signal="timeout" from="StallTimer" to="." method="_on_stall_timer_timeout"]
