@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://b0dme80t0eusm"]
+[gd_scene load_steps=9 format=3 uid="uid://b0dme80t0eusm"]
 
 [ext_resource type="Texture2D" uid="uid://b6hu1egxlm425" path="res://assets/misc/squirrel_cart.png" id="1_bttn7"]
 [ext_resource type="Script" uid="uid://blxipui5jblhr" path="res://scenes/cart.gd" id="1_p2bbo"]
@@ -37,10 +37,29 @@ tracks/0/keys = {
 "values": [0.0, 6.283185307179586]
 }
 
+[sub_resource type="Animation" id="Animation_p2bbo"]
+resource_name = "static"
+length = 0.2
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WheelSprite:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_766cb"]
 _data = {
 &"RESET": SubResource("Animation_wuvqt"),
-&"rotate": SubResource("Animation_e671f")
+&"rotate": SubResource("Animation_e671f"),
+&"static": SubResource("Animation_p2bbo")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bttn7"]

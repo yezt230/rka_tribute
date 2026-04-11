@@ -1,10 +1,14 @@
 extends CharacterBody2D
 
 @onready var player = $"../Player"
+@onready var animation_player = $WheelSprite/AnimationPlayer
 
 func _ready():
-	pass
-	
+#	checks if player is in the tree as opposed to
+# playerRubbing; if playerRubbing, then it's the
+# rubbing portion and the cart will start out stationary
+	if not player:
+		animation_player.play("static")	
 
 #func _process(delta: float) -> void:
 	#print("player.x: " + str(player.position.x))
@@ -14,6 +18,6 @@ func _physics_process(delta: float) -> void:
 		velocity.y += get_gravity().y * 2.0 * delta		
 	else:
 		velocity.y = 0
-	
-	global_position.x = player.position.x	
+	if player:
+		global_position.x = player.position.x	
 	move_and_slide()

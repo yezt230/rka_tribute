@@ -26,6 +26,10 @@ const GRAV_ADJUSTMENT: float = 2.0
 @onready var boss = $"../Boss"
 @onready var boss_animation_player = $"../Boss/AnimationPlayer"
 @onready var wood_scroller = $"../BG/WoodScroller"
+@onready var cart = $"../Cart"
+#should be a global variable? player will be locked
+#out of moving several times
+@onready var player_can_move : bool = true
 
 var is_on_belly_platform := false
 var current_floor_collider: Object = null
@@ -46,6 +50,8 @@ func _process(_delta):
 	#debug_label_4.text = str(is_on_floor())
 	evaluate_rub_state()
 	
+	if cart.global_position.x < 1300:
+		jump_onto_cart()
 
 func _physics_process(delta: float) -> void:
 	# Gravity always applies
@@ -53,13 +59,14 @@ func _physics_process(delta: float) -> void:
 		velocity += get_gravity() * GRAV_ADJUSTMENT * delta
 
 	# Handle jump
-	if Input.is_action_just_pressed("UP") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
+	if player_can_move:
+		if Input.is_action_just_pressed("UP") and is_on_floor():
+			velocity.y = JUMP_VELOCITY
 
-	if Input.is_action_just_pressed("DOWN") and is_on_floor():
-		if bear_belly_collision_shape_2d:
-			bear_belly_collision_shape_2d.disabled = true
-		drop_down_timer.start()
+		if Input.is_action_just_pressed("DOWN") and is_on_floor():
+			if bear_belly_collision_shape_2d:
+				bear_belly_collision_shape_2d.disabled = true
+			drop_down_timer.start()
 
 	# Horizontal movement
 	var direction := Input.get_axis("LEFT", "RIGHT")
@@ -67,10 +74,13 @@ func _physics_process(delta: float) -> void:
 
 	rub_hitbox.position.x = 35 * player_dir
 
-	if direction and (current_state_name != "RubStanding" and current_state_name != "IdleRubbing"):
-		velocity.x = direction * SPEED
+	if player_can_move:
+		if direction and (current_state_name != "RubStanding" and current_state_name != "IdleRubbing"):
+			velocity.x = direction * SPEED
+		else:
+			velocity.x = move_toward(velocity.x, 0, SPEED)
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+		velocity.x = 0
 
 	move_and_slide()
 	
@@ -80,9 +90,10 @@ func _physics_process(delta: float) -> void:
 		var collider = collision.get_collider()
 		
 		if collider is StaticBody2D:
-			print("Hit a static body:", collider.name)
+			#print("Hit a static body:", collider.name)
 			if collider.name == "BG":
 				wood_scroller.velocity.x = -(direction * SPEED)
+				cart.velocity.x = -(direction * SPEED)
 	#end
 	
 	var jump_state = state_machine.get_node("JumpRubbing")
@@ -115,8 +126,9 @@ func resolve_locomotion_state() -> State:
 		return state_machine.get_node("JumpRubbing")
 
 	# Horizontal input
-	if Input.is_action_pressed("LEFT") or Input.is_action_pressed("RIGHT"):
-		return state_machine.get_node("RunRubbing")
+	if player_can_move:
+		if Input.is_action_pressed("LEFT") or Input.is_action_pressed("RIGHT"):
+			return state_machine.get_node("RunRubbing")
 
 	return state_machine.get_node("IdleRubbing")
 
@@ -155,6 +167,11 @@ func start_rubbing():
 func stop_rubbing():
 	rubbing_shake_inc_timer.paused = true
 	emit_signal("rubbing_stopped")
+
+
+func jump_onto_cart():
+	player_can_move = false
+	print(player_can_move)
 
 
 func _on_drop_down_timer_timeout():

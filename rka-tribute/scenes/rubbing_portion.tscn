@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://g5yk3i1ykscg"]
+[gd_scene load_steps=14 format=3 uid="uid://g5yk3i1ykscg"]
 
 [ext_resource type="PackedScene" uid="uid://t5nds2n2g21q" path="res://scenes/bear_relaxing.tscn" id="1_kawjh"]
 [ext_resource type="Script" uid="uid://co2vry3052bes" path="res://scenes/rubbing_portion.gd" id="1_qb70t"]
@@ -6,12 +6,13 @@
 [ext_resource type="Script" uid="uid://ck085rhnq2gpq" path="res://scenes/wood_scroller.gd" id="2_xtdjp"]
 [ext_resource type="PackedScene" uid="uid://c1akb236jofvd" path="res://scenes/player_rubbing.tscn" id="3_qb70t"]
 [ext_resource type="PackedScene" uid="uid://by4gln0b1msvl" path="res://scenes/boss.tscn" id="5_nx7g2"]
+[ext_resource type="PackedScene" uid="uid://b0dme80t0eusm" path="res://scenes/cart.tscn" id="7_fmilq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nx7g2"]
 size = Vector2(248, 951.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kawjh"]
-size = Vector2(1696.5, 20)
+size = Vector2(3050.25, 20)
 
 [sub_resource type="Animation" id="Animation_xtdjp"]
 length = 0.001
@@ -84,11 +85,11 @@ floor_snap_length = 22.0
 
 [node name="Ground" type="StaticBody2D" parent="."]
 position = Vector2(-14, 16)
-collision_layer = 256
+collision_layer = 257
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
-position = Vector2(692, 575)
+position = Vector2(1368.875, 575)
 shape = SubResource("RectangleShape2D_kawjh")
 
 [node name="Boss" parent="." instance=ExtResource("5_nx7g2")]
@@ -121,6 +122,9 @@ one_way_collision_margin = 16.3
 [node name="StallTimer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
+
+[node name="Cart" parent="." instance=ExtResource("7_fmilq")]
+position = Vector2(1502, 580)
 
 [connection signal="rubbing_started" from="PlayerRubbing" to="BearRelaxing" method="_on_player_rubbing_rubbing_started"]
 [connection signal="rubbing_stopped" from="PlayerRubbing" to="BearRelaxing" method="_on_player_rubbing_rubbing_stopped"]
