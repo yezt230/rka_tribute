@@ -27,6 +27,7 @@ const GRAV_ADJUSTMENT: float = 2.0
 @onready var boss_animation_player = $"../Boss/AnimationPlayer"
 @onready var wood_scroller = $"../BG/WoodScroller"
 @onready var cart = $"../Cart"
+@onready var jump_onto_cart_flag : bool = false
 #should be a global variable? player will be locked
 #out of moving several times
 @onready var player_can_move : bool = true
@@ -43,16 +44,14 @@ func _ready():
 	
 
 func _process(_delta):
-	print("player can move: " + str(player_can_move))
+	#print("player can move: " + str(player_can_move))
 	if state_machine:
 		current_state_name = state_machine.get_current_state()
 		debug_label.text = current_state_name
-		#debug_label_4.text = str(is_rubbing)
 		debug_label_4.text = str(rubbing_shake_inc_timer.time_left)
-		#debug_label_4.text = str(is_on_floor())
 		evaluate_rub_state()
 	
-	if cart.global_position.x < 1300:
+	if cart.global_position.x < 1300 and not jump_onto_cart_flag:
 		jump_onto_cart()
 
 func _physics_process(delta: float) -> void:
@@ -134,11 +133,7 @@ func resolve_locomotion_state() -> State:
 			return state_machine.get_node("RunRubbing")
 
 	return state_machine.get_node("IdleRubbing")
-
-
-#func _on_area_2d_area_entered(area):
-	##take_dam
-	#pass
+	
 	
 func _on_area_2d_body_entered(body):
 	if body.name == "BearRelaxing":
@@ -182,17 +177,8 @@ func move_environment(direction):
 
 
 func jump_onto_cart():
-	player_can_move = false
 	var static_state = state_machine.get_node("Static")
 	state_machine.change_state(static_state)
-	#if state_machine:
-		#state_machine.queue_free()
-	#animation_player.play("jump_onto_cart")
-	#print(player_can_move)
-
-
-#func cart_start_rotation():
-	#cart.an
 
 
 func _on_drop_down_timer_timeout():
@@ -202,7 +188,7 @@ func _on_drop_down_timer_timeout():
 
 func _on_rubbing_shake_inc_timer_timeout():
 	if bear_shake_animation_player:
-		print("bear shake animation")
+		#print("bear shake animation")
 
 		match bear_shake_tracker:
 			0:
