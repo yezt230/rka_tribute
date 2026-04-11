@@ -1,0 +1,6 @@
+extends State
+
+func enter() -> void:
+	super()
+	parent.animation_player.play("jump_onto_cart")
+	parent.player_can_move = false

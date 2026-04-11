@@ -43,12 +43,14 @@ func _ready():
 	
 
 func _process(_delta):
-	current_state_name = state_machine.get_current_state()
-	debug_label.text = current_state_name
-	#debug_label_4.text = str(is_rubbing)
-	debug_label_4.text = str(rubbing_shake_inc_timer.time_left)
-	#debug_label_4.text = str(is_on_floor())
-	evaluate_rub_state()
+	print("player can move: " + str(player_can_move))
+	if state_machine:
+		current_state_name = state_machine.get_current_state()
+		debug_label.text = current_state_name
+		#debug_label_4.text = str(is_rubbing)
+		debug_label_4.text = str(rubbing_shake_inc_timer.time_left)
+		#debug_label_4.text = str(is_on_floor())
+		evaluate_rub_state()
 	
 	if cart.global_position.x < 1300:
 		jump_onto_cart()
@@ -92,11 +94,12 @@ func _physics_process(delta: float) -> void:
 		if collider is StaticBody2D:
 			#print("Hit a static body:", collider.name)
 			if collider.name == "BG":
-				wood_scroller.velocity.x = -(direction * SPEED)
-				cart.velocity.x = -(direction * SPEED)
+				move_environment(direction)
 	#end
 	
-	var jump_state = state_machine.get_node("JumpRubbing")
+	var jump_state : State
+	if state_machine:
+		jump_state = state_machine.get_node("JumpRubbing")
 
 	if not is_on_floor():
 		state_machine.change_state(jump_state)
@@ -169,9 +172,27 @@ func stop_rubbing():
 	emit_signal("rubbing_stopped")
 
 
+func move_environment(direction):
+	if player_can_move:
+		wood_scroller.velocity.x = -(direction * SPEED)
+		cart.velocity.x = -(direction * SPEED)
+	else:
+		wood_scroller.velocity.x = 0
+		cart.velocity.x = 0
+
+
 func jump_onto_cart():
 	player_can_move = false
-	print(player_can_move)
+	var static_state = state_machine.get_node("Static")
+	state_machine.change_state(static_state)
+	#if state_machine:
+		#state_machine.queue_free()
+	#animation_player.play("jump_onto_cart")
+	#print(player_can_move)
+
+
+#func cart_start_rotation():
+	#cart.an
 
 
 func _on_drop_down_timer_timeout():

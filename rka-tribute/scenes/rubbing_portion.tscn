@@ -79,7 +79,6 @@ debug_color = Color(0.31935605, 0.6058224, 0.44652468, 0.41960785)
 position = Vector2(741, 414)
 
 [node name="PlayerRubbing" parent="." instance=ExtResource("3_qb70t")]
-position = Vector2(1029, 578)
 floor_stop_on_slope = false
 floor_snap_length = 22.0
 
