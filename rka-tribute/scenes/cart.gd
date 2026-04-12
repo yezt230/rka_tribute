@@ -9,9 +9,7 @@ func _ready():
 # rubbing portion and the cart will start out stationary
 	if not player:
 		animation_player.play("static")	
-
-#func _process(delta: float) -> void:
-	#print("player.x: " + str(player.position.x))
+		
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():

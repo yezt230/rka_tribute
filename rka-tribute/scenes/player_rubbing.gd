@@ -22,7 +22,9 @@ const GRAV_ADJUSTMENT: float = 2.0
 @onready var drop_down_timer = $DropDownTimer
 @onready var bear_shake_animation_player : AnimationPlayer = $"../BearRelaxing/ShakeAnimationPlayer"
 @onready var bear_shake_tracker : int = 0
+@onready var bear_relaxing = $"../BearRelaxing"
 @onready var bear_belly_collision_shape_2d = $"../BearBellyPlatform/CollisionShape2D"
+@onready var bear_remove_timer = $"../BearRemoveTimer"
 @onready var boss = $"../Boss"
 @onready var boss_animation_player = $"../Boss/AnimationPlayer"
 @onready var wood_scroller = $"../BG/WoodScroller"
@@ -31,6 +33,7 @@ const GRAV_ADJUSTMENT: float = 2.0
 #should be a global variable? player will be locked
 #out of moving several times
 @onready var player_can_move : bool = true
+@onready var transition_to_main_timer = $"../TransitionToMainTimer"
 
 var is_on_belly_platform := false
 var current_floor_collider: Object = null
@@ -40,6 +43,7 @@ var has_rubbing_timer_started = false
 
 func _ready():
 	state_machine.init(self)
+	print(cart.animation_player)
 	rubbing_shake_inc_timer.timeout.connect(_on_rubbing_shake_inc_timer_timeout)
 	
 
@@ -71,7 +75,8 @@ func _physics_process(delta: float) -> void:
 
 	# Horizontal movement
 	var direction := Input.get_axis("LEFT", "RIGHT")
-	get_orientation(direction)	
+	if player_can_move:
+		get_orientation(direction)	
 
 	rub_hitbox.position.x = 35 * player_dir
 
@@ -81,7 +86,8 @@ func _physics_process(delta: float) -> void:
 		else:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 	else:
-		velocity.x = 0
+		if not jump_onto_cart_flag:
+			velocity.x = 0
 
 	move_and_slide()
 	
@@ -181,6 +187,19 @@ func jump_onto_cart():
 	state_machine.change_state(static_state)
 
 
+func cart_wheel_start_rotating():
+	transition_to_main_timer.start()
+	cart.animation_player.play("rotate")
+	var shared_velocity_x = -120
+	cart.velocity.x = shared_velocity_x
+	velocity.x = shared_velocity_x
+	cart.move_and_slide()
+	
+	
+func remove_bear():
+	bear_remove_timer.start()
+	
+	
 func _on_drop_down_timer_timeout():
 	if bear_belly_collision_shape_2d:
 		bear_belly_collision_shape_2d.disabled = false
@@ -188,17 +207,26 @@ func _on_drop_down_timer_timeout():
 
 func _on_rubbing_shake_inc_timer_timeout():
 	if bear_shake_animation_player:
-		#print("bear shake animation")
-
 		match bear_shake_tracker:
 			0:
 				bear_shake_animation_player.play("rub_4")
 				bear_shake_tracker = 1
 			1:
 				bear_shake_animation_player.play("rub_3")
+				boss_animation_player.play("travel_right")
+				remove_bear()
 				bear_shake_tracker = 2
 			2:
 				bear_shake_animation_player.play("rub_2")
 				bear_shake_tracker = 3
 			3:
 				boss_animation_player.play("travel_right")
+
+
+func _on_transition_to_main_timer_timeout():
+	get_tree().change_scene_to_file("res://scenes/main.tscn")
+
+
+func _on_bear_remove_timer_timeout():
+	if bear_relaxing:
+		bear_relaxing.queue_free()
