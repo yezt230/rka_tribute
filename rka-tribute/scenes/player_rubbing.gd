@@ -20,6 +20,7 @@ const GRAV_ADJUSTMENT: float = 2.0
 @onready var collision_shape_2d = $CollisionShape2D
 @onready var rubbing_shake_inc_timer = $RubbingShakeIncTimer
 @onready var drop_down_timer = $DropDownTimer
+@onready var cart = $"../Cart"
 @onready var bear_shake_animation_player : AnimationPlayer = $"../BearRelaxing/ShakeAnimationPlayer"
 @onready var bear_shake_tracker : int = 0
 @onready var bear_relaxing = $"../BearRelaxing"
@@ -27,9 +28,8 @@ const GRAV_ADJUSTMENT: float = 2.0
 @onready var bear_remove_timer = $"../BearRemoveTimer"
 @onready var boss = $"../Boss"
 @onready var boss_animation_player = $"../Boss/AnimationPlayer"
-@onready var wood_scroller = $"../BG/WoodScroller"
-@onready var cart = $"../Cart"
 @onready var jump_onto_cart_flag : bool = false
+@onready var environment_controller = $"../EnvironmentController"
 #should be a global variable? player will be locked
 #out of moving several times
 @onready var player_can_move : bool = true
@@ -43,7 +43,6 @@ var has_rubbing_timer_started = false
 
 func _ready():
 	state_machine.init(self)
-	print(cart.animation_player)
 	rubbing_shake_inc_timer.timeout.connect(_on_rubbing_shake_inc_timer_timeout)
 	
 
@@ -99,7 +98,12 @@ func _physics_process(delta: float) -> void:
 		if collider is StaticBody2D:
 			#print("Hit a static body:", collider.name)
 			if collider.name == "BG":
-				move_environment(direction)
+				environment_controller.set_direction(direction)
+
+			if not player_can_move:
+				environment_controller.set_active(false)
+			else:
+				environment_controller.set_active(true)
 	#end
 	
 	var jump_state : State
@@ -173,15 +177,6 @@ func stop_rubbing():
 	emit_signal("rubbing_stopped")
 
 
-func move_environment(direction):
-	if player_can_move:
-		wood_scroller.velocity.x = -(direction * SPEED)
-		cart.velocity.x = -(direction * SPEED)
-	else:
-		wood_scroller.velocity.x = 0
-		cart.velocity.x = 0
-
-
 func jump_onto_cart():
 	var static_state = state_machine.get_node("Static")
 	state_machine.change_state(static_state)
@@ -189,11 +184,8 @@ func jump_onto_cart():
 
 func cart_wheel_start_rotating():
 	transition_to_main_timer.start()
-	cart.animation_player.play("rotate")
-	var shared_velocity_x = -120
-	cart.velocity.x = shared_velocity_x
-	velocity.x = shared_velocity_x
-	cart.move_and_slide()
+	environment_controller.start_cart_cutscene(-120)
+	velocity.x = -120
 	
 	
 func remove_bear():

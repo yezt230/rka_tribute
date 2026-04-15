@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://g5yk3i1ykscg"]
+[gd_scene load_steps=16 format=3 uid="uid://g5yk3i1ykscg"]
 
 [ext_resource type="PackedScene" uid="uid://t5nds2n2g21q" path="res://scenes/bear_relaxing.tscn" id="1_kawjh"]
 [ext_resource type="Script" uid="uid://co2vry3052bes" path="res://scenes/rubbing_portion.gd" id="1_qb70t"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c1akb236jofvd" path="res://scenes/player_rubbing.tscn" id="3_qb70t"]
 [ext_resource type="PackedScene" uid="uid://by4gln0b1msvl" path="res://scenes/boss.tscn" id="5_nx7g2"]
 [ext_resource type="PackedScene" uid="uid://b0dme80t0eusm" path="res://scenes/cart.tscn" id="7_fmilq"]
+[ext_resource type="Script" uid="uid://epqtokcffhqt" path="res://scenes/environment_controller.gd" id="8_os4g6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nx7g2"]
 size = Vector2(248, 951.5)
@@ -143,6 +144,9 @@ one_shot = true
 [node name="BearRemoveTimer" type="Timer" parent="."]
 wait_time = 0.4
 one_shot = true
+
+[node name="EnvironmentController" type="Node" parent="."]
+script = ExtResource("8_os4g6")
 
 [connection signal="rubbing_started" from="PlayerRubbing" to="BearRelaxing" method="_on_player_rubbing_rubbing_started"]
 [connection signal="rubbing_stopped" from="PlayerRubbing" to="BearRelaxing" method="_on_player_rubbing_rubbing_stopped"]
