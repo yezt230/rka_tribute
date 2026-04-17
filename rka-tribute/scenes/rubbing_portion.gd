@@ -1,4 +1,4 @@
-extends Node2D
+extends Node2D     
 
 @onready var player = $PlayerRubbing
 @onready var bear_relaxing = $BearRelaxing
@@ -10,5 +10,6 @@ func _ready():
 
 
 func _on_stall_timer_timeout():
-	scene_movable = true
+	scene_movable = true                
 	print("ready to move")
+ 

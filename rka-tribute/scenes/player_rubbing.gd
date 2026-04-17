@@ -22,12 +22,9 @@ const GRAV_ADJUSTMENT: float = 2.0
 @onready var drop_down_timer = $DropDownTimer
 @onready var cart = $"../Cart"
 @onready var bear_shake_animation_player : AnimationPlayer = $"../BearRelaxing/ShakeAnimationPlayer"
-@onready var bear_shake_tracker : int = 0
 @onready var bear_relaxing = $"../BearRelaxing"
 @onready var bear_belly_collision_shape_2d = $"../BearBellyPlatform/CollisionShape2D"
 @onready var bear_remove_timer = $"../BearRemoveTimer"
-@onready var boss = $"../Boss"
-@onready var boss_animation_player = $"../Boss/AnimationPlayer"
 @onready var jump_onto_cart_flag : bool = false
 @onready var environment_controller = $"../EnvironmentController"
 #should be a global variable? player will be locked
@@ -37,13 +34,9 @@ const GRAV_ADJUSTMENT: float = 2.0
 
 var is_on_belly_platform := false
 var current_floor_collider: Object = null
-var is_overlapping_bear := false
-var is_rubbing := false
-var has_rubbing_timer_started = false
 
 func _ready():
 	state_machine.init(self)
-	rubbing_shake_inc_timer.timeout.connect(_on_rubbing_shake_inc_timer_timeout)
 	
 
 func _process(_delta):
@@ -51,8 +44,7 @@ func _process(_delta):
 	if state_machine:
 		current_state_name = state_machine.get_current_state()
 		debug_label.text = current_state_name
-		debug_label_4.text = str(rubbing_shake_inc_timer.time_left)
-		evaluate_rub_state()
+		#debug_label_4.text = str(rubbing_shake_inc_timer.time_left)
 	
 	if cart.global_position.x < 1300 and not jump_onto_cart_flag:
 		jump_onto_cart()
@@ -125,6 +117,7 @@ func _physics_process(delta: float) -> void:
 			else:
 				is_on_belly_platform = false
 
+
 func get_orientation(dir):
 	# direction can only be -1 or 1
 	if dir != 0.0:
@@ -143,38 +136,6 @@ func resolve_locomotion_state() -> State:
 			return state_machine.get_node("RunRubbing")
 
 	return state_machine.get_node("IdleRubbing")
-	
-	
-func _on_area_2d_body_entered(body):
-	if body.name == "BearRelaxing":
-		is_overlapping_bear = true
-		evaluate_rub_state()
-
-
-func _on_area_2d_body_exited(body):
-	if body.name == "BearRelaxing":
-		is_overlapping_bear = false
-		stop_rubbing()
-
-
-func evaluate_rub_state():
-	if (is_overlapping_bear or is_on_belly_platform) and is_rubbing:
-		start_rubbing()
-	else:
-		stop_rubbing()
-		
-
-func start_rubbing():
-	if not has_rubbing_timer_started:
-		rubbing_shake_inc_timer.start()
-		has_rubbing_timer_started = true
-	rubbing_shake_inc_timer.paused = false
-	emit_signal("rubbing_started")
-
-
-func stop_rubbing():
-	rubbing_shake_inc_timer.paused = true
-	emit_signal("rubbing_stopped")
 
 
 func jump_onto_cart():
@@ -187,7 +148,7 @@ func cart_wheel_start_rotating():
 	environment_controller.start_cart_cutscene(-120)
 	velocity.x = -120
 	
-	
+	#@todo move to bear
 func remove_bear():
 	bear_remove_timer.start()
 	
@@ -195,24 +156,6 @@ func remove_bear():
 func _on_drop_down_timer_timeout():
 	if bear_belly_collision_shape_2d:
 		bear_belly_collision_shape_2d.disabled = false
-
-
-func _on_rubbing_shake_inc_timer_timeout():
-	if bear_shake_animation_player:
-		match bear_shake_tracker:
-			0:
-				bear_shake_animation_player.play("rub_4")
-				bear_shake_tracker = 1
-			1:
-				bear_shake_animation_player.play("rub_3")
-				boss_animation_player.play("travel_right")
-				remove_bear()
-				bear_shake_tracker = 2
-			2:
-				bear_shake_animation_player.play("rub_2")
-				bear_shake_tracker = 3
-			3:
-				boss_animation_player.play("travel_right")
 
 
 func _on_transition_to_main_timer_timeout():

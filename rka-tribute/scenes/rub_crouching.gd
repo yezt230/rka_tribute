@@ -7,8 +7,8 @@ extends State
 func enter() -> void:
 	super()
 	parent.animation_player.play("rub_crouching")
-	#rubbing_shake_inc_timer.start()
-	parent.is_rubbing = true
+	parent.emit_signal("rubbing_started")
+	
 
 func process_input(_event: InputEvent) -> State:
 	if Input.is_action_just_released("SPACE"):
@@ -19,6 +19,7 @@ func process_input(_event: InputEvent) -> State:
 	else:
 		return self
 
-
+		
 func exit() -> void:
-	parent.is_rubbing = false
+	super()
+	parent.emit_signal("rubbing_stopped")

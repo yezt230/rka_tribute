@@ -1,10 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://t5nds2n2g21q"]
+[gd_scene load_steps=19 format=3 uid="uid://t5nds2n2g21q"]
 
 [ext_resource type="Script" uid="uid://cpfn0belo4xbl" path="res://scenes/bear_relaxing.gd" id="1_ifw4b"]
 [ext_resource type="Texture2D" uid="uid://cmcw35edm25de" path="res://assets/bear_relaxing_sprites.png" id="1_p8h3i"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_p8h3i"]
-radius = 168.07439
+radius = 40.024994
 
 [sub_resource type="Animation" id="Animation_ifw4b"]
 length = 0.001
@@ -184,13 +184,19 @@ _data = {
 &"shake_1": SubResource("Animation_5wjx5")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_ifw4b"]
+radius = 171.04678
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ifw4b"]
+size = Vector2(475, 186)
+
 [node name="BearRelaxing" type="CharacterBody2D"]
-collision_layer = 8
-collision_mask = 12
+collision_layer = 0
+collision_mask = 4
 script = ExtResource("1_ifw4b")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-78, -3)
+position = Vector2(-81, 132)
 shape = SubResource("CircleShape2D_p8h3i")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -225,5 +231,26 @@ offset_right = 225.0
 offset_bottom = -202.0
 text = "text"
 
+[node name="RubArea" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RubArea"]
+position = Vector2(-76, 0)
+shape = SubResource("CircleShape2D_ifw4b")
+debug_color = Color(0.6315984, 0.52465016, 0.20002493, 0.41960785)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="RubArea"]
+position = Vector2(-86.5, -92)
+shape = SubResource("RectangleShape2D_ifw4b")
+debug_color = Color(0.6313726, 0.5254902, 0.2, 0.41960785)
+
+[node name="RubbingShakeIncTimer" type="Timer" parent="."]
+wait_time = 3.0
+
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="area_entered" from="RubArea" to="." method="_on_rub_area_area_entered"]
+[connection signal="area_exited" from="RubArea" to="." method="_on_rub_area_area_exited"]
+[connection signal="body_entered" from="RubArea" to="." method="_on_rub_area_body_entered"]
+[connection signal="body_exited" from="RubArea" to="." method="_on_rub_area_body_exited"]
