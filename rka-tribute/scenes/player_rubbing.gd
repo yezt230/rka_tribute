@@ -23,7 +23,7 @@ const GRAV_ADJUSTMENT: float = 2.0
 @onready var cart = $"../Cart"
 @onready var bear_shake_animation_player : AnimationPlayer = $"../BearRelaxing/ShakeAnimationPlayer"
 @onready var bear_relaxing = $"../BearRelaxing"
-@onready var bear_belly_collision_shape_2d = $"../BearBellyPlatform/CollisionShape2D"
+@onready var bear_belly_collision_shape_2d = $"../BearRelaxing/BearBellyPlatform/CollisionPolygon2D"
 @onready var bear_remove_timer = $"../BearRemoveTimer"
 @onready var jump_onto_cart_flag : bool = false
 @onready var environment_controller = $"../EnvironmentController"
@@ -40,11 +40,9 @@ func _ready():
 	
 
 func _process(_delta):
-	#print("player can move: " + str(player_can_move))
 	if state_machine:
 		current_state_name = state_machine.get_current_state()
 		debug_label.text = current_state_name
-		#debug_label_4.text = str(rubbing_shake_inc_timer.time_left)
 	
 	if cart.global_position.x < 1300 and not jump_onto_cart_flag:
 		jump_onto_cart()
@@ -96,7 +94,6 @@ func _physics_process(delta: float) -> void:
 				environment_controller.set_active(false)
 			else:
 				environment_controller.set_active(true)
-	#end
 	
 	var jump_state : State
 	if state_machine:
@@ -144,13 +141,10 @@ func jump_onto_cart():
 
 
 func cart_wheel_start_rotating():
+	var transition_velocity = -250
 	transition_to_main_timer.start()
-	environment_controller.start_cart_cutscene(-120)
-	velocity.x = -120
-	
-	#@todo move to bear
-func remove_bear():
-	bear_remove_timer.start()
+	environment_controller.start_cart_cutscene(transition_velocity)
+	velocity.x = transition_velocity
 	
 	
 func _on_drop_down_timer_timeout():
@@ -160,8 +154,3 @@ func _on_drop_down_timer_timeout():
 
 func _on_transition_to_main_timer_timeout():
 	get_tree().change_scene_to_file("res://scenes/main.tscn")
-
-
-func _on_bear_remove_timer_timeout():
-	if bear_relaxing:
-		bear_relaxing.queue_free()

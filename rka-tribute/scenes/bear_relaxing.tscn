@@ -219,6 +219,16 @@ position = Vector2(63.5, 12.5)
 shape = SubResource("RectangleShape2D_p8h3i")
 debug_color = Color(0.8096516, 0.39273453, 0.34859973, 0.41960785)
 
+[node name="BearBellyPlatform" type="StaticBody2D" parent="."]
+position = Vector2(788, 330)
+collision_layer = 256
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BearBellyPlatform"]
+position = Vector2(-1033, -368)
+polygon = PackedVector2Array(0, 0, 45, -17, 92, -28, 150, -30, 231, -24, 289, -12, 319, 3, 259.65723, 2.4418945, 212.54584, 1.9988403, 0, 0)
+one_way_collision = true
+
 [node name="ShakeAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_yywtl")
@@ -248,9 +258,14 @@ debug_color = Color(0.6313726, 0.5254902, 0.2, 0.41960785)
 [node name="RubbingShakeIncTimer" type="Timer" parent="."]
 wait_time = 3.0
 
+[node name="BearRemoveTimer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="area_entered" from="RubArea" to="." method="_on_rub_area_area_entered"]
 [connection signal="area_exited" from="RubArea" to="." method="_on_rub_area_area_exited"]
 [connection signal="body_entered" from="RubArea" to="." method="_on_rub_area_body_entered"]
 [connection signal="body_exited" from="RubArea" to="." method="_on_rub_area_body_exited"]
+[connection signal="timeout" from="BearRemoveTimer" to="." method="_on_bear_remove_timer_timeout"]

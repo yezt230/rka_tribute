@@ -7,6 +7,7 @@ extends CharacterBody2D
 @onready var bear_shake_tracker : int = 0
 @onready var boss_animation_player = $"../Boss/AnimationPlayer"
 @onready var rubbing_shake_inc_timer = $RubbingShakeIncTimer
+@onready var bear_remove_timer = $BearRemoveTimer
 @onready var shake_label = $ShakeLabel
 @onready var has_shake_timer_started : bool = false
 
@@ -85,13 +86,21 @@ func _on_rubbing_shake_inc_timer_timeout():
 			1:
 				shake_animation_player.play("rub_3")
 				boss_animation_player.play("travel_right")
-				queue_free()
+				remove_bear()
 				bear_shake_tracker = 2
 			2:
 				shake_animation_player.play("rub_2")
 				bear_shake_tracker = 3
 			3:
 				boss_animation_player.play("travel_right")
+
+
+func remove_bear():
+	bear_remove_timer.start()
+	
+	
+func _on_bear_remove_timer_timeout():
+	queue_free()
 
 
 func _on_rub_area_area_entered(_area):

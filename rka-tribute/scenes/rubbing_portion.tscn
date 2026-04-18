@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://g5yk3i1ykscg"]
+[gd_scene load_steps=21 format=3 uid="uid://g5yk3i1ykscg"]
 
 [ext_resource type="PackedScene" uid="uid://t5nds2n2g21q" path="res://scenes/bear_relaxing.tscn" id="1_kawjh"]
 [ext_resource type="Script" uid="uid://co2vry3052bes" path="res://scenes/rubbing_portion.gd" id="1_qb70t"]
@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://by4gln0b1msvl" path="res://scenes/boss.tscn" id="5_nx7g2"]
 [ext_resource type="PackedScene" uid="uid://b0dme80t0eusm" path="res://scenes/cart.tscn" id="7_fmilq"]
 [ext_resource type="Script" uid="uid://epqtokcffhqt" path="res://scenes/environment_controller.gd" id="8_os4g6"]
+[ext_resource type="Shader" uid="uid://bdtm7o62r3bp" path="res://scenes/level.gdshader" id="9_d4cq4"]
+[ext_resource type="Texture2D" uid="uid://b0iof0841u8y0" path="res://assets/train/track.png" id="10_prj7r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nx7g2"]
 size = Vector2(248, 951.5)
@@ -55,8 +57,73 @@ _data = {
 &"travel_right": SubResource("Animation_nx7g2")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_glfqw"]
-size = Vector2(266, 20)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fq7un"]
+shader = ExtResource("9_d4cq4")
+shader_parameter/top_scale = 0.7710000366225
+shader_parameter/bottom_scale = 0.9630000457425
+
+[sub_resource type="Animation" id="Animation_w8frs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Track/Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(737, 681)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Track/Sprite2D:skew")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_w7c3h"]
+resource_name = "track_loop"
+length = 0.1
+loop_mode = 1
+step = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Track/Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0002, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(737, 681), Vector2(690, 681)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Track/Sprite2D:skew")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_w8frs"]
+_data = {
+&"RESET": SubResource("Animation_w8frs"),
+&"track_loop": SubResource("Animation_w7c3h")
+}
 
 [node name="RubbingPortion" type="Node2D"]
 script = ExtResource("1_qb70t")
@@ -88,10 +155,10 @@ position = Vector2(9, 358.5)
 shape = SubResource("RectangleShape2D_fmilq")
 
 [node name="BearRelaxing" parent="." instance=ExtResource("1_kawjh")]
-position = Vector2(741, 414)
+position = Vector2(741, 445)
 
 [node name="PlayerRubbing" parent="." instance=ExtResource("3_qb70t")]
-position = Vector2(1032, 577)
+position = Vector2(1029, 629)
 floor_stop_on_slope = false
 floor_snap_length = 22.0
 
@@ -101,7 +168,7 @@ collision_layer = 257
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
-position = Vector2(1368.875, 575)
+position = Vector2(1370, 626)
 shape = SubResource("RectangleShape2D_kawjh")
 
 [node name="Boss" parent="." instance=ExtResource("5_nx7g2")]
@@ -113,25 +180,8 @@ libraries = {
 &"": SubResource("AnimationLibrary_fmilq")
 }
 
-[node name="BearBellyPlatform" type="StaticBody2D" parent="."]
-position = Vector2(788, 330)
-collision_layer = 256
-collision_mask = 0
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BearBellyPlatform"]
-position = Vector2(-288, 29)
-polygon = PackedVector2Array(0, 0, 45, -17, 92, -28, 150, -30, 231, -24, 289, -12, 319, 3, 259.65723, 2.4418945, 212.54584, 1.9988403, 0, 0)
-one_way_collision = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BearBellyPlatform"]
-position = Vector2(-121, 57)
-shape = SubResource("RectangleShape2D_glfqw")
-disabled = true
-one_way_collision = true
-one_way_collision_margin = 16.3
-
 [node name="Cart" parent="." instance=ExtResource("7_fmilq")]
-position = Vector2(1502, 580)
+position = Vector2(1499, 632)
 
 [node name="StallTimer" type="Timer" parent="."]
 wait_time = 2.0
@@ -141,15 +191,25 @@ one_shot = true
 wait_time = 2.0
 one_shot = true
 
-[node name="BearRemoveTimer" type="Timer" parent="."]
-wait_time = 0.4
-one_shot = true
-
 [node name="EnvironmentController" type="Node" parent="."]
 script = ExtResource("8_os4g6")
+
+[node name="Track" type="Node2D" parent="."]
+position = Vector2(4, -35)
+
+[node name="Sprite2D" type="Sprite2D" parent="Track"]
+material = SubResource("ShaderMaterial_fq7un")
+position = Vector2(737, 681)
+scale = Vector2(1.2399964, 0.4399988)
+texture = ExtResource("10_prj7r")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Track"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_w8frs")
+}
 
 [connection signal="rubbing_started" from="PlayerRubbing" to="BearRelaxing" method="_on_player_rubbing_rubbing_started"]
 [connection signal="rubbing_stopped" from="PlayerRubbing" to="BearRelaxing" method="_on_player_rubbing_rubbing_stopped"]
 [connection signal="timeout" from="StallTimer" to="." method="_on_stall_timer_timeout"]
 [connection signal="timeout" from="TransitionToMainTimer" to="PlayerRubbing" method="_on_transition_to_main_timer_timeout"]
-[connection signal="timeout" from="BearRemoveTimer" to="PlayerRubbing" method="_on_bear_remove_timer_timeout"]
