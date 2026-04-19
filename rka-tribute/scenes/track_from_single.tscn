@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://fexmkvqwqj6c"]
+
+[ext_resource type="Script" uid="uid://dmhdxkor2q6aj" path="res://track_from_single.gd" id="1_l3oae"]
+[ext_resource type="PackedScene" uid="uid://phhsy5p1sfvf" path="res://scenes/tracvk_single_controller.tscn" id="2_l3oae"]
+
+[node name="TrackFromSingle" type="Node2D"]
+script = ExtResource("1_l3oae")
+track_single = ExtResource("2_l3oae")
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 0.05
+autostart = true
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

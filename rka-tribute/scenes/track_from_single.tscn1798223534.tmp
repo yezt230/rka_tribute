@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://fexmkvqwqj6c"]
+
+[ext_resource type="Script" uid="uid://dmhdxkor2q6aj" path="res://track_from_single.gd" id="1_l3oae"]
+[ext_resource type="PackedScene" uid="uid://o7qlbye5h6p" path="res://scenes/track_single.tscn" id="2_qgy33"]
+
+[node name="TrackFromSingle" type="Node2D"]
+script = ExtResource("1_l3oae")
+track_single = ExtResource("2_qgy33")
+
+[node name="TrackSingle" parent="." instance=ExtResource("2_qgy33")]

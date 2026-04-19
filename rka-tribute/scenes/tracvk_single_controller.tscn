@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://phhsy5p1sfvf"]
+
+[ext_resource type="PackedScene" uid="uid://o7qlbye5h6p" path="res://scenes/track_single.tscn" id="1_dsa3w"]
+
+[node name="TracvkSingleController" type="Node2D"]
+
+[node name="TrackSingle" parent="." instance=ExtResource("1_dsa3w")]

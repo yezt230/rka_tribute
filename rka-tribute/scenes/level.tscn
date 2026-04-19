@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://csiswaxuvb1wn"]
+[gd_scene load_steps=10 format=3 uid="uid://csiswaxuvb1wn"]
 
 [ext_resource type="PackedScene" uid="uid://b2rs7dvgxbqqq" path="res://scenes/ground.tscn" id="1_2q6dc"]
 [ext_resource type="Texture2D" uid="uid://b0iof0841u8y0" path="res://assets/train/track.png" id="2_w7c3h"]
 [ext_resource type="Shader" uid="uid://bdtm7o62r3bp" path="res://scenes/level.gdshader" id="2_w8frs"]
+[ext_resource type="PackedScene" uid="uid://fexmkvqwqj6c" path="res://scenes/track_from_single.tscn" id="4_mx8sn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2q6dc"]
 size = Vector2(1471, 10)
@@ -89,6 +90,7 @@ position = Vector2(704, 508)
 shape = SubResource("RectangleShape2D_2q6dc")
 
 [node name="Track" type="Node2D" parent="."]
+visible = false
 position = Vector2(4, -35)
 
 [node name="Sprite2D" type="Sprite2D" parent="Track"]
@@ -103,3 +105,6 @@ libraries = {
 &"": SubResource("AnimationLibrary_w8frs")
 }
 autoplay = "track_loop"
+
+[node name="TrackFromSingle" parent="." instance=ExtResource("4_mx8sn")]
+position = Vector2(467, 672)
