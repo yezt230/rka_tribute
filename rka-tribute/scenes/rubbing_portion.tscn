@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://g5yk3i1ykscg"]
+[gd_scene load_steps=16 format=3 uid="uid://g5yk3i1ykscg"]
 
 [ext_resource type="PackedScene" uid="uid://t5nds2n2g21q" path="res://scenes/bear_relaxing.tscn" id="1_kawjh"]
 [ext_resource type="Script" uid="uid://co2vry3052bes" path="res://scenes/rubbing_portion.gd" id="1_qb70t"]
@@ -8,10 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://by4gln0b1msvl" path="res://scenes/boss.tscn" id="5_nx7g2"]
 [ext_resource type="PackedScene" uid="uid://b0dme80t0eusm" path="res://scenes/cart.tscn" id="7_fmilq"]
 [ext_resource type="Script" uid="uid://epqtokcffhqt" path="res://scenes/environment_controller.gd" id="8_os4g6"]
-[ext_resource type="Shader" uid="uid://bdtm7o62r3bp" path="res://scenes/level.gdshader" id="9_d4cq4"]
-[ext_resource type="Script" uid="uid://dhesdvd0ygabu" path="res://scenes/track_rubbing.gd" id="9_fq7un"]
-[ext_resource type="Texture2D" uid="uid://cfsj0vdy34gwr" path="res://assets/bafkreifzfipvfqtbeior7a33atddj2uotcxfy7vntrdhhts2qjryj3ipi4.jpg" id="9_prj7r"]
-[ext_resource type="Texture2D" uid="uid://b0iof0841u8y0" path="res://assets/train/track.png" id="10_prj7r"]
+[ext_resource type="PackedScene" uid="uid://fexmkvqwqj6c" path="res://scenes/track_from_single.tscn" id="9_vsaki"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nx7g2"]
 size = Vector2(248, 951.5)
@@ -57,74 +54,6 @@ tracks/0/keys = {
 _data = {
 &"RESET": SubResource("Animation_xtdjp"),
 &"travel_right": SubResource("Animation_nx7g2")
-}
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_fq7un"]
-shader = ExtResource("9_d4cq4")
-shader_parameter/top_scale = 0.7710000366225
-shader_parameter/bottom_scale = 0.9630000457425
-
-[sub_resource type="Animation" id="Animation_w8frs"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Track/Mask/Sprite2D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(737, 681)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Track/Mask/Sprite2D:skew")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-
-[sub_resource type="Animation" id="Animation_w7c3h"]
-resource_name = "track_loop"
-length = 0.1
-loop_mode = 1
-step = 2.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Track/Mask/Sprite2D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.0002, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(737, 681), Vector2(690, 681)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Track/Mask/Sprite2D:skew")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_w8frs"]
-_data = {
-&"RESET": SubResource("Animation_w8frs"),
-&"track_loop": SubResource("Animation_w7c3h")
 }
 
 [node name="RubbingPortion" type="Node2D"]
@@ -196,28 +125,9 @@ one_shot = true
 [node name="EnvironmentController" type="Node" parent="."]
 script = ExtResource("8_os4g6")
 
-[node name="Track" type="CharacterBody2D" parent="."]
-position = Vector2(-163, -44)
-script = ExtResource("9_fq7un")
-
-[node name="Mask" type="Sprite2D" parent="Track"]
-clip_children = 1
-position = Vector2(522, 633)
-scale = Vector2(1, 0.05845514)
-texture = ExtResource("9_prj7r")
-offset = Vector2(2000, 500)
-
-[node name="Sprite2D" type="Sprite2D" parent="Track/Mask"]
-material = SubResource("ShaderMaterial_fq7un")
-position = Vector2(737, 681)
-scale = Vector2(1.2399964, 7.527119)
-texture = ExtResource("10_prj7r")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Track"]
-root_node = NodePath("../..")
-libraries = {
-&"": SubResource("AnimationLibrary_w8frs")
-}
+[node name="TrackFromSingle" parent="." instance=ExtResource("9_vsaki")]
+position = Vector2(-9, 594)
+mode = 1
 
 [connection signal="rubbing_started" from="PlayerRubbing" to="BearRelaxing" method="_on_player_rubbing_rubbing_started"]
 [connection signal="rubbing_stopped" from="PlayerRubbing" to="BearRelaxing" method="_on_player_rubbing_rubbing_stopped"]

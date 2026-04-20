@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://o7qlbye5h6p"]
+[gd_scene load_steps=6 format=3 uid="uid://o7qlbye5h6p"]
 
 [ext_resource type="Texture2D" uid="uid://0teltsd5v4uv" path="res://assets/track_single.png" id="1_lnl8b"]
 
@@ -83,10 +83,52 @@ tracks/2/keys = {
 "values": [Vector2(0.5, 0.5), Vector2(0.5, 0.35), Vector2(0.5, 0.5)]
 }
 
+[sub_resource type="Animation" id="Animation_lnl8b"]
+resource_name = "track_single_transition"
+length = 3.8
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2.9, 3.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [1450.0, 1250.0, 1250.0, -50.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:skew")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 2.9, 3.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [-1.047197551196598, -0.8726646259971649, -0.8726646259971649, 1.0471975511965976]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:scale")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1, 2.9, 3.8),
+"transitions": PackedFloat32Array(1, 1, 4.5947943, 1),
+"update": 0,
+"values": [Vector2(0.5, 0.5), Vector2(0.5, 0.35), Vector2(0.5, 0.35), Vector2(0.5, 0.5)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5pp0b"]
 _data = {
 &"RESET": SubResource("Animation_3vx5d"),
-&"track_single_loop": SubResource("Animation_pruee")
+&"track_single_loop": SubResource("Animation_pruee"),
+&"track_single_transition": SubResource("Animation_lnl8b")
 }
 
 [node name="TrackSingle" type="Sprite2D"]
@@ -96,4 +138,3 @@ texture = ExtResource("1_lnl8b")
 libraries = {
 &"": SubResource("AnimationLibrary_5pp0b")
 }
-autoplay = "track_single_loop"
