@@ -107,4 +107,4 @@ libraries = {
 autoplay = "track_loop"
 
 [node name="TrackFromSingle" parent="." instance=ExtResource("4_mx8sn")]
-position = Vector2(467, 672)
+position = Vector2(467, 640)

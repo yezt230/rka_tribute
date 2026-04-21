@@ -26,12 +26,10 @@ func set_active(active: bool) -> void:
 # --- NORMAL MOVEMENT ---
 func _physics_process(_delta: float) -> void:
 	if use_override:
-		print("not stopped")
 		apply_override_motion()
 		return
 
 	if not is_active:
-		print("stopped")
 		stop()
 		return
 
@@ -45,6 +43,7 @@ func _physics_process(_delta: float) -> void:
 func start_cart_cutscene(velocity_x: float):
 	use_override = true
 	override_velocity = velocity_x
+	track_from_single.activate_spawning()
 	cart_animation_player.play("rotate")
 
 
@@ -54,11 +53,11 @@ func stop_cart_cutscene():
 
 
 func apply_override_motion():
-	wood_scroller.velocity.x = override_velocity
+	#post jumping-on-cart animation
+	wood_scroller.velocity.x = override_velocity * 2.5
 	cart.velocity.x = override_velocity
 	if not spawned_track_yet:
-		print("paused moment")
-		track_from_single.spawn_rubbing_segments()
+		#track_from_single.spawn_rubbing_segments()
 		spawned_track_yet = true
 	#track.velocity.x = override_velocity
 	#track_animation_player.play("track_loop")
