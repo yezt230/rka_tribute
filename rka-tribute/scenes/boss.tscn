@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://by4gln0b1msvl"]
+[gd_scene load_steps=17 format=3 uid="uid://by4gln0b1msvl"]
 
 [ext_resource type="Script" uid="uid://cqhq85a6q0xi7" path="res://scenes/boss.gd" id="1_mjk3t"]
 [ext_resource type="Texture2D" uid="uid://c6qdd8jfdxs7e" path="res://assets/train/train_body_sprite.png" id="3_jncid"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cnrfjnyatkh2u" path="res://assets/misc/orb2.png" id="7_2cdgk"]
 [ext_resource type="PackedScene" uid="uid://b7j6x1p18is77" path="res://scenes/state_machine.tscn" id="8_2avx2"]
 [ext_resource type="Script" uid="uid://1fkevaf3rm32" path="res://scenes/phase_1.gd" id="9_2avx2"]
+[ext_resource type="PackedScene" uid="uid://dym16y6j1s3j2" path="res://scenes/health_component.tscn" id="10_5f346"]
 
 [sub_resource type="Animation" id="Animation_wqpjq"]
 length = 0.001
@@ -74,6 +75,8 @@ collision_mask = 4
 script = ExtResource("1_mjk3t")
 
 [node name="HitFlashComponent" parent="." instance=ExtResource("3_vikoi")]
+
+[node name="HealthComponent" parent="." instance=ExtResource("10_5f346")]
 
 [node name="TrainBodySprite" type="Sprite2D" parent="."]
 unique_name_in_owner = true
@@ -182,3 +185,4 @@ process_material = SubResource("ParticleProcessMaterial_wqpjq")
 [connection signal="area_entered" from="BossHurtbox" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="BossHurtbox" to="HitFlashComponent" method="_on_boss_hurtbox_body_entered"]
 [connection signal="body_entered" from="BossHurtbox" to="HitFlashComponent" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="BossHurtbox" to="HealthComponent" method="_on_boss_hurtbox_body_entered"]
