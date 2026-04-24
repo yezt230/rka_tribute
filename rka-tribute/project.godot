@@ -21,6 +21,10 @@ window/size/viewport_width=1400
 window/size/viewport_height=800
 window/vsync/vsync_mode=0
 
+[global_group]
+
+boss=""
+
 [input]
 
 SPACE={

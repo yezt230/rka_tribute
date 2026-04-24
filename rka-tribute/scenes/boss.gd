@@ -9,6 +9,7 @@ signal hit_wall
 @onready var state_label = $StateLabel
 @onready var speed_label = $SpeedLabel
 @onready var health_component = $HealthComponent
+@onready var hit_flash_component = $HitFlashComponent
 
 const SPEED : float = 25000
 var boss_speed : float = SPEED
@@ -40,12 +41,15 @@ func _physics_process(delta: float) -> void:
 	coupling_rod_sprite.rotation = -coupling_rod_orbit.rotation
 		
 	move_and_slide()
-
+ 
 
 func _on_zero_health():
 	queue_free()
 
 
-func _on_wall_bounce_hitbox_body_entered(body):
-	print("only wall hit")
+func _on_wall_bounce_hitbox_body_entered(_body):
 	dir = -dir
+
+
+func _on_player_projectile_hit():
+	hit_flash_component._on_hit()

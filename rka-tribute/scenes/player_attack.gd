@@ -3,7 +3,6 @@ extends CharacterBody2D
 const MOVE_SPEED: float = 35000
 @onready var sprite = $Sprite2D
 @onready var animation_player = $AnimationPlayer
-@onready var despawn_timer = $DespawnTimer
 @onready var direction: float
 
 func _ready():
@@ -21,9 +20,7 @@ func _on_timer_timeout():
 
 
 func _on_area_2d_area_entered(_area):
-	despawn_timer.start()
-
-#@todo get the projectile to despawn while still activatin ghitflash on the boss
-#without relying on a timer 
-func _on_despawn_timer_timeout():
+	var boss = _area.get_parent()
+	if boss.is_in_group("boss"):
+		boss._on_player_projectile_hit()
 	queue_free()

@@ -20,7 +20,8 @@ func _ready():
 		sprite.material = hit_flash_material
 
 
-func _on_boss_hurtbox_body_entered(body):
+#func _on_boss_hurtbox_body_entered(body):
+func _on_hit():
 	emit_signal("hit")
 	
 	if hit_flash_tween != null && hit_flash_tween.is_valid():
