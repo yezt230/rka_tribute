@@ -1,5 +1,7 @@
 extends Node
 
+signal hit
+
 @onready var boss = $".."
 @onready var train_body_sprite = %TrainBodySprite
 @onready var wheel_sprite = $"../WheelSprite"
@@ -19,6 +21,8 @@ func _ready():
 
 
 func _on_boss_hurtbox_body_entered(body):
+	emit_signal("hit")
+	
 	if hit_flash_tween != null && hit_flash_tween.is_valid():
 		hit_flash_tween.kill()
 	

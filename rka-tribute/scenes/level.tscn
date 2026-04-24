@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://csiswaxuvb1wn"]
+[gd_scene load_steps=11 format=3 uid="uid://csiswaxuvb1wn"]
 
 [ext_resource type="PackedScene" uid="uid://b2rs7dvgxbqqq" path="res://scenes/ground.tscn" id="1_2q6dc"]
 [ext_resource type="Texture2D" uid="uid://b0iof0841u8y0" path="res://assets/train/track.png" id="2_w7c3h"]
@@ -76,6 +76,9 @@ _data = {
 &"track_loop": SubResource("Animation_w7c3h")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mx8sn"]
+size = Vector2(23.5, 916)
+
 [node name="Level" type="Node2D" groups=["foregroundlayer"]]
 
 [node name="Ground" parent="." instance=ExtResource("1_2q6dc")]
@@ -108,3 +111,17 @@ autoplay = "track_loop"
 
 [node name="TrackFromSingle" parent="." instance=ExtResource("4_mx8sn")]
 position = Vector2(467, 640)
+
+[node name="RigidBody2D" type="StaticBody2D" parent="."]
+collision_layer = 256
+collision_mask = 256
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2(1262, 493)
+shape = SubResource("RectangleShape2D_mx8sn")
+debug_color = Color(0.4099575, 0.3436987, 0.06498103, 0.41960785)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2(62, 487)
+shape = SubResource("RectangleShape2D_mx8sn")
+debug_color = Color(0.4099575, 0.3436987, 0.06498103, 0.41960785)

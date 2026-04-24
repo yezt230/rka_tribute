@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://by4gln0b1msvl"]
+[gd_scene load_steps=18 format=3 uid="uid://by4gln0b1msvl"]
 
 [ext_resource type="Script" uid="uid://cqhq85a6q0xi7" path="res://scenes/boss.gd" id="1_mjk3t"]
 [ext_resource type="Texture2D" uid="uid://c6qdd8jfdxs7e" path="res://assets/train/train_body_sprite.png" id="3_jncid"]
@@ -49,6 +49,9 @@ _data = {
 &"RESET": SubResource("Animation_wqpjq"),
 &"rotate": SubResource("Animation_r3bxh")
 }
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5f346"]
+radius = 9.486833
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j2wj7"]
 size = Vector2(474, 290)
@@ -124,6 +127,14 @@ position = Vector2(-2, -25)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("5_r3bxh")
 
+[node name="WallBounceHitbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 256
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallBounceHitbox"]
+shape = SubResource("CircleShape2D_5f346")
+debug_color = Color(0.96737736, 0, 0.47053635, 0.41960785)
+
 [node name="BossHurtbox" type="Area2D" parent="."]
 visible = false
 collision_layer = 2
@@ -182,7 +193,13 @@ one_shot = true
 explosiveness = 0.85
 process_material = SubResource("ParticleProcessMaterial_wqpjq")
 
+[node name="StunTimer" type="Timer" parent="."]
+wait_time = 0.8
+one_shot = true
+
+[connection signal="body_entered" from="WallBounceHitbox" to="." method="_on_wall_bounce_hitbox_body_entered"]
 [connection signal="area_entered" from="BossHurtbox" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="BossHurtbox" to="HitFlashComponent" method="_on_boss_hurtbox_body_entered"]
 [connection signal="body_entered" from="BossHurtbox" to="HitFlashComponent" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="BossHurtbox" to="HealthComponent" method="_on_boss_hurtbox_body_entered"]
+[connection signal="timeout" from="StunTimer" to="StateMachine/Phase1" method="_on_stun_timer_timeout"]
