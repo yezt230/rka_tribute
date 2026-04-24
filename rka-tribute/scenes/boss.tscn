@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://by4gln0b1msvl"]
+[gd_scene load_steps=16 format=3 uid="uid://by4gln0b1msvl"]
 
 [ext_resource type="Script" uid="uid://cqhq85a6q0xi7" path="res://scenes/boss.gd" id="1_mjk3t"]
 [ext_resource type="Texture2D" uid="uid://c6qdd8jfdxs7e" path="res://assets/train/train_body_sprite.png" id="3_jncid"]
@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://s5kyf1nvlk4d" path="res://assets/train/coupling_rod.png" id="5_r3bxh"]
 [ext_resource type="PackedScene" uid="uid://drp84e0ipv3tv" path="res://scenes/boss_orb_attack_manager.tscn" id="6_wqpjq"]
 [ext_resource type="Texture2D" uid="uid://cnrfjnyatkh2u" path="res://assets/misc/orb2.png" id="7_2cdgk"]
+[ext_resource type="PackedScene" uid="uid://b7j6x1p18is77" path="res://scenes/state_machine.tscn" id="8_2avx2"]
+[ext_resource type="Script" uid="uid://1fkevaf3rm32" path="res://scenes/phase_1.gd" id="9_2avx2"]
 
 [sub_resource type="Animation" id="Animation_wqpjq"]
 length = 0.001
@@ -134,6 +136,33 @@ visible = false
 position = Vector2(-7, 26)
 shape = SubResource("RectangleShape2D_qnbj4")
 
+[node name="StateLabel" type="Label" parent="."]
+offset_left = 181.0
+offset_top = -120.0
+offset_right = 253.0
+offset_bottom = -75.0
+theme_override_colors/font_color = Color(0.8257297, 0.00061126053, 0.8399992, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 32
+text = "TEST"
+
+[node name="SpeedLabel" type="Label" parent="."]
+offset_left = 185.0
+offset_top = -66.0
+offset_right = 225.0
+offset_bottom = -43.0
+theme_override_colors/font_color = Color(0.05965583, 0.018360887, 0.012641113, 1)
+theme_override_font_sizes/font_size = 24
+text = "spd"
+
+[node name="StateMachine" parent="." node_paths=PackedStringArray("starting_state") instance=ExtResource("8_2avx2")]
+starting_state = NodePath("Phase1")
+
+[node name="Phase1" type="Node" parent="StateMachine"]
+script = ExtResource("9_2avx2")
+metadata/_custom_type_script = "uid://dn5lg0ejp6p73"
+
 [node name="BossOrbAttackManager" parent="." instance=ExtResource("6_wqpjq")]
 
 [node name="OrbSpawner" type="Marker2D" parent="." groups=["orbspawner"]]
@@ -151,6 +180,5 @@ explosiveness = 0.85
 process_material = SubResource("ParticleProcessMaterial_wqpjq")
 
 [connection signal="area_entered" from="BossHurtbox" to="." method="_on_area_2d_area_entered"]
-[connection signal="body_entered" from="BossHurtbox" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="BossHurtbox" to="HitFlashComponent" method="_on_boss_hurtbox_body_entered"]
 [connection signal="body_entered" from="BossHurtbox" to="HitFlashComponent" method="_on_area_2d_body_entered"]
