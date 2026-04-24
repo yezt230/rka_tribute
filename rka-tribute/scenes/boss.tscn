@@ -129,7 +129,7 @@ texture = ExtResource("5_r3bxh")
 
 [node name="WallBounceHitbox" type="Area2D" parent="."]
 collision_layer = 0
-collision_mask = 256
+collision_mask = 512
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WallBounceHitbox"]
 shape = SubResource("CircleShape2D_5f346")

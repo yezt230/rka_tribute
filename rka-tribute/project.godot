@@ -53,6 +53,12 @@ DOWN={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_4="PlayerHurtbox"
+2d_physics/layer_9="PlayerCartGround"
+2d_physics/layer_10="BossWallBorders"
+
 [rendering]
 
 environment/defaults/default_clear_color=Color(0.7508536, 0.7681744, 0.9157057, 1)

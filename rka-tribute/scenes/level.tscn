@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://csiswaxuvb1wn"]
+[gd_scene load_steps=12 format=3 uid="uid://csiswaxuvb1wn"]
 
 [ext_resource type="PackedScene" uid="uid://b2rs7dvgxbqqq" path="res://scenes/ground.tscn" id="1_2q6dc"]
 [ext_resource type="Texture2D" uid="uid://b0iof0841u8y0" path="res://assets/train/track.png" id="2_w7c3h"]
@@ -7,6 +7,9 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2q6dc"]
 size = Vector2(1471, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ppgk2"]
+size = Vector2(20, 857)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_w8frs"]
 shader = ExtResource("2_w8frs")
@@ -84,13 +87,27 @@ size = Vector2(23.5, 916)
 [node name="Ground" parent="." instance=ExtResource("1_2q6dc")]
 position = Vector2(0, -2)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="PlayerCartGround" type="StaticBody2D" parent="."]
 collision_layer = 256
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerCartGround"]
 position = Vector2(704, 508)
 shape = SubResource("RectangleShape2D_2q6dc")
+
+[node name="PlayerBorders" type="StaticBody2D" parent="."]
+collision_layer = 256
+collision_mask = 256
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerBorders"]
+position = Vector2(19, 465)
+shape = SubResource("RectangleShape2D_ppgk2")
+debug_color = Color(0.9453134, 0.14807221, 0.4638, 0.41960785)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="PlayerBorders"]
+position = Vector2(1375, 430)
+shape = SubResource("RectangleShape2D_ppgk2")
+debug_color = Color(0.9453134, 0.14807221, 0.4638, 0.41960785)
 
 [node name="Track" type="Node2D" parent="."]
 visible = false
@@ -112,16 +129,16 @@ autoplay = "track_loop"
 [node name="TrackFromSingle" parent="." instance=ExtResource("4_mx8sn")]
 position = Vector2(467, 640)
 
-[node name="RigidBody2D" type="StaticBody2D" parent="."]
-collision_layer = 256
-collision_mask = 256
+[node name="TrainBorders" type="StaticBody2D" parent="."]
+collision_layer = 512
+collision_mask = 512
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TrainBorders"]
 position = Vector2(1262, 493)
 shape = SubResource("RectangleShape2D_mx8sn")
 debug_color = Color(0.4099575, 0.3436987, 0.06498103, 0.41960785)
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="RigidBody2D"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="TrainBorders"]
 position = Vector2(62, 487)
 shape = SubResource("RectangleShape2D_mx8sn")
 debug_color = Color(0.4099575, 0.3436987, 0.06498103, 0.41960785)
