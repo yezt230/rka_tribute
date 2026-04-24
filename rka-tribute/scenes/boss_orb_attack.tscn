@@ -17,6 +17,7 @@ texture = ExtResource("1_cr6si")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_cr6si")
+disabled = true
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 10.0

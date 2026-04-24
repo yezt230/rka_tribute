@@ -8,7 +8,8 @@ var starting_health = 100
 var health = starting_health
 
 func _on_boss_hurtbox_body_entered(body):
-	health -= 5
+	#DEBUG: health
+	#health -= 5
 	
 	if health <= 0:
 		health = 0
