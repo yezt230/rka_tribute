@@ -17,6 +17,7 @@ func _ready():
 	for sprite in sprite_arr:
 		sprite.material = hit_flash_material
 
+
 func _on_boss_hurtbox_body_entered(body):
 	if hit_flash_tween != null && hit_flash_tween.is_valid():
 		hit_flash_tween.kill()

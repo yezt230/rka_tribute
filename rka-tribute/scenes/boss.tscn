@@ -152,5 +152,5 @@ process_material = SubResource("ParticleProcessMaterial_wqpjq")
 
 [connection signal="area_entered" from="BossHurtbox" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="BossHurtbox" to="." method="_on_area_2d_body_entered"]
-[connection signal="body_entered" from="BossHurtbox" to="HitFlashComponent" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="BossHurtbox" to="HitFlashComponent" method="_on_boss_hurtbox_body_entered"]
+[connection signal="body_entered" from="BossHurtbox" to="HitFlashComponent" method="_on_area_2d_body_entered"]

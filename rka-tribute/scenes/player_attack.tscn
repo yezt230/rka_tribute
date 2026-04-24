@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://snkt0hfqpvi1"]
 
 [ext_resource type="Texture2D" uid="uid://i11gw34oh753" path="res://assets/tile_0027.png" id="1_2tl33"]
-[ext_resource type="Script" path="res://scenes/player_attack.gd" id="1_pqjam"]
+[ext_resource type="Script" uid="uid://r411nakck563" path="res://scenes/player_attack.gd" id="1_pqjam"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2tl33"]
 radius = 11.0454
@@ -29,21 +29,22 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qywsn"]
 _data = {
-"RESET": SubResource("Animation_hb4ip"),
-"spin": SubResource("Animation_pqjam")
+&"RESET": SubResource("Animation_hb4ip"),
+&"spin": SubResource("Animation_pqjam")
 }
 
 [node name="PlayerAttack" type="CharacterBody2D"]
 collision_layer = 2
-collision_mask = 2
+collision_mask = 0
 script = ExtResource("1_pqjam")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CircleShape2D_2tl33")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 texture = ExtResource("1_2tl33")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_2tl33")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 1.5
@@ -52,8 +53,22 @@ autostart = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_qywsn")
+&"": SubResource("AnimationLibrary_qywsn")
 }
 autoplay = "spin"
 
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_2tl33")
+debug_color = Color(0.6673573, 0.5019003, 0.27480236, 0.41960785)
+
+[node name="DespawnTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="timeout" from="DespawnTimer" to="." method="_on_despawn_timer_timeout"]
