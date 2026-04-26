@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://by4gln0b1msvl"]
+[gd_scene load_steps=19 format=3 uid="uid://by4gln0b1msvl"]
 
 [ext_resource type="Script" uid="uid://cqhq85a6q0xi7" path="res://scenes/boss.gd" id="1_mjk3t"]
 [ext_resource type="Texture2D" uid="uid://c6qdd8jfdxs7e" path="res://assets/train/train_body_sprite.png" id="3_jncid"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://drp84e0ipv3tv" path="res://scenes/boss_orb_attack_manager.tscn" id="6_wqpjq"]
 [ext_resource type="Texture2D" uid="uid://cnrfjnyatkh2u" path="res://assets/misc/orb2.png" id="7_2cdgk"]
 [ext_resource type="PackedScene" uid="uid://b7j6x1p18is77" path="res://scenes/state_machine.tscn" id="8_2avx2"]
+[ext_resource type="Script" uid="uid://dfoj84e48g1s5" path="res://scenes/phase_2.gd" id="9_0onds"]
 [ext_resource type="Script" uid="uid://1fkevaf3rm32" path="res://scenes/phase_1.gd" id="9_2avx2"]
 [ext_resource type="PackedScene" uid="uid://dym16y6j1s3j2" path="res://scenes/health_component.tscn" id="10_5f346"]
 
@@ -171,10 +172,14 @@ theme_override_font_sizes/font_size = 24
 text = "spd"
 
 [node name="StateMachine" parent="." node_paths=PackedStringArray("starting_state") instance=ExtResource("8_2avx2")]
-starting_state = NodePath("Phase1")
+starting_state = NodePath("Phase2")
 
 [node name="Phase1" type="Node" parent="StateMachine"]
 script = ExtResource("9_2avx2")
+metadata/_custom_type_script = "uid://dn5lg0ejp6p73"
+
+[node name="Phase2" type="Node" parent="StateMachine"]
+script = ExtResource("9_0onds")
 metadata/_custom_type_script = "uid://dn5lg0ejp6p73"
 
 [node name="BossOrbAttackManager" parent="." instance=ExtResource("6_wqpjq")]
