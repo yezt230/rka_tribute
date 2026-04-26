@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dtgx40is5df4d"]
+
+[ext_resource type="Texture2D" uid="uid://2fuehpodpr4f" path="res://assets/ft doodle.webp" id="1_r12pr"]
+
+[node name="ClawSegment" type="Node2D"]
+
+[node name="SegmentSprite" type="Sprite2D" parent="."]
+scale = Vector2(0.08, 0.08)
+texture = ExtResource("1_r12pr")

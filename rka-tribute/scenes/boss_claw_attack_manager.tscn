@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://bwmy4hkvb8vc3"]
+
+[ext_resource type="Script" uid="uid://o3u7luuhy8dl" path="res://boss_claw_attack_manager.gd" id="1_t8vq3"]
+[ext_resource type="PackedScene" uid="uid://dxgovc17xl215" path="res://scenes/claw_attack.tscn" id="2_pr4ty"]
+[ext_resource type="PackedScene" uid="uid://dtgx40is5df4d" path="res://scenes/claw_segment.tscn" id="3_rw1u1"]
+
+[node name="BossClawAttackManager" type="Node2D"]
+script = ExtResource("1_t8vq3")
+claw_scene = ExtResource("2_pr4ty")
+segment_scene = ExtResource("3_rw1u1")
+
+[node name="AnchorPoint" type="Node2D" parent="."]
+position = Vector2(450, 400)

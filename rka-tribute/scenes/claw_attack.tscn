@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dxgovc17xl215"]
+
+[ext_resource type="Texture2D" uid="uid://b5ic0uld8qbiv" path="res://assets/240px-Jammit_Weight_Gain.png" id="1_40qjk"]
+
+[node name="ClawAttack" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_40qjk")
