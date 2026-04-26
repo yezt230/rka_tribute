@@ -202,9 +202,13 @@ process_material = SubResource("ParticleProcessMaterial_wqpjq")
 wait_time = 0.2
 one_shot = true
 
+[node name="SecondClawSpawnTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="body_entered" from="WallBounceHitbox" to="." method="_on_wall_bounce_hitbox_body_entered"]
 [connection signal="area_entered" from="BossHurtbox" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="BossHurtbox" to="HitFlashComponent" method="_on_boss_hurtbox_body_entered"]
 [connection signal="body_entered" from="BossHurtbox" to="HitFlashComponent" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="BossHurtbox" to="HealthComponent" method="_on_boss_hurtbox_body_entered"]
 [connection signal="timeout" from="StunTimer" to="StateMachine/Phase1" method="_on_stun_timer_timeout"]
+[connection signal="timeout" from="SecondClawSpawnTimer" to="StateMachine/Phase2" method="_on_second_claw_spawn_timer_timeout"]
