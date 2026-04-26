@@ -13,7 +13,8 @@ func enter() -> void:
 func process_input(_event: InputEvent) -> State:
 	if Input.is_action_just_pressed("UP"):
 		return jump_state
-	elif Input.is_action_just_pressed("SPACE"):
+		#@todo centralize attack being dictated by the timer
+	elif Input.is_action_just_pressed("SPACE") and player.attack_timer_ended:
 		return shoot_state
 	elif Input.is_action_just_pressed("LEFT") or Input.is_action_just_pressed("RIGHT"):
 		return run_state

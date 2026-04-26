@@ -11,7 +11,9 @@ signal hit_wall
 @onready var health_component = $HealthComponent
 @onready var hit_flash_component = $HitFlashComponent
 
-const SPEED : float = 25000
+#DEBUG:
+const SPEED : float = 7500
+#const SPEED : float = 0
 var boss_speed : float = SPEED
 var current_speed : float
 

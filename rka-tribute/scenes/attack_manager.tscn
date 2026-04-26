@@ -6,3 +6,9 @@
 [node name="AttackManager" type="Node2D"]
 script = ExtResource("1_6l1w0")
 attack = ExtResource("2_y8qid")
+
+[node name="AttackDelayTimer" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true
+
+[connection signal="timeout" from="AttackDelayTimer" to="." method="_on_attack_delay_timer_timeout"]

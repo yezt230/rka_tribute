@@ -134,11 +134,11 @@ collision_layer = 512
 collision_mask = 512
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TrainBorders"]
-position = Vector2(1262, 493)
+position = Vector2(856, 482)
 shape = SubResource("RectangleShape2D_mx8sn")
 debug_color = Color(0.4099575, 0.3436987, 0.06498103, 0.41960785)
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="TrainBorders"]
-position = Vector2(62, 487)
+position = Vector2(36, 487)
 shape = SubResource("RectangleShape2D_mx8sn")
 debug_color = Color(0.4099575, 0.3436987, 0.06498103, 0.41960785)

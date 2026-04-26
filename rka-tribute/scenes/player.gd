@@ -6,7 +6,6 @@ const SPEED = 300.0
 const JUMP_VELOCITY = -1000.0
 const GRAV_ADJUSTMENT: float = 2.0
 
-@onready var player_dir: float = 1.0
 @onready var player_sprite = $Sprite2D
 @onready var animation_player = $AnimationPlayer
 @onready var debug_label = $DebugLabel
@@ -15,6 +14,9 @@ const GRAV_ADJUSTMENT: float = 2.0
 @onready var state_machine = $StateMachine
 @onready var idle = $StateMachine/Idle
 @onready var knockback_stall_timer = $KnockbackStallTimer
+
+var attack_timer_ended : bool = true
+var player_dir: float = 1.0
 
 func _ready():
 	state_machine.init(self)
