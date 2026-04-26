@@ -15,29 +15,38 @@ func _ready():
 	segment_string_length = anchor_point.position.y
 	var seg_amt : int = 9
 	var seg_separation = segment_string_length / seg_amt
+	var center: int = floor(seg_amt / 2)
+	
 	for i in range(seg_amt):
 		var segment = segment_scene.instantiate() as Node2D
-		var segment_x : float
-		if i > 0:
-			segment_x = anchor_point.position.x / i
-		else:
-			segment_x = i
-		print(segment_x)
+		var inc = floor(seg_amt - abs((i - floor(center / 1.5 )) - center))
+		print("inc: " + str(inc))
+		#print(inc)
+		#var segment_x : float
+		var seg_x = 1 / pow(1.5, inc)
+		
+		#if i > 0:
+			#segment_x = anchor_point.position.x / i
+		#else:
+			#segment_x = i
+		#print(segment_x)
+		seg_x *= 2000
+		#print("seg x: " + str(seg_x))
 		var segment_y = ((seg_amt - i - 1) * seg_separation)
-		segment.position = Vector2(segment_x, 100 + segment_y)
+		segment.position = Vector2(seg_x, 100 + segment_y)
 		var segment_sprite = segment.get_child(0) as Sprite2D
 		segment_sprite.position.x = (offset / i) * (sqrt(i))		
 		add_child(segment)
 		segments.append(segment)
 		
-	claw = claw_scene.instantiate() as Node2D
-	claw.position = rotation_radius_size
-	anchor_point.add_child(claw)
+	#claw = claw_scene.instantiate() as Node2D
+	#claw.position = rotation_radius_size
+	#anchor_point.add_child(claw)
 
 
 func _physics_process(delta):
 	anchor_point.rotation += rotation_speed * delta
-	claw.rotation = -anchor_point.rotation
+	#claw.rotation = -anchor_point.rotation
 	
 	for segment in segments:
 		segment.rotation += rotation_speed * delta
