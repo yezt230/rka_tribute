@@ -8,13 +8,10 @@ extends State
 var claw_attack_manager: PackedScene = preload("res://scenes/boss_claw_attack_manager.tscn")
 var stored_dir
 
-func _ready():
+func enter():
 	boss.global_position.y = 0
 	hit_flash_component.hit.connect(_on_hit)
-
-
-func enter():
-	spawn_claw()	
+	spawn_claw()
 	second_claw_spawn_timer.start()
 	
 		
@@ -37,4 +34,3 @@ func _on_stun_timer_timeout():
 
 func _on_second_claw_spawn_timer_timeout():
 	spawn_claw()
-	print("claw spawns")

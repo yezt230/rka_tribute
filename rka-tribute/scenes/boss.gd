@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-signal hit_wall
+#signal hit_wall
 
 @onready var dir = 1
 @onready var coupling_rod_orbit = $CouplingRodOrbit
@@ -12,8 +12,8 @@ signal hit_wall
 @onready var hit_flash_component = $HitFlashComponent
 
 #DEBUG:
-const SPEED : float = 7500
-#const SPEED : float = 0
+#const SPEED : float = 7500
+const SPEED : float = 0
 var boss_speed : float = SPEED
 var current_speed : float
 
@@ -29,7 +29,7 @@ func _physics_process(delta: float) -> void:
 	current_speed = boss_speed * dir * delta
 	velocity.x = current_speed	
 	#speed_label.text = str("%0.1f" % global_position.x)
-	speed_label.text = str(dir)
+	speed_label.text = str(health_component.health)
 	# Add the gravity. 
 	if not is_on_floor():
 		velocity.y += get_gravity().y * 2.0 * delta		
@@ -49,4 +49,5 @@ func _on_wall_bounce_hitbox_body_entered(_body):
 
 
 func _on_player_projectile_hit():
+	health_component.struck_by_player_attack()
 	hit_flash_component._on_hit()

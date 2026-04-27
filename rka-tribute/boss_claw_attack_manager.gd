@@ -11,8 +11,7 @@ var segment_string_length : float
 var claw: Node2D
 var segments : Array[Node2D] = []
 
-func _ready():	
-	print("read")
+func _ready():
 	segment_string_length = anchor_point.position.y
 	var seg_amt : int = 9
 	var seg_separation = segment_string_length / seg_amt
@@ -28,7 +27,6 @@ func _ready():
 		segment.position = Vector2(segment_x, 100 + segment_y)
 		var segment_sprite = segment.get_child(0) as Sprite2D
 		segment_sprite.position.x = (offset / i) * (sqrt(i))		
-		print(segment_sprite.position)
 		add_child(segment)
 		segments.append(segment)
 

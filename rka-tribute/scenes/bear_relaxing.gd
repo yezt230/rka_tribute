@@ -53,7 +53,6 @@ func evaluate_rub_state() -> void:
 
 
 func start_rubbing() -> void:
-	print('started')
 	animation_player.play("rubbing1")
 	if not has_shake_timer_started:
 		rubbing_shake_inc_timer.start()

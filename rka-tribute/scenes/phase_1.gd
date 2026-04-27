@@ -2,11 +2,13 @@ extends State
 
 @onready var hit_flash_component = $"../../HitFlashComponent"
 @onready var stun_timer = $"../../StunTimer"
+@onready var boss = get_tree().get_first_node_in_group("boss")
 
 var stored_dir
 
-func _ready():
+func enter():
 	hit_flash_component.hit.connect(_on_hit)
+	boss.global_position.y = 400	
 
 		
 func _on_hit():

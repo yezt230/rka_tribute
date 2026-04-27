@@ -10,6 +10,5 @@ func _ready():
 
 
 func _on_stall_timer_timeout():
-	scene_movable = true                
-	print("ready to move")
+	scene_movable = true
  

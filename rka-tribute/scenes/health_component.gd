@@ -6,10 +6,11 @@ signal zero_health
 
 var starting_health = 100
 var health = starting_health
+var damage_amount = 10
 
-func _on_boss_hurtbox_body_entered(body):
+func struck_by_player_attack():
 	#DEBUG: health
-	#health -= 5
+	health -= damage_amount
 	
 	if health <= 0:
 		health = 0

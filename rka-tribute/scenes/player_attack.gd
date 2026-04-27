@@ -23,4 +23,4 @@ func _on_area_2d_area_entered(_area):
 	var boss = _area.get_parent()
 	if boss.is_in_group("boss"):
 		boss._on_player_projectile_hit()
-	queue_free()
+		queue_free()

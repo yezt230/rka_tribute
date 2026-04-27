@@ -30,5 +30,4 @@ func _physics_process(_delta: float) -> void:
 
 
 func _on_attack_delay_timer_timeout():
-	print("can attack again")
 	parent.attack_timer_ended = true
