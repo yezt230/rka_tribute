@@ -26,9 +26,12 @@ func _ready():
 		var segment_y = ((seg_amt - i - 1) * seg_separation)
 		segment.position = Vector2(segment_x, 100 + segment_y)
 		var segment_sprite = segment.get_child(0) as Sprite2D
-		segment_sprite.position.x = (offset / i) * (sqrt(i))		
+		var collider = segment.get_node("PlayerColliderBox") as Area2D
+		segment_sprite.position.x = (offset / i) * (sqrt(i))
+		if collider:
+			collider.position.x = (offset / i) * (sqrt(i))
 		add_child(segment)
-		segments.append(segment)
+		segments.append(segment)		
 
 
 func _physics_process(delta):

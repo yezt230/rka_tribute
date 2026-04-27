@@ -1,9 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://dxgovc17xl215"]
+[gd_scene load_steps=3 format=3 uid="uid://dxgovc17xl215"]
 
 [ext_resource type="Texture2D" uid="uid://b5ic0uld8qbiv" path="res://assets/240px-Jammit_Weight_Gain.png" id="1_40qjk"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_40qjk"]
+radius = 28.0
 
 [node name="ClawAttack" type="Node2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_40qjk")
+
+[node name="PlayerColliderBox" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerColliderBox"]
+shape = SubResource("CircleShape2D_40qjk")
