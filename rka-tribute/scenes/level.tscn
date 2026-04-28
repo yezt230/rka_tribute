@@ -129,6 +129,10 @@ autoplay = "track_loop"
 [node name="TrackFromSingle" parent="." instance=ExtResource("4_mx8sn")]
 position = Vector2(467, 640)
 
+[node name="TrackFromSingle2" parent="." instance=ExtResource("4_mx8sn")]
+position = Vector2(465, 291)
+mode = 2
+
 [node name="TrainBorders" type="StaticBody2D" parent="."]
 collision_layer = 512
 collision_mask = 512
