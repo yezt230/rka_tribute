@@ -49,11 +49,12 @@ func main_track_animation():
 func _on_spawn_timer_timeout():
 	if track_single_spwan_incrementer < amount_of_tracks_to_spawn:
 		track_single_spwan_incrementer += 1
-		print("spawn inc: " + str(track_single_spwan_incrementer))
+		#print("spawn inc: " + str(track_single_spwan_incrementer))
 		var track_single_instance = track_single.instantiate()
 		var ts_anim = track_single_instance.get_node("TrackSingle/AnimationPlayer")
 		if ts_anim:
 			ts_anim.play("track_single_loop")
+		track_single_instance.scale.y = 0.5
 		add_child(track_single_instance)
 		track_single_instance.position = Vector2(-500, 0)
 	else:

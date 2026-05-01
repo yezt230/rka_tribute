@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://by4gln0b1msvl"]
+[gd_scene load_steps=22 format=3 uid="uid://by4gln0b1msvl"]
 
 [ext_resource type="Script" uid="uid://cqhq85a6q0xi7" path="res://scenes/boss.gd" id="1_mjk3t"]
 [ext_resource type="Texture2D" uid="uid://c6qdd8jfdxs7e" path="res://assets/train/train_body_sprite.png" id="3_jncid"]
@@ -11,6 +11,8 @@
 [ext_resource type="Script" uid="uid://dfoj84e48g1s5" path="res://scenes/phase_2.gd" id="9_0onds"]
 [ext_resource type="Script" uid="uid://1fkevaf3rm32" path="res://scenes/phase_1.gd" id="9_2avx2"]
 [ext_resource type="PackedScene" uid="uid://dym16y6j1s3j2" path="res://scenes/health_component.tscn" id="10_5f346"]
+[ext_resource type="Script" uid="uid://cr6uwlvlou33r" path="res://scenes/incoming.gd" id="10_lfs1x"]
+[ext_resource type="Script" uid="uid://bjboj4d4qhg4o" path="res://scenes/defeated.gd" id="11_8eiau"]
 
 [sub_resource type="Animation" id="Animation_wqpjq"]
 length = 0.001
@@ -57,6 +59,9 @@ radius = 9.486833
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j2wj7"]
 size = Vector2(474, 290)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0onds"]
+size = Vector2(383, 156)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qnbj4"]
 size = Vector2(598, 210)
 
@@ -74,7 +79,7 @@ scale_min = 0.29999998
 scale_max = 0.59999996
 
 [node name="Boss" type="CharacterBody2D" groups=["boss"]]
-collision_layer = 0
+collision_layer = 1024
 collision_mask = 4
 script = ExtResource("1_mjk3t")
 
@@ -145,6 +150,15 @@ visible = false
 shape = SubResource("RectangleShape2D_j2wj7")
 debug_color = Color(0.28854468, 0.61420846, 0.4124651, 0.41960785)
 
+[node name="BossBodyHitbox" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BossBodyHitbox"]
+position = Vector2(-13.5, 15)
+shape = SubResource("RectangleShape2D_0onds")
+debug_color = Color(0, 0.6323409, 0.4559675, 0.41960785)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-7, 26)
 shape = SubResource("RectangleShape2D_qnbj4")
@@ -170,7 +184,7 @@ theme_override_font_sizes/font_size = 24
 text = "spd"
 
 [node name="StateMachine" parent="." node_paths=PackedStringArray("starting_state") instance=ExtResource("8_2avx2")]
-starting_state = NodePath("Phase2")
+starting_state = NodePath("Incoming")
 
 [node name="Phase1" type="Node" parent="StateMachine"]
 script = ExtResource("9_2avx2")
@@ -178,6 +192,14 @@ metadata/_custom_type_script = "uid://dn5lg0ejp6p73"
 
 [node name="Phase2" type="Node" parent="StateMachine"]
 script = ExtResource("9_0onds")
+metadata/_custom_type_script = "uid://dn5lg0ejp6p73"
+
+[node name="Incoming" type="Node" parent="StateMachine"]
+script = ExtResource("10_lfs1x")
+metadata/_custom_type_script = "uid://dn5lg0ejp6p73"
+
+[node name="Defeated" type="Node" parent="StateMachine"]
+script = ExtResource("11_8eiau")
 metadata/_custom_type_script = "uid://dn5lg0ejp6p73"
 
 [node name="BossOrbAttackManager" parent="." instance=ExtResource("6_wqpjq")]
@@ -203,6 +225,10 @@ one_shot = true
 [node name="SecondClawSpawnTimer" type="Timer" parent="."]
 one_shot = true
 
+[node name="PhaseTransitionTimer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
 [connection signal="body_entered" from="WallBounceHitbox" to="." method="_on_wall_bounce_hitbox_body_entered"]
 [connection signal="area_entered" from="BossHurtbox" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="BossHurtbox" to="HitFlashComponent" method="_on_boss_hurtbox_body_entered"]
@@ -210,3 +236,4 @@ one_shot = true
 [connection signal="body_entered" from="BossHurtbox" to="HealthComponent" method="_on_boss_hurtbox_body_entered"]
 [connection signal="timeout" from="StunTimer" to="StateMachine/Phase1" method="_on_stun_timer_timeout"]
 [connection signal="timeout" from="SecondClawSpawnTimer" to="StateMachine/Phase2" method="_on_second_claw_spawn_timer_timeout"]
+[connection signal="timeout" from="PhaseTransitionTimer" to="StateMachine/Incoming" method="_on_phase_transition_timer_timeout"]

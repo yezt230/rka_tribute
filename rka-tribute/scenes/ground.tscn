@@ -80,10 +80,10 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mi8v4"]
-size = Vector2(2508, 138)
+size = Vector2(2888, 138)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lmksl"]
-size = Vector2(2313, 16.5)
+size = Vector2(2676.5, 16.5)
 
 [node name="Ground" type="StaticBody2D"]
 collision_layer = 5
@@ -112,9 +112,9 @@ libraries = {
 autoplay = "pan"
 
 [node name="GroundTrackCollision" type="CollisionShape2D" parent="."]
-position = Vector2(859, 719)
+position = Vector2(669, 719)
 shape = SubResource("RectangleShape2D_mi8v4")
 
 [node name="ElevatedTrackCollision" type="CollisionShape2D" parent="."]
-position = Vector2(752, 301)
+position = Vector2(570.25, 301)
 shape = SubResource("RectangleShape2D_lmksl")

@@ -1,6 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://csiswaxuvb1wn"]
+[gd_scene load_steps=14 format=3 uid="uid://csiswaxuvb1wn"]
 
 [ext_resource type="PackedScene" uid="uid://b2rs7dvgxbqqq" path="res://scenes/ground.tscn" id="1_2q6dc"]
+[ext_resource type="Script" uid="uid://b0oxyy8in8l3v" path="res://scenes/level.gd" id="1_ppgk2"]
 [ext_resource type="Texture2D" uid="uid://b0iof0841u8y0" path="res://assets/train/track.png" id="2_w7c3h"]
 [ext_resource type="Shader" uid="uid://bdtm7o62r3bp" path="res://scenes/level.gdshader" id="2_w8frs"]
 [ext_resource type="PackedScene" uid="uid://fexmkvqwqj6c" path="res://scenes/track_from_single.tscn" id="4_mx8sn"]
@@ -82,7 +83,11 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mx8sn"]
 size = Vector2(23.5, 916)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2r41h"]
+size = Vector2(45, 939)
+
 [node name="Level" type="Node2D" groups=["foregroundlayer"]]
+script = ExtResource("1_ppgk2")
 
 [node name="Ground" parent="." instance=ExtResource("1_2q6dc")]
 position = Vector2(0, -2)
@@ -146,3 +151,11 @@ debug_color = Color(0.4099575, 0.3436987, 0.06498103, 0.41960785)
 position = Vector2(36, 487)
 shape = SubResource("RectangleShape2D_mx8sn")
 debug_color = Color(0.4099575, 0.3436987, 0.06498103, 0.41960785)
+
+[node name="TrainBordersActivatorCollider" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 1024
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TrainBordersActivatorCollider"]
+position = Vector2(602, 465)
+shape = SubResource("RectangleShape2D_2r41h")
