@@ -10,6 +10,7 @@ extends CharacterBody2D
 @onready var bear_remove_timer = $BearRemoveTimer
 @onready var shake_label = $ShakeLabel
 @onready var has_shake_timer_started : bool = false
+@onready var rubbing_portion = get_parent()
 @onready var boss: CharacterBody2D = $"../Boss"
 
 var is_player_overlapping := false
@@ -84,7 +85,6 @@ func _on_rubbing_shake_inc_timer_timeout():
 			1:
 				shake_animation_player.play("rub_3")
 				spawn_and_move_train()
-				remove_bear()
 				bear_shake_tracker = 2
 			2:
 				shake_animation_player.play("rub_2")
@@ -96,7 +96,8 @@ func _on_rubbing_shake_inc_timer_timeout():
 func spawn_and_move_train():
 	boss.modulate.a = 100
 	boss_animation_player.play("travel_right")
-
+	rubbing_portion.has_bear_been_kidnapped = true
+	remove_bear()
 
 func remove_bear():
 	bear_remove_timer.start()
