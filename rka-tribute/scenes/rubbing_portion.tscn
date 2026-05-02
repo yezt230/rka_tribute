@@ -17,7 +17,7 @@ size = Vector2(248, 951.5)
 size = Vector2(38, 737)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kawjh"]
-size = Vector2(3050.25, 20)
+size = Vector2(3941.125, 20)
 
 [sub_resource type="Animation" id="Animation_xtdjp"]
 length = 0.001
@@ -95,11 +95,11 @@ floor_snap_length = 22.0
 
 [node name="Ground" type="StaticBody2D" parent="."]
 position = Vector2(-14, 16)
-collision_layer = 257
+collision_layer = 261
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
-position = Vector2(1370, 626)
+position = Vector2(924.5625, 626)
 shape = SubResource("RectangleShape2D_kawjh")
 
 [node name="Boss" parent="." instance=ExtResource("5_nx7g2")]

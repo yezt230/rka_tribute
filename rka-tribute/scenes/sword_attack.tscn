@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bbe7j5asmwitl"]
+
+[ext_resource type="Texture2D" uid="uid://nxlkf2txjq5a" path="res://assets/spritesheet-tiles-default.png" id="1_fl0c6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_i5cpx"]
+
+[node name="SwordAttack" type="CharacterBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_fl0c6")
+hframes = 18
+vframes = 18
+frame = 299
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_i5cpx")

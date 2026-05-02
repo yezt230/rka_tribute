@@ -11,27 +11,32 @@ extends Node
 @onready var track_from_single = $"../TrackFromSingle"
 
 var current_direction: float = 0.0
-var is_active: bool = true
+enum Mode {
+	PLAYER_CONTROL,
+	CUTSCENE
+}
+var mode: Mode = Mode.PLAYER_CONTROL
 var override_velocity: float = 0.0
-var use_override: bool = false
 var spawned_track_yet : bool = false
+
+func _ready():
+	cart.trigger_cart_cutscene.connect(self._on_trigger_cart_cutscene)
+
 
 func set_direction(direction: float) -> void:
 	current_direction = direction
 
 
-func set_active(active: bool) -> void:
-	is_active = active
+#func set_active(active: bool) -> void:
+	#is_active = active
 
 # --- NORMAL MOVEMENT ---
 func _physics_process(_delta: float) -> void:
-	if use_override:
-		apply_override_motion()
-		return
-
-	if not is_active:
-		stop()
-		return
+	match mode:
+		Mode.PLAYER_CONTROL:
+			handle_player_motion()
+		Mode.CUTSCENE:
+			pass # do nothing here
 
 	var velocity_x := -(current_direction * speed)
 
@@ -39,17 +44,41 @@ func _physics_process(_delta: float) -> void:
 	cart.velocity.x = velocity_x
 	#track.velocity.x = velocity_x
 
+
+func handle_player_motion():
+	var velocity_x := -(current_direction * speed)
+
+	wood_scroller.velocity.x = velocity_x
+	cart.velocity.x = velocity_x
+
 # --- CUTSCENE OVERRIDE ---
-func start_cart_cutscene(velocity_x: float):
-	use_override = true
-	override_velocity = velocity_x
-	track_from_single.activate_spawning()
+func start_cart_cutscene():
+	mode = Mode.CUTSCENE
+
+	# stop all physics-driven motion
+	stop()
+
+	var target_x = 500 # whatever your "onscreen" position is
+
+	var tween = create_tween()
+	tween.tween_property(cart, "global_position:x", target_x, 1.2) \
+		.set_trans(Tween.TRANS_SINE) \
+		.set_ease(Tween.EASE_OUT)
+
+	tween.parallel().tween_property(wood_scroller, "global_position:x", target_x * -0.5, 1.2)
+
+	tween.finished.connect(_on_cutscene_finished)
+
 	cart_animation_player.play("rotate")
 
+#
+#func stop_cart_cutscene():
+	#use_override = false
+	#stop()
 
-func stop_cart_cutscene():
-	use_override = false
-	stop()
+func _on_cutscene_finished():
+	mode = Mode.PLAYER_CONTROL
+
 
 
 func apply_override_motion():
@@ -67,3 +96,6 @@ func stop():
 	cart.velocity.x = 0
 	#track.velocity.x = 0
 	
+
+func _on_trigger_cart_cutscene():
+	print("env hit")

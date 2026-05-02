@@ -36,6 +36,7 @@ var is_on_belly_platform := false
 var current_floor_collider: Object = null
 
 func _ready():
+	cart.trigger_cart_cutscene.connect(self._on_trigger_cart_cutscene)
 	state_machine.init(self)
 	
 
@@ -43,9 +44,7 @@ func _process(_delta):
 	if state_machine:
 		current_state_name = state_machine.get_current_state()
 		debug_label.text = current_state_name
-	
-	if cart.global_position.x < 1300 and not jump_onto_cart_flag:
-		jump_onto_cart()
+		
 
 func _physics_process(delta: float) -> void:
 	# Gravity always applies
@@ -85,14 +84,14 @@ func _physics_process(delta: float) -> void:
 		var collision = get_slide_collision(i)
 		var collider = collision.get_collider()
 		
-		if collider is StaticBody2D:
-			if collider.name == "BG":
-				environment_controller.set_direction(direction)
-
-			if not player_can_move:
-				environment_controller.set_active(false)
+		if collider is StaticBody2D and collider.name == "BG":
+			if direction > 0:
+				environment_controller.set_direction(1)
 			else:
-				environment_controller.set_active(true)
+				environment_controller.set_direction(0)
+	
+	if direction <= 0:
+		environment_controller.set_direction(0)
 	
 	var jump_state : State
 	if state_machine:
@@ -142,13 +141,17 @@ func jump_onto_cart():
 func cart_wheel_start_rotating():
 	var transition_velocity = -250
 	transition_to_main_timer.start()
-	environment_controller.start_cart_cutscene(transition_velocity)
+	environment_controller.start_cart_cutscene()
 	velocity.x = transition_velocity
 	
 	
 func _on_drop_down_timer_timeout():
 	if bear_belly_collision_shape_2d:
 		bear_belly_collision_shape_2d.disabled = false
+
+
+func _on_trigger_cart_cutscene():
+	jump_onto_cart()
 
 
 func _on_transition_to_main_timer_timeout():
