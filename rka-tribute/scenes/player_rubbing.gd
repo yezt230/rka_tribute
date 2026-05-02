@@ -26,11 +26,13 @@ const GRAV_ADJUSTMENT: float = 2.0
 @onready var bear_belly_collision_shape_2d = $"../BearRelaxing/BearBellyPlatform/CollisionPolygon2D"
 @onready var bear_remove_timer = $"../BearRemoveTimer"
 @onready var jump_onto_cart_flag : bool = false
+@onready var has_jumped_onto_cart : bool = false
 @onready var environment_controller = $"../EnvironmentController"
 #should be a global variable? player will be locked
 #out of moving several times
 @onready var player_can_move : bool = true
 @onready var transition_to_main_timer = $"../TransitionToMainTimer"
+@onready var cart_detection_hitbox : CollisionShape2D = $Area2D/RubHitbox
 
 var is_on_belly_platform := false
 var current_floor_collider: Object = null
@@ -44,6 +46,10 @@ func _process(_delta):
 	if state_machine:
 		current_state_name = state_machine.get_current_state()
 		debug_label.text = current_state_name
+	
+	if has_jumped_onto_cart:
+		player_sprite.global_position.x = cart.global_position.x
+	
 		
 
 func _physics_process(delta: float) -> void:
@@ -62,7 +68,8 @@ func _physics_process(delta: float) -> void:
 			drop_down_timer.start()
 
 	# Horizontal movement
-	var direction := Input.get_axis("LEFT", "RIGHT")
+	
+	var direction := Input.get_axis("LEFT", "RIGHT") if player_can_move else 0.0
 	if player_can_move:
 		get_orientation(direction)	
 
@@ -138,11 +145,27 @@ func jump_onto_cart():
 	state_machine.change_state(static_state)
 
 
+func horz_tween_onto_cart():
+	print("horz")
+	##horizontal movement for jumping onto cart
+	var target_x = cart.global_position.x
+
+	var tween = create_tween()
+	tween.tween_property(player_sprite, "global_position:x", target_x, 1.1) \
+		.set_trans(Tween.TRANS_SINE) \
+		.set_ease(Tween.EASE_OUT)
+	tween.finished.connect(_on_horz_tween_finished)
+	
+	
+func _on_horz_tween_finished():
+	print(global_position)
+	print(player_sprite.global_position)
+	
+	has_jumped_onto_cart = true
+	
 func cart_wheel_start_rotating():
-	var transition_velocity = -250
 	transition_to_main_timer.start()
 	environment_controller.start_cart_cutscene()
-	velocity.x = transition_velocity
 	
 	
 func _on_drop_down_timer_timeout():

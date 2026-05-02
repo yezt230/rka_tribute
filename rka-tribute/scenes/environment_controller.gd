@@ -20,29 +20,28 @@ var override_velocity: float = 0.0
 var spawned_track_yet : bool = false
 
 func _ready():
+
 	cart.trigger_cart_cutscene.connect(self._on_trigger_cart_cutscene)
-
-
-func set_direction(direction: float) -> void:
-	current_direction = direction
-
 
 #func set_active(active: bool) -> void:
 	#is_active = active
 
 # --- NORMAL MOVEMENT ---
 func _physics_process(_delta: float) -> void:
+	print(current_direction)
 	match mode:
 		Mode.PLAYER_CONTROL:
 			handle_player_motion()
 		Mode.CUTSCENE:
-			pass # do nothing here
+			cart.velocity.x = 0
+			wood_scroller.velocity.x = 0
+			
 
-	var velocity_x := -(current_direction * speed)
+func set_direction(direction: float) -> void:
+	if mode != Mode.PLAYER_CONTROL:
+		return
 
-	wood_scroller.velocity.x = velocity_x
-	cart.velocity.x = velocity_x
-	#track.velocity.x = velocity_x
+	current_direction = direction
 
 
 func handle_player_motion():
@@ -55,17 +54,21 @@ func handle_player_motion():
 func start_cart_cutscene():
 	mode = Mode.CUTSCENE
 
-	# stop all physics-driven motion
+	current_direction = 0.0  # <-- important
 	stop()
 
-	var target_x = 500 # whatever your "onscreen" position is
+	var target_x = 700.0
+	var duration = 2.0
 
 	var tween = create_tween()
-	tween.tween_property(cart, "global_position:x", target_x, 1.2) \
+
+	tween.tween_property(cart, "global_position:x", target_x, duration) \
 		.set_trans(Tween.TRANS_SINE) \
 		.set_ease(Tween.EASE_OUT)
 
-	tween.parallel().tween_property(wood_scroller, "global_position:x", target_x * -0.5, 1.2)
+	tween.parallel().tween_property(wood_scroller, "global_position:x", target_x * -0.5, duration) \
+		.set_trans(Tween.TRANS_SINE) \
+		.set_ease(Tween.EASE_OUT)
 
 	tween.finished.connect(_on_cutscene_finished)
 
@@ -98,4 +101,4 @@ func stop():
 	
 
 func _on_trigger_cart_cutscene():
-	print("env hit")
+	current_direction = 0.0  # <-- important
