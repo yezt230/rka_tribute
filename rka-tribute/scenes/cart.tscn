@@ -66,7 +66,7 @@ _data = {
 size = Vector2(20, 121)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p2bbo"]
-size = Vector2(169, 223)
+size = Vector2(524.5, 10)
 
 [node name="Cart" type="CharacterBody2D"]
 collision_layer = 0
@@ -97,7 +97,7 @@ collision_layer = 0
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CartTriggerCutsceneHitbox"]
-position = Vector2(-189.5, -116.5)
+position = Vector2(172.75, -90)
 shape = SubResource("RectangleShape2D_p2bbo")
 debug_color = Color(0.8842359, 0.68449724, 0.13986996, 0.41960785)
 

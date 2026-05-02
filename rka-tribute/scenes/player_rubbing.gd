@@ -151,6 +151,7 @@ func _on_drop_down_timer_timeout():
 
 
 func _on_trigger_cart_cutscene():
+	print("player hit cart")
 	jump_onto_cart()
 
 
