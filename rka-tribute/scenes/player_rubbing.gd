@@ -86,7 +86,6 @@ func _physics_process(delta: float) -> void:
 		var collider = collision.get_collider()
 		
 		if collider is StaticBody2D:
-			#print("Hit a static body:", collider.name)
 			if collider.name == "BG":
 				environment_controller.set_direction(direction)
 

@@ -16,7 +16,6 @@ func enter():
 
 
 func _on_phase_transition_timer_timeout():
-	#print("phase: " + str(parent.phase))
 	match parent.phase:
 		1:
 			parent.state_machine.change_state(phase_1)

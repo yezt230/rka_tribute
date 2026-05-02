@@ -44,7 +44,6 @@ func evaluate_rub_state() -> void:
 	var should_rub = is_player_overlapping and is_player_rubbing
 
 	if should_rub and animation_player.current_animation != "rubbing1":		
-		print("started")
 		start_rubbing()
 	#else:
 		#if animation_player.current_animation != "still":
@@ -62,7 +61,6 @@ func start_rubbing() -> void:
 	
 
 func stop_rubbing(mystr : String) -> void:
-	print("stop_rubbing" + mystr)
 	animation_player.play("still")
 	rubbing_shake_inc_timer.paused = true
 
