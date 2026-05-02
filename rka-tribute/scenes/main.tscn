@@ -13,10 +13,10 @@ script = ExtResource("1_tbgi4")
 position = Vector2(0, -1)
 
 [node name="Player" parent="." instance=ExtResource("1_o5qli")]
-position = Vector2(751, 483)
+position = Vector2(700, 483)
 
 [node name="Boss" parent="." instance=ExtResource("2_o8jyo")]
 position = Vector2(-303, 512)
 
 [node name="Cart" parent="." instance=ExtResource("2_jyhfs")]
-position = Vector2(1218, 641)
+position = Vector2(700, 641)

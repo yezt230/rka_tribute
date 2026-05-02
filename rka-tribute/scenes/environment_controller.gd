@@ -20,15 +20,11 @@ var override_velocity: float = 0.0
 var spawned_track_yet : bool = false
 
 func _ready():
-
 	cart.trigger_cart_cutscene.connect(self._on_trigger_cart_cutscene)
-
-#func set_active(active: bool) -> void:
-	#is_active = active
+	
 
 # --- NORMAL MOVEMENT ---
 func _physics_process(_delta: float) -> void:
-	print(current_direction)
 	match mode:
 		Mode.PLAYER_CONTROL:
 			handle_player_motion()
@@ -53,8 +49,8 @@ func handle_player_motion():
 # --- CUTSCENE OVERRIDE ---
 func start_cart_cutscene():
 	mode = Mode.CUTSCENE
+	track_from_single.delayed_activate_spawning()
 
-	current_direction = 0.0  # <-- important
 	stop()
 
 	var target_x = 700.0
@@ -71,17 +67,11 @@ func start_cart_cutscene():
 		.set_ease(Tween.EASE_OUT)
 
 	tween.finished.connect(_on_cutscene_finished)
-
 	cart_animation_player.play("rotate")
-
-#
-#func stop_cart_cutscene():
-	#use_override = false
-	#stop()
+	
 
 func _on_cutscene_finished():
 	mode = Mode.PLAYER_CONTROL
-
 
 
 func apply_override_motion():
@@ -89,16 +79,13 @@ func apply_override_motion():
 	wood_scroller.velocity.x = override_velocity * 2.5
 	cart.velocity.x = override_velocity
 	if not spawned_track_yet:
-		#track_from_single.spawn_rubbing_segments()
 		spawned_track_yet = true
-	#track.velocity.x = override_velocity
-	#track_animation_player.play("track_loop")
+
 
 func stop():
 	wood_scroller.velocity.x = 0
 	cart.velocity.x = 0
-	#track.velocity.x = 0
 	
 
 func _on_trigger_cart_cutscene():
-	current_direction = 0.0  # <-- important
+	pass

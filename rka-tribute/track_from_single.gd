@@ -18,6 +18,8 @@ func _ready():
 			main_track_animation()
 		Mode.SECOND:
 			activate_spawning()
+		Mode.RUBBING:
+			return
 
 
 func activate_spawning():
@@ -26,7 +28,14 @@ func activate_spawning():
 	track_single_spwan_incrementer = 0
 	spawn_timer.start()
 			
-			
+
+func delayed_activate_spawning():
+	#if not activated_yet:
+	#activated_yet = true
+	track_single_spwan_incrementer = 0
+	spawn_timer.start()
+
+
 func main_track_animation():
 	spawn_timer.queue_free()
 	for ts in amount_of_tracks_to_spawn:
@@ -53,7 +62,11 @@ func _on_spawn_timer_timeout():
 		var ts_anim = track_single_instance.get_node("TrackSingle/AnimationPlayer")
 		if ts_anim:
 			ts_anim.play("track_single_loop")
-		track_single_instance.scale.y = 0.5
+		if mode == Mode.SECOND:
+			print("not scaled")
+			track_single_instance.scale.y = 0.5
+		else:
+			print("scaled")
 		add_child(track_single_instance)
 		track_single_instance.position = Vector2(-500, 0)
 	else:
