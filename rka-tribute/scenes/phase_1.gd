@@ -5,10 +5,12 @@ extends State
 @onready var boss = get_tree().get_first_node_in_group("boss")
 @onready var health_component = boss.get_node("HealthComponent")
 
+
 var stored_dir
 
 func enter():
 	hit_flash_component.hit.connect(_on_hit)
+
 	#boss.global_position.y = 400	
 
 		

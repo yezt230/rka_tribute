@@ -12,6 +12,15 @@ extends CharacterBody2D
 @onready var health_component = $HealthComponent
 @onready var hit_flash_component = $HitFlashComponent
 @onready var phase = 0
+#PHASES
+#1: incoming on ground track
+#2: defeated on ground track
+#3: incoming on elevated track
+#4: defeated on elevated track
+
+#phases here doesn't mean the same thing as the
+#Boss Phase States. it tracks a diferent set of
+#states for the boss that only roughly correlates
 
 #DEBUG: speed
 #const SPEED : float = 17500

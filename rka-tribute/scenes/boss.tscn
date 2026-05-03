@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://by4gln0b1msvl"]
+[gd_scene load_steps=23 format=3 uid="uid://by4gln0b1msvl"]
 
 [ext_resource type="Script" uid="uid://cqhq85a6q0xi7" path="res://scenes/boss.gd" id="1_mjk3t"]
 [ext_resource type="Texture2D" uid="uid://c6qdd8jfdxs7e" path="res://assets/train/train_body_sprite.png" id="3_jncid"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://dym16y6j1s3j2" path="res://scenes/health_component.tscn" id="10_5f346"]
 [ext_resource type="Script" uid="uid://cr6uwlvlou33r" path="res://scenes/incoming.gd" id="10_lfs1x"]
 [ext_resource type="Script" uid="uid://bjboj4d4qhg4o" path="res://scenes/defeated.gd" id="11_8eiau"]
+[ext_resource type="PackedScene" uid="uid://bsbid14hefl7o" path="res://scenes/orb_cannon.tscn" id="13_vn2fc"]
 
 [sub_resource type="Animation" id="Animation_wqpjq"]
 length = 0.001
@@ -207,9 +208,11 @@ metadata/_custom_type_script = "uid://dn5lg0ejp6p73"
 [node name="OrbSpawner" type="Marker2D" parent="." groups=["orbspawner"]]
 position = Vector2(-11, -83)
 
+[node name="OrbCannon" parent="OrbSpawner" instance=ExtResource("13_vn2fc")]
+
 [node name="CannonParticles" type="GPUParticles2D" parent="OrbSpawner"]
 modulate = Color(1, 1, 1, 0.7058824)
-position = Vector2(-16, 16)
+position = Vector2(26, -25)
 emitting = false
 amount = 6
 texture = ExtResource("7_2cdgk")

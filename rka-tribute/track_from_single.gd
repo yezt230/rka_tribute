@@ -16,8 +16,8 @@ func _ready():
 	match mode:
 		Mode.MAIN:
 			main_track_animation()
-		Mode.SECOND:
-			activate_spawning()
+		#Mode.SECOND:
+			#activate_spawning()
 		Mode.RUBBING:
 			return
 
