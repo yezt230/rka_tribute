@@ -16,10 +16,10 @@ func _ready():
 	match mode:
 		Mode.MAIN:
 			main_track_animation()
-		Mode.SECOND:
-			activate_spawning()
+		#Mode.SECOND:
+			#activate_spawning()
 
-
+#the elevated track
 func activate_spawning():
 	#if not activated_yet:
 	#activated_yet = true

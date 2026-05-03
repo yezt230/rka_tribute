@@ -11,7 +11,6 @@ extends CharacterBody2D
 @onready var speed_label = $SpeedLabel
 @onready var health_component = $HealthComponent
 @onready var hit_flash_component = $HitFlashComponent
-@onready var phase_transition_timer = $PhaseTransitionTimer
 @onready var phase = 0
 
 #DEBUG: speed
@@ -46,7 +45,7 @@ func _physics_process(delta: float) -> void:
 	velocity.x = current_speed	
 	#speed_label.text = str("%0.1f" % global_position.x)
 	#speed_label.text = str(health_component.health)
-	speed_label.text = str(dir)
+	speed_label.text = str(phase)
 	# Add the gravity. 
 	if not is_on_floor():
 		velocity.y += get_gravity().y * 2.0 * delta		

@@ -86,7 +86,7 @@ size = Vector2(23.5, 916)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2r41h"]
 size = Vector2(45, 939)
 
-[node name="Level" type="Node2D" groups=["foregroundlayer"]]
+[node name="Level" type="Node2D" groups=["Level", "foregroundlayer"]]
 script = ExtResource("1_ppgk2")
 
 [node name="Ground" parent="." instance=ExtResource("1_2q6dc")]
