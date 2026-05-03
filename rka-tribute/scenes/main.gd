@@ -9,5 +9,4 @@ func _ready():
 	health_component.zero_health.connect(_on_boss_zero_health)
 	
 func _on_boss_zero_health():
-	#print("Boss is kaput")
 	pass

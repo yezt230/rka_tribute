@@ -10,6 +10,8 @@ extends CharacterBody2D
 @onready var bear_remove_timer = $BearRemoveTimer
 @onready var shake_label = $ShakeLabel
 @onready var has_shake_timer_started : bool = false
+@onready var rubbing_portion = get_parent()
+@onready var boss: CharacterBody2D = $"../Boss"
 
 var is_player_overlapping := false
 var is_player_rubbing := false
@@ -44,7 +46,6 @@ func evaluate_rub_state() -> void:
 	var should_rub = is_player_overlapping and is_player_rubbing
 
 	if should_rub and animation_player.current_animation != "rubbing1":		
-		print("started")
 		start_rubbing()
 	#else:
 		#if animation_player.current_animation != "still":
@@ -62,7 +63,6 @@ func start_rubbing() -> void:
 	
 
 func stop_rubbing(mystr : String) -> void:
-	print("stop_rubbing" + mystr)
 	animation_player.play("still")
 	rubbing_shake_inc_timer.paused = true
 
@@ -84,8 +84,7 @@ func _on_rubbing_shake_inc_timer_timeout():
 				bear_shake_tracker = 1
 			1:
 				shake_animation_player.play("rub_3")
-				boss_animation_player.play("travel_right")
-				remove_bear()
+				spawn_and_move_train()
 				bear_shake_tracker = 2
 			2:
 				shake_animation_player.play("rub_2")
@@ -93,6 +92,12 @@ func _on_rubbing_shake_inc_timer_timeout():
 			3:
 				boss_animation_player.play("travel_right")
 
+
+func spawn_and_move_train():
+	boss.modulate.a = 100
+	boss_animation_player.play("travel_right")
+	rubbing_portion.has_bear_been_kidnapped = true
+	remove_bear()
 
 func remove_bear():
 	bear_remove_timer.start()

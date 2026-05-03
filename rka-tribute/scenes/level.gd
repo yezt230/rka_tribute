@@ -19,7 +19,6 @@ func _on_trigger_body_entered(body):
 		
 		
 func _enable_boundaries():
-	print('en')
 	left_arena_boundary.global_position.y = 486
 	
 	
@@ -28,5 +27,4 @@ func _disable_boundaries():
 	
 	
 func _on_boss_zero_health():
-	print("dis")
 	_disable_boundaries()

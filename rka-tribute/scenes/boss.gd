@@ -33,13 +33,8 @@ func _physics_process(delta: float) -> void:
 	#todo move to state?
 	if current_state.name == "Defeated":
 		dir = -1
-		#current_speed = -(abs(boss_speed * dir * delta))
 	elif current_state.name == "Incoming":
-		#print("inc state")
 		dir = 1
-		#current_speed = abs(boss_speed * dir * delta)
-	#else:
-		#print("not def")
 	current_speed = boss_speed * dir * delta
 		
 	velocity.x = current_speed	
@@ -62,7 +57,6 @@ func _on_zero_health():
 
 
 func _on_wall_bounce_hitbox_body_entered(_body):
-	print("dir changed")
 	dir = -dir
 
 

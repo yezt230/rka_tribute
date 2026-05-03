@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://b0dme80t0eusm"]
+[gd_scene load_steps=10 format=3 uid="uid://b0dme80t0eusm"]
 
 [ext_resource type="Texture2D" uid="uid://b6hu1egxlm425" path="res://assets/misc/squirrel_cart.png" id="1_bttn7"]
 [ext_resource type="Script" uid="uid://blxipui5jblhr" path="res://scenes/cart.gd" id="1_p2bbo"]
@@ -65,6 +65,9 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bttn7"]
 size = Vector2(20, 121)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p2bbo"]
+size = Vector2(524.5, 10)
+
 [node name="Cart" type="CharacterBody2D"]
 collision_layer = 0
 script = ExtResource("1_p2bbo")
@@ -88,3 +91,15 @@ autoplay = "rotate"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -60.5)
 shape = SubResource("RectangleShape2D_bttn7")
+
+[node name="CartTriggerCutsceneHitbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 1024
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CartTriggerCutsceneHitbox"]
+position = Vector2(172.75, -90)
+shape = SubResource("RectangleShape2D_p2bbo")
+debug_color = Color(0.8842359, 0.68449724, 0.13986996, 0.41960785)
+
+[connection signal="area_entered" from="CartTriggerCutsceneHitbox" to="." method="_on_cart_trigger_cutscene_hitbox_area_entered"]
+[connection signal="body_entered" from="CartTriggerCutsceneHitbox" to="." method="_on_cart_trigger_cutscene_hitbox_body_entered"]

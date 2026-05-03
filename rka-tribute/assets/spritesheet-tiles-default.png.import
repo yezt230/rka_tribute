@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cfsj0vdy34gwr"
-path="res://.godot/imported/bafkreifzfipvfqtbeior7a33atddj2uotcxfy7vntrdhhts2qjryj3ipi4.jpg-0499b7795dd68777321ffa4f07479591.ctex"
+uid="uid://nxlkf2txjq5a"
+path="res://.godot/imported/spritesheet-tiles-default.png-8936ea325e1d26a393e73b7d27b73b89.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/bafkreifzfipvfqtbeior7a33atddj2uotcxfy7vntrdhhts2qjryj3ipi4.jpg"
-dest_files=["res://.godot/imported/bafkreifzfipvfqtbeior7a33atddj2uotcxfy7vntrdhhts2qjryj3ipi4.jpg-0499b7795dd68777321ffa4f07479591.ctex"]
+source_file="res://assets/spritesheet-tiles-default.png"
+dest_files=["res://.godot/imported/spritesheet-tiles-default.png-8936ea325e1d26a393e73b7d27b73b89.ctex"]
 
 [params]
 
