@@ -76,7 +76,8 @@ func _physics_process(delta: float) -> void:
 	rub_hitbox.position.x = 35 * player_dir
 
 	if player_can_move:
-		if direction and (current_state_name != "RubStanding" and current_state_name != "IdleRubbing"):
+		if direction and (current_state_name != "RubStanding" and \
+		current_state_name != "RubCrouching" and current_state_name != "IdleRubbing"):
 			velocity.x = direction * SPEED
 		else:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
