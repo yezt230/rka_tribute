@@ -1,8 +1,10 @@
 extends State
 
 @onready var phase_transition_timer = $"../../PhaseTransitionTimer"
+@onready var defeat_explosion_particle = $"../../DefeatExplosionParticle"
 
 func enter():
+	defeat_explosion_particle.emitting = true
 	parent.phase += 1
 	phase_transition_timer.start()
 	#removing claw hitboxes when boss is defeated in Phase 2

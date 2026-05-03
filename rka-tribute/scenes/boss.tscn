@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://by4gln0b1msvl"]
+[gd_scene load_steps=24 format=3 uid="uid://by4gln0b1msvl"]
 
 [ext_resource type="Script" uid="uid://cqhq85a6q0xi7" path="res://scenes/boss.gd" id="1_mjk3t"]
 [ext_resource type="Texture2D" uid="uid://c6qdd8jfdxs7e" path="res://assets/train/train_body_sprite.png" id="3_jncid"]
@@ -14,6 +14,19 @@
 [ext_resource type="Script" uid="uid://cr6uwlvlou33r" path="res://scenes/incoming.gd" id="10_lfs1x"]
 [ext_resource type="Script" uid="uid://bjboj4d4qhg4o" path="res://scenes/defeated.gd" id="11_8eiau"]
 [ext_resource type="PackedScene" uid="uid://bsbid14hefl7o" path="res://scenes/orb_cannon.tscn" id="13_vn2fc"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wqpjq"]
+particle_flag_disable_z = true
+particle_flag_damping_as_friction = true
+direction = Vector3(150, -150, 0)
+initial_velocity_min = 230.29999
+initial_velocity_max = 318.18
+angular_velocity_min = -1.6093254e-05
+angular_velocity_max = -1.6093254e-05
+damping_min = 0.4
+damping_max = 0.5
+scale_min = 0.29999998
+scale_max = 0.59999996
 
 [sub_resource type="Animation" id="Animation_wqpjq"]
 length = 0.001
@@ -63,21 +76,21 @@ size = Vector2(474, 290)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0onds"]
 size = Vector2(383, 156)
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mautr"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(220, 100, 0)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+direction = Vector3(0, 0, 0)
+spread = 0.0
+initial_velocity_min = 100.0
+initial_velocity_max = 100.0
+gravity = Vector3(200, 0, 0)
+linear_accel_min = 89.06
+linear_accel_max = 89.06
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qnbj4"]
 size = Vector2(598, 210)
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wqpjq"]
-particle_flag_disable_z = true
-particle_flag_damping_as_friction = true
-direction = Vector3(150, -150, 0)
-initial_velocity_min = 230.29999
-initial_velocity_max = 318.18
-angular_velocity_min = -1.6093254e-05
-angular_velocity_max = -1.6093254e-05
-damping_min = 0.4
-damping_max = 0.5
-scale_min = 0.29999998
-scale_max = 0.59999996
 
 [node name="Boss" type="CharacterBody2D" groups=["boss"]]
 collision_layer = 1024
@@ -87,6 +100,24 @@ script = ExtResource("1_mjk3t")
 [node name="HitFlashComponent" parent="." instance=ExtResource("3_vikoi")]
 
 [node name="HealthComponent" parent="." instance=ExtResource("10_5f346")]
+
+[node name="BossOrbAttackManager" parent="." instance=ExtResource("6_wqpjq")]
+
+[node name="OrbSpawner" type="Marker2D" parent="." groups=["orbspawner"]]
+position = Vector2(-11, -83)
+
+[node name="OrbCannon" parent="OrbSpawner" instance=ExtResource("13_vn2fc")]
+
+[node name="CannonParticles" type="GPUParticles2D" parent="OrbSpawner"]
+modulate = Color(1, 1, 1, 0.7058824)
+position = Vector2(26, -25)
+emitting = false
+amount = 6
+texture = ExtResource("7_2cdgk")
+lifetime = 0.8
+one_shot = true
+explosiveness = 0.85
+process_material = SubResource("ParticleProcessMaterial_wqpjq")
 
 [node name="TrainBodySprite" type="Sprite2D" parent="."]
 unique_name_in_owner = true
@@ -160,6 +191,15 @@ position = Vector2(-13.5, 15)
 shape = SubResource("RectangleShape2D_0onds")
 debug_color = Color(0, 0.6323409, 0.4559675, 0.41960785)
 
+[node name="DefeatExplosionParticle" type="GPUParticles2D" parent="."]
+position = Vector2(-25, 25)
+emitting = false
+amount = 4
+texture = ExtResource("7_2cdgk")
+lifetime = 0.8
+collision_base_size = 0.0
+process_material = SubResource("ParticleProcessMaterial_mautr")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-7, 26)
 shape = SubResource("RectangleShape2D_qnbj4")
@@ -202,24 +242,6 @@ metadata/_custom_type_script = "uid://dn5lg0ejp6p73"
 [node name="Defeated" type="Node" parent="StateMachine"]
 script = ExtResource("11_8eiau")
 metadata/_custom_type_script = "uid://dn5lg0ejp6p73"
-
-[node name="BossOrbAttackManager" parent="." instance=ExtResource("6_wqpjq")]
-
-[node name="OrbSpawner" type="Marker2D" parent="." groups=["orbspawner"]]
-position = Vector2(-11, -83)
-
-[node name="OrbCannon" parent="OrbSpawner" instance=ExtResource("13_vn2fc")]
-
-[node name="CannonParticles" type="GPUParticles2D" parent="OrbSpawner"]
-modulate = Color(1, 1, 1, 0.7058824)
-position = Vector2(26, -25)
-emitting = false
-amount = 6
-texture = ExtResource("7_2cdgk")
-lifetime = 0.8
-one_shot = true
-explosiveness = 0.85
-process_material = SubResource("ParticleProcessMaterial_wqpjq")
 
 [node name="StunTimer" type="Timer" parent="."]
 wait_time = 0.2
