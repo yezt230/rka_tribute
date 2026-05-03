@@ -11,10 +11,15 @@ func enter():
 	#consult boss.gd for phase descriptions
 	phase_transition_timer.start()
 	parent.phase += 1
+	#when boss changes to attack phase 2 (elevated track w/ claw attack)
 	if parent.phase == 3:
 		level.get_node("TrackFromSingle2").activate_spawning()
 		parent.global_position = Vector2(-300, 156)
 		health_component.health = health_component.starting_health
+		if parent.get_node("BossOrbAttackManager"):
+			parent.get_node("BossOrbAttackManager").queue_free()
+		if parent.get_node("OrbSpawner"):
+			parent.get_node("OrbSpawner").queue_free()
 
 
 func _on_phase_transition_timer_timeout():
