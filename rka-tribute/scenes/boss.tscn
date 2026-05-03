@@ -198,6 +198,7 @@ amount = 4
 texture = ExtResource("7_2cdgk")
 lifetime = 0.8
 collision_base_size = 0.0
+local_coords = true
 process_material = SubResource("ParticleProcessMaterial_mautr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

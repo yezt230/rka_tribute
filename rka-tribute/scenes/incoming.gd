@@ -6,10 +6,8 @@ extends State
 @onready var boss = get_tree().get_first_node_in_group("boss")
 @onready var level = get_tree().get_first_node_in_group("Level")
 @onready var health_component = boss.get_node("HealthComponent")
-@onready var defeat_explosion_particle = $"../../DefeatExplosionParticle"
 
 func enter():
-	defeat_explosion_particle.emitting = false
 	#consult boss.gd for phase descriptions
 	phase_transition_timer.start()
 	parent.phase += 1

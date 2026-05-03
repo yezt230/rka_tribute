@@ -63,7 +63,6 @@ func _on_spawn_timer_timeout():
 		if ts_anim:
 			ts_anim.play("track_single_loop")
 		if mode == Mode.SECOND:
-			print("not scaled")
 			track_single_instance.scale.y = 0.5
 		else:
 			print("scaled")

@@ -13,3 +13,9 @@ func enter():
 		for claw in claws:
 			var claw_hitbox = claw.get_node("PlayerColliderBox") as Area2D
 			claw_hitbox.queue_free() 
+
+
+func exit() -> void:
+	defeat_explosion_particle.restart() 
+	defeat_explosion_particle.emitting = false
+	
