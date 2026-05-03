@@ -25,6 +25,7 @@ window/vsync/vsync_mode=0
 
 boss=""
 Level=""
+claws=""
 
 [input]
 

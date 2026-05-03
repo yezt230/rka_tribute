@@ -1,5 +1,6 @@
 extends Node
 
+#DEBUG: starting state should be Incoming for prod
 @export var starting_state: State
 
 var current_state: State

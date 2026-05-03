@@ -9,7 +9,8 @@ extends Node2D
 
 func _ready():
 	attack_timer.timeout.connect(on_timer_timeout)
-	orb_cannon.position = Vector2(0, 0)
+	if orb_cannon:
+		orb_cannon.position = Vector2(0, 0)
 	
 
 func on_timer_timeout():
@@ -17,7 +18,8 @@ func on_timer_timeout():
 	var orb_spawn_point : Marker2D = get_tree().get_first_node_in_group("orbspawner")
 	var foreground_layer = get_tree().get_first_node_in_group("foregroundlayer")
 	if foreground_layer and orb_instance:
-		orb_cannon_animation_player.play("fire")
+		if orb_cannon:
+			orb_cannon_animation_player.play("fire")
 		foreground_layer.get_parent().add_child(orb_instance)
 		
 		orb_instance.global_position = orb_spawn_point.global_position
