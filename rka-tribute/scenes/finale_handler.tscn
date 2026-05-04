@@ -1,0 +1,62 @@
+[gd_scene load_steps=5 format=3 uid="uid://cfmycqvr2ry5l"]
+
+[ext_resource type="Script" uid="uid://dtlghplyny20r" path="res://scenes/finale_handler.gd" id="1_3xh25"]
+
+[sub_resource type="Animation" id="Animation_3xh25"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_f8acm"]
+resource_name = "fade_to_black"
+length = 0.8
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ch4s1"]
+_data = {
+&"RESET": SubResource("Animation_3xh25"),
+&"fade_to_black": SubResource("Animation_f8acm")
+}
+
+[node name="FinaleHandler" type="Node2D"]
+visible = false
+script = ExtResource("1_3xh25")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ch4s1")
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1400.0
+offset_bottom = 800.0
+size_flags_horizontal = 3
+size_flags_vertical = 3

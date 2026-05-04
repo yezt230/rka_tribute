@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://dgfwyp5ukqq1u"]
+[gd_scene load_steps=7 format=3 uid="uid://dgfwyp5ukqq1u"]
 
 [ext_resource type="PackedScene" uid="uid://dmydmpg5baofc" path="res://scenes/player.tscn" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://cjjqyuw42wanm" path="res://scenes/main.gd" id="1_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://csiswaxuvb1wn" path="res://scenes/level.tscn" id="2_0wfyh"]
 [ext_resource type="PackedScene" uid="uid://b0dme80t0eusm" path="res://scenes/cart.tscn" id="2_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://by4gln0b1msvl" path="res://scenes/boss.tscn" id="2_o8jyo"]
+[ext_resource type="PackedScene" uid="uid://cfmycqvr2ry5l" path="res://scenes/finale_handler.tscn" id="6_tefeu"]
 
 [node name="Main" type="Node2D" groups=["level"]]
 script = ExtResource("1_tbgi4")
@@ -12,11 +13,14 @@ script = ExtResource("1_tbgi4")
 [node name="Level" parent="." instance=ExtResource("2_0wfyh")]
 position = Vector2(0, -1)
 
-[node name="Player" parent="." instance=ExtResource("1_o5qli")]
-position = Vector2(700, 483)
-
 [node name="Boss" parent="." instance=ExtResource("2_o8jyo")]
 position = Vector2(-303, 512)
 
 [node name="Cart" parent="." instance=ExtResource("2_jyhfs")]
 position = Vector2(700, 641)
+
+[node name="FinaleHandler" parent="." instance=ExtResource("6_tefeu")]
+visible = true
+
+[node name="Player" parent="." instance=ExtResource("1_o5qli")]
+position = Vector2(700, 483)

@@ -14,6 +14,7 @@ const GRAV_ADJUSTMENT: float = 2.0
 @onready var state_machine = $StateMachine
 @onready var idle = $StateMachine/Idle
 @onready var knockback_stall_timer = $KnockbackStallTimer
+@onready var player_can_move : bool = true
 
 var attack_timer_ended : bool = true
 var player_dir: float = 1.0
@@ -24,7 +25,7 @@ func _ready():
 
 func _process(_delta):
 	var current_state_name = state_machine.get_current_state()
-	debug_label.text = current_state_name
+	debug_label.text = str(player_can_move)
 	
 
 func _physics_process(delta: float) -> void:
@@ -38,15 +39,21 @@ func _physics_process(delta: float) -> void:
 		return
 
 	# Handle jump
-	if Input.is_action_just_pressed("UP") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
+	if player_can_move:
+		if Input.is_action_just_pressed("UP") and is_on_floor():
+			velocity.y = JUMP_VELOCITY
 
 	# Horizontal movement
-	var direction := Input.get_axis("LEFT", "RIGHT")
-	get_orientation(direction)
 
-	if direction:
-		velocity.x = direction * SPEED
+	var direction := Input.get_axis("LEFT", "RIGHT")
+	if player_can_move:
+		get_orientation(direction)
+
+	if player_can_move:
+		if direction:
+			velocity.x = direction * SPEED
+		else:
+			velocity.x = move_toward(velocity.x, 0, SPEED)
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
@@ -66,8 +73,9 @@ func resolve_locomotion_state() -> State:
 		return state_machine.get_node("Jump")
 
 	# Horizontal input
-	if Input.is_action_pressed("LEFT") or Input.is_action_pressed("RIGHT"):
-		return state_machine.get_node("Run")
+	if player_can_move:
+		if Input.is_action_pressed("LEFT") or Input.is_action_pressed("RIGHT"):
+			return state_machine.get_node("Run")
 
 	return state_machine.get_node("Idle")
 
