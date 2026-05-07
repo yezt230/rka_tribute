@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://dmydmpg5baofc"]
+[gd_scene load_steps=30 format=3 uid="uid://dmydmpg5baofc"]
 
 [ext_resource type="Script" uid="uid://cgm5y75wob1ca" path="res://scenes/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://b2ox58jfloh2c" path="res://assets/squirrel_sprite_fin.png" id="2_s4pf1"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://bpy74jhgxgy0v" path="res://scenes/shoot.gd" id="7_smehm"]
 [ext_resource type="Script" uid="uid://yt7u0y78xha0" path="res://scenes/run_shoot.gd" id="9_y4r1p"]
 [ext_resource type="Script" uid="uid://cr4cgy8ivs0l6" path="res://scenes/jump_shoot.gd" id="10_d2wvv"]
+[ext_resource type="Script" uid="uid://dn5lg0ejp6p73" path="res://resources/state.gd" id="11_3v2ag"]
 
 [sub_resource type="Animation" id="Animation_qhqgy"]
 length = 0.001
@@ -390,6 +391,10 @@ metadata/_custom_type_script = "uid://dn5lg0ejp6p73"
 
 [node name="JumpShoot" type="Node" parent="StateMachine"]
 script = ExtResource("10_d2wvv")
+metadata/_custom_type_script = "uid://dn5lg0ejp6p73"
+
+[node name="State" type="Node" parent="StateMachine"]
+script = ExtResource("11_3v2ag")
 metadata/_custom_type_script = "uid://dn5lg0ejp6p73"
 
 [node name="AttackManager" parent="." instance=ExtResource("3_qhqgy")]
