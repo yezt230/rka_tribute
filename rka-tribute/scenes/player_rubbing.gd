@@ -45,7 +45,8 @@ func _ready():
 func _process(_delta):
 	if state_machine:
 		current_state_name = state_machine.get_current_state()
-		debug_label.text = current_state_name
+		debug_label.text = str(is_on_belly_platform)
+		#debug_label.text = current_state_name
 	
 	if has_jumped_onto_cart:
 		player_sprite.global_position.x = cart.global_position.x

@@ -12,6 +12,7 @@ extends CharacterBody2D
 @onready var has_shake_timer_started : bool = false
 @onready var rubbing_portion = get_parent()
 @onready var boss: CharacterBody2D = $"../Boss"
+@onready var player_rubbing = $"../PlayerRubbing"
 
 var is_player_overlapping := false
 var is_player_rubbing := false
@@ -35,26 +36,20 @@ func _on_player_rubbing_rubbing_started() -> void:
 func _on_player_rubbing_rubbing_stopped() -> void:
 	is_player_rubbing = false
 	stop_rubbing('from signal')
-
-
-# --- OVERLAP DETECTION ---
-
-
-# --- RUB STATE LOGIC ---
+	
 
 func evaluate_rub_state() -> void:
 	var should_rub = is_player_overlapping and is_player_rubbing
 
-	if should_rub and animation_player.current_animation != "rubbing1":		
+	if should_rub \
+	and animation_player.current_animation != "rubbing1" \
+	and animation_player.current_animation != "rubbing2":		
 		start_rubbing()
-	#else:
-		#if animation_player.current_animation != "still":
-			#print("stopped")
-			#stop_rubbing('from eval')
 
 
 func start_rubbing() -> void:
-	animation_player.play("rubbing1")
+	var anim_to_play = "rubbing2" if player_rubbing.is_on_belly_platform else "rubbing1"
+	animation_player.play(anim_to_play)
 	if not has_shake_timer_started:
 		rubbing_shake_inc_timer.start()
 		has_shake_timer_started = true
@@ -77,19 +72,21 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 
 
 func _on_rubbing_shake_inc_timer_timeout():
-	if shake_animation_player:
-		match bear_shake_tracker:
-			0:
-				shake_animation_player.play("rub_4")
-				bear_shake_tracker = 1
-			1:
-				shake_animation_player.play("rub_3")
-				bear_shake_tracker = 2
-			2:
-				shake_animation_player.play("rub_2")
-				bear_shake_tracker = 3
-			3:
-				spawn_and_move_train()
+	pass
+	#DEBUG: bear belly rubbing shake escalation
+	#if shake_animation_player:
+		#match bear_shake_tracker:
+			#0:
+				#shake_animation_player.play("rub_4")
+				#bear_shake_tracker = 1
+			#1:
+				#shake_animation_player.play("rub_3")
+				#bear_shake_tracker = 2
+			#2:
+				#shake_animation_player.play("rub_2")
+				#bear_shake_tracker = 3
+			#3:
+				#spawn_and_move_train()
 				#boss_animation_player.play("travel_right")
 
 
