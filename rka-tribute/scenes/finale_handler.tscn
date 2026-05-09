@@ -60,3 +60,4 @@ offset_right = 1400.0
 offset_bottom = 800.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+color = Color(0.44313726, 0.19215687, 0.43529412, 1)

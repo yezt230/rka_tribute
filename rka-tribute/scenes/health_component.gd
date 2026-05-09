@@ -6,7 +6,7 @@ signal zero_health
 
 var starting_health = 100
 var health = starting_health
-var damage_amount = 30
+var damage_amount = 100
 
 func struck_by_player_attack():
 	#DEBUG: health
