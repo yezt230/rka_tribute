@@ -1,6 +1,109 @@
-[gd_scene format=3 uid="uid://dtwyelkni1aa0"]
+[gd_scene load_steps=5 format=3 uid="uid://dtwyelkni1aa0"]
+
+[ext_resource type="Texture2D" uid="uid://b2ox58jfloh2c" path="res://assets/squirrel_sprite_fin.png" id="1_7kn5y"]
+
+[sub_resource type="Animation" id="Animation_7kn5y"]
+resource_name = "victory_animation"
+length = 4.0
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4000001, 1.6, 2, 2.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [7, 6, 5, 4, 7, 6, 5, 4, 11, 10, 9]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.8, 1.6, 2.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [700.0, 700.0, 950.0, 1150.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:position:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.6, 2.2, 2.8),
+"transitions": PackedFloat32Array(0.43527484, 3.2490044, 1),
+"update": 0,
+"values": [399.0, 120.0, 399.0]
+}
+
+[sub_resource type="Animation" id="Animation_e0l64"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1019.0668]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:position:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [399.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gx0y0"]
+_data = {
+&"RESET": SubResource("Animation_e0l64"),
+&"victory_animation": SubResource("Animation_7kn5y")
+}
 
 [node name="VictoryPortion" type="Node2D"]
+
+[node name="Player" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+position = Vector2(1019.0668, 399)
+texture = ExtResource("1_7kn5y")
+hframes = 4
+vframes = 7
+frame = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Player"]
+libraries = {
+&"": SubResource("AnimationLibrary_gx0y0")
+}
+autoplay = "victory_animation"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -10,4 +113,4 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(1, 0.654902, 1, 1)
+color = Color(0.16078432, 0.12156863, 0.5568628, 0.3647059)

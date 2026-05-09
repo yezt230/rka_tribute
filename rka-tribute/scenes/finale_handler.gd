@@ -28,6 +28,7 @@ func _on_boss_defeated():
 		#DEBUG: color fadeout
 		var tween2 = create_tween()
 		tween2.tween_property(color_rect, "modulate:a", 1.0, 0.8)
-		
+	elif boss.phase == 2:
+		get_tree().change_scene_to_file("res://scenes/victory_portion.tscn")
 		#color_rect.modulate.a = 100
 		#animation_player.play("fade_to_black")
