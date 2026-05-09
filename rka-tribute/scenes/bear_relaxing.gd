@@ -18,14 +18,13 @@ var is_player_overlapping := false
 var is_player_rubbing := false
 
 func _ready() -> void:
-	var player = get_parent().get_node("PlayerRubbing")
 	rubbing_shake_inc_timer.timeout.connect(_on_rubbing_shake_inc_timer_timeout)
-	player.rubbing_started.connect(_on_player_rubbing_rubbing_started)
-	player.rubbing_stopped.connect(_on_player_rubbing_rubbing_stopped)
+	player_rubbing.rubbing_started.connect(_on_player_rubbing_rubbing_started)
+	player_rubbing.rubbing_stopped.connect(_on_player_rubbing_rubbing_stopped)
 # --- PLAYER SIGNALS ---
 
 func _process(_delta):
-	shake_label.text = str(rubbing_shake_inc_timer.time_left)
+	shake_label.text = "%.2f" % rubbing_shake_inc_timer.time_left
 
 
 func _on_player_rubbing_rubbing_started() -> void:
@@ -72,22 +71,22 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 
 
 func _on_rubbing_shake_inc_timer_timeout():
-	pass
+	#pass
 	#DEBUG: bear belly rubbing shake escalation
-	#if shake_animation_player:
-		#match bear_shake_tracker:
-			#0:
-				#shake_animation_player.play("rub_4")
-				#bear_shake_tracker = 1
-			#1:
-				#shake_animation_player.play("rub_3")
-				#bear_shake_tracker = 2
-			#2:
-				#shake_animation_player.play("rub_2")
-				#bear_shake_tracker = 3
-			#3:
-				#spawn_and_move_train()
-				#boss_animation_player.play("travel_right")
+	if shake_animation_player:
+		match bear_shake_tracker:
+			0:
+				shake_animation_player.play("rub_4")
+				bear_shake_tracker = 1
+			1:
+				shake_animation_player.play("rub_3")
+				bear_shake_tracker = 2
+			2:
+				shake_animation_player.play("rub_2")
+				bear_shake_tracker = 3
+			3:
+				spawn_and_move_train()
+				boss_animation_player.play("travel_right")
 
 
 func spawn_and_move_train():

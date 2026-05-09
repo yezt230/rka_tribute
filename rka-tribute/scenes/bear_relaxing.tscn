@@ -11,7 +11,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("BellySprite:frame")
+tracks/0/path = NodePath("Visuals/BellySprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -29,7 +29,7 @@ step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("BellySprite:frame")
+tracks/0/path = NodePath("Visuals/BellySprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -37,22 +37,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [10, 11, 12, 13]
-}
-
-[sub_resource type="Animation" id="Animation_00c77"]
-resource_name = "still"
-length = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("BellySprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [5]
 }
 
 [sub_resource type="Animation" id="Animation_41wtw"]
@@ -63,7 +47,7 @@ step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("BellySprite:frame")
+tracks/0/path = NodePath("Visuals/BellySprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -71,6 +55,22 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [15, 16, 17, 18]
+}
+
+[sub_resource type="Animation" id="Animation_00c77"]
+resource_name = "still"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/BellySprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_00c77"]
@@ -89,7 +89,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("BellySprite:position")
+tracks/0/path = NodePath("Visuals/BellySprite:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -97,6 +97,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
 }
 
 [sub_resource type="Animation" id="Animation_38mdq"]
@@ -107,36 +119,60 @@ step = 0.2
 resource_name = "rub_2"
 length = 1.2
 loop_mode = 1
-step = 0.2
+step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("BellySprite:position")
+tracks/0/enabled = false
+tracks/0/path = NodePath("Visuals/BellySprite:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0001, 0.10253448, 0.20421451, 0.3024767, 0.40330228, 0.5015645, 0.59897226, 0.70150673, 0.79806006, 0.89974004, 0.9988567, 1.0996823),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.10253448, 0.20421451, 0.3024767, 0.40330228, 0.5015645, 0.59897226, 0.70150673, 0.79806006, 0.89974004, 0.9988567, 1.0996823),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [Vector2(-12, 19), Vector2(-12, 19), Vector2(-20, 27), Vector2(6, 18), Vector2(-4, -2), Vector2(13, 23), Vector2(-19, 21), Vector2(9, 4), Vector2(-5, 21), Vector2(0, -11), Vector2(13, -3), Vector2(-4, -2), Vector2(15, 29)]
+"values": [Vector2(-12, 19), Vector2(-20, 27), Vector2(6, 18), Vector2(-4, -2), Vector2(13, 23), Vector2(-19, 21), Vector2(9, 4), Vector2(-5, 21), Vector2(0, -11), Vector2(13, -3), Vector2(-4, -2), Vector2(15, 29)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(-12, 19), Vector2(-20, 27), Vector2(6, 18), Vector2(-4, -2), Vector2(13, 23), Vector2(-19, 21), Vector2(9, 4), Vector2(-5, 21), Vector2(0, -11), Vector2(13, -3), Vector2(-4, -2), Vector2(0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_yynqn"]
 resource_name = "rub_3"
 length = 1.2
 loop_mode = 1
-step = 0.2
+step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("BellySprite:position")
+tracks/0/enabled = false
+tracks/0/path = NodePath("Visuals/BellySprite:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.096080594, 0.19578686, 0.3027445, 0.40154436, 0.5048763, 0.6000505, 0.702476, 0.805808, 0.9037014, 0.9952499, 1.1003947),
+"times": PackedFloat32Array(0, 0.1, 0.19578686, 0.3027445, 0.40154436, 0.5048763, 0.6000505, 0.702476, 0.805808, 0.9037014, 0.9952499, 1.1003947),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [Vector2(6, 4), Vector2(8, 0), Vector2(9, 3), Vector2(3, -3), Vector2(6, -3), Vector2(6, 0), Vector2(13, -1), Vector2(10, 4), Vector2(10, 0), Vector2(4, 4), Vector2(1, 2), Vector2(2, 9)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0001, 0.0002, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(8, 0), Vector2(9, 3), Vector2(3, -3), Vector2(6, -3), Vector2(6, 0), Vector2(13, -1), Vector2(10, 4), Vector2(10, 0), Vector2(4, 4), Vector2(1, 2), Vector2(2, 9)]
 }
 
 [sub_resource type="Animation" id="Animation_hqsls"]
@@ -146,11 +182,23 @@ loop_mode = 1
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("BellySprite:position")
+tracks/0/enabled = false
+tracks/0/path = NodePath("Visuals/BellySprite:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(7, 6), Vector2(8, 4), Vector2(6, 4), Vector2(4, 5), Vector2(6, 4), Vector2(6, 4), Vector2(3, 2), Vector2(7, 5), Vector2(6, 7), Vector2(6, 4), Vector2(4, 5), Vector2(7, 1), Vector2(5, 5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
@@ -165,7 +213,7 @@ step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("BellySprite:position")
+tracks/0/path = NodePath("Visuals/BellySprite:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -183,7 +231,7 @@ step = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("BellySprite:position")
+tracks/0/path = NodePath("Visuals/BellySprite:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -219,13 +267,15 @@ script = ExtResource("1_ifw4b")
 position = Vector2(-81, 132)
 shape = SubResource("CircleShape2D_p8h3i")
 
-[node name="BearBodySprite" type="Sprite2D" parent="."]
+[node name="Visuals" type="Node2D" parent="."]
+
+[node name="BearBodySprite" type="Sprite2D" parent="Visuals"]
 scale = Vector2(2, 2)
 texture = ExtResource("2_ifw4b")
 hframes = 5
 vframes = 5
 
-[node name="BellySprite" type="Sprite2D" parent="."]
+[node name="BellySprite" type="Sprite2D" parent="Visuals"]
 scale = Vector2(2, 2)
 texture = ExtResource("2_ifw4b")
 hframes = 5
@@ -283,7 +333,6 @@ shape = SubResource("RectangleShape2D_ifw4b")
 debug_color = Color(0.6313726, 0.5254902, 0.2, 0.41960785)
 
 [node name="RubbingShakeIncTimer" type="Timer" parent="."]
-wait_time = 3.0
 
 [node name="BearRemoveTimer" type="Timer" parent="."]
 wait_time = 0.3
