@@ -13,7 +13,7 @@ func _physics_process(_delta: float) -> void:
 	var current_state = state_machine.current_state
 	if current_state and current_state.name == "Hurt":
 		return
-	if Input.is_action_just_pressed("SPACE") and parent.attack_timer_ended:
+	if Input.is_action_just_pressed("SPACE") and parent.attack_timer_ended and parent.player_can_move:
 		parent.attack_timer_ended = false
 		attack_delay_timer.start()
 		

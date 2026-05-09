@@ -337,7 +337,6 @@ text = "state"
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 position = Vector2(8, -61)
-scale = Vector2(-1, 1)
 texture = ExtResource("2_s4pf1")
 hframes = 4
 vframes = 7
