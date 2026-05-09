@@ -1,10 +1,135 @@
-[gd_scene load_steps=20 format=3 uid="uid://t5nds2n2g21q"]
+[gd_scene load_steps=26 format=3 uid="uid://t5nds2n2g21q"]
 
 [ext_resource type="Script" uid="uid://cpfn0belo4xbl" path="res://scenes/bear_relaxing.gd" id="1_ifw4b"]
 [ext_resource type="Texture2D" uid="uid://18fphi7r8l3x" path="res://assets/bear_relaxing_sprite_transp.png" id="2_ifw4b"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_p8h3i"]
 radius = 40.024994
+
+[sub_resource type="Animation" id="Animation_bontl"]
+resource_name = "breathing"
+length = 2.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(2, 2), Vector2(2, 1.88), Vector2(2, 2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 2.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 9), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_e5scd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2, 2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ipmdg"]
+_data = {
+&"RESET": SubResource("Animation_e5scd"),
+&"breathing": SubResource("Animation_bontl")
+}
+
+[sub_resource type="Animation" id="Animation_dgwbr"]
+resource_name = "breathing"
+length = 2.1
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(2, 2), Vector2(2, 1.82), Vector2(2, 2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 2.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-12, 19), Vector2(-12, 30), Vector2(-12, 19)]
+}
+
+[sub_resource type="Animation" id="Animation_bmcnm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2, 2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-12, 19)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0iv36"]
+_data = {
+&"RESET": SubResource("Animation_bmcnm"),
+&"breathing": SubResource("Animation_dgwbr")
+}
 
 [sub_resource type="Animation" id="Animation_ifw4b"]
 length = 0.001
@@ -142,7 +267,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [Vector2(-12, 19), Vector2(-20, 27), Vector2(6, 18), Vector2(-4, -2), Vector2(13, 23), Vector2(-19, 21), Vector2(9, 4), Vector2(-5, 21), Vector2(0, -11), Vector2(13, -3), Vector2(-4, -2), Vector2(0, 0)]
+"values": [Vector2(-12, 19), Vector2(-20, 27), Vector2(6, 18), Vector2(-4, -2), Vector2(13, 23), Vector2(-19, 21), Vector2(9, 4), Vector2(-5, 21), Vector2(0, -11), Vector2(13, -3), Vector2(0, 0), Vector2(0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_yynqn"]
@@ -270,16 +395,29 @@ shape = SubResource("CircleShape2D_p8h3i")
 [node name="Visuals" type="Node2D" parent="."]
 
 [node name="BearBodySprite" type="Sprite2D" parent="Visuals"]
+rotation = 0.029231174
 scale = Vector2(2, 2)
 texture = ExtResource("2_ifw4b")
 hframes = 5
 vframes = 5
+
+[node name="BearBodyAnimationPlayer" type="AnimationPlayer" parent="Visuals/BearBodySprite"]
+libraries = {
+&"": SubResource("AnimationLibrary_ipmdg")
+}
+autoplay = "breathing"
 
 [node name="BellySprite" type="Sprite2D" parent="Visuals"]
 scale = Vector2(2, 2)
 texture = ExtResource("2_ifw4b")
 hframes = 5
 vframes = 5
+
+[node name="BellyAnimationPlayer" type="AnimationPlayer" parent="Visuals/BellySprite"]
+libraries = {
+&"": SubResource("AnimationLibrary_0iv36")
+}
+autoplay = "breathing"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -333,6 +471,7 @@ shape = SubResource("RectangleShape2D_ifw4b")
 debug_color = Color(0.6313726, 0.5254902, 0.2, 0.41960785)
 
 [node name="RubbingShakeIncTimer" type="Timer" parent="."]
+wait_time = 0.5
 
 [node name="BearRemoveTimer" type="Timer" parent="."]
 wait_time = 0.3

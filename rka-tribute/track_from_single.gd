@@ -64,8 +64,8 @@ func _on_spawn_timer_timeout():
 			ts_anim.play("track_single_loop")
 		if mode == Mode.SECOND:
 			track_single_instance.scale.y = 0.5
-		else:
-			print("scaled")
+		#else:
+			#print("scaled")
 		add_child(track_single_instance)
 		track_single_instance.position = Vector2(-500, 0)
 	else:

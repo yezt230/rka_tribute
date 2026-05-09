@@ -43,6 +43,7 @@ func _ready():
 	
 
 func _process(_delta):
+	#print(player_sprite.global_position.y)
 	if state_machine:
 		current_state_name = state_machine.get_current_state()
 		debug_label.text = str(is_on_belly_platform)
