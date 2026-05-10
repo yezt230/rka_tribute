@@ -1,10 +1,37 @@
-[gd_scene load_steps=26 format=3 uid="uid://t5nds2n2g21q"]
+[gd_scene load_steps=27 format=3 uid="uid://t5nds2n2g21q"]
 
 [ext_resource type="Script" uid="uid://cpfn0belo4xbl" path="res://scenes/bear_relaxing.gd" id="1_ifw4b"]
 [ext_resource type="Texture2D" uid="uid://18fphi7r8l3x" path="res://assets/bear_relaxing_sprite_transp.png" id="2_ifw4b"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_p8h3i"]
 radius = 40.024994
+
+[sub_resource type="Animation" id="Animation_e5scd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2, 2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_bontl"]
 resource_name = "breathing"
@@ -35,7 +62,13 @@ tracks/1/keys = {
 "values": [Vector2(0, 0), Vector2(0, 9), Vector2(0, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_e5scd"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ipmdg"]
+_data = {
+&"RESET": SubResource("Animation_e5scd"),
+&"breathing": SubResource("Animation_bontl")
+}
+
+[sub_resource type="Animation" id="Animation_bmcnm"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -59,13 +92,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_ipmdg"]
-_data = {
-&"RESET": SubResource("Animation_e5scd"),
-&"breathing": SubResource("Animation_bontl")
+"values": [Vector2(-12, 19)]
 }
 
 [sub_resource type="Animation" id="Animation_dgwbr"]
@@ -96,33 +123,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector2(-12, 19), Vector2(-12, 30), Vector2(-12, 19)]
-}
-
-[sub_resource type="Animation" id="Animation_bmcnm"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(2, 2)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-12, 19)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0iv36"]
@@ -205,9 +205,6 @@ _data = {
 &"rubbing2": SubResource("Animation_41wtw"),
 &"still": SubResource("Animation_00c77")
 }
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_p8h3i"]
-size = Vector2(301, 197)
 
 [sub_resource type="Animation" id="Animation_yywtl"]
 length = 0.001
@@ -366,6 +363,24 @@ tracks/0/keys = {
 "values": [Vector2(-12, 19), Vector2(6, 20), Vector2(0, 0), Vector2(10, 13), Vector2(11, -14), Vector2(4, 19), Vector2(-30, -9), Vector2(7, 18), Vector2(-21, 4), Vector2(20, 4), Vector2(-8, -17), Vector2(-41, -2), Vector2(19, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_tk3oe"]
+resource_name = "rub_5"
+length = 1.2
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(8, 6), Vector2(6, 5), Vector2(7, 8), Vector2(8, 8), Vector2(7, 6), Vector2(7, 6), Vector2(9, 6), Vector2(7, 5), Vector2(7, 6), Vector2(8, 7), Vector2(5, 6), Vector2(6, 7), Vector2(8, 5)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yywtl"]
 _data = {
 &"RESET": SubResource("Animation_yywtl"),
@@ -373,9 +388,13 @@ _data = {
 &"rub_2": SubResource("Animation_55mgc"),
 &"rub_3": SubResource("Animation_yynqn"),
 &"rub_4": SubResource("Animation_hqsls"),
+&"rub_5": SubResource("Animation_tk3oe"),
 &"rub_base": SubResource("Animation_i7m53"),
 &"shake_1": SubResource("Animation_5wjx5")
 }
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p8h3i"]
+size = Vector2(301, 197)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ifw4b"]
 radius = 171.04678
@@ -393,6 +412,7 @@ position = Vector2(-81, 132)
 shape = SubResource("CircleShape2D_p8h3i")
 
 [node name="Visuals" type="Node2D" parent="."]
+position = Vector2(8, 6)
 
 [node name="BearBodySprite" type="Sprite2D" parent="Visuals"]
 rotation = 0.029231174
@@ -425,6 +445,11 @@ libraries = {
 }
 autoplay = "still"
 
+[node name="ShakeAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_yywtl")
+}
+
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 2
@@ -443,11 +468,6 @@ collision_mask = 0
 position = Vector2(-1033, -368)
 polygon = PackedVector2Array(0, 0, 45, -17, 92, -28, 150, -30, 231, -24, 289, -12, 319, 3, 259.65723, 2.4418945, 212.54584, 1.9988403, 0, 0)
 one_way_collision = true
-
-[node name="ShakeAnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_yywtl")
-}
 
 [node name="ShakeLabel" type="Label" parent="."]
 offset_left = 185.0
@@ -471,7 +491,6 @@ shape = SubResource("RectangleShape2D_ifw4b")
 debug_color = Color(0.6313726, 0.5254902, 0.2, 0.41960785)
 
 [node name="RubbingShakeIncTimer" type="Timer" parent="."]
-wait_time = 0.5
 
 [node name="BearRemoveTimer" type="Timer" parent="."]
 wait_time = 0.3

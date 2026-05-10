@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dxgovc17xl215"]
 
-[ext_resource type="Texture2D" uid="uid://b5ic0uld8qbiv" path="res://assets/240px-Jammit_Weight_Gain.png" id="1_40qjk"]
+[ext_resource type="Texture2D" uid="uid://chr7jf6hgsi4s" path="res://assets/train/arm_claw.png" id="1_40qjk"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_40qjk"]
 radius = 28.0

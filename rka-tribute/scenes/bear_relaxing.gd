@@ -6,6 +6,7 @@ extends CharacterBody2D
 @onready var shake_animation_player = $ShakeAnimationPlayer
 @onready var bear_shake_tracker : int = 0
 @onready var boss_animation_player = $"../Boss/AnimationPlayer"
+#DEBUG: change this node's duration to rub the bear's belly faster & proceed
 @onready var rubbing_shake_inc_timer = $RubbingShakeIncTimer
 @onready var bear_remove_timer = $BearRemoveTimer
 @onready var shake_label = $ShakeLabel
@@ -76,16 +77,18 @@ func _on_rubbing_shake_inc_timer_timeout():
 	if shake_animation_player:
 		match bear_shake_tracker:
 			0:
-				shake_animation_player.play("rub_4")
+				shake_animation_player.play("rub_5")
 				bear_shake_tracker = 1
 			1:
-				shake_animation_player.play("rub_3")
+				shake_animation_player.play("rub_4")
+				player_rubbing.get_node("ShakeAnimationPlayer").play("shake")
 				bear_shake_tracker = 2
 			2:
-				shake_animation_player.play("rub_2")
+				shake_animation_player.play("rub_3")
 				bear_shake_tracker = 3
 			3:
 				spawn_and_move_train()
+				player_rubbing.get_node("ShakeAnimationPlayer").play("still")
 				boss_animation_player.play("travel_right")
 
 
