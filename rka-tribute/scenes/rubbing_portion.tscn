@@ -91,7 +91,6 @@ shape = SubResource("RectangleShape2D_nx7g2")
 debug_color = Color(0.31935605, 0.6058224, 0.44652468, 0.41960785)
 
 [node name="LeavesGPUParticles" type="GPUParticles2D" parent="BG"]
-emitting = false
 amount = 12
 texture = ExtResource("4_d4cq4")
 lifetime = 2.0
