@@ -327,6 +327,24 @@ tracks/1/keys = {
 "values": [Vector2(7, 6), Vector2(8, 4), Vector2(6, 4), Vector2(4, 5), Vector2(6, 4), Vector2(6, 4), Vector2(3, 2), Vector2(7, 5), Vector2(6, 7), Vector2(6, 4), Vector2(4, 5), Vector2(7, 1), Vector2(5, 5)]
 }
 
+[sub_resource type="Animation" id="Animation_tk3oe"]
+resource_name = "rub_5"
+length = 1.2
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(8, 6), Vector2(6, 5), Vector2(7, 8), Vector2(8, 8), Vector2(7, 6), Vector2(7, 6), Vector2(9, 6), Vector2(7, 5), Vector2(7, 6), Vector2(8, 7), Vector2(5, 6), Vector2(6, 7), Vector2(8, 5)]
+}
+
 [sub_resource type="Animation" id="Animation_i7m53"]
 resource_name = "rub_base"
 length = 1.2
@@ -363,24 +381,6 @@ tracks/0/keys = {
 "values": [Vector2(-12, 19), Vector2(6, 20), Vector2(0, 0), Vector2(10, 13), Vector2(11, -14), Vector2(4, 19), Vector2(-30, -9), Vector2(7, 18), Vector2(-21, 4), Vector2(20, 4), Vector2(-8, -17), Vector2(-41, -2), Vector2(19, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_tk3oe"]
-resource_name = "rub_5"
-length = 1.2
-loop_mode = 1
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Visuals:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [Vector2(8, 6), Vector2(6, 5), Vector2(7, 8), Vector2(8, 8), Vector2(7, 6), Vector2(7, 6), Vector2(9, 6), Vector2(7, 5), Vector2(7, 6), Vector2(8, 7), Vector2(5, 6), Vector2(6, 7), Vector2(8, 5)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yywtl"]
 _data = {
 &"RESET": SubResource("Animation_yywtl"),
@@ -412,7 +412,6 @@ position = Vector2(-81, 132)
 shape = SubResource("CircleShape2D_p8h3i")
 
 [node name="Visuals" type="Node2D" parent="."]
-position = Vector2(8, 6)
 
 [node name="BearBodySprite" type="Sprite2D" parent="Visuals"]
 rotation = 0.029231174
@@ -491,6 +490,7 @@ shape = SubResource("RectangleShape2D_ifw4b")
 debug_color = Color(0.6313726, 0.5254902, 0.2, 0.41960785)
 
 [node name="RubbingShakeIncTimer" type="Timer" parent="."]
+wait_time = 2.5
 
 [node name="BearRemoveTimer" type="Timer" parent="."]
 wait_time = 0.3
