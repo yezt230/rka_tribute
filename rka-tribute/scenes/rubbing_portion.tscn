@@ -91,6 +91,7 @@ shape = SubResource("RectangleShape2D_nx7g2")
 debug_color = Color(0.31935605, 0.6058224, 0.44652468, 0.41960785)
 
 [node name="LeavesGPUParticles" type="GPUParticles2D" parent="BG"]
+emitting = false
 amount = 12
 texture = ExtResource("4_d4cq4")
 lifetime = 2.0
@@ -145,7 +146,7 @@ one_shot = true
 script = ExtResource("8_os4g6")
 
 [node name="TrackFromSingle" parent="." instance=ExtResource("9_vsaki")]
-position = Vector2(414, 612)
+position = Vector2(490, 612)
 mode = 1
 
 [connection signal="rubbing_started" from="PlayerRubbing" to="BearRelaxing" method="_on_player_rubbing_rubbing_started"]
