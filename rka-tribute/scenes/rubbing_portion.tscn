@@ -16,11 +16,15 @@ size = Vector2(248, 951.5)
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_prj7r"]
 particle_flag_disable_z = true
-emission_shape_offset = Vector3(700, 150, 0)
+emission_shape_offset = Vector3(700, 100, 0)
 emission_shape_scale = Vector3(1400, 5, 1)
 emission_shape = 3
 emission_box_extents = Vector3(1, 1, 1)
-gravity = Vector3(0, 98, 0)
+angular_velocity_min = -20.000015
+angular_velocity_max = 49.99998
+gravity = Vector3(-40, 98, 0)
+radial_accel_min = -20.000002
+radial_accel_max = 9.999997
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fmilq"]
 size = Vector2(38, 737)
@@ -87,7 +91,10 @@ shape = SubResource("RectangleShape2D_nx7g2")
 debug_color = Color(0.31935605, 0.6058224, 0.44652468, 0.41960785)
 
 [node name="LeavesGPUParticles" type="GPUParticles2D" parent="BG"]
+emitting = false
+amount = 12
 texture = ExtResource("4_d4cq4")
+lifetime = 2.0
 process_material = SubResource("ParticleProcessMaterial_prj7r")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
