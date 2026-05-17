@@ -86,7 +86,7 @@ texture = ExtResource("4_prj7r")
 [node name="LeavesGPUParticles" type="GPUParticles2D" parent="BG"]
 position = Vector2(0, -50)
 emitting = false
-amount = 12
+amount = 14
 texture = ExtResource("4_d4cq4")
 lifetime = 3.0
 process_material = SubResource("ParticleProcessMaterial_prj7r")
@@ -95,7 +95,7 @@ process_material = SubResource("ParticleProcessMaterial_prj7r")
 script = ExtResource("2_xtdjp")
 
 [node name="WoodsBg" type="Sprite2D" parent="BG/WoodScroller"]
-position = Vector2(773, 459)
+position = Vector2(4095, 459)
 texture = ExtResource("3_d4cq4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BG"]

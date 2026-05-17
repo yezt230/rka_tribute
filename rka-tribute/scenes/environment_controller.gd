@@ -10,6 +10,8 @@ extends Node
 #@onready var track_animation_player = $"../Track/AnimationPlayer"
 @onready var track_from_single = $"../TrackFromSingle"
 @onready var rubbing_portion = get_parent()
+
+const BG_SCROLL_SPEED : float = -2500
 var current_direction: float = 0.0
 enum Mode {
 	PLAYER_CONTROL,
@@ -31,7 +33,7 @@ func _physics_process(_delta: float) -> void:
 			handle_player_motion()
 		Mode.CUTSCENE:
 			cart.velocity.x = 0
-			wood_scroller.velocity.x = 0
+			wood_scroller.velocity.x = BG_SCROLL_SPEED
 			
 
 func set_direction(direction: float) -> void:
@@ -66,9 +68,9 @@ func start_cart_cutscene():
 		.set_trans(Tween.TRANS_SINE) \
 		.set_ease(Tween.EASE_OUT)
 
-	tween.parallel().tween_property(wood_scroller, "global_position:x", target_x * -0.5, duration) \
-		.set_trans(Tween.TRANS_SINE) \
-		.set_ease(Tween.EASE_OUT)
+	#tween.parallel().tween_property(wood_scroller, "global_position:x", target_x * -0.5, duration) \
+		#.set_trans(Tween.TRANS_SINE) \
+		#.set_ease(Tween.EASE_OUT)
 
 	tween.finished.connect(_on_cutscene_finished)
 	cart_animation_player.play("rotate")
@@ -81,7 +83,7 @@ func _on_cutscene_finished():
 func apply_override_motion():
 	#post jumping-on-cart animation
 	if rubbing_portion.has_bear_been_kidnapped:
-		wood_scroller.velocity.x = override_velocity * 2.5
+		wood_scroller.velocity.x = override_velocity * 25
 		cart.velocity.x = override_velocity
 	else:
 		wood_scroller.velocity.x = 0
