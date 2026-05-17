@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://t5nds2n2g21q"]
+[gd_scene load_steps=26 format=3 uid="uid://t5nds2n2g21q"]
 
 [ext_resource type="Script" uid="uid://cpfn0belo4xbl" path="res://scenes/bear_relaxing.gd" id="1_ifw4b"]
 [ext_resource type="Texture2D" uid="uid://18fphi7r8l3x" path="res://assets/bear_relaxing_sprite_transp.png" id="2_ifw4b"]
@@ -220,22 +220,6 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(0, 0)]
 }
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Visuals:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"update": 0,
-"values": []
-}
-
-[sub_resource type="Animation" id="Animation_38mdq"]
-resource_name = "new_animation"
-step = 0.2
 
 [sub_resource type="Animation" id="Animation_55mgc"]
 resource_name = "rub_2"
@@ -384,7 +368,6 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yywtl"]
 _data = {
 &"RESET": SubResource("Animation_yywtl"),
-&"new_animation": SubResource("Animation_38mdq"),
 &"rub_2": SubResource("Animation_55mgc"),
 &"rub_3": SubResource("Animation_yynqn"),
 &"rub_4": SubResource("Animation_hqsls"),

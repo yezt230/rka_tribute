@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://t5nds2n2g21q" path="res://scenes/bear_relaxing.tscn" id="1_kawjh"]
 [ext_resource type="Script" uid="uid://co2vry3052bes" path="res://scenes/rubbing_portion.gd" id="1_qb70t"]
-[ext_resource type="Texture2D" uid="uid://b0wm2ycqub1gb" path="res://assets/woods_bg.png" id="2_nx7g2"]
+[ext_resource type="Texture2D" uid="uid://b0wm2ycqub1gb" path="res://assets/bg/woods_bg.png" id="2_nx7g2"]
 [ext_resource type="Script" uid="uid://ck085rhnq2gpq" path="res://scenes/wood_scroller.gd" id="2_xtdjp"]
 [ext_resource type="PackedScene" uid="uid://c1akb236jofvd" path="res://scenes/player_rubbing.tscn" id="3_qb70t"]
 [ext_resource type="Texture2D" uid="uid://i11gw34oh753" path="res://assets/tile_0027.png" id="4_d4cq4"]
@@ -91,6 +91,7 @@ shape = SubResource("RectangleShape2D_nx7g2")
 debug_color = Color(0.31935605, 0.6058224, 0.44652468, 0.41960785)
 
 [node name="LeavesGPUParticles" type="GPUParticles2D" parent="BG"]
+emitting = false
 amount = 12
 texture = ExtResource("4_d4cq4")
 lifetime = 2.0
