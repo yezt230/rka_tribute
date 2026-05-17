@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b0iof0841u8y0"
-path="res://.godot/imported/track.png-28fc825b7a26c276ed269ea65aee05dc.ctex"
+uid="uid://beopr6j0mmfnx"
+path="res://.godot/imported/bg_2.png-3f7df4d582c46682d5d3df455b8bed15.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/train/track.png"
-dest_files=["res://.godot/imported/track.png-28fc825b7a26c276ed269ea65aee05dc.ctex"]
+source_file="res://assets/bg/bg_2.png"
+dest_files=["res://.godot/imported/bg_2.png-3f7df4d582c46682d5d3df455b8bed15.ctex"]
 
 [params]
 

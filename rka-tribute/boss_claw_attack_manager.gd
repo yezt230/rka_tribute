@@ -20,7 +20,7 @@ func _ready():
 	for i in range(seg_amt):
 		var piece_to_load = claw_scene if i == 1 else segment_scene
 		var segment = piece_to_load.instantiate() as Node2D
-		var inc = floor(seg_amt - abs((i - floor(center / 1.5 )) - center))
+		var inc = floor(seg_amt - abs((i + 2 - floor(center / 1.2 )) - center))
 		var segment_x = (1 / pow(1.5, inc) * 2000)
 		var segment_y = ((seg_amt - i - 1) * seg_separation)
 		segment.position = Vector2(segment_x, 100 + segment_y)
