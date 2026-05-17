@@ -138,7 +138,7 @@ libraries = {
 }
 
 [node name="Cart" parent="." instance=ExtResource("7_fmilq")]
-position = Vector2(1499, 632)
+position = Vector2(1499, 642)
 
 [node name="StallTimer" type="Timer" parent="."]
 wait_time = 2.0
@@ -152,7 +152,7 @@ one_shot = true
 script = ExtResource("8_os4g6")
 
 [node name="TrackFromSingle" parent="." instance=ExtResource("9_vsaki")]
-position = Vector2(490, 612)
+position = Vector2(490, 640)
 mode = 1
 
 [connection signal="rubbing_started" from="PlayerRubbing" to="BearRelaxing" method="_on_player_rubbing_rubbing_started"]
