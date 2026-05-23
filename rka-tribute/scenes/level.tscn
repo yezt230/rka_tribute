@@ -72,3 +72,15 @@ collision_mask = 1024
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TrainBordersActivatorCollider"]
 position = Vector2(602, 465)
 shape = SubResource("RectangleShape2D_2r41h")
+
+[node name="BoxContainer" type="BoxContainer" parent="."]
+offset_right = 1400.0
+offset_bottom = 800.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ColorRect" type="ColorRect" parent="BoxContainer"]
+modulate = Color(1, 1, 1, 0.2)
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0, 0, 0, 1)
