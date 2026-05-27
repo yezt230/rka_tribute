@@ -24,6 +24,7 @@ const GRAV_ADJUSTMENT: float = 2.0
 @onready var bear_shake_animation_player : AnimationPlayer = $"../BearRelaxing/ShakeAnimationPlayer"
 @onready var bear_relaxing = $"../BearRelaxing"
 @onready var bear_belly_collision_shape_2d = $"../BearRelaxing/BearBellyPlatform/CollisionPolygon2D"
+@onready var bear_belly_platform_y = bear_belly_collision_shape_2d.global_position.y
 @onready var bear_remove_timer = $"../BearRemoveTimer"
 @onready var jump_onto_cart_flag : bool = false
 @onready var has_jumped_onto_cart : bool = false
@@ -35,6 +36,9 @@ const GRAV_ADJUSTMENT: float = 2.0
 @onready var cart_detection_hitbox : CollisionShape2D = $Area2D/RubHitbox
 
 var is_on_belly_platform := false
+var belly_platform_depressed := false
+var belly_platform_currently_rising = false
+var player_landed_on_belly_yet = false
 var current_floor_collider: Object = null
 
 func _ready():
@@ -48,6 +52,9 @@ func _process(_delta):
 		current_state_name = state_machine.get_current_state()
 		debug_label.text = str(is_on_belly_platform)
 		#debug_label.text = current_state_name
+	
+	if not is_on_belly_platform:
+		player_landed_on_belly_yet = false
 	
 	if has_jumped_onto_cart:
 		player_sprite.global_position.x = cart.global_position.x
@@ -119,6 +126,8 @@ func _physics_process(delta: float) -> void:
 
 			if collider and collider.name == "BearBellyPlatform":
 				is_on_belly_platform = true
+				belly_platform_depressed = true
+				depress_belly_platform()
 			else:
 				is_on_belly_platform = false
 
@@ -171,6 +180,41 @@ func cart_wheel_start_rotating():
 	environment_controller.start_cart_cutscene()
 	
 	
+func depress_belly_platform():	
+	if not player_landed_on_belly_yet and belly_platform_depressed and not belly_platform_currently_rising:
+		player_landed_on_belly_yet = true
+		print("should be dep")
+		belly_platform_currently_rising = true
+		belly_platform_depressed = false
+		
+		var start_y = bear_belly_collision_shape_2d.global_position.y
+		var dipped_y = start_y + 25.0
+
+		var tween = create_tween()
+
+		# Briefly move downward
+		tween.tween_property(
+			bear_belly_collision_shape_2d,
+			"global_position:y",
+			dipped_y,
+			0.15
+		) \
+			.set_trans(Tween.TRANS_SINE) \
+			.set_ease(Tween.EASE_IN)
+
+		# Then rise back up
+		tween.tween_property(
+			bear_belly_collision_shape_2d,
+			"global_position:y",
+			bear_belly_platform_y,
+			0.8
+		) \
+			.set_trans(Tween.TRANS_SINE) \
+			.set_ease(Tween.EASE_OUT)
+
+		tween.finished.connect(_on_finish_belly_platform_rising)
+	
+	
 func _on_drop_down_timer_timeout():
 	if bear_belly_collision_shape_2d:
 		bear_belly_collision_shape_2d.disabled = false
@@ -183,3 +227,8 @@ func _on_trigger_cart_cutscene():
 
 func _on_transition_to_main_timer_timeout():
 	get_tree().change_scene_to_file("res://scenes/main.tscn")
+
+
+func _on_finish_belly_platform_rising():
+	print("called func")
+	belly_platform_currently_rising = false
