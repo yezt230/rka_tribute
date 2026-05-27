@@ -1,8 +1,9 @@
 extends CharacterBody2D
 
+
 @onready var bear_belly_platform = $"../BearBellyPlatform"
 @onready var stall_timer = $"../StallTimer"
-@onready var animation_player = $AnimationPlayer
+@onready var belly_animation_player = $AnimationPlayer
 @onready var shake_animation_player = $ShakeAnimationPlayer
 @onready var bear_shake_tracker : int = 0
 @onready var boss_animation_player = $"../Boss/AnimationPlayer"
@@ -22,6 +23,7 @@ func _ready() -> void:
 	rubbing_shake_inc_timer.timeout.connect(_on_rubbing_shake_inc_timer_timeout)
 	player_rubbing.rubbing_started.connect(_on_player_rubbing_rubbing_started)
 	player_rubbing.rubbing_stopped.connect(_on_player_rubbing_rubbing_stopped)
+	player_rubbing.land_on_belly.connect(_on_land_on_belly)
 # --- PLAYER SIGNALS ---
 
 func _process(_delta):
@@ -42,14 +44,14 @@ func evaluate_rub_state() -> void:
 	var should_rub = is_player_overlapping and is_player_rubbing
 
 	if should_rub \
-	and animation_player.current_animation != "rubbing1" \
-	and animation_player.current_animation != "rubbing2":		
+	and belly_animation_player.current_animation != "rubbing1" \
+	and belly_animation_player.current_animation != "rubbing2":		
 		start_rubbing()
 
 
 func start_rubbing() -> void:
 	var anim_to_play = "rubbing2" if player_rubbing.is_on_belly_platform else "rubbing1"
-	animation_player.play(anim_to_play)
+	belly_animation_player.play(anim_to_play)
 	if not has_shake_timer_started:
 		rubbing_shake_inc_timer.start()
 		has_shake_timer_started = true
@@ -58,7 +60,7 @@ func start_rubbing() -> void:
 	
 
 func stop_rubbing(mystr : String) -> void:
-	animation_player.play("still")
+	belly_animation_player.play("still")
 	rubbing_shake_inc_timer.paused = true
 
 # --- HIT / DESTROY LOGIC ---
@@ -101,6 +103,11 @@ func spawn_and_move_train():
 func remove_bear():
 	bear_remove_timer.start()
 	
+	
+func _on_land_on_belly():
+	print("ka")
+	belly_animation_player.play("bounce")
+
 	
 func _on_bear_remove_timer_timeout():
 	queue_free()

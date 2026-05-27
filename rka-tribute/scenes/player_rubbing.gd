@@ -3,6 +3,7 @@ class_name PlayerRubbing extends CharacterBody2D
 #collision for ground is on layer 3, orb attack is 4
 signal rubbing_started
 signal rubbing_stopped
+signal land_on_belly
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -1000.0
@@ -182,6 +183,7 @@ func cart_wheel_start_rotating():
 	
 func depress_belly_platform():	
 	if not player_landed_on_belly_yet and belly_platform_depressed and not belly_platform_currently_rising:
+		emit_signal("land_on_belly")
 		player_landed_on_belly_yet = true
 		print("should be dep")
 		belly_platform_currently_rising = true
@@ -199,18 +201,20 @@ func depress_belly_platform():
 			dipped_y,
 			0.15
 		) \
-			.set_trans(Tween.TRANS_SINE) \
-			.set_ease(Tween.EASE_IN)
+			.set_trans(Tween.TRANS_SINE) 
+			#.set_trans(Tween.TRANS_SINE) \
+			#.set_ease(Tween.EASE_IN)
 
 		# Then rise back up
 		tween.tween_property(
 			bear_belly_collision_shape_2d,
 			"global_position:y",
 			bear_belly_platform_y,
-			0.8
+			0.6
 		) \
-			.set_trans(Tween.TRANS_SINE) \
-			.set_ease(Tween.EASE_OUT)
+			.set_trans(Tween.TRANS_SINE) 
+			#.set_trans(Tween.TRANS_SINE) \
+			#.set_ease(Tween.EASE_OUT)
 
 		tween.finished.connect(_on_finish_belly_platform_rising)
 	
