@@ -24,8 +24,9 @@ const GRAV_ADJUSTMENT: float = 2.0
 @onready var cart = $"../Cart"
 @onready var bear_shake_animation_player : AnimationPlayer = $"../BearRelaxing/ShakeAnimationPlayer"
 @onready var bear_relaxing = $"../BearRelaxing"
+@onready var bear_belly_platform = $"../BearRelaxing/BearBellyPlatform"
 @onready var bear_belly_collision_shape_2d = $"../BearRelaxing/BearBellyPlatform/CollisionPolygon2D"
-@onready var bear_belly_platform_y = bear_belly_collision_shape_2d.global_position.y
+@onready var bear_belly_platform_y = bear_belly_platform.global_position.y
 @onready var bear_remove_timer = $"../BearRemoveTimer"
 @onready var jump_onto_cart_flag : bool = false
 @onready var has_jumped_onto_cart : bool = false
@@ -53,6 +54,8 @@ func _process(_delta):
 		current_state_name = state_machine.get_current_state()
 		debug_label.text = str(is_on_belly_platform)
 		#debug_label.text = current_state_name
+	
+	debug_label_4.text = str(velocity.y)
 	
 	if not is_on_belly_platform:
 		player_landed_on_belly_yet = false
@@ -182,24 +185,27 @@ func cart_wheel_start_rotating():
 	
 	
 func depress_belly_platform():	
-	if not player_landed_on_belly_yet and belly_platform_depressed and not belly_platform_currently_rising:
+	if not player_landed_on_belly_yet and \
+	belly_platform_depressed and not \
+	belly_platform_currently_rising and \
+	velocity.y >= 0:
 		emit_signal("land_on_belly")
 		player_landed_on_belly_yet = true
 		print("should be dep")
 		belly_platform_currently_rising = true
 		belly_platform_depressed = false
 		
-		var start_y = bear_belly_collision_shape_2d.global_position.y
+		var start_y = bear_belly_platform.global_position.y
 		var dipped_y = start_y + 25.0
 
 		var tween = create_tween()
 
 		# Briefly move downward
 		tween.tween_property(
-			bear_belly_collision_shape_2d,
+			bear_belly_platform,
 			"global_position:y",
 			dipped_y,
-			0.15
+			0.1
 		) \
 			.set_trans(Tween.TRANS_SINE) 
 			#.set_trans(Tween.TRANS_SINE) \
@@ -207,10 +213,10 @@ func depress_belly_platform():
 
 		# Then rise back up
 		tween.tween_property(
-			bear_belly_collision_shape_2d,
+			bear_belly_platform,
 			"global_position:y",
 			bear_belly_platform_y,
-			0.6
+			0.2
 		) \
 			.set_trans(Tween.TRANS_SINE) 
 			#.set_trans(Tween.TRANS_SINE) \
