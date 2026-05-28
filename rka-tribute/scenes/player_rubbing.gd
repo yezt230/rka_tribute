@@ -40,6 +40,7 @@ const GRAV_ADJUSTMENT: float = 2.0
 var is_on_belly_platform := false
 var belly_platform_depressed := false
 var belly_platform_currently_rising = false
+var direction_to_play_rubbing_anim : float = 1.0
 var player_landed_on_belly_yet = false
 var current_floor_collider: Object = null
 
@@ -55,7 +56,7 @@ func _process(_delta):
 		debug_label.text = str(is_on_belly_platform)
 		#debug_label.text = current_state_name
 	
-	debug_label_4.text = str(velocity.y)
+	#debug_label_4.text = str()
 	
 	if not is_on_belly_platform:
 		player_landed_on_belly_yet = false
@@ -84,6 +85,10 @@ func _physics_process(delta: float) -> void:
 	# Horizontal movement
 	
 	var direction := Input.get_axis("LEFT", "RIGHT") if player_can_move else 0.0
+	debug_label_4.text = str(direction)
+	if direction != 0.0:
+		direction_to_play_rubbing_anim = direction
+	
 	if player_can_move:
 		get_orientation(direction)	
 

@@ -7,6 +7,8 @@ extends State
 func enter() -> void:
 	super()
 	parent.animation_player.play("rub_standing")
+	if parent.direction_to_play_rubbing_anim < 0.0:
+		parent.animation_player.seek(0.6, true)
 	parent.emit_signal("rubbing_started")
 	
 	

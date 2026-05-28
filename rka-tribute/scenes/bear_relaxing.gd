@@ -51,7 +51,10 @@ func evaluate_rub_state() -> void:
 
 func start_rubbing() -> void:
 	var anim_to_play = "rubbing2" if player_rubbing.is_on_belly_platform else "rubbing1"
-	belly_animation_player.play(anim_to_play)
+	if anim_to_play == "rubbing1" and player_rubbing.direction_to_play_rubbing_anim == -1.0:
+		belly_animation_player.play_backwards(anim_to_play)
+	else:
+		belly_animation_player.play(anim_to_play)
 	if not has_shake_timer_started:
 		rubbing_shake_inc_timer.start()
 		has_shake_timer_started = true
