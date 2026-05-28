@@ -74,6 +74,7 @@ func _physics_process(delta: float) -> void:
 	if player_can_move:
 		if Input.is_action_just_pressed("UP") and is_on_floor():
 			velocity.y = JUMP_VELOCITY
+			is_on_belly_platform = false
 
 		if Input.is_action_just_pressed("DOWN") and is_on_floor():
 			if bear_belly_collision_shape_2d:

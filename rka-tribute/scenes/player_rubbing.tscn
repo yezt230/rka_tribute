@@ -451,6 +451,9 @@ radius = 16.0
 [node name="PlayerRubbing" type="CharacterBody2D"]
 collision_layer = 0
 collision_mask = 256
+floor_stop_on_slope = false
+floor_max_angle = 1.3962634
+floor_snap_length = 40.0
 script = ExtResource("1_4tvg3")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

@@ -131,7 +131,6 @@ position = Vector2(741, 445)
 
 [node name="PlayerRubbing" parent="." instance=ExtResource("3_qb70t")]
 position = Vector2(1029, 629)
-floor_stop_on_slope = false
 floor_snap_length = 22.0
 
 [node name="Ground" type="StaticBody2D" parent="."]

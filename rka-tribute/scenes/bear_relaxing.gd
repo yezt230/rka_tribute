@@ -81,17 +81,17 @@ func _on_rubbing_shake_inc_timer_timeout():
 			0:
 				shake_animation_player.play("rub_5")
 				bear_shake_tracker = 1
-			1:
-				shake_animation_player.play("rub_4")
-				player_rubbing.get_node("ShakeAnimationPlayer").play("shake")
-				bear_shake_tracker = 2
-			2:
-				shake_animation_player.play("rub_3")
-				bear_shake_tracker = 3
-			3:
-				spawn_and_move_train()
-				player_rubbing.get_node("ShakeAnimationPlayer").play("still")
-				boss_animation_player.play("travel_right")
+			#1:
+				#shake_animation_player.play("rub_4")
+				#player_rubbing.get_node("ShakeAnimationPlayer").play("shake")
+				#bear_shake_tracker = 2
+			#2:
+				#shake_animation_player.play("rub_3")
+				#bear_shake_tracker = 3
+			#3:
+				#spawn_and_move_train()
+				#player_rubbing.get_node("ShakeAnimationPlayer").play("still")
+				#boss_animation_player.play("travel_right")
 
 
 func spawn_and_move_train():
