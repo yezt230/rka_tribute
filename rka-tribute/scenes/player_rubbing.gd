@@ -9,40 +9,31 @@ const SPEED = 300.0
 const JUMP_VELOCITY = -1000.0
 const GRAV_ADJUSTMENT: float = 2.0
 
-@onready var player_dir: float = 1.0
 @onready var player_sprite = $Sprite2D
 @onready var animation_player = $AnimationPlayer
 @onready var debug_label = $DebugLabel
 @onready var state_machine = $StateMachineRubbing
-@onready var idle = $StateMachineRubbing/IdleRubbing
-@onready var current_state_name : String
 @onready var rub_hitbox = $Area2D/RubHitbox
 @onready var debug_label_4 = $DebugLabel2
-@onready var collision_shape_2d = $CollisionShape2D
-@onready var rubbing_shake_inc_timer = $RubbingShakeIncTimer
 @onready var drop_down_timer = $DropDownTimer
 @onready var cart = $"../Cart"
 @onready var bear_shake_animation_player : AnimationPlayer = $"../BearRelaxing/ShakeAnimationPlayer"
-@onready var bear_relaxing = $"../BearRelaxing"
 @onready var bear_belly_platform = $"../BearRelaxing/BearBellyPlatform"
 @onready var bear_belly_collision_shape_2d = $"../BearRelaxing/BearBellyPlatform/CollisionPolygon2D"
 @onready var bear_belly_platform_y = bear_belly_platform.global_position.y
-@onready var bear_remove_timer = $"../BearRemoveTimer"
-@onready var jump_onto_cart_flag : bool = false
-@onready var has_jumped_onto_cart : bool = false
 @onready var environment_controller = $"../EnvironmentController"
 #should be a global variable? player will be locked
 #out of moving several times
-@onready var player_can_move : bool = true
-@onready var transition_to_main_timer = $"../TransitionToMainTimer"
-@onready var cart_detection_hitbox : CollisionShape2D = $Area2D/RubHitbox
 
 var is_on_belly_platform := false
-var belly_platform_depressed := false
 var belly_platform_currently_rising = false
 var direction_to_play_rubbing_anim : float = 1.0
 var player_landed_on_belly_yet = false
-var current_floor_collider: Object = null
+var player_dir: float = 1.0
+var current_state_name : String
+var jump_onto_cart_flag : bool = false
+var has_jumped_onto_cart : bool = false
+var player_can_move : bool = true
 
 func _ready():
 	cart.trigger_cart_cutscene.connect(self._on_trigger_cart_cutscene)
@@ -106,16 +97,7 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 	
-	#DEBUG: just getting collision names
-	for i in range(get_slide_collision_count()):
-		var collision = get_slide_collision(i)
-		var collider = collision.get_collider()
-		
-		if collider is StaticBody2D and collider.name == "BG":
-			if direction > 0:
-				environment_controller.set_direction(1)
-			else:
-				environment_controller.set_direction(0)
+
 	
 	if direction <= 0:
 		environment_controller.set_direction(0)
@@ -127,16 +109,25 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		state_machine.change_state(jump_state)
 		
+	#DEBUG: just getting collision names
+	for i in range(get_slide_collision_count()):
+		var collision = get_slide_collision(i)
+		var collider = collision.get_collider()
+		
+		if collider is StaticBody2D and collider.name == "BG":
+			if direction > 0:
+				environment_controller.set_direction(1)
+			else:
+				environment_controller.set_direction(0)
 	# check if on the platform specfically
+	
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
 		if collision.get_normal().y < 0:
 			var collider = collision.get_collider()
-			current_floor_collider = collider
 
 			if collider and collider.name == "BearBellyPlatform":
 				is_on_belly_platform = true
-				belly_platform_depressed = true
 				depress_belly_platform()
 			else:
 				is_on_belly_platform = false
@@ -186,49 +177,42 @@ func _on_horz_tween_finished():
 	has_jumped_onto_cart = true
 	
 func cart_wheel_start_rotating():
-	transition_to_main_timer.start()
+	$"../TransitionToMainTimer".start()
 	environment_controller.start_cart_cutscene()
 	
 	
 func depress_belly_platform():	
-	if not player_landed_on_belly_yet and \
-	belly_platform_depressed and not \
-	belly_platform_currently_rising and \
-	velocity.y >= 0:
-		emit_signal("land_on_belly")
-		player_landed_on_belly_yet = true
-		print("should be dep")
-		belly_platform_currently_rising = true
-		belly_platform_depressed = false
-		
-		var start_y = bear_belly_platform.global_position.y
-		var dipped_y = start_y + 25.0
+	if player_landed_on_belly_yet:
+		return
+	if belly_platform_currently_rising:
+		return
+	if velocity.y < 0:
+		return
 
-		var tween = create_tween()
+	emit_signal("land_on_belly")
+	player_landed_on_belly_yet = true
+	belly_platform_currently_rising = true
+	
+	var start_y = bear_belly_platform.global_position.y
+	var dipped_y = start_y + 25.0
 
-		# Briefly move downward
-		tween.tween_property(
-			bear_belly_platform,
-			"global_position:y",
-			dipped_y,
-			0.1
-		) \
-			.set_trans(Tween.TRANS_SINE) 
-			#.set_trans(Tween.TRANS_SINE) \
-			#.set_ease(Tween.EASE_IN)
+	var tween = create_tween()
 
-		# Then rise back up
-		tween.tween_property(
-			bear_belly_platform,
-			"global_position:y",
-			bear_belly_platform_y,
-			0.2
-		) \
-			.set_trans(Tween.TRANS_SINE) 
-			#.set_trans(Tween.TRANS_SINE) \
-			#.set_ease(Tween.EASE_OUT)
+	tween.tween_property(
+		bear_belly_platform,
+		"global_position:y",
+		dipped_y,
+		0.1
+	).set_trans(Tween.TRANS_SINE)
 
-		tween.finished.connect(_on_finish_belly_platform_rising)
+	tween.tween_property(
+		bear_belly_platform,
+		"global_position:y",
+		bear_belly_platform_y,
+		0.2
+	).set_trans(Tween.TRANS_SINE)
+
+	tween.finished.connect(_on_finish_belly_platform_rising)
 	
 	
 func _on_drop_down_timer_timeout():
