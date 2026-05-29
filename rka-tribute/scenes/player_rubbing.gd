@@ -41,13 +41,9 @@ func _ready():
 	
 
 func _process(_delta):
-	#print(player_sprite.global_position.y)
 	if state_machine:
 		current_state_name = state_machine.get_current_state()
 		debug_label.text = str(is_on_belly_platform)
-		#debug_label.text = current_state_name
-	
-	#debug_label_4.text = str()
 	
 	if not is_on_belly_platform:
 		player_landed_on_belly_yet = false
@@ -97,8 +93,6 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 	
-
-	
 	if direction <= 0:
 		environment_controller.set_direction(0)
 	
@@ -109,29 +103,23 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		state_machine.change_state(jump_state)
 		
-	#DEBUG: just getting collision names
+	var pushing_bg := false
+
 	for i in range(get_slide_collision_count()):
 		var collision = get_slide_collision(i)
 		var collider = collision.get_collider()
-		
+
 		if collider is StaticBody2D and collider.name == "BG":
-			if direction > 0:
-				environment_controller.set_direction(1)
-			else:
-				environment_controller.set_direction(0)
-	# check if on the platform specfically
-	
-	for i in get_slide_collision_count():
-		var collision = get_slide_collision(i)
-		if collision.get_normal().y < 0:
-			var collider = collision.get_collider()
+			pushing_bg = direction > 0
 
-			if collider and collider.name == "BearBellyPlatform":
-				is_on_belly_platform = true
-				depress_belly_platform()
-			else:
-				is_on_belly_platform = false
+		if collision.get_normal().y < 0 and collider and collider.name == "BearBellyPlatform":
+			#touching_belly_platform = true
+			is_on_belly_platform = true
+			depress_belly_platform()
+		else:
+			is_on_belly_platform = false
 
+	environment_controller.set_direction(1 if pushing_bg else 0)
 
 func get_orientation(dir):
 	# direction can only be -1 or 1
@@ -159,7 +147,6 @@ func jump_onto_cart():
 
 
 func horz_tween_onto_cart():
-	print("horz")
 	##horizontal movement for jumping onto cart
 	var target_x = cart.global_position.x
 
@@ -170,11 +157,9 @@ func horz_tween_onto_cart():
 	tween.finished.connect(_on_horz_tween_finished)
 	
 	
-func _on_horz_tween_finished():
-	print(global_position)
-	print(player_sprite.global_position)
-	
+func _on_horz_tween_finished():	
 	has_jumped_onto_cart = true
+	
 	
 func cart_wheel_start_rotating():
 	$"../TransitionToMainTimer".start()
@@ -221,7 +206,6 @@ func _on_drop_down_timer_timeout():
 
 
 func _on_trigger_cart_cutscene():
-	print("player hit cart")
 	jump_onto_cart()
 
 
@@ -230,5 +214,4 @@ func _on_transition_to_main_timer_timeout():
 
 
 func _on_finish_belly_platform_rising():
-	print("called func")
 	belly_platform_currently_rising = false
