@@ -113,7 +113,6 @@ func _physics_process(delta: float) -> void:
 			pushing_bg = direction > 0
 
 		if collision.get_normal().y < 0 and collider and collider.name == "BearBellyPlatform":
-			#touching_belly_platform = true
 			is_on_belly_platform = true
 			depress_belly_platform()
 		else:

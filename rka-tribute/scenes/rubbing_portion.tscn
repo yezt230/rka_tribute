@@ -85,7 +85,6 @@ texture = ExtResource("4_prj7r")
 
 [node name="LeavesGPUParticles" type="GPUParticles2D" parent="BG"]
 position = Vector2(0, -50)
-emitting = false
 amount = 14
 texture = ExtResource("4_d4cq4")
 lifetime = 3.0
