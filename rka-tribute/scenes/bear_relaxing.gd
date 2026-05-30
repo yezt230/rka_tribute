@@ -2,22 +2,19 @@ extends CharacterBody2D
 
 
 @onready var bear_belly_platform = $"../BearBellyPlatform"
-@onready var stall_timer = $"../StallTimer"
 @onready var belly_animation_player = $AnimationPlayer
 @onready var shake_animation_player = $ShakeAnimationPlayer
-@onready var bear_shake_tracker : int = 0
 @onready var boss_animation_player = $"../Boss/AnimationPlayer"
 #DEBUG: change this node's duration to rub the bear's belly faster & proceed
 @onready var rubbing_shake_inc_timer = $RubbingShakeIncTimer
-@onready var bear_remove_timer = $BearRemoveTimer
 @onready var shake_label = $ShakeLabel
-@onready var has_shake_timer_started : bool = false
-@onready var rubbing_portion = get_parent()
-@onready var boss: CharacterBody2D = $"../Boss"
 @onready var player_rubbing = $"../PlayerRubbing"
+@onready var player_shake_animation_player: AnimationPlayer = $"../PlayerRubbing/ShakeAnimationPlayer"
 
 var is_player_overlapping := false
 var is_player_rubbing := false
+var bear_shake_tracker : int = 0
+var has_shake_timer_started : bool = false
 
 func _ready() -> void:
 	rubbing_shake_inc_timer.timeout.connect(_on_rubbing_shake_inc_timer_timeout)
@@ -37,89 +34,75 @@ func _on_player_rubbing_rubbing_started() -> void:
 
 func _on_player_rubbing_rubbing_stopped() -> void:
 	is_player_rubbing = false
-	stop_rubbing('from signal')
-	
+	stop_rubbing()
+
 
 func evaluate_rub_state() -> void:
-	var should_rub = is_player_overlapping and is_player_rubbing
+	if not is_player_overlapping or not is_player_rubbing:
+		return
 
-	if should_rub \
-	and belly_animation_player.current_animation != "rubbing1" \
-	and belly_animation_player.current_animation != "rubbing2":		
-		start_rubbing()
+	if belly_animation_player.current_animation in ["rubbing1", "rubbing1_reverse", "rubbing2"]:
+		return
+
+	start_rubbing()	
 
 
 func start_rubbing() -> void:
-	var anim_to_play : String
-	if player_rubbing.is_on_belly_platform:
-		anim_to_play = "rubbing2"
+	var anim_to_play := "rubbing2" if player_rubbing.is_on_belly_platform else "rubbing1"
+
+	if anim_to_play == "rubbing1" and player_rubbing.direction_to_play_rubbing_anim < 0.0:
+		anim_to_play = "rubbing1_reverse"
+
+	belly_animation_player.play(anim_to_play)
+
+	if has_shake_timer_started:
+		rubbing_shake_inc_timer.paused = false
 	else:
-		if player_rubbing.direction_to_play_rubbing_anim < 0.0:
-			anim_to_play = "rubbing1_reverse"
-		else:
-			anim_to_play = "rubbing1"
-		
-	
-	#var anim_to_play = "rubbing2" if player_rubbing.is_on_belly_platform else "rubbing1"
-	#if anim_to_play == "rubbing1" and player_rubbing.direction_to_play_rubbing_anim == -1.0:
-		#belly_animation_player.play_backwards(anim_to_play)
-	#else:
-	if anim_to_play:
-		belly_animation_player.play(anim_to_play)
-	if not has_shake_timer_started:
 		rubbing_shake_inc_timer.start()
 		has_shake_timer_started = true
-	else:
-		rubbing_shake_inc_timer.paused = false
-	
 
-func stop_rubbing(mystr : String) -> void:
+
+func stop_rubbing() -> void:
 	belly_animation_player.play("still")
 	rubbing_shake_inc_timer.paused = true
 
-# --- HIT / DESTROY LOGIC ---
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.name == "RubHitbox":
-		stall_timer.start()
+		$"../StallTimer".start()
 		if bear_belly_platform:
 			bear_belly_platform.queue_free()
 		queue_free()
 
 
-func _on_rubbing_shake_inc_timer_timeout():
-	#pass
-	#DEBUG: bear belly rubbing shake escalation
-	if shake_animation_player:
-		match bear_shake_tracker:
-			0:
-				shake_animation_player.play("rub_5")
-				bear_shake_tracker = 1
-			1:
-				shake_animation_player.play("rub_4")
-				player_rubbing.get_node("ShakeAnimationPlayer").play("shake")
-				bear_shake_tracker = 2
-			2:
-				shake_animation_player.play("rub_3")
-				bear_shake_tracker = 3
-			3:
-				spawn_and_move_train()
-				player_rubbing.get_node("ShakeAnimationPlayer").play("still")
-				boss_animation_player.play("travel_right")
+func _on_rubbing_shake_inc_timer_timeout() -> void:
+	match bear_shake_tracker:
+		0:
+			shake_animation_player.play("rub_5")
+		1:
+			shake_animation_player.play("rub_4")
+			player_shake_animation_player.play("shake")
+		2:
+			shake_animation_player.play("rub_3")
+		3:
+			player_shake_animation_player.play("still")
+			spawn_and_move_train()
+			return
+
+	bear_shake_tracker += 1
 
 
 func spawn_and_move_train():
-	boss.modulate.a = 100
+	$"../Boss".modulate.a = 1.0
 	boss_animation_player.play("travel_right")
-	rubbing_portion.has_bear_been_kidnapped = true
+	get_parent().has_bear_been_kidnapped = true
 	remove_bear()
 
 func remove_bear():
-	bear_remove_timer.start()
+	$BearRemoveTimer.start()
 	
 	
 func _on_land_on_belly():
-	print("ka")
 	belly_animation_player.play("bounce")
 
 	
@@ -134,4 +117,3 @@ func _on_rub_area_area_entered(_area):
 
 func _on_rub_area_area_exited(_area):
 	is_player_overlapping = false
-	#stop_rubbing()
