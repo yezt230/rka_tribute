@@ -1,7 +1,46 @@
 [gd_scene load_steps=9 format=3 uid="uid://dtwyelkni1aa0"]
 
 [ext_resource type="Texture2D" uid="uid://b2ox58jfloh2c" path="res://assets/squirrel_sprite_fin.png" id="1_7kn5y"]
-[ext_resource type="Texture2D" uid="uid://2fuehpodpr4f" path="res://assets/ft doodle.webp" id="2_e0l64"]
+[ext_resource type="Texture2D" uid="uid://dw6hf1k7y6ke0" path="res://assets/1700952420.huttsergreywolf_stroll_with_a_snack.png" id="2_e0l64"]
+
+[sub_resource type="Animation" id="Animation_e0l64"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1019.0668]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:position:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [399.0]
+}
 
 [sub_resource type="Animation" id="Animation_7kn5y"]
 resource_name = "victory_animation"
@@ -44,49 +83,25 @@ tracks/2/keys = {
 "values": [399.0, 120.0, 399.0]
 }
 
-[sub_resource type="Animation" id="Animation_e0l64"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gx0y0"]
+_data = {
+&"RESET": SubResource("Animation_e0l64"),
+&"victory_animation": SubResource("Animation_7kn5y")
+}
+
+[sub_resource type="Animation" id="Animation_m6r7c"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("Sprite2D:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [3]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:position:x")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [1019.0668]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:position:y")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [399.0]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_gx0y0"]
-_data = {
-&"RESET": SubResource("Animation_e0l64"),
-&"victory_animation": SubResource("Animation_7kn5y")
+"update": 0,
+"values": [Vector2(1543, 441)]
 }
 
 [sub_resource type="Animation" id="Animation_gx0y0"]
@@ -104,21 +119,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector2(1543, 441), Vector2(1543, 441), Vector2(1300, 441)]
-}
-
-[sub_resource type="Animation" id="Animation_m6r7c"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1543, 441)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_m6r7c"]
