@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://by4gln0b1msvl"]
+[gd_scene load_steps=25 format=3 uid="uid://by4gln0b1msvl"]
 
 [ext_resource type="Script" uid="uid://cqhq85a6q0xi7" path="res://scenes/boss.gd" id="1_mjk3t"]
 [ext_resource type="Texture2D" uid="uid://c6qdd8jfdxs7e" path="res://assets/train/train_body_sprite.png" id="3_jncid"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://cr6uwlvlou33r" path="res://scenes/incoming.gd" id="10_lfs1x"]
 [ext_resource type="Script" uid="uid://bjboj4d4qhg4o" path="res://scenes/defeated.gd" id="11_8eiau"]
 [ext_resource type="PackedScene" uid="uid://bsbid14hefl7o" path="res://scenes/orb_cannon.tscn" id="13_vn2fc"]
+[ext_resource type="AudioStream" uid="uid://bubyft8b6yi72" path="res://assets/sounds/enemy_hit.mp3" id="15_gqd3i"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wqpjq"]
 particle_flag_disable_z = true
@@ -254,6 +255,11 @@ one_shot = true
 [node name="PhaseTransitionTimer" type="Timer" parent="."]
 wait_time = 1.5
 one_shot = true
+
+[node name="HitStreamPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("15_gqd3i")
+volume_db = 6.0
+bus = &"SFX"
 
 [connection signal="body_entered" from="WallBounceHitbox" to="." method="_on_wall_bounce_hitbox_body_entered"]
 [connection signal="area_entered" from="BossHurtbox" to="." method="_on_area_2d_area_entered"]

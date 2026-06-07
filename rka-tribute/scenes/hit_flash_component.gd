@@ -8,6 +8,7 @@ signal hit
 @onready var wheel_sprite = $"../WheelSprite"
 @onready var wheel_sprite_2 = $"../WheelSprite2"
 @onready var wheel_sprite_3 = $"../WheelSprite3"
+@onready var hit_sound_player : AudioStreamPlayer2D = $"../HitStreamPlayer"
 
 var sprite_arr = []
 
@@ -24,6 +25,8 @@ func _ready():
 #func _on_boss_hurtbox_body_entered(body):
 func _on_hit():
 	emit_signal("hit")
+	
+	hit_sound_player.play()
 	
 	if hit_flash_tween != null && hit_flash_tween.is_valid():
 		hit_flash_tween.kill()
