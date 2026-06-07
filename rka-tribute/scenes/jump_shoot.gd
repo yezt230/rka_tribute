@@ -6,6 +6,8 @@ func enter() -> void:
 		_on_animation_finished,
 		CONNECT_ONE_SHOT
 	)
+	#@todo only play sound if projectile attack actually comes out
+	parent.attack_sound_player.play_attack_sound()
 
 func _on_animation_finished(anim_name: String) -> void:
 	if anim_name == "jump_shoot":

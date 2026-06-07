@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://dmydmpg5baofc"]
+[gd_scene load_steps=32 format=3 uid="uid://dmydmpg5baofc"]
 
 [ext_resource type="Script" uid="uid://cgm5y75wob1ca" path="res://scenes/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://b2ox58jfloh2c" path="res://assets/squirrel_sprite_fin.png" id="2_s4pf1"]
@@ -12,6 +12,8 @@
 [ext_resource type="Script" uid="uid://yt7u0y78xha0" path="res://scenes/run_shoot.gd" id="9_y4r1p"]
 [ext_resource type="Script" uid="uid://cr4cgy8ivs0l6" path="res://scenes/jump_shoot.gd" id="10_d2wvv"]
 [ext_resource type="Script" uid="uid://dn5lg0ejp6p73" path="res://resources/state.gd" id="11_3v2ag"]
+[ext_resource type="Script" uid="uid://ck10l5ggedcol" path="res://scenes/attack_stream_player.gd" id="13_jej6c"]
+[ext_resource type="AudioStream" uid="uid://dc63a7y11dqj" path="res://assets/sounds/player_attack.mp3" id="14_f1ej7"]
 
 [sub_resource type="Animation" id="Animation_qhqgy"]
 length = 0.001
@@ -412,6 +414,10 @@ shape = SubResource("CapsuleShape2D_d2wvv")
 [node name="KnockbackStallTimer" type="Timer" parent="."]
 wait_time = 0.6
 one_shot = true
+
+[node name="AttackStreamPlayer" type="AudioStreamPlayer2D" parent="."]
+script = ExtResource("13_jej6c")
+SoundArray = Array[AudioStream]([ExtResource("14_f1ej7")])
 
 [connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/Shoot" method="_on_animation_player_animation_finished"]
 [connection signal="area_entered" from="PlayerHurtbox" to="." method="_on_area_2d_area_entered"]
