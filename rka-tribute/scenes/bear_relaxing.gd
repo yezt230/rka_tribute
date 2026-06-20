@@ -10,6 +10,7 @@ extends CharacterBody2D
 @onready var shake_label = $ShakeLabel
 @onready var player_rubbing = $"../PlayerRubbing"
 @onready var player_shake_animation_player: AnimationPlayer = $"../PlayerRubbing/ShakeAnimationPlayer"
+@onready var boss = $"../Boss"
 
 var is_player_overlapping := false
 var is_player_rubbing := false
@@ -93,7 +94,9 @@ func _on_rubbing_shake_inc_timer_timeout() -> void:
 
 
 func spawn_and_move_train():
-	$"../Boss".modulate.a = 1.0
+	boss.modulate.a = 1.0
+	boss.get_node("SoundPlayer").play_horn_sound()
+	boss.get_node("DrivebySoundPlayer").play()
 	boss_animation_player.play("travel_right")
 	get_parent().has_bear_been_kidnapped = true
 	remove_bear()
