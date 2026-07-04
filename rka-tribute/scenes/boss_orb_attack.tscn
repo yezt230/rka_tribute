@@ -8,8 +8,9 @@
 shader = ExtResource("2_3pmkg")
 shader_parameter/flash_interval = 0.1
 shader_parameter/white_strength = 0.8
-shader_parameter/red_circle_radius = 0.12
-shader_parameter/red_circle_color = Vector4(1, 0, 0, 1)
+shader_parameter/red_color = Vector4(1, 0, 0, 1)
+shader_parameter/inner_red_radius = 0.12
+shader_parameter/outer_red_start = 0.42
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cr6si"]
 radius = 17.0
