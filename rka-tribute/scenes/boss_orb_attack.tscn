@@ -1,7 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://cox4v8ruwgnde"]
+[gd_scene load_steps=6 format=3 uid="uid://cox4v8ruwgnde"]
 
-[ext_resource type="Texture2D" uid="uid://c5tr2th00f1et" path="res://assets/train/train_wheel_sprite.png" id="1_cr6si"]
 [ext_resource type="Script" uid="uid://bhwg4oq4xmh8l" path="res://scenes/boss_orb_attack.gd" id="1_gl5au"]
+[ext_resource type="Shader" uid="uid://bv4on488swae7" path="res://scenes/boss_orb_attack_flash.gdshader" id="2_3pmkg"]
+[ext_resource type="Texture2D" uid="uid://cnrfjnyatkh2u" path="res://assets/misc/orb2.png" id="2_gl5au"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5x22e"]
+shader = ExtResource("2_3pmkg")
+shader_parameter/flash_interval = 0.1
+shader_parameter/white_strength = 0.8
+shader_parameter/red_circle_radius = 0.12
+shader_parameter/red_circle_color = Vector4(1, 0, 0, 1)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cr6si"]
 radius = 17.0
@@ -12,8 +20,8 @@ collision_mask = 0
 script = ExtResource("1_gl5au")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("1_cr6si")
+material = SubResource("ShaderMaterial_5x22e")
+texture = ExtResource("2_gl5au")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_cr6si")

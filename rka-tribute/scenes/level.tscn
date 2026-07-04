@@ -66,12 +66,11 @@ shape = SubResource("RectangleShape2D_mx8sn")
 debug_color = Color(0.4099575, 0.3436987, 0.06498103, 0.41960785)
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="TrainBorders"]
-position = Vector2(1057, 427)
+position = Vector2(1039, 429)
 shape = SubResource("RectangleShape2D_mx8sn")
 debug_color = Color(0.4099575, 0.3436987, 0.06498103, 0.41960785)
 
 [node name="TrainBordersActivatorCollider" type="Area2D" parent="."]
-visible = false
 collision_layer = 0
 collision_mask = 1024
 
@@ -80,7 +79,6 @@ position = Vector2(602, 465)
 shape = SubResource("RectangleShape2D_2r41h")
 
 [node name="BoxContainer" type="BoxContainer" parent="."]
-visible = false
 offset_right = 1400.0
 offset_bottom = 800.0
 size_flags_horizontal = 3
