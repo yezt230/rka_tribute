@@ -5,7 +5,7 @@ extends Node
 
 @onready var wood_scroller = $"../BG/WoodScroller"
 @onready var cart = $"../Cart"
-@onready var cart_animation_player = $"../Cart/WheelSprite/AnimationPlayer"
+@onready var cart_animation_player = $"../Cart/AnimationPlayer"
 @onready var darkening_rect : ColorRect = $"../BG/BoxContainer/ColorRect"
 #@onready var track = $"../Track"
 #@onready var track_animation_player = $"../Track/AnimationPlayer"

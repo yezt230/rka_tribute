@@ -3,8 +3,6 @@ extends CharacterBody2D
 #signal hit_wall
 
 @onready var dir = 1
-@onready var coupling_rod_orbit = $CouplingRodOrbit
-@onready var coupling_rod_sprite = $CouplingRodOrbit/CouplingRodSprite
 @onready var state_machine = $StateMachine
 @onready var defeated_state = $StateMachine/Defeated
 @onready var state_label = $StateLabel
@@ -55,8 +53,6 @@ func _physics_process(delta: float) -> void:
 		velocity.y += get_gravity().y * 2.0 * delta		
 	else:
 		velocity.y = 0		
-	coupling_rod_orbit.rotation += 8.0 * delta
-	coupling_rod_sprite.rotation = -coupling_rod_orbit.rotation		
 	move_and_slide()
  
 

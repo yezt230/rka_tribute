@@ -3,7 +3,7 @@ extends CharacterBody2D
 signal trigger_cart_cutscene
 
 @onready var player = $"../Player"
-@onready var animation_player = $WheelSprite/AnimationPlayer
+@onready var animation_player = $AnimationPlayer
 @onready var cart_trigger_cutscene_hitbox: Area2D = $CartTriggerCutsceneHitbox
 
 func _ready():
