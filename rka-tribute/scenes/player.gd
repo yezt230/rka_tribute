@@ -15,8 +15,9 @@ const GRAV_ADJUSTMENT: float = 2.0
 @onready var idle = $StateMachine/Idle
 @onready var knockback_stall_timer = $KnockbackStallTimer
 @onready var attack_sound_player = $AttackStreamPlayer
-@onready var player_can_move : bool = true
+@onready var jump_stream_player = $JumpStreamPlayer
 
+var player_can_move : bool = true
 var attack_timer_ended : bool = true
 var player_dir: float = 1.0
 

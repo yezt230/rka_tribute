@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://dmydmpg5baofc"]
+[gd_scene load_steps=34 format=3 uid="uid://dmydmpg5baofc"]
 
 [ext_resource type="Script" uid="uid://cgm5y75wob1ca" path="res://scenes/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://b2ox58jfloh2c" path="res://assets/squirrel_sprite_fin.png" id="2_s4pf1"]
@@ -14,6 +14,8 @@
 [ext_resource type="Script" uid="uid://dn5lg0ejp6p73" path="res://resources/state.gd" id="11_3v2ag"]
 [ext_resource type="Script" uid="uid://ck10l5ggedcol" path="res://scenes/attack_stream_player.gd" id="13_jej6c"]
 [ext_resource type="AudioStream" uid="uid://dc63a7y11dqj" path="res://assets/sounds/player_attack.mp3" id="14_f1ej7"]
+[ext_resource type="Script" uid="uid://c3i6ss7iockih" path="res://scenes/jump_stream_player.gd" id="15_oprun"]
+[ext_resource type="AudioStream" uid="uid://cled2umrnonvr" path="res://assets/sounds/jump.mp3" id="16_a8ls1"]
 
 [sub_resource type="Animation" id="Animation_qhqgy"]
 length = 0.001
@@ -419,6 +421,13 @@ one_shot = true
 bus = &"SFX"
 script = ExtResource("13_jej6c")
 SoundArray = Array[AudioStream]([ExtResource("14_f1ej7")])
+
+[node name="JumpStreamPlayer" type="AudioStreamPlayer2D" parent="."]
+volume_db = -3.438
+pitch_scale = 0.85
+bus = &"SFX"
+script = ExtResource("15_oprun")
+SoundArray = Array[AudioStream]([ExtResource("16_a8ls1")])
 
 [connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/Shoot" method="_on_animation_player_animation_finished"]
 [connection signal="area_entered" from="PlayerHurtbox" to="." method="_on_area_2d_area_entered"]

@@ -5,6 +5,7 @@ extends Node2D
 @onready var cannon_particles = $"../OrbSpawner/CannonParticles"
 @onready var boss = get_tree().get_first_node_in_group("boss")
 @onready var orb_cannon = $"../OrbSpawner/OrbCannon"
+@onready var orb_stream_attack_player = $"../OrbAttackPlayer"
 @onready var orb_cannon_animation_player = orb_cannon.get_node("AnimationPlayer")
 
 func _ready():
@@ -19,6 +20,7 @@ func on_timer_timeout():
 	var foreground_layer = get_tree().get_first_node_in_group("foregroundlayer")
 	if foreground_layer and orb_instance:
 		if orb_cannon:
+			orb_stream_attack_player.play()
 			orb_cannon_animation_player.play("fire")
 		foreground_layer.get_parent().add_child(orb_instance)
 		

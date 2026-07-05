@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://by4gln0b1msvl"]
+[gd_scene load_steps=31 format=3 uid="uid://by4gln0b1msvl"]
 
 [ext_resource type="Script" uid="uid://cqhq85a6q0xi7" path="res://scenes/boss.gd" id="1_mjk3t"]
 [ext_resource type="PackedScene" uid="uid://dq03gh0iixoi" path="res://scenes/hit_flash_component.tscn" id="3_vikoi"]
@@ -14,10 +14,12 @@
 [ext_resource type="Script" uid="uid://cr6uwlvlou33r" path="res://scenes/incoming.gd" id="10_lfs1x"]
 [ext_resource type="Script" uid="uid://bjboj4d4qhg4o" path="res://scenes/defeated.gd" id="11_8eiau"]
 [ext_resource type="PackedScene" uid="uid://bsbid14hefl7o" path="res://scenes/orb_cannon.tscn" id="13_vn2fc"]
+[ext_resource type="AudioStream" uid="uid://bvc4tspka214b" path="res://assets/sounds/explosion.mp3" id="15_4dlq0"]
 [ext_resource type="AudioStream" uid="uid://bubyft8b6yi72" path="res://assets/sounds/enemy_hit.mp3" id="15_gqd3i"]
 [ext_resource type="Script" uid="uid://clgkbqww3qbsp" path="res://scenes/sound_player.gd" id="16_mautr"]
 [ext_resource type="AudioStream" uid="uid://cmv25kuxxmyhy" path="res://assets/sounds/car_driving_by.mp3" id="17_ho3mf"]
 [ext_resource type="AudioStream" uid="uid://htswuuvh7mou" path="res://assets/sounds/horn.mp3" id="18_7apjh"]
+[ext_resource type="AudioStream" uid="uid://ci26yshy430ct" path="res://assets/sounds/orb_attack.mp3" id="19_qh5fr"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wqpjq"]
 particle_flag_disable_z = true
@@ -245,6 +247,10 @@ one_shot = true
 wait_time = 1.5
 one_shot = true
 
+[node name="ExplosionStreamPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("15_4dlq0")
+bus = &"SFX"
+
 [node name="HitStreamPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("15_gqd3i")
 volume_db = 6.0
@@ -261,6 +267,10 @@ stream = ExtResource("17_ho3mf")
 volume_db = 16.0
 bus = &"SFX"
 
+[node name="OrbAttackPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("19_qh5fr")
+bus = &"SFX"
+
 [connection signal="body_entered" from="WallBounceHitbox" to="." method="_on_wall_bounce_hitbox_body_entered"]
 [connection signal="area_entered" from="BossHurtbox" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="BossHurtbox" to="HitFlashComponent" method="_on_boss_hurtbox_body_entered"]
@@ -269,3 +279,4 @@ bus = &"SFX"
 [connection signal="timeout" from="StunTimer" to="StateMachine/Phase1" method="_on_stun_timer_timeout"]
 [connection signal="timeout" from="SecondClawSpawnTimer" to="StateMachine/Phase2" method="_on_second_claw_spawn_timer_timeout"]
 [connection signal="timeout" from="PhaseTransitionTimer" to="StateMachine/Incoming" method="_on_phase_transition_timer_timeout"]
+[connection signal="finished" from="ExplosionStreamPlayer" to="StateMachine/Defeated" method="_on_explosion_stream_player_finished"]

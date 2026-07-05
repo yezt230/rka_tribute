@@ -12,6 +12,9 @@ func enter() -> void:
 
 func process_input(_event: InputEvent) -> State:
 	if Input.is_action_just_pressed("UP"):
+		#jump SFX needs to only execute when UP is pressed;
+		#player can enter jump state in other ways 
+		parent.jump_stream_player.play_jump_sound()
 		return jump_state
 	elif Input.is_action_just_pressed("SPACE") and player.attack_timer_ended:
 		return run_shoot_state
