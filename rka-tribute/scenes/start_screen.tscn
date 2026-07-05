@@ -1,6 +1,36 @@
-[gd_scene format=3 uid="uid://bj5siqabpep8e"]
+[gd_scene load_steps=10 format=3 uid="uid://bj5siqabpep8e"]
+
+[ext_resource type="Script" uid="uid://dlpa0ab4cxpuy" path="res://scenes/start_screen.gd" id="1_he1sj"]
+[ext_resource type="FontFile" uid="uid://djl80i723aa6r" path="res://assets/fonts/Street Year.ttf" id="1_o7i0r"]
+[ext_resource type="FontFile" uid="uid://gv8jrmohkcre" path="res://assets/fonts/Matcha Cih.ttf" id="2_he1sj"]
+
+[sub_resource type="Theme" id="Theme_o7i0r"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_he1sj"]
+bg_color = Color(0.36994603, 0.6374318, 0.77886826, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o7i0r"]
+bg_color = Color(13.750843, 5.2993636, 13.469126, 1)
+border_color = Color(0.582737, 0.3006791, 0.44184962, 1)
+shadow_color = Color(0, 0.8, 0, 0.6)
+
+[sub_resource type="Theme" id="Theme_r2jwc"]
+default_font = ExtResource("1_o7i0r")
+MarginContainer/constants/margin_bottom = 100
+MarginContainer/constants/margin_left = 100
+MarginContainer/constants/margin_right = 0
+MarginContainer/constants/margin_top = 0
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_o7i0r")
+
+[sub_resource type="Theme" id="Theme_he1sj"]
+
+[sub_resource type="Theme" id="Theme_hm208"]
+Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
+Button/colors/icon_focus_color = Color(0.7095967, 0.62019634, 0.49177706, 1)
+Button/colors/icon_hover_color = Color(1, 1, 0.16078432, 1)
 
 [node name="StartScreen" type="CanvasLayer"]
+script = ExtResource("1_he1sj")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 15
@@ -11,16 +41,22 @@ grow_vertical = 2
 color = Color(1, 0.4117647, 0.4117647, 1)
 
 [node name="MainMenu" type="MarginContainer" parent="."]
-offset_right = 1400.0
-offset_bottom = 800.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_o7i0r")
 
 [node name="PanelContainer" type="PanelContainer" parent="MainMenu"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_he1sj")
 
 [node name="MarginContainer" type="MarginContainer" parent="MainMenu/PanelContainer"]
 layout_mode = 2
+theme = SubResource("Theme_r2jwc")
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
@@ -28,11 +64,19 @@ theme_override_constants/margin_bottom = 8
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/PanelContainer/MarginContainer"]
 layout_mode = 2
+theme = SubResource("Theme_he1sj")
 
 [node name="TitleLabel" type="Label" parent="MainMenu/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 32
 text = "Belly Rub DX"
 
 [node name="PlayButton" type="Button" parent="MainMenu/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Start"
+theme = SubResource("Theme_hm208")
+theme_override_colors/icon_normal_color = Color(1, 0.3372549, 1, 1)
+theme_override_fonts/font = ExtResource("2_he1sj")
+theme_override_font_sizes/font_size = 24
+text = "START"
+
+[connection signal="pressed" from="MainMenu/PanelContainer/MarginContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
