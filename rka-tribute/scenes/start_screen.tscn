@@ -8,6 +8,14 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_he1sj"]
 bg_color = Color(0.36994603, 0.6374318, 0.77886826, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+expand_margin_left = 16.0
+expand_margin_top = 16.0
+expand_margin_right = 16.0
+expand_margin_bottom = 16.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o7i0r"]
 bg_color = Color(13.750843, 5.2993636, 13.469126, 1)
@@ -68,7 +76,7 @@ theme = SubResource("Theme_he1sj")
 
 [node name="TitleLabel" type="Label" parent="MainMenu/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 48
 text = "Belly Rub DX"
 
 [node name="PlayButton" type="Button" parent="MainMenu/PanelContainer/MarginContainer/VBoxContainer"]
@@ -76,7 +84,7 @@ layout_mode = 2
 theme = SubResource("Theme_hm208")
 theme_override_colors/icon_normal_color = Color(1, 0.3372549, 1, 1)
 theme_override_fonts/font = ExtResource("2_he1sj")
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 32
 text = "START"
 
 [connection signal="pressed" from="MainMenu/PanelContainer/MarginContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
