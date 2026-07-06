@@ -18,6 +18,8 @@ const GRAV_ADJUSTMENT: float = 2.0
 @onready var drop_down_timer = $DropDownTimer
 @onready var cart = $"../Cart"
 @onready var bear_shake_animation_player : AnimationPlayer = $"../BearRelaxing/ShakeAnimationPlayer"
+@onready var boing_stream_player = $"../BoingStreamPlayer"
+@onready var jump_stream_player = $JumpStreamPLayer
 @onready var bear_belly_platform = $"../BearRelaxing/BearBellyPlatform"
 @onready var bear_belly_collision_shape_2d = $"../BearRelaxing/BearBellyPlatform/CollisionPolygon2D"
 @onready var bear_belly_platform_y = bear_belly_platform.global_position.y
@@ -60,7 +62,8 @@ func _physics_process(delta: float) -> void:
 
 	# Handle jump
 	if player_can_move:
-		if Input.is_action_just_pressed("UP") and is_on_floor():
+		if Input.is_action_just_pressed("UP") and is_on_floor():		
+			jump_stream_player.play()	
 			velocity.y = JUMP_VELOCITY
 			is_on_belly_platform = false
 
@@ -174,6 +177,8 @@ func depress_belly_platform():
 		return
 
 	emit_signal("land_on_belly")
+	boing_stream_player.play()
+	print("bellied")
 	player_landed_on_belly_yet = true
 	belly_platform_currently_rising = true
 	
