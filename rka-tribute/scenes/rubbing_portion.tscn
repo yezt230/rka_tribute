@@ -172,6 +172,7 @@ mode = 1
 
 [node name="BoingStreamPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("12_fq7un")
+bus = &"SFX"
 
 [connection signal="rubbing_started" from="PlayerRubbing" to="BearRelaxing" method="_on_player_rubbing_rubbing_started"]
 [connection signal="rubbing_stopped" from="PlayerRubbing" to="BearRelaxing" method="_on_player_rubbing_rubbing_stopped"]
