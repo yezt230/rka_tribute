@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://by4gln0b1msvl"]
+[gd_scene load_steps=32 format=3 uid="uid://by4gln0b1msvl"]
 
 [ext_resource type="Script" uid="uid://cqhq85a6q0xi7" path="res://scenes/boss.gd" id="1_mjk3t"]
 [ext_resource type="PackedScene" uid="uid://dq03gh0iixoi" path="res://scenes/hit_flash_component.tscn" id="3_vikoi"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://bsbid14hefl7o" path="res://scenes/orb_cannon.tscn" id="13_vn2fc"]
 [ext_resource type="AudioStream" uid="uid://bvc4tspka214b" path="res://assets/sounds/explosion.mp3" id="15_4dlq0"]
 [ext_resource type="AudioStream" uid="uid://bubyft8b6yi72" path="res://assets/sounds/enemy_hit.mp3" id="15_gqd3i"]
+[ext_resource type="Script" uid="uid://cmsy4tuuwjim7" path="res://scenes/explosion_stream_player.gd" id="16_25au8"]
 [ext_resource type="Script" uid="uid://clgkbqww3qbsp" path="res://scenes/sound_player.gd" id="16_mautr"]
 [ext_resource type="AudioStream" uid="uid://cmv25kuxxmyhy" path="res://assets/sounds/car_driving_by.mp3" id="17_ho3mf"]
 [ext_resource type="AudioStream" uid="uid://htswuuvh7mou" path="res://assets/sounds/horn.mp3" id="18_7apjh"]
@@ -251,6 +252,7 @@ one_shot = true
 stream = ExtResource("15_4dlq0")
 volume_db = -6.0
 bus = &"SFX"
+script = ExtResource("16_25au8")
 
 [node name="HitStreamPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("15_gqd3i")

@@ -18,9 +18,7 @@ func enter():
 
 
 func play_explosion_sound_loop():
-	explosion_stream_player.pitch_scale = randf_range(2.0, 2.6)
-	print("exp pitch: " + str(explosion_stream_player.pitch_scale))
-	explosion_stream_player.play()
+	explosion_stream_player.play_random_pitch()
 
 
 func _on_explosion_stream_player_finished():
