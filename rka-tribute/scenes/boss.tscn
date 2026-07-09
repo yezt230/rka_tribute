@@ -250,7 +250,7 @@ one_shot = true
 
 [node name="ExplosionStreamPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("15_4dlq0")
-volume_db = -6.0
+volume_db = -10.0
 bus = &"SFX"
 script = ExtResource("16_25au8")
 

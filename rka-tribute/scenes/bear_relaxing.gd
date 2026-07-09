@@ -10,6 +10,7 @@ extends CharacterBody2D
 @onready var shake_label = $ShakeLabel
 @onready var player_rubbing = $"../PlayerRubbing"
 @onready var player_shake_animation_player: AnimationPlayer = $"../PlayerRubbing/ShakeAnimationPlayer"
+@onready var rub_stream_player = $RubStreamPlayer
 @onready var boss = $"../Boss"
 
 var is_player_overlapping := false
@@ -55,6 +56,8 @@ func start_rubbing() -> void:
 		anim_to_play = "rubbing1_reverse"
 
 	belly_animation_player.play(anim_to_play)
+
+	rub_stream_player.play_random()
 
 	if has_shake_timer_started:
 		rubbing_shake_inc_timer.paused = false
