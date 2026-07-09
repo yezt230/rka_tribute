@@ -168,13 +168,13 @@ func _on_horz_tween_finished():
 	var duration = 2.0
 	
 	tween.tween_property(player_sprite, "scale", Vector2(sprite_scale,sprite_scale), duration) \
-		.set_trans(Tween.TRANS_SINE) \
-		.set_ease(Tween.EASE_OUT)
+		.set_trans(Tween.TRANS_LINEAR) \
+		.set_ease(Tween.EASE_IN_OUT)
 	
 #	slightly move squirrel sprite down to compensate for overall shrunk sprite
 	tween.parallel().tween_property(player_sprite, "global_position:y", 475, duration) \
-		.set_trans(Tween.TRANS_SINE) \
-		.set_ease(Tween.EASE_OUT)
+		.set_trans(Tween.TRANS_LINEAR) \
+		.set_ease(Tween.EASE_IN_OUT)
 	
 func cart_wheel_start_rotating():
 	$"../TransitionToMainTimer".start()

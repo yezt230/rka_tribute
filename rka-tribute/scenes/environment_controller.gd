@@ -71,12 +71,12 @@ func start_cart_cutscene():
 	var tween = create_tween()
 
 	tween.tween_property(cart, "global_position:x", target_x, duration) \
-		.set_trans(Tween.TRANS_SINE) \
-		.set_ease(Tween.EASE_OUT)
+		.set_trans(Tween.TRANS_LINEAR) \
+		.set_ease(Tween.EASE_IN_OUT)
 
 	tween.parallel().tween_property(cart_sprites, "scale", Vector2(0.8, 0.8), duration) \
-		.set_trans(Tween.TRANS_SINE) \
-		.set_ease(Tween.EASE_OUT)
+		.set_trans(Tween.TRANS_LINEAR) \
+		.set_ease(Tween.EASE_IN_OUT)
 
 	#tween.parallel().tween_property(wood_scroller, "global_position:x", target_x * -0.5, duration) \
 		#.set_trans(Tween.TRANS_SINE) \

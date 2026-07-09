@@ -18,8 +18,10 @@ position = Vector2(-303, 512)
 
 [node name="Cart" parent="." instance=ExtResource("2_jyhfs")]
 position = Vector2(700, 641)
+scale = Vector2(0.8, 0.8)
 
 [node name="FinaleHandler" parent="." instance=ExtResource("6_tefeu")]
 
 [node name="Player" parent="." instance=ExtResource("1_o5qli")]
-position = Vector2(700, 496)
+position = Vector2(700, 530)
+scale = Vector2(0.8, 0.8)
