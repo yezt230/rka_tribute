@@ -68,6 +68,7 @@ func start_rubbing() -> void:
 
 func stop_rubbing() -> void:
 	belly_animation_player.play("still")
+	rub_stream_player.stop()
 	rubbing_shake_inc_timer.paused = true
 
 

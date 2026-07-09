@@ -44,7 +44,7 @@ func main_track_animation():
 		if ts_anim:
 			ts_anim.play("track_single_loop")
 			#dynamically get 1.1 (the animation length?)
-			var step : float = 1.1/23
+			var step : float = 3.5/23
 			var step2 : float = ts * step
 			ts_anim.seek(step2, true)
 		add_child(track_single_instance)
