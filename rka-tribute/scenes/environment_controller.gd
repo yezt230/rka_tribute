@@ -6,6 +6,7 @@ extends Node
 @onready var wood_scroller = $"../BG/WoodScroller"
 @onready var cart = $"../Cart"
 @onready var cart_animation_player = $"../Cart/AnimationPlayer"
+@onready var cart_sprites = $"../Cart/Sprites"
 @onready var darkening_rect : ColorRect = $"../BG/BoxContainer/ColorRect"
 #@onready var track = $"../Track"
 #@onready var track_animation_player = $"../Track/AnimationPlayer"
@@ -70,6 +71,10 @@ func start_cart_cutscene():
 	var tween = create_tween()
 
 	tween.tween_property(cart, "global_position:x", target_x, duration) \
+		.set_trans(Tween.TRANS_SINE) \
+		.set_ease(Tween.EASE_OUT)
+
+	tween.parallel().tween_property(cart_sprites, "scale", Vector2(0.8, 0.8), duration) \
 		.set_trans(Tween.TRANS_SINE) \
 		.set_ease(Tween.EASE_OUT)
 

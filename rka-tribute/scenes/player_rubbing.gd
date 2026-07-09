@@ -161,7 +161,20 @@ func horz_tween_onto_cart():
 	
 func _on_horz_tween_finished():	
 	has_jumped_onto_cart = true
+	#shrink the player down after jumping on the cart
+	var tween = create_tween()
+	var sprite_scale = 0.8
 	
+	var duration = 2.0
+	
+	tween.tween_property(player_sprite, "scale", Vector2(sprite_scale,sprite_scale), duration) \
+		.set_trans(Tween.TRANS_SINE) \
+		.set_ease(Tween.EASE_OUT)
+	
+#	slightly move squirrel sprite down to compensate for overall shrunk sprite
+	tween.parallel().tween_property(player_sprite, "global_position:y", 475, duration) \
+		.set_trans(Tween.TRANS_SINE) \
+		.set_ease(Tween.EASE_OUT)
 	
 func cart_wheel_start_rotating():
 	$"../TransitionToMainTimer".start()

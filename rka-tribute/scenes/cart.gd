@@ -5,6 +5,7 @@ signal trigger_cart_cutscene
 @onready var player = $"../Player"
 @onready var animation_player = $AnimationPlayer
 @onready var cart_trigger_cutscene_hitbox: Area2D = $CartTriggerCutsceneHitbox
+@onready var sprites = $Sprites
 
 func _ready():
 #	checks if player is in the tree as opposed to
