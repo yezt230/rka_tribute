@@ -8,7 +8,7 @@ enum Mode { MAIN, RUBBING, SECOND }
 @onready var level_layer = get_tree().get_first_node_in_group("level")
 
 @onready var activated_yet : bool = false
-@onready var amount_of_tracks_to_spawn : int = 24
+@onready var amount_of_tracks_to_spawn : int = 7
 @onready var track_single_spwan_incrementer : int = 0
 @onready var spawn_timer = $SpawnTimer
 
