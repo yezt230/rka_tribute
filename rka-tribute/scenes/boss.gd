@@ -20,13 +20,19 @@ extends CharacterBody2D
 #Boss Phase States. it tracks a diferent set of
 #states for the boss that only roughly correlates
 
+	#DEBUG: boss_timings:
+	#^ the comment to search for to find code related
+#	to boss's real cycles instead of shortened debugging
+#	version
+	#DEBUG: boss_timings:
+#	Phasetransitiontimer handles pause before boss enters screen
 #DEBUG: speed
 #const SPEED : float = 17500
 const SPEED : float = 7500
 #const SPEED : float = 0
 var boss_speed : float = SPEED
 var current_speed : float
-
+var final_defated = false
 
 func _ready():
 	state_machine.init(self)
@@ -38,8 +44,18 @@ func _physics_process(delta: float) -> void:
 		state_label.text = current_state.name
 	
 	#todo move to state?
+	#boss direction whether or not he's been defeated
 	if current_state.name == "Defeated":
-		dir = -1
+		if phase == 4:
+			print('second defeat')
+			dir = 0
+			if !final_defated:
+				final_defated = true
+				#also play back-tearing-off and bear escaping animation
+				final_defeat_tween()
+		else:
+			print('first defeat')
+			dir = -1
 	elif current_state.name == "Incoming":
 		dir = 1
 	current_speed = boss_speed * dir * delta
@@ -57,13 +73,20 @@ func _physics_process(delta: float) -> void:
  
 
 func _on_zero_health():
-	#queue_free()
 	state_machine.change_state(defeated_state)
 
 
 func _on_wall_bounce_hitbox_body_entered(_body):
 	dir = -dir
 
+
+func final_defeat_tween():
+	print('this')
+	var tween = create_tween()
+	tween.tween_property(self, "global_position:x", 0, 5) \
+	.set_trans(Tween.TRANS_LINEAR) \
+	.set_ease(Tween.EASE_IN_OUT)
+	
 
 func _on_player_projectile_hit():
 	var current_state = state_machine.current_state

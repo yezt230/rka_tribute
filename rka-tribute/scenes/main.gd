@@ -1,7 +1,8 @@
 extends Node2D
 
 @onready var health_component = $Boss/HealthComponent
+@onready var boss = $Boss
 
 func _ready():
-	pass
-	#health_component.zero_health.connect(_on_boss_zero_health)
+	#DEBUG: boss_timings: Boss initial position
+	boss.global_position.x = -1100
