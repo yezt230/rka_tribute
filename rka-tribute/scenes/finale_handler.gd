@@ -28,7 +28,7 @@ func _on_player_cannot_move_timer_timeout():
 
 func _on_tween_to_center_timer_timeout():
 	var target_x = 700.0
-	var duration = 2.0
+	var duration = 2.8
 	var tween = create_tween()
 	var center_screen_dimensions = [get_viewport_rect().size[0]/2, get_viewport_rect().size[1]/2]	
 		

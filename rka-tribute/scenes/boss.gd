@@ -57,7 +57,12 @@ func _physics_process(delta: float) -> void:
 			dir = -1
 	elif current_state.name == "Incoming":
 		dir = 1
-	current_speed = boss_speed * dir * delta
+		
+	# boss moves faster in second phase
+	if phase == 3:
+		current_speed = boss_speed * dir * delta * 1.5
+	else:
+		current_speed = boss_speed * dir * delta
 		
 	velocity.x = current_speed	
 	#speed_label.text = str("%0.1f" % global_position.x)
