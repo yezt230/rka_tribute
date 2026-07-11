@@ -9,7 +9,7 @@ extends CharacterBody2D
 @onready var speed_label = $SpeedLabel
 @onready var health_component = $HealthComponent
 @onready var hit_flash_component = $HitFlashComponent
-@onready var phase = 0
+@onready var phase = 2
 #PHASES
 #1: incoming on ground track
 #2: defeated on ground track

@@ -1,0 +1,285 @@
+[gd_scene load_steps=32 format=3 uid="uid://by4gln0b1msvl"]
+
+[ext_resource type="Script" uid="uid://cqhq85a6q0xi7" path="res://scenes/boss.gd" id="1_mjk3t"]
+[ext_resource type="PackedScene" uid="uid://dq03gh0iixoi" path="res://scenes/hit_flash_component.tscn" id="3_vikoi"]
+[ext_resource type="PackedScene" uid="uid://drp84e0ipv3tv" path="res://scenes/boss_orb_attack_manager.tscn" id="6_wqpjq"]
+[ext_resource type="Texture2D" uid="uid://cnrfjnyatkh2u" path="res://assets/misc/orb2.png" id="7_2cdgk"]
+[ext_resource type="Texture2D" uid="uid://c74kpwvcuo4ix" path="res://assets/train/big_truck_sprite.png" id="7_7apjh"]
+[ext_resource type="PackedScene" uid="uid://b7j6x1p18is77" path="res://scenes/state_machine.tscn" id="8_2avx2"]
+[ext_resource type="Texture2D" uid="uid://cwb0tkbk6ts51" path="res://assets/train/big_truck_wheel_sprite.png" id="8_7apjh"]
+[ext_resource type="Script" uid="uid://dfoj84e48g1s5" path="res://scenes/phase_2.gd" id="9_0onds"]
+[ext_resource type="Script" uid="uid://1fkevaf3rm32" path="res://scenes/phase_1.gd" id="9_2avx2"]
+[ext_resource type="Shader" uid="uid://dkamp6hqg1cak" path="res://scenes/boss_smoke_fade.gdshader" id="9_7apjh"]
+[ext_resource type="PackedScene" uid="uid://dym16y6j1s3j2" path="res://scenes/health_component.tscn" id="10_5f346"]
+[ext_resource type="Script" uid="uid://cr6uwlvlou33r" path="res://scenes/incoming.gd" id="10_lfs1x"]
+[ext_resource type="Script" uid="uid://bjboj4d4qhg4o" path="res://scenes/defeated.gd" id="11_8eiau"]
+[ext_resource type="PackedScene" uid="uid://bsbid14hefl7o" path="res://scenes/orb_cannon.tscn" id="13_vn2fc"]
+[ext_resource type="AudioStream" uid="uid://bvc4tspka214b" path="res://assets/sounds/explosion.mp3" id="15_4dlq0"]
+[ext_resource type="AudioStream" uid="uid://bubyft8b6yi72" path="res://assets/sounds/enemy_hit.mp3" id="15_gqd3i"]
+[ext_resource type="Script" uid="uid://cmsy4tuuwjim7" path="res://scenes/explosion_stream_player.gd" id="16_25au8"]
+[ext_resource type="Script" uid="uid://clgkbqww3qbsp" path="res://scenes/sound_player.gd" id="16_mautr"]
+[ext_resource type="AudioStream" uid="uid://cmv25kuxxmyhy" path="res://assets/sounds/car_driving_by.mp3" id="17_ho3mf"]
+[ext_resource type="AudioStream" uid="uid://htswuuvh7mou" path="res://assets/sounds/horn.mp3" id="18_7apjh"]
+[ext_resource type="AudioStream" uid="uid://ci26yshy430ct" path="res://assets/sounds/orb_attack.mp3" id="19_qh5fr"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wqpjq"]
+particle_flag_disable_z = true
+particle_flag_damping_as_friction = true
+direction = Vector3(150, -150, 0)
+initial_velocity_min = 230.29999
+initial_velocity_max = 318.18
+angular_velocity_min = -1.6093254e-05
+angular_velocity_max = -1.6093254e-05
+damping_min = 0.4
+damping_max = 0.5
+scale_min = 0.29999998
+scale_max = 0.59999996
+
+[sub_resource type="Animation" id="Animation_wqpjq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_r3bxh"]
+resource_name = "rotate"
+length = 0.4
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.283185307179586]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2cdgk"]
+_data = {
+&"RESET": SubResource("Animation_wqpjq"),
+&"rotate": SubResource("Animation_r3bxh")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5f346"]
+radius = 9.486833
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j2wj7"]
+size = Vector2(474, 290)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0onds"]
+size = Vector2(383, 156)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qh5fr"]
+shader = ExtResource("9_7apjh")
+shader_parameter/edge_softness = 0.02
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mautr"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(220, 100, 0)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+direction = Vector3(0, 0, 0)
+spread = 0.0
+initial_velocity_min = 100.0
+initial_velocity_max = 100.0
+gravity = Vector3(200, 0, 0)
+linear_accel_min = 89.06
+linear_accel_max = 89.06
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qnbj4"]
+size = Vector2(598, 210)
+
+[node name="Boss" type="CharacterBody2D" groups=["boss"]]
+collision_layer = 1024
+collision_mask = 4
+script = ExtResource("1_mjk3t")
+
+[node name="HitFlashComponent" parent="." instance=ExtResource("3_vikoi")]
+
+[node name="HealthComponent" parent="." instance=ExtResource("10_5f346")]
+
+[node name="BossOrbAttackManager" parent="." instance=ExtResource("6_wqpjq")]
+
+[node name="OrbSpawner" type="Marker2D" parent="." groups=["orbspawner"]]
+position = Vector2(15, -164)
+
+[node name="OrbCannon" parent="OrbSpawner" instance=ExtResource("13_vn2fc")]
+
+[node name="CannonParticles" type="GPUParticles2D" parent="OrbSpawner"]
+modulate = Color(1, 1, 1, 0.7058824)
+position = Vector2(26, -25)
+emitting = false
+amount = 6
+texture = ExtResource("7_2cdgk")
+lifetime = 0.8
+one_shot = true
+explosiveness = 0.85
+process_material = SubResource("ParticleProcessMaterial_wqpjq")
+
+[node name="TrainBodySprite" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_7apjh")
+
+[node name="WheelSprite" type="Sprite2D" parent="."]
+position = Vector2(-262, 92)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("8_7apjh")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="WheelSprite"]
+libraries = {
+&"": SubResource("AnimationLibrary_2cdgk")
+}
+autoplay = "rotate"
+
+[node name="WheelSprite3" type="Sprite2D" parent="."]
+position = Vector2(295, 92)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("8_7apjh")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="WheelSprite3"]
+libraries = {
+&"": SubResource("AnimationLibrary_2cdgk")
+}
+autoplay = "rotate"
+
+[node name="WallBounceHitbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 512
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallBounceHitbox"]
+shape = SubResource("CircleShape2D_5f346")
+debug_color = Color(0.96737736, 0, 0.47053635, 0.41960785)
+
+[node name="BossHurtbox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BossHurtbox"]
+visible = false
+shape = SubResource("RectangleShape2D_j2wj7")
+debug_color = Color(0.28854468, 0.61420846, 0.4124651, 0.41960785)
+
+[node name="BossBodyHitbox" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BossBodyHitbox"]
+position = Vector2(-13.5, 15)
+shape = SubResource("RectangleShape2D_0onds")
+debug_color = Color(0, 0.6323409, 0.4559675, 0.41960785)
+
+[node name="DefeatExplosionParticle" type="GPUParticles2D" parent="."]
+material = SubResource("ShaderMaterial_qh5fr")
+position = Vector2(-25, 25)
+emitting = false
+amount = 4
+texture = ExtResource("7_2cdgk")
+lifetime = 0.8
+collision_base_size = 0.0
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_mautr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-7, 44)
+shape = SubResource("RectangleShape2D_qnbj4")
+
+[node name="StateLabel" type="Label" parent="."]
+offset_left = 181.0
+offset_top = -120.0
+offset_right = 253.0
+offset_bottom = -75.0
+theme_override_colors/font_color = Color(0.8257297, 0.00061126053, 0.8399992, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 32
+text = "TEST"
+
+[node name="SpeedLabel" type="Label" parent="."]
+offset_left = 185.0
+offset_top = -66.0
+offset_right = 225.0
+offset_bottom = -43.0
+theme_override_colors/font_color = Color(0.05965583, 0.018360887, 0.012641113, 1)
+theme_override_font_sizes/font_size = 24
+text = "spd"
+
+[node name="StateMachine" parent="." node_paths=PackedStringArray("starting_state") instance=ExtResource("8_2avx2")]
+starting_state = NodePath("Incoming")
+
+[node name="Phase1" type="Node" parent="StateMachine"]
+script = ExtResource("9_2avx2")
+metadata/_custom_type_script = "uid://dn5lg0ejp6p73"
+
+[node name="Phase2" type="Node" parent="StateMachine"]
+script = ExtResource("9_0onds")
+metadata/_custom_type_script = "uid://dn5lg0ejp6p73"
+
+[node name="Incoming" type="Node" parent="StateMachine"]
+script = ExtResource("10_lfs1x")
+metadata/_custom_type_script = "uid://dn5lg0ejp6p73"
+
+[node name="Defeated" type="Node" parent="StateMachine"]
+script = ExtResource("11_8eiau")
+metadata/_custom_type_script = "uid://dn5lg0ejp6p73"
+
+[node name="StunTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="SecondClawSpawnTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="PhaseTransitionTimer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[node name="ExplosionStreamPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("15_4dlq0")
+volume_db = -10.0
+bus = &"SFX"
+script = ExtResource("16_25au8")
+
+[node name="HitStreamPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("15_gqd3i")
+volume_db = 6.0
+bus = &"SFX"
+
+[node name="SoundPlayer" type="AudioStreamPlayer2D" parent="."]
+volume_db = 6.0
+bus = &"SFX"
+script = ExtResource("16_mautr")
+SoundArray = Array[AudioStream]([ExtResource("17_ho3mf"), ExtResource("18_7apjh")])
+
+[node name="DrivebySoundPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("17_ho3mf")
+volume_db = 16.0
+bus = &"SFX"
+
+[node name="OrbAttackPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("19_qh5fr")
+bus = &"SFX"
+
+[connection signal="body_entered" from="WallBounceHitbox" to="." method="_on_wall_bounce_hitbox_body_entered"]
+[connection signal="area_entered" from="BossHurtbox" to="." method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="BossHurtbox" to="HitFlashComponent" method="_on_boss_hurtbox_body_entered"]
+[connection signal="body_entered" from="BossHurtbox" to="HitFlashComponent" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="BossHurtbox" to="HealthComponent" method="_on_boss_hurtbox_body_entered"]
+[connection signal="timeout" from="StunTimer" to="StateMachine/Phase1" method="_on_stun_timer_timeout"]
+[connection signal="timeout" from="SecondClawSpawnTimer" to="StateMachine/Phase2" method="_on_second_claw_spawn_timer_timeout"]
+[connection signal="timeout" from="PhaseTransitionTimer" to="StateMachine/Incoming" method="_on_phase_transition_timer_timeout"]
+[connection signal="finished" from="ExplosionStreamPlayer" to="StateMachine/Defeated" method="_on_explosion_stream_player_finished"]
