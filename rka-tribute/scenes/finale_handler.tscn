@@ -43,10 +43,6 @@ _data = {
 [node name="FinaleHandler" type="Node2D"]
 script = ExtResource("1_3xh25")
 
-[node name="Timer" type="Timer" parent="."]
-wait_time = 1.5
-one_shot = true
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -60,3 +56,16 @@ offset_bottom = 800.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color(0, 0, 0, 1)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[node name="PlayerCannotMoveTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="TweenToCenterTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="PlayerCannotMoveTimer" to="." method="_on_player_cannot_move_timer_timeout"]
+[connection signal="timeout" from="TweenToCenterTimer" to="." method="_on_tween_to_center_timer_timeout"]

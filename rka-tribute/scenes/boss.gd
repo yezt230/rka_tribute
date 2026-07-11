@@ -1,7 +1,5 @@
 extends CharacterBody2D
 
-#signal hit_wall
-
 @onready var dir = 1
 @onready var state_machine = $StateMachine
 @onready var defeated_state = $StateMachine/Defeated
@@ -9,6 +7,7 @@ extends CharacterBody2D
 @onready var speed_label = $SpeedLabel
 @onready var health_component = $HealthComponent
 @onready var hit_flash_component = $HitFlashComponent
+#DEBUG: Prod value is 0
 @onready var phase = 2
 #PHASES
 #1: incoming on ground track
