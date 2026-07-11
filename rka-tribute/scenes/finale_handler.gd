@@ -19,10 +19,6 @@ func _on_boss_defeated():
 	if boss.phase == 4:	
 		#@todo most of this needs to be after a delay
 		player_cannot_move_timer.start()
-		
-
-
-
 
 
 func _on_player_cannot_move_timer_timeout():
@@ -32,18 +28,16 @@ func _on_player_cannot_move_timer_timeout():
 
 func _on_tween_to_center_timer_timeout():
 	var target_x = 700.0
-	var duration = 2.8
+	var duration = 2.0
 	var tween = create_tween()
+	var center_screen_dimensions = [get_viewport_rect().size[0]/2, get_viewport_rect().size[1]/2]	
 		
-	tween.tween_property(player, "global_position:x", target_x, duration) \
+	tween.tween_property(player, "global_position", Vector2(center_screen_dimensions[0], center_screen_dimensions[1]), duration) \
 	.set_trans(Tween.TRANS_SINE) \
-	.set_ease(Tween.EASE_OUT)
-	
-	await tween.finished
-		
+	.set_ease(Tween.EASE_OUT)		
 	#DEBUG: color fadeout
 	var tween2 = create_tween()
-	tween2.tween_property(color_rect, "modulate:a", 1.0, 0.8)
+	tween2.tween_property(color_rect, "modulate:a", 1.0, duration)
 
 	await tween2.finished
 
