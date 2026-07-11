@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dtyda8vhui1f4"]
+
+[ext_resource type="AudioStream" uid="uid://c8rj70qa5ecu1" path="res://assets/sounds/music/Super Mario World Music_ Level Complete.mp3" id="1_jxdhu"]
+
+[node name="MusicPlayer" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_jxdhu")
+bus = &"Music"

@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cfmycqvr2ry5l"]
+[gd_scene load_steps=6 format=3 uid="uid://cfmycqvr2ry5l"]
 
 [ext_resource type="Script" uid="uid://dtlghplyny20r" path="res://scenes/finale_handler.gd" id="1_3xh25"]
+[ext_resource type="PackedScene" uid="uid://dtyda8vhui1f4" path="res://scenes/music_player.tscn" id="2_ch4s1"]
 
 [sub_resource type="Animation" id="Animation_3xh25"]
 length = 0.001
@@ -66,6 +67,8 @@ one_shot = true
 
 [node name="TweenToCenterTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="MusicPlayer" parent="." instance=ExtResource("2_ch4s1")]
 
 [connection signal="timeout" from="PlayerCannotMoveTimer" to="." method="_on_player_cannot_move_timer_timeout"]
 [connection signal="timeout" from="TweenToCenterTimer" to="." method="_on_tween_to_center_timer_timeout"]
