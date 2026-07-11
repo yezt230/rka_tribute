@@ -245,7 +245,7 @@ one_shot = true
 one_shot = true
 
 [node name="PhaseTransitionTimer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 1.5
 one_shot = true
 
 [node name="ExplosionStreamPlayer" type="AudioStreamPlayer2D" parent="."]

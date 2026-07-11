@@ -1,6 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://dxgovc17xl215"]
+[gd_scene load_steps=6 format=3 uid="uid://dxgovc17xl215"]
 
 [ext_resource type="Texture2D" uid="uid://bvnd8g2hr6ypn" path="res://assets/train/truck_claw.png" id="1_40qjk"]
+[ext_resource type="Shader" uid="uid://bv4on488swae7" path="res://scenes/boss_orb_attack_flash.gdshader" id="2_lkf0o"]
+[ext_resource type="Texture2D" uid="uid://cnrfjnyatkh2u" path="res://assets/misc/orb2.png" id="2_xhdx6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m41gi"]
+shader = ExtResource("2_lkf0o")
+shader_parameter/flash_interval = 0.1
+shader_parameter/white_strength = 0.8
+shader_parameter/red_color = Vector4(1, 0, 0, 1)
+shader_parameter/inner_red_radius = 0.24
+shader_parameter/outer_red_start = 0.36
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_40qjk"]
 radius = 28.0
@@ -10,6 +20,14 @@ radius = 28.0
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = 0.15158066
 texture = ExtResource("1_40qjk")
+
+[node name="FlashSprite" type="Sprite2D" parent="Sprite2D"]
+material = SubResource("ShaderMaterial_m41gi")
+position = Vector2(-27.898418, -3.831246)
+rotation = -0.15158066
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("2_xhdx6")
+centered = false
 
 [node name="PlayerColliderBox" type="Area2D" parent="."]
 collision_layer = 8

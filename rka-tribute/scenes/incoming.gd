@@ -15,8 +15,8 @@ func enter():
 	if parent.phase == 3:
 		level.get_node("TrackFromSingle2").activate_spawning()
 		#DEBUG: boss_timings: phase 2 position
-		#parent.global_position = Vector2(-300, 156)
-		parent.global_position = Vector2(-850, 156)
+		parent.global_position = Vector2(-300, 156)
+		#parent.global_position = Vector2(-850, 156)
 		health_component.health = health_component.starting_health
 		if parent.get_node("BossOrbAttackManager"):
 			parent.get_node("BossOrbAttackManager").queue_free()
