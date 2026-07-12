@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://c1akb236jofvd"]
+[gd_scene load_steps=32 format=3 uid="uid://c1akb236jofvd"]
 
 [ext_resource type="Script" uid="uid://qund22av1htg" path="res://scenes/player_rubbing.gd" id="1_4tvg3"]
 [ext_resource type="Texture2D" uid="uid://b2ox58jfloh2c" path="res://assets/squirrel_sprite_fin.png" id="2_ah84s"]
@@ -7,6 +7,8 @@
 [ext_resource type="Script" uid="uid://bgg06yvbywt8w" path="res://scenes/run_rubbing.gd" id="7_gynt0"]
 [ext_resource type="Script" uid="uid://1mp6lxpw7s8y" path="res://scenes/rub_crouching.gd" id="7_tpmjl"]
 [ext_resource type="Script" uid="uid://dk4wvu2ytjx55" path="res://scenes/static.gd" id="8_gynt0"]
+[ext_resource type="AudioStream" uid="uid://cled2umrnonvr" path="res://assets/sounds/jump.mp3" id="9_t3us1"]
+[ext_resource type="Script" uid="uid://c3i6ss7iockih" path="res://scenes/jump_stream_player.gd" id="10_ede3m"]
 [ext_resource type="Script" uid="uid://bj3vptxqs713l" path="res://scenes/rub_standing.gd" id="11_067sh"]
 
 [sub_resource type="Animation" id="Animation_qhqgy"]
@@ -158,6 +160,20 @@ tracks/5/keys = {
 "values": [{
 "args": [],
 "method": &"horz_tween_onto_cart"
+}]
+}
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath(".")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.8),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"jump_onto_cart_sfx"
 }]
 }
 
@@ -575,8 +591,11 @@ text = "text"
 wait_time = 0.6
 one_shot = true
 
-[node name="JumpStreamPLayer" type="AudioStreamPlayer2D" parent="."]
+[node name="JumpStreamPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_t3us1")
+volume_db = -2.0
 bus = &"SFX"
+script = ExtResource("10_ede3m")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

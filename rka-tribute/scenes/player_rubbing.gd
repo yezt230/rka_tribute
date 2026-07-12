@@ -19,7 +19,7 @@ const GRAV_ADJUSTMENT: float = 2.0
 @onready var cart = $"../Cart"
 @onready var bear_shake_animation_player : AnimationPlayer = $"../BearRelaxing/ShakeAnimationPlayer"
 @onready var boing_stream_player = $"../BoingStreamPlayer"
-@onready var jump_stream_player = $JumpStreamPLayer
+@onready var jump_stream_player = $JumpStreamPlayer
 @onready var bear_belly_platform = $"../BearRelaxing/BearBellyPlatform"
 @onready var bear_belly_collision_shape_2d = $"../BearRelaxing/BearBellyPlatform/CollisionPolygon2D"
 @onready var bear_belly_platform_y = bear_belly_platform.global_position.y
@@ -63,7 +63,7 @@ func _physics_process(delta: float) -> void:
 	# Handle jump
 	if player_can_move:
 		if Input.is_action_just_pressed("UP") and is_on_floor():		
-			jump_stream_player.play()	
+			jump_stream_player.play_jump_sound()	
 			velocity.y = JUMP_VELOCITY
 			is_on_belly_platform = false
 
@@ -146,6 +146,10 @@ func resolve_locomotion_state() -> State:
 func jump_onto_cart():
 	var static_state = state_machine.get_node("Static")
 	state_machine.change_state(static_state)
+
+
+func jump_onto_cart_sfx():
+	jump_stream_player.play()
 
 
 func horz_tween_onto_cart():
