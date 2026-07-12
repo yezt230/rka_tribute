@@ -20,6 +20,7 @@ func on_timer_timeout():
 	var foreground_layer = get_tree().get_first_node_in_group("foregroundlayer")
 	if foreground_layer and orb_instance:
 		if orb_cannon:
+			#debug: boss orb attack sfx
 			orb_stream_attack_player.play()
 			orb_cannon_animation_player.play("fire")
 		foreground_layer.get_parent().add_child(orb_instance)
