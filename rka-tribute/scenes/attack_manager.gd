@@ -26,6 +26,7 @@ func _physics_process(_delta: float) -> void:
 		var attack_spawn_coords: Vector2 = marker_2d.global_position
 		#attack_spawn_coords.y = attack_spawn_coords.y - (v_offset * 3)
 		attack_spawn_coords.y = attack_spawn_coords.y
+		attack_spawn_coords.x += (70 * direction)
 		attack_instance.global_position = attack_spawn_coords	
 
 
