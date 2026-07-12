@@ -22,6 +22,7 @@ script = ExtResource("1_gl5au")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_5x22e")
+scale = Vector2(1.5, 1.5)
 texture = ExtResource("2_gl5au")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
