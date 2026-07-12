@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const MOVE_SPEED: float = 35000
+const MOVE_SPEED: float = 70000
 @onready var sprite = $Sprite2D
 @onready var animation_player = $AnimationPlayer
 @onready var direction: float
