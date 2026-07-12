@@ -1,10 +1,11 @@
-[gd_scene load_steps=32 format=3 uid="uid://by4gln0b1msvl"]
+[gd_scene load_steps=33 format=3 uid="uid://by4gln0b1msvl"]
 
 [ext_resource type="Script" uid="uid://cqhq85a6q0xi7" path="res://scenes/boss.gd" id="1_mjk3t"]
 [ext_resource type="PackedScene" uid="uid://dq03gh0iixoi" path="res://scenes/hit_flash_component.tscn" id="3_vikoi"]
 [ext_resource type="PackedScene" uid="uid://drp84e0ipv3tv" path="res://scenes/boss_orb_attack_manager.tscn" id="6_wqpjq"]
 [ext_resource type="Texture2D" uid="uid://cnrfjnyatkh2u" path="res://assets/misc/orb2.png" id="7_2cdgk"]
 [ext_resource type="Texture2D" uid="uid://c74kpwvcuo4ix" path="res://assets/train/big_truck_sprite.png" id="7_7apjh"]
+[ext_resource type="Texture2D" uid="uid://bjnxbskdpj55d" path="res://assets/train/cover.png" id="7_nk50o"]
 [ext_resource type="PackedScene" uid="uid://b7j6x1p18is77" path="res://scenes/state_machine.tscn" id="8_2avx2"]
 [ext_resource type="Texture2D" uid="uid://cwb0tkbk6ts51" path="res://assets/train/big_truck_wheel_sprite.png" id="8_7apjh"]
 [ext_resource type="Script" uid="uid://dfoj84e48g1s5" path="res://scenes/phase_2.gd" id="9_0onds"]
@@ -129,6 +130,11 @@ lifetime = 0.8
 one_shot = true
 explosiveness = 0.85
 process_material = SubResource("ParticleProcessMaterial_wqpjq")
+
+[node name="CoverSprite" type="Sprite2D" parent="."]
+position = Vector2(-227, -85)
+texture = ExtResource("7_nk50o")
+hframes = 3
 
 [node name="TrainBodySprite" type="Sprite2D" parent="."]
 unique_name_in_owner = true
