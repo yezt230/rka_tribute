@@ -123,4 +123,5 @@ func _on_trigger_cart_cutscene():
 
 
 func _on_action_music_timer_timeout():
+	MusicPlayer.volume_db = -2.0
 	MusicPlayer.play_action_music()

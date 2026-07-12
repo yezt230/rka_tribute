@@ -5,7 +5,6 @@
 [ext_resource type="AudioStream" uid="uid://bhqp02wyyp5al" path="res://assets/sounds/music/Rocket Knight Adventures Boss theme.mp3" id="3_l7xiw"]
 
 [node name="MusicPlayer" type="AudioStreamPlayer2D"]
-stream = ExtResource("1_jxdhu")
 bus = &"Music"
 script = ExtResource("2_ql6qh")
 streams = Array[AudioStream]([ExtResource("3_l7xiw"), ExtResource("1_jxdhu")])
