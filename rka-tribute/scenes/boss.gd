@@ -7,6 +7,7 @@ extends CharacterBody2D
 @onready var speed_label = $SpeedLabel
 @onready var health_component = $HealthComponent
 @onready var hit_flash_component = $HitFlashComponent
+@onready var truck_body_sprite = %TrainBodySprite
 #DEBUG: Prod value is 0
 @onready var phase = 0
 #PHASES

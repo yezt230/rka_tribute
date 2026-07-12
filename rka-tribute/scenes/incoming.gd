@@ -16,6 +16,7 @@ func enter():
 		level.get_node("TrackFromSingle2").activate_spawning()
 		#DEBUG: boss_timings: phase 2 position
 		parent.global_position = Vector2(-300, 156)
+		parent.truck_body_sprite.frame = 1
 		#parent.global_position = Vector2(-850, 156)
 		health_component.health = health_component.starting_health
 		if parent.get_node("BossOrbAttackManager"):
