@@ -101,6 +101,7 @@ func spawn_and_move_train():
 	boss.modulate.a = 1.0
 	boss.get_node("SoundPlayer").play_horn_sound()
 	boss.get_node("DrivebySoundPlayer").play()
+	boss.get_node("HornSoundPlayer").play()
 	boss_animation_player.play("travel_right")
 	boss_animation_player.advance(0)
 	get_parent().has_bear_been_kidnapped = true

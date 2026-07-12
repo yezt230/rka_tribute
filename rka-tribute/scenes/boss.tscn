@@ -270,6 +270,10 @@ stream = ExtResource("17_ho3mf")
 volume_db = 16.0
 bus = &"SFX"
 
+[node name="HornSoundPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("18_7apjh")
+bus = &"SFX"
+
 [node name="OrbAttackPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("19_qh5fr")
 bus = &"SFX"
