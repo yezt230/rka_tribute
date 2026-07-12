@@ -11,6 +11,7 @@ extends Node
 #@onready var track = $"../Track"
 #@onready var track_animation_player = $"../Track/AnimationPlayer"
 @onready var track_from_single = $"../TrackFromSingle"
+@onready var action_music_timer = $"../ActionMusicTimer"
 
 @onready var rubbing_portion = get_parent()
 
@@ -65,6 +66,8 @@ func start_cart_cutscene():
 
 	stop()
 
+	action_music_timer.start()
+
 	var target_x = 700.0
 	var duration = 2.0
 
@@ -117,3 +120,7 @@ func stop():
 
 func _on_trigger_cart_cutscene():
 	pass
+
+
+func _on_action_music_timer_timeout():
+	MusicPlayer.play_action_music()

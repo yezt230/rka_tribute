@@ -174,7 +174,12 @@ mode = 1
 stream = ExtResource("12_fq7un")
 bus = &"SFX"
 
+[node name="ActionMusicTimer" type="Timer" parent="."]
+wait_time = 0.8
+one_shot = true
+
 [connection signal="rubbing_started" from="PlayerRubbing" to="BearRelaxing" method="_on_player_rubbing_rubbing_started"]
 [connection signal="rubbing_stopped" from="PlayerRubbing" to="BearRelaxing" method="_on_player_rubbing_rubbing_stopped"]
 [connection signal="timeout" from="StallTimer" to="." method="_on_stall_timer_timeout"]
 [connection signal="timeout" from="TransitionToMainTimer" to="PlayerRubbing" method="_on_transition_to_main_timer_timeout"]
+[connection signal="timeout" from="ActionMusicTimer" to="EnvironmentController" method="_on_action_music_timer_timeout"]
