@@ -8,7 +8,7 @@ extends CharacterBody2D
 @onready var health_component = $HealthComponent
 @onready var hit_flash_component = $HitFlashComponent
 #DEBUG: Prod value is 0
-@onready var phase = 2
+@onready var phase = 0
 #PHASES
 #1: incoming on ground track
 #2: defeated on ground track

@@ -127,6 +127,9 @@ collision_mask = 0
 position = Vector2(9, 358.5)
 shape = SubResource("RectangleShape2D_fmilq")
 
+[node name="Cart" parent="." instance=ExtResource("7_fmilq")]
+position = Vector2(1543, 642)
+
 [node name="BearRelaxing" parent="." instance=ExtResource("1_kawjh")]
 position = Vector2(741, 445)
 
@@ -151,9 +154,6 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
 position = Vector2(924.5625, 626)
 shape = SubResource("RectangleShape2D_kawjh")
-
-[node name="Cart" parent="." instance=ExtResource("7_fmilq")]
-position = Vector2(1543, 642)
 
 [node name="StallTimer" type="Timer" parent="."]
 wait_time = 2.0
