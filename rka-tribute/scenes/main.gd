@@ -6,4 +6,4 @@ extends Node2D
 func _ready():
 	#DEBUG: boss_timings: Boss initial position
 	#boss.global_position.x = -1100
-	pass
+	MusicPlayer.play_action_music()

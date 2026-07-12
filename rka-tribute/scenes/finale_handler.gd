@@ -32,7 +32,7 @@ func _on_tween_to_center_timer_timeout():
 	var tween = create_tween()
 	var center_screen_dimensions = [get_viewport_rect().size[0]/2, get_viewport_rect().size[1]/2]	
 	
-	MusicPlayer.play()
+	MusicPlayer.play_victory_music()
 		
 	tween.tween_property(player, "global_position", Vector2(center_screen_dimensions[0], center_screen_dimensions[1]), duration) \
 	.set_trans(Tween.TRANS_SINE) \

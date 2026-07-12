@@ -43,6 +43,7 @@ func _physics_process(delta: float) -> void:
 	# Handle jump
 	if player_can_move:
 		if Input.is_action_just_pressed("UP") and is_on_floor():
+			jump_stream_player.play_jump_sound()
 			velocity.y = JUMP_VELOCITY
 
 	# Horizontal movement
