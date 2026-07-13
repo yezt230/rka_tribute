@@ -10,3 +10,16 @@ func play_action_music():
 func play_victory_music():
 	stream = streams[1]
 	play()
+
+
+func play_starting_music():
+	stream = streams[2]
+	play()
+
+
+func decrease_volume():
+	volume_db -= 1.5
+	
+	
+func reset_volume():
+	volume_db = 0

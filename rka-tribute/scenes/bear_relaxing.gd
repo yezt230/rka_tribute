@@ -84,11 +84,14 @@ func _on_rubbing_shake_inc_timer_timeout() -> void:
 	match bear_shake_tracker:
 		0:
 			shake_animation_player.play("rub_5")
+			MusicPlayer.decrease_volume()
 		1:
 			shake_animation_player.play("rub_4")
+			MusicPlayer.decrease_volume()
 			player_shake_animation_player.play("shake")
 		2:
 			shake_animation_player.play("rub_3")
+			MusicPlayer.decrease_volume()
 		3:
 			player_shake_animation_player.play("still")
 			spawn_and_move_train()
