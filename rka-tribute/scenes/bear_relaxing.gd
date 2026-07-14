@@ -12,6 +12,7 @@ extends CharacterBody2D
 @onready var player_shake_animation_player: AnimationPlayer = $"../PlayerRubbing/ShakeAnimationPlayer"
 @onready var rub_stream_player = $RubStreamPlayer
 @onready var boss = $"../Boss"
+@onready var dust_clouds = $"../BG/DustClouds"
 
 var is_player_overlapping := false
 var is_player_rubbing := false
@@ -82,17 +83,17 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 
 func _on_rubbing_shake_inc_timer_timeout() -> void:
 	match bear_shake_tracker:
-		0:
+		1:
 			shake_animation_player.play("rub_5")
 			MusicPlayer.decrease_volume()
-		1:
+		2:
 			shake_animation_player.play("rub_4")
 			MusicPlayer.decrease_volume()
 			player_shake_animation_player.play("shake")
-		2:
+		3:
 			shake_animation_player.play("rub_3")
 			MusicPlayer.decrease_volume()
-		3:
+		4:
 			player_shake_animation_player.play("still")
 			spawn_and_move_train()
 			return
@@ -102,6 +103,8 @@ func _on_rubbing_shake_inc_timer_timeout() -> void:
 
 func spawn_and_move_train():
 	boss.modulate.a = 1.0
+	dust_clouds.play_truck_entrance()
+	MusicPlayer.stop()
 	boss.get_node("SoundPlayer").play_horn_sound()
 	boss.get_node("DrivebySoundPlayer").play()
 	boss.get_node("HornSoundPlayer").play()

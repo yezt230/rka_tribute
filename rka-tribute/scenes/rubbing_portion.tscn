@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://g5yk3i1ykscg"]
+[gd_scene load_steps=22 format=3 uid="uid://g5yk3i1ykscg"]
 
 [ext_resource type="PackedScene" uid="uid://t5nds2n2g21q" path="res://scenes/bear_relaxing.tscn" id="1_kawjh"]
 [ext_resource type="Script" uid="uid://co2vry3052bes" path="res://scenes/rubbing_portion.gd" id="1_qb70t"]
@@ -8,7 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://i11gw34oh753" path="res://assets/tile_0027.png" id="4_d4cq4"]
 [ext_resource type="Texture2D" uid="uid://bedjq1tnpcfe4" path="res://assets/bg/rubbing_bg_2.png" id="4_prj7r"]
 [ext_resource type="PackedScene" uid="uid://by4gln0b1msvl" path="res://scenes/boss.tscn" id="5_nx7g2"]
+[ext_resource type="Script" uid="uid://b0onr2tpepp0t" path="res://scenes/dust_clouds.gd" id="6_dxil4"]
 [ext_resource type="PackedScene" uid="uid://b0dme80t0eusm" path="res://scenes/cart.tscn" id="7_fmilq"]
+[ext_resource type="PackedScene" uid="uid://brh42yhhd4r2v" path="res://scenes/dust_cloud.tscn" id="7_r2s6n"]
 [ext_resource type="Script" uid="uid://epqtokcffhqt" path="res://scenes/environment_controller.gd" id="8_os4g6"]
 [ext_resource type="PackedScene" uid="uid://fexmkvqwqj6c" path="res://scenes/track_from_single.tscn" id="9_vsaki"]
 [ext_resource type="AudioStream" uid="uid://cgo6tixw4hiqh" path="res://assets/sounds/boing.mp3" id="12_fq7un"]
@@ -116,6 +118,19 @@ modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 color = Color(0, 0, 0, 1)
+
+[node name="DustClouds" type="Node2D" parent="BG"]
+script = ExtResource("6_dxil4")
+dust_cloud_scene = ExtResource("7_r2s6n")
+
+[node name="DustSpawn1" type="Marker2D" parent="BG/DustClouds"]
+position = Vector2(200, 650)
+
+[node name="DustSpawn2" type="Marker2D" parent="BG/DustClouds"]
+position = Vector2(700, 650)
+
+[node name="DustSpawn3" type="Marker2D" parent="BG/DustClouds"]
+position = Vector2(1200, 650)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 collision_layer = 256
