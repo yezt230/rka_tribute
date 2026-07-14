@@ -328,6 +328,7 @@ collision_mask = 256
 script = ExtResource("1_g2els")
 
 [node name="DebugLabel" type="Label" parent="."]
+visible = false
 offset_left = 75.0
 offset_top = -152.0
 offset_right = 153.0

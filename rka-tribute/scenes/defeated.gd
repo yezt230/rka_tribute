@@ -11,12 +11,10 @@ func enter():
 	parent.phase += 1
 	phase_transition_timer.start()
 	play_explosion_sound_loop()
-#	cover tearing off animation
-	if parent.phase == 2:
-		cover_animation_player.play("tear_off")
-		cover_tear_off_animation_player.play("tear_off")	
+
 	#removing claw hitboxes when boss is defeated in Phase 2
 	if parent.phase == 4:
+		roof_tearing_off_animation()
 		var claws = get_tree().get_nodes_in_group("claws")
 		for claw in claws:
 			var claw_hitbox = claw.get_node("PlayerColliderBox") as Area2D
@@ -36,4 +34,9 @@ func exit() -> void:
 	explosion_stream_player.stop()
 	defeat_explosion_particle.restart() 
 	defeat_explosion_particle.emitting = false
+	
+	
+func roof_tearing_off_animation():
+	cover_animation_player.play("tear_off")
+	cover_tear_off_animation_player.play("tear_off")	
 	

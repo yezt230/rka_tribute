@@ -584,6 +584,7 @@ polygon = PackedVector2Array(0, 0, 45, -17, 92, -28, 150, -30, 231, -24, 289, -1
 one_way_collision = true
 
 [node name="ShakeLabel" type="Label" parent="."]
+visible = false
 offset_left = 185.0
 offset_top = -225.0
 offset_right = 225.0

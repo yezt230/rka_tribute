@@ -120,7 +120,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.8, 1.6),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(1543, 441), Vector2(1543, 441), Vector2(1300, 441)]
+"values": [Vector2(1543, 500), Vector2(1543, 500), Vector2(1300, 500)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_m6r7c"]
@@ -179,7 +179,7 @@ libraries = {
 autoplay = "bear_swallow"
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="."]
-layer = -1
+layer = 3
 
 [node name="IrisIn" type="ColorRect" parent="CanvasLayer2"]
 material = SubResource("ShaderMaterial_m6r7c")

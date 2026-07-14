@@ -96,7 +96,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.8, 1.4, 1.6, 1.9),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
-"values": [3, 11, 10, 9, 3]
+"values": [2, 11, 10, 9, 2]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -569,6 +569,7 @@ shape = SubResource("CircleShape2D_46iy2")
 debug_color = Color(0.8734306, 0.30273995, 0.44753277, 0.41960785)
 
 [node name="DebugLabel" type="Label" parent="."]
+visible = false
 offset_left = 75.0
 offset_top = -152.0
 offset_right = 153.0
@@ -580,6 +581,7 @@ theme_override_font_sizes/font_size = 32
 text = "state"
 
 [node name="DebugLabel2" type="Label" parent="."]
+visible = false
 offset_left = 76.0
 offset_top = -100.0
 offset_right = 116.0

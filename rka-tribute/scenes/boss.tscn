@@ -356,7 +356,6 @@ debug_color = Color(0, 0.6323409, 0.4559675, 0.41960785)
 material = SubResource("ShaderMaterial_qh5fr")
 position = Vector2(-25, 25)
 emitting = false
-amount = 4
 texture = ExtResource("7_2cdgk")
 lifetime = 0.8
 collision_base_size = 0.0
@@ -368,6 +367,7 @@ position = Vector2(-7, 44)
 shape = SubResource("RectangleShape2D_qnbj4")
 
 [node name="StateLabel" type="Label" parent="."]
+visible = false
 offset_left = 181.0
 offset_top = -120.0
 offset_right = 253.0
@@ -379,6 +379,7 @@ theme_override_font_sizes/font_size = 32
 text = "TEST"
 
 [node name="SpeedLabel" type="Label" parent="."]
+visible = false
 offset_left = 185.0
 offset_top = -66.0
 offset_right = 225.0
@@ -426,7 +427,7 @@ one_shot = true
 one_shot = true
 
 [node name="PhaseTransitionTimer" type="Timer" parent="."]
-wait_time = 1.5
+wait_time = 5.0
 one_shot = true
 
 [node name="ExplosionStreamPlayer" type="AudioStreamPlayer2D" parent="."]
