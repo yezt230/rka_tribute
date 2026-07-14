@@ -1,7 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://dtwyelkni1aa0"]
+[gd_scene load_steps=12 format=3 uid="uid://dtwyelkni1aa0"]
 
 [ext_resource type="Texture2D" uid="uid://b2ox58jfloh2c" path="res://assets/squirrel_sprite_fin.png" id="1_7kn5y"]
+[ext_resource type="Script" uid="uid://wfqdjswvy71l" path="res://scenes/victory_portion.gd" id="1_m6r7c"]
 [ext_resource type="Texture2D" uid="uid://dw6hf1k7y6ke0" path="res://assets/1700952420.huttsergreywolf_stroll_with_a_snack.png" id="2_e0l64"]
+[ext_resource type="Shader" uid="uid://cbsfvelqo0opx" path="res://scenes/victory_iris_in.gdshader" id="3_gx0y0"]
 
 [sub_resource type="Animation" id="Animation_e0l64"]
 length = 0.001
@@ -127,7 +129,14 @@ _data = {
 &"bear_swallow": SubResource("Animation_gx0y0")
 }
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m6r7c"]
+shader = ExtResource("3_gx0y0")
+shader_parameter/cover_color = Color(0.35, 0.05, 0.55, 1)
+shader_parameter/progress = 0.0
+shader_parameter/corner_offset_pixels = Vector2(100, 100)
+
 [node name="VictoryPortion" type="Node2D"]
+script = ExtResource("1_m6r7c")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -1
@@ -167,3 +176,14 @@ libraries = {
 &"": SubResource("AnimationLibrary_m6r7c")
 }
 autoplay = "bear_swallow"
+
+[node name="IrisIn" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_m6r7c")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1050.0
+offset_bottom = 600.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.7294118, 0, 1)
