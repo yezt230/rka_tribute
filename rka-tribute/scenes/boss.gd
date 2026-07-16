@@ -88,7 +88,9 @@ func _on_wall_bounce_hitbox_body_entered(_body):
 func final_defeat_tween():
 	print('this')
 	var tween = create_tween()
-	tween.tween_property(self, "global_position:x", 0, 5) \
+#	DEBUG: final death animation length
+	var duration = 15
+	tween.tween_property(self, "global_position:x", 0, duration) \
 	.set_trans(Tween.TRANS_LINEAR) \
 	.set_ease(Tween.EASE_IN_OUT)
 	
