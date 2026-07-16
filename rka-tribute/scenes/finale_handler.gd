@@ -17,10 +17,11 @@ func _ready():
 func _on_boss_defeated():
 	#DEBUG: needs to be gated by phase 4
 	if boss.phase == 4:	
-		#@todo most of this needs to be after a delay
 		player_cannot_move_timer.start()
 
 
+#DEBUG: amount of time after defeating boss that
+#player can still move (effectively, the ending cutscene)
 func _on_player_cannot_move_timer_timeout():
 	player.player_can_move = false
 	tween_to_center_timer.start()	

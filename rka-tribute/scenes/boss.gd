@@ -89,7 +89,7 @@ func final_defeat_tween():
 	print('this')
 	var tween = create_tween()
 	var duration = 5
-	tween.tween_property(self, "global_position:x", 0, duration) \
+	tween.tween_property(self, "global_position:x", 300, duration) \
 	.set_trans(Tween.TRANS_LINEAR) \
 	.set_ease(Tween.EASE_IN_OUT)
 	

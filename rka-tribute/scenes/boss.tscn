@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://drp84e0ipv3tv" path="res://scenes/boss_orb_attack_manager.tscn" id="6_wqpjq"]
 [ext_resource type="Texture2D" uid="uid://cnrfjnyatkh2u" path="res://assets/misc/orb2.png" id="7_2cdgk"]
 [ext_resource type="Texture2D" uid="uid://c74kpwvcuo4ix" path="res://assets/train/big_truck_sprite.png" id="7_7apjh"]
+[ext_resource type="Texture2D" uid="uid://deytrmj4hn285" path="res://assets/bear_sittting_up_sprite.png" id="7_325t2"]
 [ext_resource type="Texture2D" uid="uid://bjnxbskdpj55d" path="res://assets/train/cover.png" id="7_nk50o"]
 [ext_resource type="PackedScene" uid="uid://b7j6x1p18is77" path="res://scenes/state_machine.tscn" id="8_2avx2"]
 [ext_resource type="Texture2D" uid="uid://cwb0tkbk6ts51" path="res://assets/train/big_truck_wheel_sprite.png" id="8_7apjh"]
@@ -12,7 +13,6 @@
 [ext_resource type="Script" uid="uid://1fkevaf3rm32" path="res://scenes/phase_1.gd" id="9_2avx2"]
 [ext_resource type="Shader" uid="uid://dkamp6hqg1cak" path="res://scenes/boss_smoke_fade.gdshader" id="9_7apjh"]
 [ext_resource type="PackedScene" uid="uid://dym16y6j1s3j2" path="res://scenes/health_component.tscn" id="10_5f346"]
-[ext_resource type="Texture2D" uid="uid://jnoca8gjasi" path="res://assets/sitting_up_fin.png" id="10_325t2"]
 [ext_resource type="Script" uid="uid://cr6uwlvlou33r" path="res://scenes/incoming.gd" id="10_lfs1x"]
 [ext_resource type="Script" uid="uid://bjboj4d4qhg4o" path="res://scenes/defeated.gd" id="11_8eiau"]
 [ext_resource type="PackedScene" uid="uid://bsbid14hefl7o" path="res://scenes/orb_cannon.tscn" id="13_vn2fc"]
@@ -146,22 +146,10 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("BearSittingUp:scale")
+tracks/3/path = NodePath("BearSittingUp:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("BearSittingUp:visible")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -227,22 +215,10 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("BearSittingUp:scale")
+tracks/3/path = NodePath("BearSittingUp:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0.5, 0.5)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("BearSittingUp:visible")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -412,8 +388,8 @@ process_material = SubResource("ParticleProcessMaterial_wqpjq")
 
 [node name="BearSittingUp" type="Sprite2D" parent="."]
 position = Vector2(8, -111)
-rotation = 1.5830137
-texture = ExtResource("10_325t2")
+scale = Vector2(0.65, 0.65)
+texture = ExtResource("7_325t2")
 
 [node name="CoverSprite" type="Sprite2D" parent="."]
 position = Vector2(-227, -85)
@@ -421,6 +397,7 @@ texture = ExtResource("7_nk50o")
 hframes = 3
 
 [node name="CoverTearOffSprite" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(-772, -215)
 texture = ExtResource("7_nk50o")
 hframes = 3
