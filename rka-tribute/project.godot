@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="RKA Tribute"
-run/main_scene="uid://bj5siqabpep8e"
+run/main_scene="uid://dgfwyp5ukqq1u"
 config/features=PackedStringArray("4.5", "Forward Plus")
 run/max_fps=60
 config/icon="res://icon.svg"

@@ -48,7 +48,7 @@ debug_color = Color(0.9453134, 0.14807221, 0.4638, 0.41960785)
 position = Vector2(490, 640)
 
 [node name="TrackFromSingle2" parent="." instance=ExtResource("4_mx8sn")]
-position = Vector2(490, 291)
+position = Vector2(490, 385)
 mode = 2
 
 [node name="TrainBorders" type="StaticBody2D" parent="."]

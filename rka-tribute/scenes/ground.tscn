@@ -61,7 +61,7 @@ position = Vector2(0, 719)
 shape = SubResource("RectangleShape2D_mi8v4")
 
 [node name="ElevatedTrackCollision" type="CollisionShape2D" parent="."]
-position = Vector2(48.375, 301)
+position = Vector2(48.375, 388)
 shape = SubResource("RectangleShape2D_lmksl")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

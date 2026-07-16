@@ -5,5 +5,6 @@ extends Node2D
 
 func _ready():
 	#DEBUG: boss_timings: Boss initial position
-	boss.global_position.x = -1100
+	#boss.global_position.x = -1100
+	boss.global_position.x = -300
 	#pass
