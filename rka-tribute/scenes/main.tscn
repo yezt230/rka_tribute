@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dgfwyp5ukqq1u"]
+[gd_scene load_steps=8 format=3 uid="uid://dgfwyp5ukqq1u"]
 
 [ext_resource type="PackedScene" uid="uid://dmydmpg5baofc" path="res://scenes/player.tscn" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://cjjqyuw42wanm" path="res://scenes/main.gd" id="1_tbgi4"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://b0dme80t0eusm" path="res://scenes/cart.tscn" id="2_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://by4gln0b1msvl" path="res://scenes/boss.tscn" id="2_o8jyo"]
 [ext_resource type="PackedScene" uid="uid://cfmycqvr2ry5l" path="res://scenes/finale_handler.tscn" id="6_tefeu"]
+[ext_resource type="PackedScene" uid="uid://b8rgo3tuypboy" path="res://scenes/touch_buttons.tscn" id="7_o6xl0"]
 
 [node name="Main" type="Node2D" groups=["level"]]
 script = ExtResource("1_tbgi4")
@@ -25,3 +26,5 @@ scale = Vector2(0.8, 0.8)
 [node name="Player" parent="." instance=ExtResource("1_o5qli")]
 position = Vector2(700, 530)
 scale = Vector2(0.8, 0.8)
+
+[node name="TouchButtons" parent="." instance=ExtResource("7_o6xl0")]
