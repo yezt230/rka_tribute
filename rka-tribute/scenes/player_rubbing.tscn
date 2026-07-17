@@ -482,7 +482,7 @@ func physics_update(_delta: float) -> State:
 [sub_resource type="CircleShape2D" id="CircleShape2D_46iy2"]
 radius = 16.0
 
-[node name="PlayerRubbing" type="CharacterBody2D"]
+[node name="PlayerRubbing" type="CharacterBody2D" groups=["player"]]
 collision_layer = 0
 collision_mask = 256
 floor_stop_on_slope = false

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://g5yk3i1ykscg"]
+[gd_scene load_steps=23 format=3 uid="uid://g5yk3i1ykscg"]
 
 [ext_resource type="PackedScene" uid="uid://t5nds2n2g21q" path="res://scenes/bear_relaxing.tscn" id="1_kawjh"]
 [ext_resource type="Script" uid="uid://co2vry3052bes" path="res://scenes/rubbing_portion.gd" id="1_qb70t"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://epqtokcffhqt" path="res://scenes/environment_controller.gd" id="8_os4g6"]
 [ext_resource type="PackedScene" uid="uid://fexmkvqwqj6c" path="res://scenes/track_from_single.tscn" id="9_vsaki"]
 [ext_resource type="AudioStream" uid="uid://cgo6tixw4hiqh" path="res://assets/sounds/boing.mp3" id="12_fq7un"]
+[ext_resource type="PackedScene" uid="uid://b8rgo3tuypboy" path="res://scenes/touch_buttons.tscn" id="15_o4gph"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_prj7r"]
 particle_flag_disable_z = true
@@ -191,6 +192,8 @@ bus = &"SFX"
 [node name="ActionMusicTimer" type="Timer" parent="."]
 wait_time = 0.8
 one_shot = true
+
+[node name="TouchButtons" parent="." instance=ExtResource("15_o4gph")]
 
 [connection signal="rubbing_started" from="PlayerRubbing" to="BearRelaxing" method="_on_player_rubbing_rubbing_started"]
 [connection signal="rubbing_stopped" from="PlayerRubbing" to="BearRelaxing" method="_on_player_rubbing_rubbing_stopped"]

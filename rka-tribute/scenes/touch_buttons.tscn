@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://b8rgo3tuypboy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_80fvp"]
+size = Vector2(300, 600)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3saji"]
+size = Vector2(300, 600)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rpj4i"]
+size = Vector2(1050, 200)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_24v8d"]
+size = Vector2(1050, 200)
+
+[node name="TouchButtons" type="Node"]
+
+[node name="LeftButton" type="TouchScreenButton" parent="."]
+position = Vector2(150, 300)
+shape = SubResource("RectangleShape2D_80fvp")
+action = "LEFT"
+
+[node name="RightButton" type="TouchScreenButton" parent="."]
+position = Vector2(900, 300)
+shape = SubResource("RectangleShape2D_3saji")
+action = "RIGHT"
+
+[node name="JumpButton" type="TouchScreenButton" parent="."]
+position = Vector2(525, 100)
+shape = SubResource("RectangleShape2D_rpj4i")
+action = "UP"
+
+[node name="ShootButton" type="TouchScreenButton" parent="."]
+position = Vector2(525, 500)
+shape = SubResource("RectangleShape2D_24v8d")
+action = "SPACE"
