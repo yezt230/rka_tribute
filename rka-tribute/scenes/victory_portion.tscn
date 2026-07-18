@@ -43,6 +43,18 @@ tracks/2/keys = {
 "update": 1,
 "values": [399.0]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_7kn5y"]
 resource_name = "victory_animation"
@@ -58,7 +70,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1, 1.2, 1.4, 1.6, 1.8, 2, 2.2, 2.4, 2.6, 3, 3.4),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [3, 7, 6, 5, 4, 7, 6, 5, 4, 11, 10, 9]
+"values": [2, 7, 6, 5, 4, 7, 6, 5, 4, 11, 10, 9]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -83,6 +95,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(0.43527484, 3.2490044, 1),
 "update": 0,
 "values": [399.0, 120.0, 399.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gx0y0"]

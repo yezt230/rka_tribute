@@ -16,7 +16,7 @@ func enter():
 		level.get_node("TrackFromSingle2").activate_spawning()
 		#DEBUG: boss_timings: phase 2 position
 		#parent.global_position = Vector2(-900, 156)
-		parent.global_position = Vector2(-300, 156)
+		parent.global_position = Vector2(-300, 156) if  OS.is_debug_build() else Vector2(-1100, 156)
 		#truck is damaged in phase 2
 		parent.truck_body_sprite.frame = 1
 		#parent.global_position = Vector2(-850, 156)

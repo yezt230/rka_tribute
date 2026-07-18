@@ -6,5 +6,5 @@ extends Node2D
 func _ready():
 	#DEBUG: boss_timings: Boss initial position
 	#boss.global_position.x = -1100
-	boss.global_position.x = -300
+	boss.global_position.x = -300 if OS.is_debug_build() else -1100
 	#pass
