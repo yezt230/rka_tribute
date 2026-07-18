@@ -4,6 +4,7 @@ extends State
 @onready var state_machine = $".."
 @onready var anim_player = $"../../AnimationPlayer"
 @export var knockback_force: float = 200.0
+@onready var hurt_stream_player = $"../../HurtStreamPlayer"
 
 var preserved_vertical_velocity: float
 
@@ -20,6 +21,7 @@ func enter() -> void:
 	player.velocity.y = preserved_vertical_velocity
 
 	anim_player.play("hurt")
+	hurt_stream_player.play()
 	anim_player.animation_finished.connect(_on_hurt_finished, CONNECT_ONE_SHOT)
 
 
