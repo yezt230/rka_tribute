@@ -3,6 +3,10 @@ extends Node2D
 @onready var iris_in = $CanvasLayer2/IrisIn
 
 
+#func _ready():
+	#iris_in_animation()
+
+
 func _on_iris_in_timer_timeout():
 	iris_in_animation()
 	

@@ -101,7 +101,6 @@ texture = ExtResource("4_prj7r")
 [node name="LeavesGPUParticles" type="GPUParticles2D" parent="BG"]
 material = SubResource("CanvasItemMaterial_8r7xy")
 position = Vector2(0, -50)
-emitting = false
 texture = ExtResource("3_o4gph")
 lifetime = 3.0
 process_material = SubResource("ParticleProcessMaterial_prj7r")
