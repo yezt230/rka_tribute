@@ -17,7 +17,7 @@ expand_margin_top = 16.0
 expand_margin_right = 16.0
 expand_margin_bottom = 16.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o7i0r"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r2jwc"]
 bg_color = Color(13.750843, 5.2993636, 13.469126, 1)
 border_color = Color(0.582737, 0.3006791, 0.44184962, 1)
 shadow_color = Color(0, 0.8, 0, 0.6)
@@ -28,7 +28,7 @@ MarginContainer/constants/margin_bottom = 100
 MarginContainer/constants/margin_left = 100
 MarginContainer/constants/margin_right = 0
 MarginContainer/constants/margin_top = 0
-PanelContainer/styles/panel = SubResource("StyleBoxFlat_o7i0r")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_r2jwc")
 
 [sub_resource type="Theme" id="Theme_he1sj"]
 

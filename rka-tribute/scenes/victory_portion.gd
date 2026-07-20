@@ -23,3 +23,7 @@ func iris_in_animation():
 		1.0,
 		0.8
 	).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
+
+
+func transition_to_end_screen():
+	get_tree().change_scene_to_file("res://end_screen.tscn")

@@ -1,0 +1,105 @@
+[gd_scene load_steps=8 format=3 uid="uid://hodhtth124ti"]
+
+[ext_resource type="FontFile" uid="uid://djl80i723aa6r" path="res://assets/fonts/Street Year.ttf" id="1_abjgy"]
+[ext_resource type="Script" uid="uid://breasfiifwal5" path="res://end_screen.gd" id="1_xu7hh"]
+
+[sub_resource type="Theme" id="Theme_pmjk2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d75mr"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+expand_margin_left = 16.0
+expand_margin_top = 16.0
+expand_margin_right = 16.0
+expand_margin_bottom = 16.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o7i0r"]
+bg_color = Color(13.750843, 5.2993636, 13.469126, 1)
+border_color = Color(0.582737, 0.3006791, 0.44184962, 1)
+shadow_color = Color(0, 0.8, 0, 0.6)
+
+[sub_resource type="Theme" id="Theme_be1gp"]
+default_font = ExtResource("1_abjgy")
+MarginContainer/constants/margin_bottom = 100
+MarginContainer/constants/margin_left = 100
+MarginContainer/constants/margin_right = 0
+MarginContainer/constants/margin_top = 0
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_o7i0r")
+
+[sub_resource type="Theme" id="Theme_kaxt3"]
+
+[node name="EndScreen" type="Node2D"]
+script = ExtResource("1_xu7hh")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="MainMenu" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -465.0
+offset_right = 507.0
+grow_vertical = 0
+theme = SubResource("Theme_pmjk2")
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/MainMenu"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_d75mr")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MainMenu/PanelContainer"]
+layout_mode = 2
+theme = SubResource("Theme_be1gp")
+theme_override_constants/margin_left = 80
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MainMenu/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme = SubResource("Theme_kaxt3")
+
+[node name="TitleScreenButton" type="Button" parent="CanvasLayer/MainMenu/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "Play Again"
+alignment = 0
+
+[node name="TitleScreenRelaxModeButton" type="Button" parent="CanvasLayer/MainMenu/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "Just the rubbing"
+alignment = 0
+
+[node name="Label" type="Label" parent="CanvasLayer/MainMenu/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "
+
+Art animation & programming
+    yezt
+additional art
+    Tairedfox
+start theme
+   
+action theme
+    
+victory theme
+   super mario world - course clear
+made in godot 4
+"
+
+[connection signal="pressed" from="CanvasLayer/MainMenu/PanelContainer/MarginContainer/VBoxContainer/TitleScreenButton" to="." method="_on_title_screen_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/MainMenu/PanelContainer/MarginContainer/VBoxContainer/TitleScreenRelaxModeButton" to="." method="_on_title_screen_relax_mode_button_pressed"]
