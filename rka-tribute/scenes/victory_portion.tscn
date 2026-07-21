@@ -261,4 +261,9 @@ wait_time = 6.0
 one_shot = true
 autostart = true
 
+[node name="PostIrisInTimer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
 [connection signal="timeout" from="IrisInTimer" to="." method="_on_iris_in_timer_timeout"]
+[connection signal="timeout" from="PostIrisInTimer" to="." method="_on_post_iris_in_timer_timeout"]

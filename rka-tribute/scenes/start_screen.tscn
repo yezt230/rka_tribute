@@ -1,9 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://bj5siqabpep8e"]
+[gd_scene load_steps=15 format=3 uid="uid://bj5siqabpep8e"]
 
 [ext_resource type="Script" uid="uid://dlpa0ab4cxpuy" path="res://scenes/start_screen.gd" id="1_he1sj"]
 [ext_resource type="FontFile" uid="uid://djl80i723aa6r" path="res://assets/fonts/Street Year.ttf" id="1_o7i0r"]
 [ext_resource type="FontFile" uid="uid://gv8jrmohkcre" path="res://assets/fonts/Matcha Cih.ttf" id="2_he1sj"]
 [ext_resource type="Texture2D" uid="uid://ccqaaeuaulky4" path="res://assets/abstract_bg.png" id="4_r2jwc"]
+[ext_resource type="Texture2D" uid="uid://w34kcy76atyv" path="res://assets/Bear_and_Squirrel_Transparency.png" id="5_hm208"]
 
 [sub_resource type="Theme" id="Theme_o7i0r"]
 
@@ -89,7 +90,7 @@ grow_vertical = 2
 color = Color(1, 0.4117647, 0.4117647, 1)
 
 [node name="AbstractBGSprite" type="Sprite2D" parent="."]
-modulate = Color(1, 0.3529412, 1, 0.20784314)
+modulate = Color(1, 0.3529412, 1, 0.13333334)
 position = Vector2(1019, 361)
 scale = Vector2(1.2, 1.2)
 texture = ExtResource("4_r2jwc")
@@ -138,5 +139,10 @@ libraries = {
 &"": SubResource("AnimationLibrary_hm208")
 }
 autoplay = "scroll"
+
+[node name="BearSquirrelSprite" type="Sprite2D" parent="."]
+position = Vector2(1000.32, 524)
+scale = Vector2(0.13, 0.13)
+texture = ExtResource("5_hm208")
 
 [connection signal="pressed" from="MainMenu/PanelContainer/MarginContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]

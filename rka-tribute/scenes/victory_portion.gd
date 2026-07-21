@@ -1,11 +1,7 @@
 extends Node2D
 
 @onready var iris_in = $CanvasLayer2/IrisIn
-
-
-#func _ready():
-	#iris_in_animation()
-
+@onready var post_iris_in_timer = $PostIrisInTimer
 
 func _on_iris_in_timer_timeout():
 	iris_in_animation()
@@ -24,6 +20,14 @@ func iris_in_animation():
 		0.8
 	).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
 
+	await tween.finished
+
+	post_iris_in_timer.start()
+
 
 func transition_to_end_screen():
+	pass
+
+
+func _on_post_iris_in_timer_timeout():
 	get_tree().change_scene_to_file("res://end_screen.tscn")
