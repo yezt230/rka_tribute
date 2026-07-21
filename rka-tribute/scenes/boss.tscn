@@ -382,7 +382,6 @@ script = ExtResource("1_mjk3t")
 [node name="BossOrbAttackManager" parent="." instance=ExtResource("6_wqpjq")]
 
 [node name="OrbSpawner" type="Marker2D" parent="." groups=["orbspawner"]]
-visible = false
 position = Vector2(15, -164)
 
 [node name="OrbCannon" parent="OrbSpawner" instance=ExtResource("13_vn2fc")]
