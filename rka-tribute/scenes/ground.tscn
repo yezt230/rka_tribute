@@ -1,6 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://b2rs7dvgxbqqq"]
+[gd_scene load_steps=9 format=3 uid="uid://b2rs7dvgxbqqq"]
 
+[ext_resource type="Shader" uid="uid://dkdv0cvac2ld7" path="res://assets/quarry2.gdshader" id="1_mi8v4"]
 [ext_resource type="Texture2D" uid="uid://cj0hltdsgp7g8" path="res://assets/bg/quarry_bg.png" id="1_pybca"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lmksl"]
+shader = ExtResource("1_mi8v4")
+shader_parameter/hue_shift = 0.4599999673660799
+shader_parameter/saturation = 1.01999997720096
+shader_parameter/brightness = -0.4500000122936
+shader_parameter/contrast = 0.75999998301248
+shader_parameter/invert_amount = 0.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mi8v4"]
 size = Vector2(2888, 138)

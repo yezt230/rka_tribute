@@ -4,6 +4,7 @@ class_name PlayerRubbing extends CharacterBody2D
 signal rubbing_started
 signal rubbing_stopped
 signal land_on_belly
+signal jumped_on_cart
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -1000.0
@@ -169,7 +170,8 @@ func _on_horz_tween_finished():
 	var tween = create_tween()
 	var sprite_scale = 0.8
 	
-	var duration = 2.0
+	var duration = 2.0	
+	jumped_on_cart.emit()
 	
 	tween.tween_property(player_sprite, "scale", Vector2(sprite_scale,sprite_scale), duration) \
 		.set_trans(Tween.TRANS_LINEAR) \

@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://g5yk3i1ykscg"]
+[gd_scene load_steps=26 format=3 uid="uid://g5yk3i1ykscg"]
 
 [ext_resource type="PackedScene" uid="uid://t5nds2n2g21q" path="res://scenes/bear_relaxing.tscn" id="1_kawjh"]
 [ext_resource type="Script" uid="uid://co2vry3052bes" path="res://scenes/rubbing_portion.gd" id="1_qb70t"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bejm7jpp1t326" path="res://assets/leaf_sprite.png" id="3_o4gph"]
 [ext_resource type="PackedScene" uid="uid://c1akb236jofvd" path="res://scenes/player_rubbing.tscn" id="3_qb70t"]
 [ext_resource type="Texture2D" uid="uid://bedjq1tnpcfe4" path="res://assets/bg/rubbing_bg_2.png" id="4_prj7r"]
+[ext_resource type="Shader" uid="uid://dkdv0cvac2ld7" path="res://assets/quarry2.gdshader" id="5_8r7xy"]
 [ext_resource type="PackedScene" uid="uid://by4gln0b1msvl" path="res://scenes/boss.tscn" id="5_nx7g2"]
 [ext_resource type="Script" uid="uid://b0onr2tpepp0t" path="res://scenes/dust_clouds.gd" id="6_dxil4"]
 [ext_resource type="PackedScene" uid="uid://b0dme80t0eusm" path="res://scenes/cart.tscn" id="7_fmilq"]
@@ -38,6 +39,14 @@ scale_max = 0.59999996
 anim_speed_min = 1.0
 anim_speed_max = 1.0
 anim_offset_max = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_31rr2"]
+shader = ExtResource("5_8r7xy")
+shader_parameter/hue_shift = 0.0
+shader_parameter/saturation = 1.0
+shader_parameter/brightness = 0.0
+shader_parameter/contrast = 1.0
+shader_parameter/invert_amount = 0.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nx7g2"]
 size = Vector2(248, 951.5)
@@ -110,6 +119,7 @@ process_material = SubResource("ParticleProcessMaterial_prj7r")
 script = ExtResource("2_xtdjp")
 
 [node name="WoodsBg" type="Sprite2D" parent="BG/WoodScroller"]
+material = SubResource("ShaderMaterial_31rr2")
 position = Vector2(4095, 459)
 texture = ExtResource("3_d4cq4")
 
