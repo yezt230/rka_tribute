@@ -39,6 +39,21 @@ Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
 Button/colors/icon_focus_color = Color(0.7095967, 0.62019634, 0.49177706, 1)
 Button/colors/icon_hover_color = Color(1, 1, 0.16078432, 1)
 
+[sub_resource type="Animation" id="Animation_hm208"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AbstractBGSprite:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1019.0]
+}
+
 [sub_resource type="Animation" id="Animation_r2jwc"]
 resource_name = "scroll"
 length = 1.6
@@ -55,21 +70,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [1019.0, 295.0]
-}
-
-[sub_resource type="Animation" id="Animation_hm208"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AbstractBGSprite:position:x")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [1019.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hm208"]
