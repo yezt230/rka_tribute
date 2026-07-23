@@ -8,7 +8,7 @@ var scene_movable = false
 
 func _ready():
 	boss.modulate.a = 0
-	MusicPlayer.play_starting_music()
+	#MusicPlayer.play_starting_music()
 
 
 func _on_stall_timer_timeout():
