@@ -62,14 +62,17 @@ collision_layer = 5
 collision_mask = 0
 
 [node name="QuarryBG" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_lmksl")
 position = Vector2(1100, 480)
 texture = ExtResource("1_pybca")
 
 [node name="GroundTrackCollision" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, 719)
 shape = SubResource("RectangleShape2D_mi8v4")
 
 [node name="ElevatedTrackCollision" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(48.375, 388)
 shape = SubResource("RectangleShape2D_lmksl")
 
