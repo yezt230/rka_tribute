@@ -4,11 +4,12 @@ extends State
 @onready var stun_timer = $"../../StunTimer"
 @onready var boss = get_tree().get_first_node_in_group("boss")
 @onready var health_component = boss.get_node("HealthComponent")
-
+@onready var boss_orb_attack_manager = $"../../BossOrbAttackManager"
 
 var stored_dir
 
 func enter():
+	boss_orb_attack_manager.attack_timer.start()
 	hit_flash_component.hit.connect(_on_hit)
 
 	#boss.global_position.y = 400	

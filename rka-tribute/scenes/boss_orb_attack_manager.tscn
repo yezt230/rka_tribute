@@ -9,4 +9,3 @@ attack = ExtResource("2_ocko4")
 
 [node name="AttackTimer" type="Timer" parent="."]
 wait_time = 2.0
-autostart = true

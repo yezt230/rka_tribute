@@ -5,9 +5,12 @@ extends State
 @onready var explosion_stream_player = $"../../ExplosionStreamPlayer"
 @onready var cover_animation_player = $"../../CoverAnimationPlayer"
 @onready var cover_tear_off_animation_player = $"../../CoverTearOffAnimationPlayer"
+@onready var boss_orb_attack_manager = $"../../BossOrbAttackManager"
 
 func enter():
 	defeat_explosion_particle.emitting = true
+	if boss_orb_attack_manager:
+		boss_orb_attack_manager.attack_timer.stop()
 	parent.phase += 1
 	phase_transition_timer.start()
 	play_explosion_sound_loop()
