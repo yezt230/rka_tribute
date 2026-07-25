@@ -19,6 +19,7 @@ func enter():
 	if parent.phase == 4:
 		roof_tearing_off_animation()
 		var claws = get_tree().get_nodes_in_group("claws")
+		parent.truck_body_sprite.frame = 2
 		for claw in claws:
 			var claw_hitbox = claw.get_node("PlayerColliderBox") as Area2D
 			claw_hitbox.queue_free() 
