@@ -14,6 +14,8 @@ func enter():
 	parent.phase += 1
 	phase_transition_timer.start()
 	play_explosion_sound_loop()
+	if parent.phase == 2:
+		parent.truck_body_sprite.frame = 2
 
 	#removing claw hitboxes when boss is defeated in Phase 2
 	if parent.phase == 4:
