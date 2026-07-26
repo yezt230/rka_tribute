@@ -525,6 +525,7 @@ hframes = 4
 vframes = 8
 
 [node name="BellyLineSprite" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(-74, -55)
 texture = ExtResource("3_ede3m")
 hframes = 4

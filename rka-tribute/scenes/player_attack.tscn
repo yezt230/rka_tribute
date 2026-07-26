@@ -42,6 +42,7 @@ script = ExtResource("1_pqjam")
 shape = SubResource("CircleShape2D_2tl33")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 0.42745098, 1, 1)
 texture_filter = 1
 rotation = 2.300515
 scale = Vector2(0.75, 0.75)
