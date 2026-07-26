@@ -5,6 +5,7 @@ extends State
 @export var rub_standing_state: State
 @export var rub_crouching_state: State
 @onready var player = $"../.."
+@onready var bear = $"../../../BearRelaxing"
 
 func enter() -> void:
 	super()
@@ -15,7 +16,7 @@ func process_input(_event: InputEvent) -> State:
 		return jump_state
 	elif Input.is_action_just_pressed("LEFT") or Input.is_action_just_pressed("RIGHT"):
 		return run_state
-	elif Input.is_action_pressed("SPACE"):
+	elif Input.is_action_pressed("SPACE") and bear.is_player_overlapping:
 		if parent.is_on_belly_platform:
 			return rub_crouching_state
 		else:

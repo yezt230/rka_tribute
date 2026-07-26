@@ -27,7 +27,8 @@ func _ready() -> void:
 # --- PLAYER SIGNALS ---
 
 func _process(_delta):
-	shake_label.text = "%.2f" % rubbing_shake_inc_timer.time_left
+	#shake_label.text = "%.2f" % rubbing_shake_inc_timer.time_left
+	shake_label.text = str(is_player_overlapping)
 
 
 func _on_player_rubbing_rubbing_started() -> void:
