@@ -1,12 +1,22 @@
-[gd_scene load_steps=15 format=3 uid="uid://bj5siqabpep8e"]
+[gd_scene load_steps=19 format=3 uid="uid://bj5siqabpep8e"]
 
 [ext_resource type="Script" uid="uid://dlpa0ab4cxpuy" path="res://scenes/start_screen.gd" id="1_he1sj"]
 [ext_resource type="FontFile" uid="uid://djl80i723aa6r" path="res://assets/fonts/Street Year.ttf" id="1_o7i0r"]
 [ext_resource type="FontFile" uid="uid://gv8jrmohkcre" path="res://assets/fonts/Matcha Cih.ttf" id="2_he1sj"]
 [ext_resource type="Texture2D" uid="uid://ccqaaeuaulky4" path="res://assets/abstract_bg.png" id="4_r2jwc"]
 [ext_resource type="Texture2D" uid="uid://w34kcy76atyv" path="res://assets/Bear_and_Squirrel_Transparency.png" id="5_hm208"]
+[ext_resource type="Texture2D" uid="uid://b4e4rurocxh4f" path="res://assets/controls.png" id="6_5pab1"]
+[ext_resource type="Theme" uid="uid://c5gbfvofa13i7" path="res://game_theme.tres" id="8_ka6nf"]
+[ext_resource type="Texture2D" uid="uid://d382ijkr41swt" path="res://assets/touchscreencontrols.png" id="8_ws7p0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ka6nf"]
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [sub_resource type="Theme" id="Theme_o7i0r"]
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_ka6nf")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_he1sj"]
 bg_color = Color(0.36994603, 0.6374318, 0.77886826, 1)
@@ -35,9 +45,6 @@ PanelContainer/styles/panel = SubResource("StyleBoxFlat_r2jwc")
 [sub_resource type="Theme" id="Theme_he1sj"]
 
 [sub_resource type="Theme" id="Theme_hm208"]
-Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
-Button/colors/icon_focus_color = Color(0.7095967, 0.62019634, 0.49177706, 1)
-Button/colors/icon_hover_color = Color(1, 1, 0.16078432, 1)
 
 [sub_resource type="Animation" id="Animation_hm208"]
 length = 0.001
@@ -144,5 +151,155 @@ autoplay = "scroll"
 position = Vector2(1000.32, 524)
 scale = Vector2(0.13, 0.13)
 texture = ExtResource("5_hm208")
+
+[node name="ControlsGraphics" type="Node2D" parent="."]
+position = Vector2(119, 20)
+scale = Vector2(0.9, 0.9)
+
+[node name="PanelContainer" type="PanelContainer" parent="ControlsGraphics"]
+modulate = Color(11.529, 18.892, 13.492, 0.514)
+offset_left = -15.55555
+offset_top = -26.666668
+offset_right = 1284.4445
+offset_bottom = 323.33334
+theme = ExtResource("8_ka6nf")
+
+[node name="KeyboardControls" type="Node2D" parent="ControlsGraphics"]
+position = Vector2(6.66667, 72.22222)
+
+[node name="KeyboardControlsSprite" type="Sprite2D" parent="ControlsGraphics/KeyboardControls"]
+position = Vector2(257.53336, 76.37778)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("6_5pab1")
+
+[node name="JumpLabel" type="Label" parent="ControlsGraphics/KeyboardControls"]
+offset_left = 105.53334
+offset_top = 147.37778
+offset_right = 195.53336
+offset_bottom = 218.37778
+theme = ExtResource("8_ka6nf")
+theme_override_font_sizes/font_size = 30
+text = "RUB
+"
+
+[node name="SpacebarLabel" type="Label" parent="ControlsGraphics/KeyboardControls"]
+offset_left = 85.53334
+offset_top = 92.37778
+offset_right = 189.53336
+offset_bottom = 161.37778
+theme = ExtResource("8_ka6nf")
+text = "SPACE
+"
+
+[node name="WLabel" type="Label" parent="ControlsGraphics/KeyboardControls"]
+offset_left = 389.53336
+offset_top = 30.377777
+offset_right = 429.53336
+offset_bottom = 63.377777
+theme = ExtResource("8_ka6nf")
+text = "W"
+
+[node name="ALabel" type="Label" parent="ControlsGraphics/KeyboardControls"]
+offset_left = 324.53336
+offset_top = 94.37778
+offset_right = 364.53336
+offset_bottom = 127.37778
+theme = ExtResource("8_ka6nf")
+text = "a"
+
+[node name="SLabel" type="Label" parent="ControlsGraphics/KeyboardControls"]
+offset_left = 390.53336
+offset_top = 94.37778
+offset_right = 430.53336
+offset_bottom = 143.37778
+theme = ExtResource("8_ka6nf")
+text = "s"
+
+[node name="DLabel" type="Label" parent="ControlsGraphics/KeyboardControls"]
+offset_left = 455.53336
+offset_top = 92.37778
+offset_right = 495.53336
+offset_bottom = 125.37778
+theme = ExtResource("8_ka6nf")
+text = "d"
+
+[node name="MoveLabel" type="Label" parent="ControlsGraphics/KeyboardControls"]
+offset_left = 359.53336
+offset_top = 150.37778
+offset_right = 451.53336
+offset_bottom = 183.37778
+theme = ExtResource("8_ka6nf")
+text = "move"
+
+[node name="KeyboardLabel" type="Label" parent="ControlsGraphics/KeyboardControls"]
+offset_left = 144.0
+offset_top = -55.0
+offset_right = 335.0
+offset_bottom = -22.0
+theme = ExtResource("8_ka6nf")
+theme_override_font_sizes/font_size = 36
+text = "keyboard:"
+
+[node name="TouchScreenControls" type="Node2D" parent="ControlsGraphics"]
+
+[node name="TouchscreenControlsSprite" type="Sprite2D" parent="ControlsGraphics/TouchScreenControls"]
+position = Vector2(1047, 176)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("8_ws7p0")
+
+[node name="MoveLabel" type="Label" parent="ControlsGraphics/TouchScreenControls"]
+offset_left = 895.5556
+offset_top = 118.888885
+offset_right = 935.5556
+offset_bottom = 260.8889
+theme = ExtResource("8_ka6nf")
+theme_override_font_sizes/font_size = 24
+text = "m
+o
+v
+e
+"
+
+[node name="MoveLabel2" type="Label" parent="ControlsGraphics/TouchScreenControls"]
+offset_left = 1196.6667
+offset_top = 117.77777
+offset_right = 1236.6667
+offset_bottom = 259.77777
+theme = ExtResource("8_ka6nf")
+theme_override_font_sizes/font_size = 24
+text = "m
+o
+v
+e
+"
+
+[node name="JumpLabel" type="Label" parent="ControlsGraphics/TouchScreenControls"]
+offset_left = 1026.6667
+offset_top = 83.333336
+offset_right = 1097.6667
+offset_bottom = 138.33334
+theme = ExtResource("8_ka6nf")
+theme_override_font_sizes/font_size = 24
+text = "jump
+"
+
+[node name="RubLabel" type="Label" parent="ControlsGraphics/TouchScreenControls"]
+offset_left = 1037.0
+offset_top = 242.0
+offset_right = 1082.0
+offset_bottom = 291.0
+theme = ExtResource("8_ka6nf")
+theme_override_font_sizes/font_size = 24
+text = "rub
+"
+
+[node name="TouchscreenLabel" type="Label" parent="ControlsGraphics/TouchScreenControls"]
+offset_left = 917.77783
+offset_top = 8.888887
+offset_right = 1208.7778
+offset_bottom = 57.888885
+theme = ExtResource("8_ka6nf")
+theme_override_font_sizes/font_size = 36
+text = "touchscreen:"
 
 [connection signal="pressed" from="MainMenu/PanelContainer/MarginContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]

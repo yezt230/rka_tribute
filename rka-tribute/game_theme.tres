@@ -1,0 +1,15 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://c5gbfvofa13i7"]
+
+[ext_resource type="FontFile" uid="uid://djl80i723aa6r" path="res://assets/fonts/Street Year.ttf" id="1_1fvms"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1fvms"]
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+
+[resource]
+Label/colors/font_color = Color(0.27058825, 0.36078432, 0.8392157, 1)
+Label/font_sizes/font_size = 30
+Label/fonts/font = ExtResource("1_1fvms")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_1fvms")

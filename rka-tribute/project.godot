@@ -36,6 +36,10 @@ Level=""
 claws=""
 player=""
 
+[gui]
+
+theme/custom="uid://dgs27c5prvlgc"
+
 [input]
 
 SPACE={
