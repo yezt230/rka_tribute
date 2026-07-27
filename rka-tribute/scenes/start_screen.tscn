@@ -153,15 +153,15 @@ scale = Vector2(0.13, 0.13)
 texture = ExtResource("5_hm208")
 
 [node name="ControlsGraphics" type="Node2D" parent="."]
-position = Vector2(119, 20)
-scale = Vector2(0.9, 0.9)
+position = Vector2(206.99998, 34)
+scale = Vector2(0.85, 0.85)
 
 [node name="PanelContainer" type="PanelContainer" parent="ControlsGraphics"]
-modulate = Color(11.529, 18.892, 13.492, 0.514)
-offset_left = -15.55555
-offset_top = -26.666668
-offset_right = 1284.4445
-offset_bottom = 323.33334
+modulate = Color(11.528808, 18.892157, 13.492367, 0.3764706)
+offset_left = -15.294122
+offset_top = -28.235294
+offset_right = 1134.7059
+offset_bottom = 321.7647
 theme = ExtResource("8_ka6nf")
 
 [node name="KeyboardControls" type="Node2D" parent="ControlsGraphics"]
@@ -241,6 +241,7 @@ theme_override_font_sizes/font_size = 36
 text = "keyboard:"
 
 [node name="TouchScreenControls" type="Node2D" parent="ControlsGraphics"]
+position = Vector2(-168.88887, 0)
 
 [node name="TouchscreenControlsSprite" type="Sprite2D" parent="ControlsGraphics/TouchScreenControls"]
 position = Vector2(1047, 176)
