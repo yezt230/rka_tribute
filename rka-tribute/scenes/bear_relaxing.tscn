@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://t5nds2n2g21q"]
+[gd_scene format=3 uid="uid://t5nds2n2g21q"]
 
 [ext_resource type="Script" uid="uid://cpfn0belo4xbl" path="res://scenes/bear_relaxing.gd" id="1_ifw4b"]
 [ext_resource type="Texture2D" uid="uid://18fphi7r8l3x" path="res://assets/bear_relaxing_sprite_transp.png" id="2_ifw4b"]
@@ -508,110 +508,100 @@ radius = 128.03516
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ifw4b"]
 size = Vector2(234.5, 203)
 
-[node name="BearRelaxing" type="CharacterBody2D"]
+[node name="BearRelaxing" type="CharacterBody2D" unique_id=1088125418]
 collision_layer = 0
 collision_mask = 4
 script = ExtResource("1_ifw4b")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=227669926]
 position = Vector2(-81, 132)
 shape = SubResource("CircleShape2D_p8h3i")
 
-[node name="Visuals" type="Node2D" parent="."]
+[node name="Visuals" type="Node2D" parent="." unique_id=1680668484]
 position = Vector2(13, -1)
 
-[node name="BearBodySprite" type="Sprite2D" parent="Visuals"]
+[node name="BearBodySprite" type="Sprite2D" parent="Visuals" unique_id=391228586]
 rotation = 0.029231174
 scale = Vector2(2, 2)
 texture = ExtResource("2_ifw4b")
 hframes = 5
 vframes = 5
 
-[node name="BearBodyAnimationPlayer" type="AnimationPlayer" parent="Visuals/BearBodySprite"]
-libraries = {
-&"": SubResource("AnimationLibrary_ipmdg")
-}
-autoplay = "breathing"
+[node name="BearBodyAnimationPlayer" type="AnimationPlayer" parent="Visuals/BearBodySprite" unique_id=608850521]
+libraries/ = SubResource("AnimationLibrary_ipmdg")
+autoplay = &"breathing"
 
-[node name="BellySprite" type="Sprite2D" parent="Visuals"]
+[node name="BellySprite" type="Sprite2D" parent="Visuals" unique_id=1474071890]
 scale = Vector2(2, 2)
 texture = ExtResource("2_ifw4b")
 hframes = 5
 vframes = 5
 
-[node name="BellyAnimationPlayer" type="AnimationPlayer" parent="Visuals/BellySprite"]
-libraries = {
-&"": SubResource("AnimationLibrary_0iv36")
-}
-autoplay = "breathing"
+[node name="BellyAnimationPlayer" type="AnimationPlayer" parent="Visuals/BellySprite" unique_id=2141004464]
+libraries/ = SubResource("AnimationLibrary_0iv36")
+autoplay = &"breathing"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_00c77")
-}
-autoplay = "still"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=158395784]
+libraries/ = SubResource("AnimationLibrary_00c77")
+autoplay = &"still"
 
-[node name="ShakeAnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_yywtl")
-}
+[node name="ShakeAnimationPlayer" type="AnimationPlayer" parent="." unique_id=1982208914]
+libraries/ = SubResource("AnimationLibrary_yywtl")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." unique_id=1999787740]
 collision_layer = 0
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1303782868]
 position = Vector2(63.5, 12.5)
 shape = SubResource("RectangleShape2D_p8h3i")
 debug_color = Color(0.8096516, 0.39273453, 0.34859973, 0.41960785)
 
-[node name="BearBellyPlatform" type="AnimatableBody2D" parent="."]
+[node name="BearBellyPlatform" type="AnimatableBody2D" parent="." unique_id=1998580329]
 position = Vector2(650, 241)
 scale = Vector2(0.79695475, 0.79695475)
 collision_layer = 256
 collision_mask = 0
 
-[node name="BellyCollisionAnimationPlayer" type="AnimationPlayer" parent="BearBellyPlatform"]
+[node name="BellyCollisionAnimationPlayer" type="AnimationPlayer" parent="BearBellyPlatform" unique_id=1650393039]
 root_node = NodePath("../..")
-libraries = {
-&"": SubResource("AnimationLibrary_ivfbs")
-}
-autoplay = "platform_rise_and_fall"
+libraries/ = SubResource("AnimationLibrary_ivfbs")
+autoplay = &"platform_rise_and_fall"
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BearBellyPlatform"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BearBellyPlatform" unique_id=928835845]
 position = Vector2(-967.43256, -378.94244)
 polygon = PackedVector2Array(0, 0, 45, -17, 92, -28, 150, -30, 231, -24, 289, -12, 319, 3, 259.65723, 2.4418945, 212.54584, 1.9988403, 0, 0)
 one_way_collision = true
 
-[node name="ShakeLabel" type="Label" parent="."]
+[node name="ShakeLabel" type="Label" parent="." unique_id=62650634]
 offset_left = 185.0
 offset_top = -225.0
 offset_right = 225.0
 offset_bottom = -202.0
 text = "text"
 
-[node name="RubArea" type="Area2D" parent="."]
+[node name="RubArea" type="Area2D" parent="." unique_id=1908751002]
 collision_layer = 1024
 collision_mask = 1024
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RubArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RubArea" unique_id=1675958177]
 position = Vector2(11, 25)
 shape = SubResource("CircleShape2D_ifw4b")
 debug_color = Color(0.6315984, 0.52465016, 0.20002493, 0.41960785)
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="RubArea"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="RubArea" unique_id=481454680]
 position = Vector2(4, -123)
 shape = SubResource("RectangleShape2D_ifw4b")
 debug_color = Color(0.6313726, 0.5254902, 0.2, 0.41960785)
 
-[node name="RubbingShakeIncTimer" type="Timer" parent="."]
-wait_time = 1.5
+[node name="RubbingShakeIncTimer" type="Timer" parent="." unique_id=789308831]
+wait_time = 0.2
 
-[node name="BearRemoveTimer" type="Timer" parent="."]
+[node name="BearRemoveTimer" type="Timer" parent="." unique_id=43245288]
 wait_time = 0.3
 one_shot = true
 
-[node name="RubStreamPlayer" type="AudioStreamPlayer2D" parent="."]
+[node name="RubStreamPlayer" type="AudioStreamPlayer2D" parent="." unique_id=225797262]
 volume_db = 20.0
 bus = &"SFX"
 script = ExtResource("3_00c77")

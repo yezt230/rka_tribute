@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bj5siqabpep8e"]
+[gd_scene format=3 uid="uid://bj5siqabpep8e"]
 
 [ext_resource type="Script" uid="uid://dlpa0ab4cxpuy" path="res://scenes/start_screen.gd" id="1_he1sj"]
 [ext_resource type="FontFile" uid="uid://djl80i723aa6r" path="res://assets/fonts/Street Year.ttf" id="1_o7i0r"]
@@ -85,10 +85,10 @@ _data = {
 &"scroll": SubResource("Animation_r2jwc")
 }
 
-[node name="StartScreen" type="CanvasLayer"]
+[node name="StartScreen" type="CanvasLayer" unique_id=857357465]
 script = ExtResource("1_he1sj")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=897136687]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -96,13 +96,13 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(1, 0.4117647, 0.4117647, 1)
 
-[node name="AbstractBGSprite" type="Sprite2D" parent="."]
+[node name="AbstractBGSprite" type="Sprite2D" parent="." unique_id=483750902]
 modulate = Color(1, 0.3529412, 1, 0.13333334)
 position = Vector2(1019, 361)
 scale = Vector2(1.2, 1.2)
 texture = ExtResource("4_r2jwc")
 
-[node name="MainMenu" type="MarginContainer" parent="."]
+[node name="MainMenu" type="MarginContainer" parent="." unique_id=564271025]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -114,13 +114,13 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_o7i0r")
 
-[node name="PanelContainer" type="PanelContainer" parent="MainMenu"]
+[node name="PanelContainer" type="PanelContainer" parent="MainMenu" unique_id=695044819]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_he1sj")
 
-[node name="MarginContainer" type="MarginContainer" parent="MainMenu/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MainMenu/PanelContainer" unique_id=1650940053]
 layout_mode = 2
 theme = SubResource("Theme_r2jwc")
 theme_override_constants/margin_left = 8
@@ -128,18 +128,18 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/PanelContainer/MarginContainer" unique_id=1239662105]
 custom_minimum_size = Vector2(1200, 450)
 layout_mode = 2
 theme = SubResource("Theme_he1sj")
 
-[node name="TitleLabel" type="Label" parent="MainMenu/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="TitleLabel" type="Label" parent="MainMenu/PanelContainer/MarginContainer/VBoxContainer" unique_id=1586529411]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 72
 text = "Belly Rub DX"
 
-[node name="PlayButton" type="Button" parent="MainMenu/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="PlayButton" type="Button" parent="MainMenu/PanelContainer/MarginContainer/VBoxContainer" unique_id=2003988687]
 custom_minimum_size = Vector2(800, 100)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -150,24 +150,24 @@ theme_override_fonts/font = ExtResource("2_he1sj")
 theme_override_font_sizes/font_size = 48
 text = "START"
 
-[node name="Control" type="Control" parent="MainMenu/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Control" type="Control" parent="MainMenu/PanelContainer/MarginContainer/VBoxContainer" unique_id=348860811]
 layout_mode = 2
 
-[node name="ControlsGraphics" type="Node2D" parent="MainMenu/PanelContainer/MarginContainer/VBoxContainer/Control"]
+[node name="ControlsGraphics" type="Node2D" parent="MainMenu/PanelContainer/MarginContainer/VBoxContainer/Control" unique_id=361171156]
 modulate = Color(3.8653786, 3.8653786, 3.8653786, 1)
 position = Vector2(-7, 41)
 scale = Vector2(0.7, 0.7)
 
-[node name="KeyboardControls" type="Node2D" parent="MainMenu/PanelContainer/MarginContainer/VBoxContainer/Control/ControlsGraphics"]
+[node name="KeyboardControls" type="Node2D" parent="MainMenu/PanelContainer/MarginContainer/VBoxContainer/Control/ControlsGraphics" unique_id=1772753724]
 position = Vector2(6.6666718, 72.22223)
 scale = Vector2(1.0000001, 1.0000001)
 
-[node name="KeyboardControlsSprite" type="Sprite2D" parent="MainMenu/PanelContainer/MarginContainer/VBoxContainer/Control/ControlsGraphics/KeyboardControls"]
+[node name="KeyboardControlsSprite" type="Sprite2D" parent="MainMenu/PanelContainer/MarginContainer/VBoxContainer/Control/ControlsGraphics/KeyboardControls" unique_id=841618111]
 position = Vector2(257.53336, 76.37778)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("6_5pab1")
 
-[node name="RubLabel" type="Label" parent="MainMenu/PanelContainer/MarginContainer/VBoxContainer/Control/ControlsGraphics/KeyboardControls"]
+[node name="RubLabel" type="Label" parent="MainMenu/PanelContainer/MarginContainer/VBoxContainer/Control/ControlsGraphics/KeyboardControls" unique_id=1712769492]
 offset_left = 94.76189
 offset_top = 153.49207
 offset_right = 184.7619
@@ -176,7 +176,7 @@ theme = ExtResource("8_ka6nf")
 theme_override_font_sizes/font_size = 40
 text = "RUB"
 
-[node name="SpacebarLabel" type="Label" parent="MainMenu/PanelContainer/MarginContainer/VBoxContainer/Control/ControlsGraphics/KeyboardControls"]
+[node name="SpacebarLabel" type="Label" parent="MainMenu/PanelContainer/MarginContainer/VBoxContainer/Control/ControlsGraphics/KeyboardControls" unique_id=807929176]
 offset_left = 85.53334
 offset_top = 92.37778
 offset_right = 189.53336
@@ -185,39 +185,39 @@ theme = ExtResource("8_ka6nf")
 text = "SPACE
 "
 
-[node name="WLabel" type="Label" parent="MainMenu/PanelContainer/MarginContainer/VBoxContainer/Control/ControlsGraphics/KeyboardControls"]
-offset_left = 389.53336
-offset_top = 30.377777
-offset_right = 429.53336
-offset_bottom = 63.377777
+[node name="WLabel" type="Label" parent="MainMenu/PanelContainer/MarginContainer/VBoxContainer/Control/ControlsGraphics/KeyboardControls" unique_id=1457589642]
+offset_left = 390.47614
+offset_top = 17.777767
+offset_right = 430.47614
+offset_bottom = 58.777767
 theme = ExtResource("8_ka6nf")
-text = "W"
+text = "▲"
 
-[node name="ALabel" type="Label" parent="MainMenu/PanelContainer/MarginContainer/VBoxContainer/Control/ControlsGraphics/KeyboardControls"]
-offset_left = 324.53336
-offset_top = 94.37778
-offset_right = 364.53336
-offset_bottom = 127.37778
+[node name="ALabel" type="Label" parent="MainMenu/PanelContainer/MarginContainer/VBoxContainer/Control/ControlsGraphics/KeyboardControls" unique_id=1580344169]
+offset_left = 321.90472
+offset_top = 89.206314
+offset_right = 361.90472
+offset_bottom = 130.20631
 theme = ExtResource("8_ka6nf")
-text = "a"
+text = "◀"
 
-[node name="SLabel" type="Label" parent="MainMenu/PanelContainer/MarginContainer/VBoxContainer/Control/ControlsGraphics/KeyboardControls"]
-offset_left = 390.53336
-offset_top = 94.37778
-offset_right = 430.53336
-offset_bottom = 143.37778
+[node name="SLabel" type="Label" parent="MainMenu/PanelContainer/MarginContainer/VBoxContainer/Control/ControlsGraphics/KeyboardControls" unique_id=781547173]
+offset_left = 389.0476
+offset_top = 92.06345
+offset_right = 429.0476
+offset_bottom = 141.06345
 theme = ExtResource("8_ka6nf")
-text = "s"
+text = "▼"
 
-[node name="DLabel" type="Label" parent="MainMenu/PanelContainer/MarginContainer/VBoxContainer/Control/ControlsGraphics/KeyboardControls"]
-offset_left = 455.53336
-offset_top = 92.37778
-offset_right = 495.53336
-offset_bottom = 125.37778
+[node name="DLabel" type="Label" parent="MainMenu/PanelContainer/MarginContainer/VBoxContainer/Control/ControlsGraphics/KeyboardControls" unique_id=2016650252]
+offset_left = 456.19043
+offset_top = 87.77773
+offset_right = 496.19043
+offset_bottom = 128.77774
 theme = ExtResource("8_ka6nf")
-text = "d"
+text = "▶"
 
-[node name="MoveLabel" type="Label" parent="MainMenu/PanelContainer/MarginContainer/VBoxContainer/Control/ControlsGraphics/KeyboardControls"]
+[node name="MoveLabel" type="Label" parent="MainMenu/PanelContainer/MarginContainer/VBoxContainer/Control/ControlsGraphics/KeyboardControls" unique_id=188083598]
 offset_left = 336.1904
 offset_top = 152.06348
 offset_right = 458.1904
@@ -226,7 +226,7 @@ theme = ExtResource("8_ka6nf")
 theme_override_font_sizes/font_size = 40
 text = "move"
 
-[node name="KeyboardLabel" type="Label" parent="MainMenu/PanelContainer/MarginContainer/VBoxContainer/Control/ControlsGraphics/KeyboardControls"]
+[node name="KeyboardLabel" type="Label" parent="MainMenu/PanelContainer/MarginContainer/VBoxContainer/Control/ControlsGraphics/KeyboardControls" unique_id=307351865]
 offset_left = 79.04763
 offset_top = -70.79367
 offset_right = 461.04764
@@ -235,16 +235,16 @@ theme = ExtResource("8_ka6nf")
 theme_override_font_sizes/font_size = 60
 text = "keyboard:"
 
-[node name="TouchScreenControls" type="Node2D" parent="MainMenu/PanelContainer/MarginContainer/VBoxContainer/Control/ControlsGraphics"]
+[node name="TouchScreenControls" type="Node2D" parent="MainMenu/PanelContainer/MarginContainer/VBoxContainer/Control/ControlsGraphics" unique_id=322328855]
 position = Vector2(-168.88889, 0)
 scale = Vector2(1.0000001, 1.0000001)
 
-[node name="TouchscreenControlsSprite" type="Sprite2D" parent="MainMenu/PanelContainer/MarginContainer/VBoxContainer/Control/ControlsGraphics/TouchScreenControls"]
+[node name="TouchscreenControlsSprite" type="Sprite2D" parent="MainMenu/PanelContainer/MarginContainer/VBoxContainer/Control/ControlsGraphics/TouchScreenControls" unique_id=2123214802]
 position = Vector2(1047, 176)
 scale = Vector2(0.7, 0.7)
 texture = ExtResource("8_ws7p0")
 
-[node name="MoveLabel" type="Label" parent="MainMenu/PanelContainer/MarginContainer/VBoxContainer/Control/ControlsGraphics/TouchScreenControls"]
+[node name="MoveLabel" type="Label" parent="MainMenu/PanelContainer/MarginContainer/VBoxContainer/Control/ControlsGraphics/TouchScreenControls" unique_id=1343700173]
 offset_left = 886.984
 offset_top = 113.17456
 offset_right = 926.984
@@ -257,7 +257,7 @@ v
 e
 "
 
-[node name="MoveLabel2" type="Label" parent="MainMenu/PanelContainer/MarginContainer/VBoxContainer/Control/ControlsGraphics/TouchScreenControls"]
+[node name="MoveLabel2" type="Label" parent="MainMenu/PanelContainer/MarginContainer/VBoxContainer/Control/ControlsGraphics/TouchScreenControls" unique_id=2096349369]
 offset_left = 1198.0958
 offset_top = 112.063446
 offset_right = 1238.0958
@@ -270,7 +270,7 @@ v
 e
 "
 
-[node name="JumpLabel" type="Label" parent="MainMenu/PanelContainer/MarginContainer/VBoxContainer/Control/ControlsGraphics/TouchScreenControls"]
+[node name="JumpLabel" type="Label" parent="MainMenu/PanelContainer/MarginContainer/VBoxContainer/Control/ControlsGraphics/TouchScreenControls" unique_id=365759254]
 offset_left = 1020.95215
 offset_top = 80.4762
 offset_right = 1109.9521
@@ -280,7 +280,7 @@ theme_override_font_sizes/font_size = 30
 text = "jump
 "
 
-[node name="RubLabel" type="Label" parent="MainMenu/PanelContainer/MarginContainer/VBoxContainer/Control/ControlsGraphics/TouchScreenControls"]
+[node name="RubLabel" type="Label" parent="MainMenu/PanelContainer/MarginContainer/VBoxContainer/Control/ControlsGraphics/TouchScreenControls" unique_id=1170651577]
 offset_left = 1031.2856
 offset_top = 237.71432
 offset_right = 1097.2856
@@ -290,7 +290,7 @@ theme_override_font_sizes/font_size = 30
 text = "rub
 "
 
-[node name="TouchscreenLabel" type="Label" parent="MainMenu/PanelContainer/MarginContainer/VBoxContainer/Control/ControlsGraphics/TouchScreenControls"]
+[node name="TouchscreenLabel" type="Label" parent="MainMenu/PanelContainer/MarginContainer/VBoxContainer/Control/ControlsGraphics/TouchScreenControls" unique_id=942881841]
 offset_left = 824.60315
 offset_top = -11.428581
 offset_right = 1310.6031
@@ -299,15 +299,13 @@ theme = ExtResource("8_ka6nf")
 theme_override_font_sizes/font_size = 56
 text = "touchscreen:"
 
-[node name="BGAnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_hm208")
-}
-autoplay = "scroll"
+[node name="BGAnimationPlayer" type="AnimationPlayer" parent="." unique_id=908089912]
+libraries/ = SubResource("AnimationLibrary_hm208")
+autoplay = &"scroll"
 
-[node name="BearSquirrelSprite" type="Sprite2D" parent="."]
-position = Vector2(1000.32, 524)
-scale = Vector2(0.13, 0.13)
+[node name="BearSquirrelSprite" type="Sprite2D" parent="." unique_id=1392489365]
+position = Vector2(1044, 558)
+scale = Vector2(0.25, 0.25)
 texture = ExtResource("5_hm208")
 
 [connection signal="pressed" from="MainMenu/PanelContainer/MarginContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]

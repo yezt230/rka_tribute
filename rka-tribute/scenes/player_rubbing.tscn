@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://c1akb236jofvd"]
+[gd_scene format=3 uid="uid://c1akb236jofvd"]
 
 [ext_resource type="Script" uid="uid://qund22av1htg" path="res://scenes/player_rubbing.gd" id="1_4tvg3"]
 [ext_resource type="Texture2D" uid="uid://b2ox58jfloh2c" path="res://assets/squirrel_sprite_fin.png" id="2_ah84s"]
@@ -483,7 +483,7 @@ func physics_update(_delta: float) -> State:
 [sub_resource type="CircleShape2D" id="CircleShape2D_46iy2"]
 radius = 16.0
 
-[node name="PlayerRubbing" type="CharacterBody2D" groups=["player"]]
+[node name="PlayerRubbing" type="CharacterBody2D" unique_id=1356414951 groups=["player"]]
 collision_layer = 0
 collision_mask = 256
 floor_stop_on_slope = false
@@ -491,7 +491,7 @@ floor_max_angle = 1.3962634
 floor_snap_length = 40.0
 script = ExtResource("1_4tvg3")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1975238869]
 texture_filter = 1
 position = Vector2(8, -61)
 scale = Vector2(-1, 1)
@@ -499,27 +499,23 @@ texture = ExtResource("2_ah84s")
 hframes = 4
 vframes = 8
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_dqkch")
-}
-autoplay = "jump"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1735880831]
+libraries/ = SubResource("AnimationLibrary_dqkch")
+autoplay = &"jump"
 
-[node name="ShakeAnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_ede3m")
-}
+[node name="ShakeAnimationPlayer" type="AnimationPlayer" parent="." unique_id=1015631045]
+libraries/ = SubResource("AnimationLibrary_ede3m")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=449312736]
 position = Vector2(-1, -37)
 scale = Vector2(4, 4)
 shape = SubResource("CircleShape2D_3vyb7")
 
-[node name="StateMachineRubbing" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
+[node name="StateMachineRubbing" type="Node" parent="." unique_id=1959016104 node_paths=PackedStringArray("starting_state")]
 script = ExtResource("3_gynt0")
 starting_state = NodePath("IdleRubbing")
 
-[node name="IdleRubbing" type="Node" parent="StateMachineRubbing" node_paths=PackedStringArray("jump_state", "run_state", "rub_standing_state", "rub_crouching_state")]
+[node name="IdleRubbing" type="Node" parent="StateMachineRubbing" unique_id=1729229385 node_paths=PackedStringArray("jump_state", "run_state", "rub_standing_state", "rub_crouching_state")]
 script = ExtResource("7_46iy2")
 jump_state = NodePath("../JumpRubbing")
 run_state = NodePath("../RunRubbing")
@@ -527,7 +523,7 @@ rub_standing_state = NodePath("../RubStanding")
 rub_crouching_state = NodePath("../RubCrouching")
 metadata/_custom_type_script = "uid://dn5lg0ejp6p73"
 
-[node name="RunRubbing" type="Node" parent="StateMachineRubbing" node_paths=PackedStringArray("idle_state", "rub_standing_state", "rub_crouching_state", "jump_state")]
+[node name="RunRubbing" type="Node" parent="StateMachineRubbing" unique_id=723069931 node_paths=PackedStringArray("idle_state", "rub_standing_state", "rub_crouching_state", "jump_state")]
 script = ExtResource("7_gynt0")
 idle_state = NodePath("../IdleRubbing")
 rub_standing_state = NodePath("../RubStanding")
@@ -535,41 +531,41 @@ rub_crouching_state = NodePath("../RubCrouching")
 jump_state = NodePath("../JumpRubbing")
 metadata/_custom_type_script = "uid://dn5lg0ejp6p73"
 
-[node name="JumpRubbing" type="Node" parent="StateMachineRubbing" node_paths=PackedStringArray("idle_state", "run_state")]
+[node name="JumpRubbing" type="Node" parent="StateMachineRubbing" unique_id=626528170 node_paths=PackedStringArray("idle_state", "run_state")]
 script = SubResource("GDScript_7jqic")
 idle_state = NodePath("../IdleRubbing")
 run_state = NodePath("../RunRubbing")
 metadata/_custom_type_script = "uid://dn5lg0ejp6p73"
 
-[node name="RubStanding" type="Node" parent="StateMachineRubbing" node_paths=PackedStringArray("idle_state", "run_state")]
+[node name="RubStanding" type="Node" parent="StateMachineRubbing" unique_id=616551154 node_paths=PackedStringArray("idle_state", "run_state")]
 script = ExtResource("11_067sh")
 idle_state = NodePath("../IdleRubbing")
 run_state = NodePath("../RunRubbing")
 metadata/_custom_type_script = "uid://dn5lg0ejp6p73"
 
-[node name="RubCrouching" type="Node" parent="StateMachineRubbing" node_paths=PackedStringArray("idle_state", "run_state")]
+[node name="RubCrouching" type="Node" parent="StateMachineRubbing" unique_id=1140612624 node_paths=PackedStringArray("idle_state", "run_state")]
 script = ExtResource("7_tpmjl")
 idle_state = NodePath("../IdleRubbing")
 run_state = NodePath("../RunRubbing")
 metadata/_custom_type_script = "uid://dn5lg0ejp6p73"
 
-[node name="Static" type="Node" parent="StateMachineRubbing"]
+[node name="Static" type="Node" parent="StateMachineRubbing" unique_id=1492803761]
 script = ExtResource("8_gynt0")
 metadata/_custom_type_script = "uid://dn5lg0ejp6p73"
 
-[node name="Marker2D" type="Marker2D" parent="."]
+[node name="Marker2D" type="Marker2D" parent="." unique_id=955086093]
 position = Vector2(0, -61)
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." unique_id=1402959380]
 collision_layer = 1024
 collision_mask = 1024
 
-[node name="RubHitbox" type="CollisionShape2D" parent="Area2D"]
+[node name="RubHitbox" type="CollisionShape2D" parent="Area2D" unique_id=620938761]
 position = Vector2(35, -98)
 shape = SubResource("CircleShape2D_46iy2")
 debug_color = Color(0.8734306, 0.30273995, 0.44753277, 0.41960785)
 
-[node name="DebugLabel" type="Label" parent="."]
+[node name="DebugLabel" type="Label" parent="." unique_id=1570184836]
 visible = false
 offset_left = 75.0
 offset_top = -152.0
@@ -581,7 +577,7 @@ theme_override_constants/outline_size = 2
 theme_override_font_sizes/font_size = 32
 text = "state"
 
-[node name="DebugLabel2" type="Label" parent="."]
+[node name="DebugLabel2" type="Label" parent="." unique_id=887014358]
 visible = false
 offset_left = 76.0
 offset_top = -100.0
@@ -590,11 +586,11 @@ offset_bottom = -77.0
 theme_override_font_sizes/font_size = 26
 text = "text"
 
-[node name="DropDownTimer" type="Timer" parent="."]
+[node name="DropDownTimer" type="Timer" parent="." unique_id=1768190754]
 wait_time = 0.6
 one_shot = true
 
-[node name="JumpStreamPlayer" type="AudioStreamPlayer2D" parent="."]
+[node name="JumpStreamPlayer" type="AudioStreamPlayer2D" parent="." unique_id=391877090]
 stream = ExtResource("9_t3us1")
 volume_db = -3.5
 pitch_scale = 0.85

@@ -6,6 +6,9 @@ extends Node2D
 @onready var has_bear_been_kidnapped: bool = false
 var scene_movable = false   
 
+# DEBUG: TransitionToMainTimer: timer that controls
+#total length of transitioning to action scene
+
 func _ready():
 	boss.modulate.a = 0
 	#MusicPlayer.play_starting_music()
