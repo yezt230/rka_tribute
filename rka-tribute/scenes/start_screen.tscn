@@ -190,36 +190,36 @@ text = "SPACE
 "
 
 [node name="WLabel" type="Label" parent="ControlsGraphics/KeyboardControls" unique_id=2099146613]
-offset_left = 389.53336
-offset_top = 30.377777
-offset_right = 429.53336
-offset_bottom = 63.377777
+offset_left = 388.62738
+offset_top = 19.54248
+offset_right = 428.62738
+offset_bottom = 60.54248
 theme = ExtResource("8_ka6nf")
-text = "W"
+text = "▲"
 
 [node name="ALabel" type="Label" parent="ControlsGraphics/KeyboardControls" unique_id=1230843020]
-offset_left = 324.53336
-offset_top = 94.37778
-offset_right = 364.53336
-offset_bottom = 127.37778
+offset_left = 321.56854
+offset_top = 86.601295
+offset_right = 361.56854
+offset_bottom = 127.6013
 theme = ExtResource("8_ka6nf")
-text = "a"
+text = "◀"
 
 [node name="SLabel" type="Label" parent="ControlsGraphics/KeyboardControls" unique_id=14833190]
-offset_left = 390.53336
-offset_top = 94.37778
-offset_right = 430.53336
-offset_bottom = 143.37778
+offset_left = 388.62762
+offset_top = 93.660126
+offset_right = 428.62762
+offset_bottom = 142.66011
 theme = ExtResource("8_ka6nf")
-text = "s"
+text = "▼"
 
 [node name="DLabel" type="Label" parent="ControlsGraphics/KeyboardControls" unique_id=1570203150]
-offset_left = 455.53336
-offset_top = 92.37778
-offset_right = 495.53336
-offset_bottom = 125.37778
+offset_left = 458.0393
+offset_top = 86.60129
+offset_right = 498.0393
+offset_bottom = 127.60129
 theme = ExtResource("8_ka6nf")
-text = "d"
+text = "▶"
 
 [node name="MoveLabel" type="Label" parent="ControlsGraphics/KeyboardControls" unique_id=1724748757]
 offset_left = 359.53336
