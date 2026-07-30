@@ -23,6 +23,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 MusicPlayer="*res://scenes/music_player.tscn"
+GlobalVars="*uid://d3ooq6ljvcygg"
 
 [display]
 

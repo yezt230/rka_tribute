@@ -61,11 +61,12 @@ func start_rubbing() -> void:
 
 	rub_stream_player.play_random()
 
-	if has_shake_timer_started:
-		rubbing_shake_inc_timer.paused = false
-	else:
-		rubbing_shake_inc_timer.start()
-		has_shake_timer_started = true
+	if GlobalVars.rubbing_enabled:
+		if has_shake_timer_started:
+			rubbing_shake_inc_timer.paused = false
+		else:
+			rubbing_shake_inc_timer.start()
+			has_shake_timer_started = true
 
 
 func stop_rubbing() -> void:

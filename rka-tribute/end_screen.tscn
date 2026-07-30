@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://hodhtth124ti"]
+[gd_scene format=3 uid="uid://hodhtth124ti"]
 
 [ext_resource type="FontFile" uid="uid://djl80i723aa6r" path="res://assets/fonts/Street Year.ttf" id="1_abjgy"]
 [ext_resource type="Script" uid="uid://breasfiifwal5" path="res://end_screen.gd" id="1_xu7hh"]
@@ -31,12 +31,12 @@ PanelContainer/styles/panel = SubResource("StyleBoxFlat_o7i0r")
 
 [sub_resource type="Theme" id="Theme_kaxt3"]
 
-[node name="EndScreen" type="Node2D"]
+[node name="EndScreen" type="Node2D" unique_id=1779097004]
 script = ExtResource("1_xu7hh")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1709701099]
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=663142141]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -44,7 +44,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="MainMenu" type="MarginContainer" parent="CanvasLayer"]
+[node name="MainMenu" type="MarginContainer" parent="CanvasLayer" unique_id=9520354]
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -53,13 +53,13 @@ offset_right = 507.0
 grow_vertical = 0
 theme = SubResource("Theme_pmjk2")
 
-[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/MainMenu"]
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/MainMenu" unique_id=954346799]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_d75mr")
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MainMenu/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MainMenu/PanelContainer" unique_id=824214602]
 layout_mode = 2
 theme = SubResource("Theme_be1gp")
 theme_override_constants/margin_left = 80
@@ -67,23 +67,23 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MainMenu/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MainMenu/PanelContainer/MarginContainer" unique_id=812760599]
 layout_mode = 2
 theme = SubResource("Theme_kaxt3")
 
-[node name="TitleScreenButton" type="Button" parent="CanvasLayer/MainMenu/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="TitleScreenButton" type="Button" parent="CanvasLayer/MainMenu/PanelContainer/MarginContainer/VBoxContainer" unique_id=192082968]
 layout_mode = 2
 theme_override_font_sizes/font_size = 36
 text = "Play Again"
 alignment = 0
 
-[node name="TitleScreenRelaxModeButton" type="Button" parent="CanvasLayer/MainMenu/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="TitleScreenRelaxModeButton" type="Button" parent="CanvasLayer/MainMenu/PanelContainer/MarginContainer/VBoxContainer" unique_id=870713305]
 layout_mode = 2
 theme_override_font_sizes/font_size = 36
 text = "Just the rubbing"
 alignment = 0
 
-[node name="Label" type="Label" parent="CanvasLayer/MainMenu/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="CanvasLayer/MainMenu/PanelContainer/MarginContainer/VBoxContainer" unique_id=2115921114]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "
