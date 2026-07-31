@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dgfwyp5ukqq1u"]
+[gd_scene format=3 uid="uid://dgfwyp5ukqq1u"]
 
 [ext_resource type="PackedScene" uid="uid://dmydmpg5baofc" path="res://scenes/player.tscn" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://cjjqyuw42wanm" path="res://scenes/main.gd" id="1_tbgi4"]
@@ -8,23 +8,23 @@
 [ext_resource type="PackedScene" uid="uid://cfmycqvr2ry5l" path="res://scenes/finale_handler.tscn" id="6_tefeu"]
 [ext_resource type="PackedScene" uid="uid://b8rgo3tuypboy" path="res://scenes/touch_buttons.tscn" id="7_o6xl0"]
 
-[node name="Main" type="Node2D" groups=["level"]]
+[node name="Main" type="Node2D" unique_id=926898917 groups=["level"]]
 script = ExtResource("1_tbgi4")
 
-[node name="Level" parent="." instance=ExtResource("2_0wfyh")]
+[node name="Level" parent="." unique_id=1743078555 instance=ExtResource("2_0wfyh")]
 position = Vector2(0, -1)
 
-[node name="Boss" parent="." instance=ExtResource("2_o8jyo")]
+[node name="Boss" parent="." unique_id=1913140459 instance=ExtResource("2_o8jyo")]
 position = Vector2(-300, 512)
 
-[node name="Cart" parent="." instance=ExtResource("2_jyhfs")]
+[node name="Cart" parent="." unique_id=1410331291 instance=ExtResource("2_jyhfs")]
 position = Vector2(700, 641)
 scale = Vector2(0.8, 0.8)
 
-[node name="FinaleHandler" parent="." instance=ExtResource("6_tefeu")]
+[node name="FinaleHandler" parent="." unique_id=1605580222 instance=ExtResource("6_tefeu")]
 
-[node name="Player" parent="." instance=ExtResource("1_o5qli")]
+[node name="Player" parent="." unique_id=1363149758 instance=ExtResource("1_o5qli")]
 position = Vector2(700, 530)
 scale = Vector2(0.8, 0.8)
 
-[node name="TouchButtons" parent="." instance=ExtResource("7_o6xl0")]
+[node name="TouchButtons" parent="." unique_id=685108602 instance=ExtResource("7_o6xl0")]

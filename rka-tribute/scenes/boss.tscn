@@ -1,8 +1,9 @@
-[gd_scene load_steps=43 format=3 uid="uid://by4gln0b1msvl"]
+[gd_scene format=3 uid="uid://by4gln0b1msvl"]
 
 [ext_resource type="Script" uid="uid://cqhq85a6q0xi7" path="res://scenes/boss.gd" id="1_mjk3t"]
 [ext_resource type="PackedScene" uid="uid://dq03gh0iixoi" path="res://scenes/hit_flash_component.tscn" id="3_vikoi"]
 [ext_resource type="PackedScene" uid="uid://drp84e0ipv3tv" path="res://scenes/boss_orb_attack_manager.tscn" id="6_wqpjq"]
+[ext_resource type="Material" uid="uid://naygwirw7ktc" path="res://resources/particles/orb_particle_emitter.tres" id="7_0dd2w"]
 [ext_resource type="Texture2D" uid="uid://c74kpwvcuo4ix" path="res://assets/train/big_truck_sprite.png" id="7_7apjh"]
 [ext_resource type="Texture2D" uid="uid://deytrmj4hn285" path="res://assets/bear_sittting_up_sprite.png" id="7_325t2"]
 [ext_resource type="Texture2D" uid="uid://bjnxbskdpj55d" path="res://assets/train/cover.png" id="7_nk50o"]
@@ -17,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://c5jj85jy7hux5" path="res://assets/misc/orb4.png" id="12_bagrn"]
 [ext_resource type="Texture2D" uid="uid://cj30vu7kftwqp" path="res://assets/misc/orb3.png" id="12_p3gxo"]
 [ext_resource type="PackedScene" uid="uid://bsbid14hefl7o" path="res://scenes/orb_cannon.tscn" id="13_vn2fc"]
+[ext_resource type="Material" uid="uid://cr50upu5tipb3" path="res://resources/particles/explosion_particle_emitter.tres" id="14_tj5kv"]
 [ext_resource type="AudioStream" uid="uid://bvc4tspka214b" path="res://assets/sounds/explosion.mp3" id="15_4dlq0"]
 [ext_resource type="AudioStream" uid="uid://bubyft8b6yi72" path="res://assets/sounds/enemy_hit.mp3" id="15_gqd3i"]
 [ext_resource type="Script" uid="uid://cmsy4tuuwjim7" path="res://scenes/explosion_stream_player.gd" id="16_25au8"]
@@ -24,19 +26,6 @@
 [ext_resource type="AudioStream" uid="uid://cmv25kuxxmyhy" path="res://assets/sounds/car_driving_by.mp3" id="17_ho3mf"]
 [ext_resource type="AudioStream" uid="uid://htswuuvh7mou" path="res://assets/sounds/horn.mp3" id="18_7apjh"]
 [ext_resource type="AudioStream" uid="uid://ci26yshy430ct" path="res://assets/sounds/orb_attack.mp3" id="19_qh5fr"]
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wqpjq"]
-particle_flag_disable_z = true
-particle_flag_damping_as_friction = true
-direction = Vector3(150, -150, 0)
-initial_velocity_min = 230.29999
-initial_velocity_max = 318.18
-angular_velocity_min = -1.6093254e-05
-angular_velocity_max = -1.6093254e-05
-damping_min = 0.4
-damping_max = 0.5
-scale_min = 0.29999998
-scale_max = 0.59999996
 
 [sub_resource type="Animation" id="Animation_wqpjq"]
 length = 0.001
@@ -90,20 +79,6 @@ size = Vector2(383, 156)
 shader = ExtResource("11_bagrn")
 shader_parameter/edge_softness = 0.02
 shader_parameter/white_transition_end = 1.0
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mautr"]
-particle_flag_disable_z = true
-emission_shape_offset = Vector3(50, 0, 0)
-emission_shape_scale = Vector3(380, 100, 0)
-emission_shape = 3
-emission_box_extents = Vector3(1, 1, 1)
-direction = Vector3(0, 0, 0)
-spread = 0.0
-initial_velocity_min = 100.0
-initial_velocity_max = 100.0
-gravity = Vector3(200, 0, 0)
-linear_accel_min = 89.06
-linear_accel_max = 89.06
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qnbj4"]
 size = Vector2(598, 210)
@@ -373,23 +348,23 @@ _data = {
 &"tear_off": SubResource("Animation_p3gxo")
 }
 
-[node name="Boss" type="CharacterBody2D" groups=["boss"]]
+[node name="Boss" type="CharacterBody2D" unique_id=980738936 groups=["boss"]]
 collision_layer = 1024
 collision_mask = 4
 script = ExtResource("1_mjk3t")
 
-[node name="HitFlashComponent" parent="." instance=ExtResource("3_vikoi")]
+[node name="HitFlashComponent" parent="." unique_id=1742237983 instance=ExtResource("3_vikoi")]
 
-[node name="HealthComponent" parent="." instance=ExtResource("10_5f346")]
+[node name="HealthComponent" parent="." unique_id=1265118705 instance=ExtResource("10_5f346")]
 
-[node name="BossOrbAttackManager" parent="." instance=ExtResource("6_wqpjq")]
+[node name="BossOrbAttackManager" parent="." unique_id=1490626202 instance=ExtResource("6_wqpjq")]
 
-[node name="OrbSpawner" type="Marker2D" parent="." groups=["orbspawner"]]
+[node name="OrbSpawner" type="Marker2D" parent="." unique_id=231115791 groups=["orbspawner"]]
 position = Vector2(15, -164)
 
-[node name="OrbCannon" parent="OrbSpawner" instance=ExtResource("13_vn2fc")]
+[node name="OrbCannon" parent="OrbSpawner" unique_id=1172720468 instance=ExtResource("13_vn2fc")]
 
-[node name="CannonParticles" type="GPUParticles2D" parent="OrbSpawner"]
+[node name="CannonParticles" type="GPUParticles2D" parent="OrbSpawner" unique_id=2092312861]
 modulate = Color(1, 1, 1, 0.7058824)
 position = Vector2(26, -25)
 emitting = false
@@ -398,80 +373,76 @@ texture = ExtResource("12_bagrn")
 lifetime = 0.8
 one_shot = true
 explosiveness = 0.85
-process_material = SubResource("ParticleProcessMaterial_wqpjq")
+process_material = ExtResource("7_0dd2w")
 
-[node name="BearSittingUp" type="Sprite2D" parent="."]
+[node name="BearSittingUp" type="Sprite2D" parent="." unique_id=1612900558]
 position = Vector2(8, -111)
 scale = Vector2(0.65, 0.65)
 texture = ExtResource("7_325t2")
 hframes = 7
 
-[node name="CoverSprite" type="Sprite2D" parent="."]
+[node name="CoverSprite" type="Sprite2D" parent="." unique_id=670443837]
 position = Vector2(-227, -85)
 texture = ExtResource("7_nk50o")
 hframes = 3
 
-[node name="CoverTearOffSprite" type="Sprite2D" parent="."]
+[node name="CoverTearOffSprite" type="Sprite2D" parent="." unique_id=564606104]
 position = Vector2(-772, -215)
 texture = ExtResource("7_nk50o")
 hframes = 3
 frame = 2
 
-[node name="TrainBodySprite" type="Sprite2D" parent="."]
+[node name="TrainBodySprite" type="Sprite2D" parent="." unique_id=1781821785]
 unique_name_in_owner = true
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("7_7apjh")
 hframes = 3
 
-[node name="WheelSprite" type="Sprite2D" parent="."]
+[node name="WheelSprite" type="Sprite2D" parent="." unique_id=57764088]
 position = Vector2(-262, 92)
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("8_7apjh")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="WheelSprite"]
-libraries = {
-&"": SubResource("AnimationLibrary_2cdgk")
-}
-autoplay = "rotate"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="WheelSprite" unique_id=335952809]
+libraries/ = SubResource("AnimationLibrary_2cdgk")
+autoplay = &"rotate"
 
-[node name="WheelSprite3" type="Sprite2D" parent="."]
+[node name="WheelSprite3" type="Sprite2D" parent="." unique_id=1732038168]
 position = Vector2(295, 92)
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("8_7apjh")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="WheelSprite3"]
-libraries = {
-&"": SubResource("AnimationLibrary_2cdgk")
-}
-autoplay = "rotate"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="WheelSprite3" unique_id=610772341]
+libraries/ = SubResource("AnimationLibrary_2cdgk")
+autoplay = &"rotate"
 
-[node name="WallBounceHitbox" type="Area2D" parent="."]
+[node name="WallBounceHitbox" type="Area2D" parent="." unique_id=31648793]
 collision_layer = 0
 collision_mask = 512
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WallBounceHitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallBounceHitbox" unique_id=513818820]
 shape = SubResource("CircleShape2D_5f346")
 debug_color = Color(0.96737736, 0, 0.47053635, 0.41960785)
 
-[node name="BossHurtbox" type="Area2D" parent="."]
+[node name="BossHurtbox" type="Area2D" parent="." unique_id=1310649308]
 collision_layer = 2
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BossHurtbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BossHurtbox" unique_id=1897780036]
 visible = false
 shape = SubResource("RectangleShape2D_j2wj7")
 debug_color = Color(0.28854468, 0.61420846, 0.4124651, 0.41960785)
 
-[node name="BossBodyHitbox" type="Area2D" parent="."]
+[node name="BossBodyHitbox" type="Area2D" parent="." unique_id=309811170]
 collision_layer = 8
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BossBodyHitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BossBodyHitbox" unique_id=1775916732]
 position = Vector2(-13.5, 15)
 shape = SubResource("RectangleShape2D_0onds")
 debug_color = Color(0, 0.6323409, 0.4559675, 0.41960785)
 
-[node name="DefeatExplosionParticle" type="GPUParticles2D" parent="."]
+[node name="DefeatExplosionParticle" type="GPUParticles2D" parent="." unique_id=2058926180]
 material = SubResource("ShaderMaterial_qh5fr")
 position = Vector2(-25, 25)
 emitting = false
@@ -479,13 +450,13 @@ texture = ExtResource("12_p3gxo")
 lifetime = 0.8
 collision_base_size = 0.0
 local_coords = true
-process_material = SubResource("ParticleProcessMaterial_mautr")
+process_material = ExtResource("14_tj5kv")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=4042110]
 position = Vector2(-7, 44)
 shape = SubResource("RectangleShape2D_qnbj4")
 
-[node name="StateLabel" type="Label" parent="."]
+[node name="StateLabel" type="Label" parent="." unique_id=1742994712]
 offset_left = 181.0
 offset_top = -120.0
 offset_right = 253.0
@@ -496,7 +467,7 @@ theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 32
 text = "TEST"
 
-[node name="SpeedLabel" type="Label" parent="."]
+[node name="SpeedLabel" type="Label" parent="." unique_id=192386567]
 offset_left = 185.0
 offset_top = -66.0
 offset_right = 225.0
@@ -505,75 +476,71 @@ theme_override_colors/font_color = Color(0.05965583, 0.018360887, 0.012641113, 1
 theme_override_font_sizes/font_size = 24
 text = "spd"
 
-[node name="CoverAnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_bagrn")
-}
-autoplay = "regular"
+[node name="CoverAnimationPlayer" type="AnimationPlayer" parent="." unique_id=707521835]
+libraries/ = SubResource("AnimationLibrary_bagrn")
+autoplay = &"regular"
 
-[node name="CoverTearOffAnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_tj5kv")
-}
-autoplay = "invisible"
+[node name="CoverTearOffAnimationPlayer" type="AnimationPlayer" parent="." unique_id=169150314]
+libraries/ = SubResource("AnimationLibrary_tj5kv")
+autoplay = &"invisible"
 
-[node name="StateMachine" parent="." node_paths=PackedStringArray("starting_state") instance=ExtResource("8_2avx2")]
+[node name="StateMachine" parent="." unique_id=1103122563 node_paths=PackedStringArray("starting_state") instance=ExtResource("8_2avx2")]
 starting_state = NodePath("Incoming")
 
-[node name="Phase1" type="Node" parent="StateMachine"]
+[node name="Phase1" type="Node" parent="StateMachine" unique_id=1723185465]
 script = ExtResource("9_2avx2")
 metadata/_custom_type_script = "uid://dn5lg0ejp6p73"
 
-[node name="Phase2" type="Node" parent="StateMachine"]
+[node name="Phase2" type="Node" parent="StateMachine" unique_id=2040828054]
 script = ExtResource("9_0onds")
 metadata/_custom_type_script = "uid://dn5lg0ejp6p73"
 
-[node name="Incoming" type="Node" parent="StateMachine"]
+[node name="Incoming" type="Node" parent="StateMachine" unique_id=890898628]
 script = ExtResource("10_lfs1x")
 metadata/_custom_type_script = "uid://dn5lg0ejp6p73"
 
-[node name="Defeated" type="Node" parent="StateMachine"]
+[node name="Defeated" type="Node" parent="StateMachine" unique_id=1066435156]
 script = ExtResource("11_8eiau")
 metadata/_custom_type_script = "uid://dn5lg0ejp6p73"
 
-[node name="StunTimer" type="Timer" parent="."]
+[node name="StunTimer" type="Timer" parent="." unique_id=312037829]
 wait_time = 0.2
 one_shot = true
 
-[node name="SecondClawSpawnTimer" type="Timer" parent="."]
+[node name="SecondClawSpawnTimer" type="Timer" parent="." unique_id=1422092168]
 one_shot = true
 
-[node name="PhaseTransitionTimer" type="Timer" parent="."]
+[node name="PhaseTransitionTimer" type="Timer" parent="." unique_id=931342691]
 wait_time = 1.5
 one_shot = true
 
-[node name="ExplosionStreamPlayer" type="AudioStreamPlayer2D" parent="."]
+[node name="ExplosionStreamPlayer" type="AudioStreamPlayer2D" parent="." unique_id=315620784]
 stream = ExtResource("15_4dlq0")
 volume_db = -10.0
 bus = &"SFX"
 script = ExtResource("16_25au8")
 
-[node name="HitStreamPlayer" type="AudioStreamPlayer2D" parent="."]
+[node name="HitStreamPlayer" type="AudioStreamPlayer2D" parent="." unique_id=136441942]
 stream = ExtResource("15_gqd3i")
 volume_db = 6.0
 bus = &"SFX"
 
-[node name="SoundPlayer" type="AudioStreamPlayer2D" parent="."]
+[node name="SoundPlayer" type="AudioStreamPlayer2D" parent="." unique_id=1532874242]
 volume_db = 6.0
 bus = &"SFX"
 script = ExtResource("16_mautr")
 SoundArray = Array[AudioStream]([ExtResource("17_ho3mf"), ExtResource("18_7apjh")])
 
-[node name="DrivebySoundPlayer" type="AudioStreamPlayer2D" parent="."]
+[node name="DrivebySoundPlayer" type="AudioStreamPlayer2D" parent="." unique_id=560084485]
 stream = ExtResource("17_ho3mf")
 volume_db = 16.0
 bus = &"SFX"
 
-[node name="HornSoundPlayer" type="AudioStreamPlayer2D" parent="."]
+[node name="HornSoundPlayer" type="AudioStreamPlayer2D" parent="." unique_id=1183233745]
 stream = ExtResource("18_7apjh")
 bus = &"SFX"
 
-[node name="OrbAttackPlayer" type="AudioStreamPlayer2D" parent="."]
+[node name="OrbAttackPlayer" type="AudioStreamPlayer2D" parent="." unique_id=1493414030]
 stream = ExtResource("19_qh5fr")
 bus = &"SFX"
 

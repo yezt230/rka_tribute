@@ -1,0 +1,14 @@
+[gd_resource type="ParticleProcessMaterial" format=3 uid="uid://naygwirw7ktc"]
+
+[resource]
+particle_flag_disable_z = true
+particle_flag_damping_as_friction = true
+direction = Vector3(150, -150, 0)
+initial_velocity_min = 230.29999
+initial_velocity_max = 318.18
+angular_velocity_min = -1.6093254e-05
+angular_velocity_max = -1.6093254e-05
+damping_min = 0.4
+damping_max = 0.5
+scale_min = 0.29999998
+scale_max = 0.59999996
