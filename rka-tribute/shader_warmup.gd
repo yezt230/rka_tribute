@@ -1,12 +1,15 @@
 extends Node2D
 
 @onready var cave_transition_shader_sprite = $CaveTransitionShaderSprite
-@onready var gpu_particles_2d : GPUParticles2D = $ExplosionEmitter/GPUParticles2D
-@onready var gpu_particles_2d_2 : GPUParticles2D = $CannonParticles/GPUParticles2D
+@onready var defeat_explosion_particle = $ExplosionEmitter/DefeatExplosionParticle
+@onready var cannon_particles = $CannonParticles/CannonParticles
+
 
 func _ready():
-	gpu_particles_2d.preprocess = 1.0
-	gpu_particles_2d_2.preprocess = 1.0
+	defeat_explosion_particle.emitting = true
+	cannon_particles.emitting = true
+	#defeat_explosion_particle.preprocess = 1.0
+	#cannon_particles.preprocess = 1.0
 #	cave shader
 	var shader_material := cave_transition_shader_sprite.material as ShaderMaterial
 

@@ -1,19 +1,11 @@
 [gd_scene format=3 uid="uid://dcs7jvjwx8dw6"]
 
-[ext_resource type="Shader" uid="uid://dat88gtnmq4pp" path="res://assets/misc/boss_smoke_fade2.gdshader" id="1_66gso"]
-[ext_resource type="Texture2D" uid="uid://cj30vu7kftwqp" path="res://assets/misc/orb3.png" id="1_jll63"]
 [ext_resource type="Script" uid="uid://c6cdnqvyfsm8r" path="res://shader_warmup.gd" id="1_lhj71"]
+[ext_resource type="PackedScene" uid="uid://dqq20rrjx5wuc" path="res://scenes/boss_defeat_explosion_particle.tscn" id="2_lhj71"]
 [ext_resource type="Shader" uid="uid://dkdv0cvac2ld7" path="res://assets/quarry2.gdshader" id="3_t4q6g"]
-[ext_resource type="Material" uid="uid://cr50upu5tipb3" path="res://resources/particles/explosion_particle_emitter.tres" id="4_y1xri"]
 [ext_resource type="Texture2D" uid="uid://cnrfjnyatkh2u" path="res://assets/misc/orb2.png" id="4_yqkcs"]
 [ext_resource type="PackedScene" uid="uid://fexmkvqwqj6c" path="res://scenes/track_from_single.tscn" id="5_yqkcs"]
-[ext_resource type="Texture2D" uid="uid://c5jj85jy7hux5" path="res://assets/misc/orb4.png" id="7_cmkby"]
-[ext_resource type="Material" uid="uid://naygwirw7ktc" path="res://resources/particles/orb_particle_emitter.tres" id="9_yoo8h"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_spket"]
-shader = ExtResource("1_66gso")
-shader_parameter/edge_softness = 0.02
-shader_parameter/white_transition_end = 1.0
+[ext_resource type="PackedScene" uid="uid://cu1sono65t5hk" path="res://scenes/boss_orb_cannon_particles.tscn" id="6_cmkby"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lhj71"]
 shader = ExtResource("3_t4q6g")
@@ -28,10 +20,7 @@ script = ExtResource("1_lhj71")
 
 [node name="ExplosionEmitter" type="Node2D" parent="." unique_id=398658310]
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="ExplosionEmitter" unique_id=1743611308]
-material = SubResource("ShaderMaterial_spket")
-texture = ExtResource("1_jll63")
-process_material = ExtResource("4_y1xri")
+[node name="DefeatExplosionParticle" parent="ExplosionEmitter" unique_id=617561719 instance=ExtResource("2_lhj71")]
 
 [node name="CaveTransitionShaderSprite" type="Sprite2D" parent="." unique_id=1471010468]
 material = SubResource("ShaderMaterial_lhj71")
@@ -44,17 +33,10 @@ position = Vector2(698, 459)
 [node name="CannonParticles" type="Marker2D" parent="." unique_id=2104772429]
 position = Vector2(300, 300)
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="CannonParticles" unique_id=909968833]
-modulate = Color(1, 1, 1, 0.7058824)
-position = Vector2(26, -25)
-amount = 6
-texture = ExtResource("7_cmkby")
-lifetime = 0.8
-explosiveness = 0.85
-process_material = ExtResource("9_yoo8h")
+[node name="CannonParticles" parent="CannonParticles" unique_id=734739368 instance=ExtResource("6_cmkby")]
 
 [node name="ChangeToStartScreenTimer" type="Timer" parent="." unique_id=1927024285]
-wait_time = 2.0
+wait_time = 3.0
 one_shot = true
 autostart = true
 

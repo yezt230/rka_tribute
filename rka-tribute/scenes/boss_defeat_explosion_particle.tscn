@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://dqq20rrjx5wuc"]
+
+[ext_resource type="Shader" uid="uid://dat88gtnmq4pp" path="res://assets/misc/boss_smoke_fade2.gdshader" id="1_0hx3b"]
+[ext_resource type="Texture2D" uid="uid://cj30vu7kftwqp" path="res://assets/misc/orb3.png" id="2_be55p"]
+[ext_resource type="Material" uid="uid://cr50upu5tipb3" path="res://resources/particles/explosion_particle_emitter.tres" id="3_t3eqr"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qh5fr"]
+shader = ExtResource("1_0hx3b")
+shader_parameter/edge_softness = 0.02
+shader_parameter/white_transition_end = 1.0
+
+[node name="DefeatExplosionParticle" type="GPUParticles2D" unique_id=617561719]
+material = SubResource("ShaderMaterial_qh5fr")
+emitting = false
+texture = ExtResource("2_be55p")
+lifetime = 0.8
+collision_base_size = 0.0
+local_coords = true
+process_material = ExtResource("3_t3eqr")

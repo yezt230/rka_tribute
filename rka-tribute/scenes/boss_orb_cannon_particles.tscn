@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://cu1sono65t5hk"]
+
+[ext_resource type="Texture2D" uid="uid://c5jj85jy7hux5" path="res://assets/misc/orb4.png" id="1_qdfox"]
+[ext_resource type="Material" uid="uid://naygwirw7ktc" path="res://resources/particles/orb_particle_emitter.tres" id="2_quvn3"]
+
+[node name="CannonParticles" type="GPUParticles2D" unique_id=734739368]
+modulate = Color(1, 1, 1, 0.7058824)
+emitting = false
+amount = 6
+texture = ExtResource("1_qdfox")
+lifetime = 0.8
+one_shot = true
+explosiveness = 0.85
+process_material = ExtResource("2_quvn3")
