@@ -31,4 +31,5 @@ func on_timer_timeout():
 		print("Spawn point global position: ", orb_spawn_point.global_position)
 		
 		orb_instance.global_position = orb_spawn_point.global_position
-		cannon_particles.restart()
+		if not OS.has_feature("web"):
+			cannon_particles.restart()

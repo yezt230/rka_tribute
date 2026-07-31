@@ -8,7 +8,9 @@ extends State
 @onready var boss_orb_attack_manager = $"../../BossOrbAttackManager"
 
 func enter():
-	defeat_explosion_particle.emitting = true
+	#TODO: replacement web explosion FX
+	if not OS.has_feature("web"):
+		defeat_explosion_particle.emitting = true
 	if boss_orb_attack_manager:
 		boss_orb_attack_manager.attack_timer.stop()
 	parent.phase += 1
