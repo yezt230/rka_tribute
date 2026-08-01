@@ -462,6 +462,8 @@ autoplay = &"regular"
 libraries/ = SubResource("AnimationLibrary_tj5kv")
 autoplay = &"invisible"
 
+[node name="BossDefeatFlashAnimationPlayer" type="AnimationPlayer" parent="." unique_id=344628863]
+
 [node name="StateMachine" parent="." unique_id=1103122563 node_paths=PackedStringArray("starting_state") instance=ExtResource("8_2avx2")]
 starting_state = NodePath("Incoming")
 
@@ -524,8 +526,8 @@ bus = &"SFX"
 
 [connection signal="body_entered" from="WallBounceHitbox" to="." method="_on_wall_bounce_hitbox_body_entered"]
 [connection signal="area_entered" from="BossHurtbox" to="." method="_on_area_2d_area_entered"]
-[connection signal="body_entered" from="BossHurtbox" to="HitFlashComponent" method="_on_boss_hurtbox_body_entered"]
 [connection signal="body_entered" from="BossHurtbox" to="HitFlashComponent" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="BossHurtbox" to="HitFlashComponent" method="_on_boss_hurtbox_body_entered"]
 [connection signal="body_entered" from="BossHurtbox" to="HealthComponent" method="_on_boss_hurtbox_body_entered"]
 [connection signal="timeout" from="StunTimer" to="StateMachine/Phase1" method="_on_stun_timer_timeout"]
 [connection signal="timeout" from="SecondClawSpawnTimer" to="StateMachine/Incoming" method="_on_second_claw_spawn_timer_timeout"]
