@@ -11,13 +11,14 @@ extends State
 var defeat_flash_tween: Tween
 
 func enter():
-	#TODO: replacement web explosion FX
+	# shows either the explosions particles (executable)
+#	or repeated red flash (web release)
 	if OS.has_feature("web"):
 		start_defeat_flash()
 	else:
 		defeat_explosion_particle.emitting = true
 		#TODO: remove from prod release
-		start_defeat_flash()
+		#start_defeat_flash()
 		
 	if boss_orb_attack_manager:
 		boss_orb_attack_manager.attack_timer.stop()
