@@ -27,7 +27,7 @@ func enter():
 		#truck is damaged in phase 2
 		parent.truck_body_sprite.frame = 1
 		#parent.global_position = Vector2(-850, 156)
-		health_component.health = health_component.starting_health
+		health_component.health = health_component.phase_2_health
 		if parent.get_node("BossOrbAttackManager"):
 			parent.get_node("BossOrbAttackManager").queue_free()
 		if parent.get_node("OrbSpawner"):

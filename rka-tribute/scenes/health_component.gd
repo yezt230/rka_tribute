@@ -5,6 +5,7 @@ signal zero_health
 @onready var boss = $".."
 
 var starting_health =  50 if OS.is_debug_build() else 50
+var phase_2_health =  50 if OS.is_debug_build() else 50
 var health = starting_health
 var damage_amount = 10
 
