@@ -4,6 +4,11 @@ extends Node2D
 @onready var post_iris_in_timer = $PostIrisInTimer
 @onready var gulp_stream_player = $GulpStreamPlayer
 
+func _ready():
+	#iris_in_animation()
+	pass
+
+
 func _on_iris_in_timer_timeout():
 	iris_in_animation()
 	

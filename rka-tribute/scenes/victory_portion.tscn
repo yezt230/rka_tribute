@@ -199,7 +199,7 @@ _data = {
 shader = ExtResource("3_gx0y0")
 shader_parameter/cover_color = Color(0.35, 0.05, 0.55, 1)
 shader_parameter/progress = 0.0
-shader_parameter/corner_offset_pixels = Vector2(200, 200)
+shader_parameter/corner_offset_pixels = Vector2(250, 180)
 shader_parameter/edge_softness_pixels = 2.0
 
 [node name="VictoryPortion" type="Node2D" unique_id=1373859365]
@@ -270,6 +270,7 @@ one_shot = true
 stream = ExtResource("5_0x67r")
 volume_db = 3.0
 pitch_scale = 0.9
+bus = &"SFX"
 
 [connection signal="timeout" from="IrisInTimer" to="." method="_on_iris_in_timer_timeout"]
 [connection signal="timeout" from="PostIrisInTimer" to="." method="_on_post_iris_in_timer_timeout"]

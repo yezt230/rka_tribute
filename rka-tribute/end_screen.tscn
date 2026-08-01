@@ -2,6 +2,7 @@
 
 [ext_resource type="FontFile" uid="uid://djl80i723aa6r" path="res://assets/fonts/Street Year.ttf" id="1_abjgy"]
 [ext_resource type="Script" uid="uid://breasfiifwal5" path="res://end_screen.gd" id="1_xu7hh"]
+[ext_resource type="AudioStream" uid="uid://jd3fqi58mv7i" path="res://assets/sounds/children_cheering.mp3" id="3_xu7hh"]
 
 [sub_resource type="Theme" id="Theme_pmjk2"]
 
@@ -100,6 +101,11 @@ victory theme
    super mario world - course clear
 made in godot 4
 "
+
+[node name="CheerAudioStreamPlayer" type="AudioStreamPlayer2D" parent="." unique_id=377502794]
+stream = ExtResource("3_xu7hh")
+autoplay = true
+bus = &"SFX"
 
 [connection signal="pressed" from="CanvasLayer/MainMenu/PanelContainer/MarginContainer/VBoxContainer/TitleScreenButton" to="." method="_on_title_screen_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/MainMenu/PanelContainer/MarginContainer/VBoxContainer/TitleScreenRelaxModeButton" to="." method="_on_title_screen_relax_mode_button_pressed"]
