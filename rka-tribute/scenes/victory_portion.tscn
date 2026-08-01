@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://wfqdjswvy71l" path="res://scenes/victory_portion.gd" id="1_m6r7c"]
 [ext_resource type="Shader" uid="uid://cbsfvelqo0opx" path="res://scenes/victory_iris_in.gdshader" id="3_gx0y0"]
 [ext_resource type="Texture2D" uid="uid://1f4ehni2qta3" path="res://assets/bear_gulp_animation_sprite.png" id="3_m6r7c"]
+[ext_resource type="AudioStream" uid="uid://dabd4o5262aj4" path="res://assets/sounds/gulp.mp3" id="5_0x67r"]
 
 [sub_resource type="Animation" id="Animation_e0l64"]
 length = 0.001
@@ -58,8 +59,8 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_7kn5y"]
 resource_name = "victory_animation"
-length = 4.0
-step = 0.2
+length = 4.2
+step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -67,7 +68,7 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1, 1.2, 1.4, 1.6, 1.8, 2, 2.2, 2.4, 2.6, 3, 3.4),
+"times": PackedFloat32Array(0, 1.0999999, 1.3, 1.4999999, 1.6999999, 1.8999999, 2.1, 2.3, 2.5, 2.6999998, 3.1, 3.5),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [2, 7, 6, 5, 4, 7, 6, 5, 4, 11, 10, 9]
@@ -79,7 +80,7 @@ tracks/1/path = NodePath("Sprite2D:position:x")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(1, 1.8, 2.6, 3.8),
+"times": PackedFloat32Array(1.0999999, 1.8999999, 2.6999998, 3.8999999),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [700.0, 700.0, 950.0, 1150.0]
@@ -91,7 +92,7 @@ tracks/2/path = NodePath("Sprite2D:position:y")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(2.6, 3.1999998, 3.7999997),
+"times": PackedFloat32Array(2.6999998, 3.2999997, 3.8999996),
 "transitions": PackedFloat32Array(0.43527484, 3.2490044, 1),
 "update": 0,
 "values": [399.0, 120.0, 399.0]
@@ -103,7 +104,7 @@ tracks/3/path = NodePath(".:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 4),
+"times": PackedFloat32Array(0, 3.8999999),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
@@ -168,7 +169,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 3, 3.1999998, 3.875, 4, 4.125, 4.25, 4.375, 4.5, 4.625, 4.75, 4.875, 5, 5.125),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 3, 4, 5, 7, 6, 8, 9, 14, 10, 11, 12]
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 13, 14]
 }
 tracks/2/type = "method"
 tracks/2/imported = false
@@ -177,9 +178,12 @@ tracks/2/path = NodePath("..")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(6),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(4.5, 6),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
+"args": [],
+"method": &"play_gulp_sfx"
+}, {
 "args": [],
 "method": &"transition_to_end_screen"
 }]
@@ -216,6 +220,7 @@ color = Color(0, 0, 0, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="Player" unique_id=998573751]
 position = Vector2(1019.0668, 399)
+scale = Vector2(0.9, 0.9)
 texture = ExtResource("1_7kn5y")
 hframes = 4
 vframes = 8
@@ -260,6 +265,11 @@ autostart = true
 [node name="PostIrisInTimer" type="Timer" parent="." unique_id=1531794437]
 wait_time = 1.5
 one_shot = true
+
+[node name="GulpStreamPlayer" type="AudioStreamPlayer2D" parent="." unique_id=235228005]
+stream = ExtResource("5_0x67r")
+volume_db = 3.0
+pitch_scale = 0.9
 
 [connection signal="timeout" from="IrisInTimer" to="." method="_on_iris_in_timer_timeout"]
 [connection signal="timeout" from="PostIrisInTimer" to="." method="_on_post_iris_in_timer_timeout"]

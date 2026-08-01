@@ -2,6 +2,7 @@ extends Node2D
 
 @onready var iris_in = $CanvasLayer2/IrisIn
 @onready var post_iris_in_timer = $PostIrisInTimer
+@onready var gulp_stream_player = $GulpStreamPlayer
 
 func _on_iris_in_timer_timeout():
 	iris_in_animation()
@@ -27,6 +28,10 @@ func iris_in_animation():
 
 func transition_to_end_screen():
 	pass
+
+
+func play_gulp_sfx():
+	gulp_stream_player.play()
 
 
 func _on_post_iris_in_timer_timeout():
