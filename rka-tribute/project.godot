@@ -18,6 +18,8 @@ config/name="RKA Tribute"
 run/main_scene="uid://bj5siqabpep8e"
 config/features=PackedStringArray("4.7", "Forward Plus")
 run/max_fps=60
+boot_splash/bg_color=Color(1, 0.8745098, 0.101960786, 1)
+boot_splash/image="uid://dd0urav6hrsr6"
 config/icon="res://icon.svg"
 
 [autoload]
