@@ -87,14 +87,20 @@ func _on_wall_bounce_hitbox_body_entered(_body):
 
 func first_defeat_tween():
 	print('first defeat tween')
-	var tween = create_tween()
-	var duration = 5.0
-	tween.tween_property(self, "global_position:x", -300, duration)
+	var tween := create_tween()
+	var duration := 5.0
+
+	tween.tween_property(
+		self,
+		"global_position:x",
+		-600.0,
+		duration
+	).set_trans(Tween.TRANS_LINEAR)
 
 
 func final_defeat_tween():
 	var tween = create_tween()
-	var duration = 5.0
+	var duration = 3.0
 	tween.tween_property(self, "global_position:x", 400, duration) \
 	.set_trans(Tween.TRANS_LINEAR) \
 	.set_ease(Tween.EASE_IN_OUT)

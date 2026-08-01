@@ -574,6 +574,7 @@ polygon = PackedVector2Array(0, 0, 45, -17, 92, -28, 150, -30, 231, -24, 289, -1
 one_way_collision = true
 
 [node name="ShakeLabel" type="Label" parent="." unique_id=62650634]
+visible = false
 offset_left = 185.0
 offset_top = -225.0
 offset_right = 225.0
@@ -595,7 +596,7 @@ shape = SubResource("RectangleShape2D_ifw4b")
 debug_color = Color(0.6313726, 0.5254902, 0.2, 0.41960785)
 
 [node name="RubbingShakeIncTimer" type="Timer" parent="." unique_id=789308831]
-wait_time = 0.2
+wait_time = 1.5
 
 [node name="BearRemoveTimer" type="Timer" parent="." unique_id=43245288]
 wait_time = 0.3

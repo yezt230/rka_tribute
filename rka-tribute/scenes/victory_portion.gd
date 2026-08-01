@@ -5,13 +5,13 @@ extends Node2D
 @onready var gulp_stream_player = $GulpStreamPlayer
 
 func _ready():
+	var bus_index := AudioServer.get_bus_index("SFX")
+	AudioServer.set_bus_mute(bus_index, false)
 	#iris_in_animation()
-	pass
+	#pass
 
 
 func _on_iris_in_timer_timeout():
-	var bus_index := AudioServer.get_bus_index("SFX")
-	AudioServer.set_bus_mute(bus_index, false)
 	iris_in_animation()
 	
 	

@@ -268,7 +268,7 @@ one_shot = true
 
 [node name="GulpStreamPlayer" type="AudioStreamPlayer2D" parent="." unique_id=235228005]
 stream = ExtResource("5_0x67r")
-volume_db = 3.0
+volume_db = 6.0
 pitch_scale = 0.9
 bus = &"SFX"
 

@@ -68,7 +68,7 @@ one_shot = true
 one_shot = true
 
 [node name="MusicPlayTimer" type="Timer" parent="." unique_id=1994400454]
-wait_time = 0.8
+wait_time = 0.4
 one_shot = true
 
 [node name="MusicPlayer" parent="." unique_id=1174173901 instance=ExtResource("2_ch4s1")]

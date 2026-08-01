@@ -503,6 +503,7 @@ position = Vector2(-7, 44)
 shape = SubResource("RectangleShape2D_qnbj4")
 
 [node name="StateLabel" type="Label" parent="." unique_id=1742994712]
+visible = false
 offset_left = 181.0
 offset_top = -120.0
 offset_right = 253.0
@@ -514,6 +515,7 @@ theme_override_font_sizes/font_size = 32
 text = "TEST"
 
 [node name="SpeedLabel" type="Label" parent="." unique_id=192386567]
+visible = false
 offset_left = 185.0
 offset_top = -66.0
 offset_right = 225.0
@@ -557,7 +559,7 @@ one_shot = true
 one_shot = true
 
 [node name="PhaseTransitionTimer" type="Timer" parent="." unique_id=931342691]
-wait_time = 1.5
+wait_time = 5.0
 one_shot = true
 
 [node name="ExplosionStreamPlayer" type="AudioStreamPlayer2D" parent="." unique_id=315620784]
