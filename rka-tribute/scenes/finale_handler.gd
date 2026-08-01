@@ -6,6 +6,7 @@ extends Node2D
 @onready var player = $"../Player"
 @onready var player_cannot_move_timer = $PlayerCannotMoveTimer
 @onready var tween_to_center_timer = $TweenToCenterTimer
+@onready var music_play_timer = $MusicPlayTimer
 
 @onready var health_component = boss.get_node("HealthComponent")
 
@@ -35,8 +36,7 @@ func _on_tween_to_center_timer_timeout():
 	var tween = create_tween()
 	var center_screen_dimensions = [get_viewport_rect().size[0]/2, get_viewport_rect().size[1]/2]	
 	
-	MusicPlayer.volume_db = 6.0
-	MusicPlayer.play_victory_music()
+	music_play_timer.start()
 		
 	tween.tween_property(player, "global_position", Vector2(center_screen_dimensions[0], center_screen_dimensions[1]), duration) \
 	.set_trans(Tween.TRANS_SINE) \
@@ -48,3 +48,8 @@ func _on_tween_to_center_timer_timeout():
 	await tween2.finished
 
 	get_tree().change_scene_to_file("res://scenes/victory_portion.tscn")
+
+
+func _on_music_play_timer_timeout():
+	MusicPlayer.volume_db = 6.0
+	MusicPlayer.play_victory_music()

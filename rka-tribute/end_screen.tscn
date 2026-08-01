@@ -104,6 +104,7 @@ made in godot 4
 
 [node name="CheerAudioStreamPlayer" type="AudioStreamPlayer2D" parent="." unique_id=377502794]
 stream = ExtResource("3_xu7hh")
+volume_db = -2.0
 autoplay = true
 bus = &"SFX"
 

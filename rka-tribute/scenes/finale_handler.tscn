@@ -67,7 +67,12 @@ one_shot = true
 [node name="TweenToCenterTimer" type="Timer" parent="." unique_id=719763441]
 one_shot = true
 
+[node name="MusicPlayTimer" type="Timer" parent="." unique_id=1994400454]
+wait_time = 0.8
+one_shot = true
+
 [node name="MusicPlayer" parent="." unique_id=1174173901 instance=ExtResource("2_ch4s1")]
 
 [connection signal="timeout" from="PlayerCannotMoveTimer" to="." method="_on_player_cannot_move_timer_timeout"]
 [connection signal="timeout" from="TweenToCenterTimer" to="." method="_on_tween_to_center_timer_timeout"]
+[connection signal="timeout" from="MusicPlayTimer" to="." method="_on_music_play_timer_timeout"]

@@ -10,6 +10,8 @@ func _ready():
 
 
 func _on_iris_in_timer_timeout():
+	var bus_index := AudioServer.get_bus_index("SFX")
+	AudioServer.set_bus_mute(bus_index, false)
 	iris_in_animation()
 	
 	
