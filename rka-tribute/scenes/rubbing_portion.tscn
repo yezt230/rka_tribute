@@ -191,7 +191,7 @@ collision_layer = 261
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ground" unique_id=49650546]
-position = Vector2(924.5625, 626)
+position = Vector2(924.563, 640)
 shape = SubResource("RectangleShape2D_kawjh")
 
 [node name="StallTimer" type="Timer" parent="." unique_id=1311627319]

@@ -95,7 +95,7 @@ func first_defeat_tween():
 func final_defeat_tween():
 	var tween = create_tween()
 	var duration = 5.0
-	tween.tween_property(self, "global_position:x", 300, duration) \
+	tween.tween_property(self, "global_position:x", 400, duration) \
 	.set_trans(Tween.TRANS_LINEAR) \
 	.set_ease(Tween.EASE_IN_OUT)
 	
