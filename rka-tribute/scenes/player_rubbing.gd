@@ -197,7 +197,6 @@ func depress_belly_platform():
 
 	emit_signal("land_on_belly")
 	boing_stream_player.play()
-	print("bellied")
 	player_landed_on_belly_yet = true
 	belly_platform_currently_rising = true
 	

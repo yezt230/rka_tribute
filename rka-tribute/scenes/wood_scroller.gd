@@ -23,7 +23,6 @@ func _on_cave_darken_tween_timer_timeout():
 	
 	
 func darken_cave():
-	print("jump from signal")
 	var shader_material := woods_bg.material as ShaderMaterial
 
 	if shader_material == null:

@@ -43,7 +43,6 @@ func play_explosion_sound_loop():
 
 
 func _on_explosion_stream_player_finished():
-	print("play exp")
 	play_explosion_sound_loop()
 	
 	

@@ -28,7 +28,6 @@ var spawned_track_yet : bool = false
 
 func _ready():
 	cart.trigger_cart_cutscene.connect(self._on_trigger_cart_cutscene)	
-	print(rubbing_portion)
 	
 
 # --- NORMAL MOVEMENT ---

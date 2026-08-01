@@ -53,9 +53,9 @@ func _physics_process(delta: float) -> void:
 				final_defated = true
 				#also play back-tearing-off and bear escaping animation
 				final_defeat_tween()
-		else:
+		elif phase == 2:
 			print('first defeat')
-			dir = -1
+			first_defeat_tween()
 	elif current_state.name == "Incoming":
 		dir = 1
 		
@@ -85,10 +85,16 @@ func _on_wall_bounce_hitbox_body_entered(_body):
 	dir = -dir
 
 
-func final_defeat_tween():
-	print('this')
+func first_defeat_tween():
+	print('first defeat tween')
 	var tween = create_tween()
-	var duration = 5
+	var duration = 5.0
+	tween.tween_property(self, "global_position:x", -300, duration)
+
+
+func final_defeat_tween():
+	var tween = create_tween()
+	var duration = 5.0
 	tween.tween_property(self, "global_position:x", 300, duration) \
 	.set_trans(Tween.TRANS_LINEAR) \
 	.set_ease(Tween.EASE_IN_OUT)

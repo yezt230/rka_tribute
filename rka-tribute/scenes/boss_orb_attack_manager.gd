@@ -9,7 +9,6 @@ extends Node2D
 @onready var orb_cannon_animation_player = orb_cannon.get_node("AnimationPlayer")
 
 func _ready():
-	print(cannon_particles)
 	attack_timer.timeout.connect(on_timer_timeout)
 	if orb_cannon:
 		orb_cannon.position = Vector2(0, 0)
@@ -25,10 +24,6 @@ func on_timer_timeout():
 			orb_stream_attack_player.play()
 			orb_cannon_animation_player.play("fire")
 		foreground_layer.get_parent().add_child(orb_instance)
-		
-		print("Particles local position: ", cannon_particles.position)
-		print("Particles global position: ", cannon_particles.global_position)
-		print("Spawn point global position: ", orb_spawn_point.global_position)
 		
 		orb_instance.global_position = orb_spawn_point.global_position
 		if not OS.has_feature("web"):

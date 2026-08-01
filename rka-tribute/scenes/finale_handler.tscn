@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cfmycqvr2ry5l"]
+[gd_scene format=3 uid="uid://cfmycqvr2ry5l"]
 
 [ext_resource type="Script" uid="uid://dtlghplyny20r" path="res://scenes/finale_handler.gd" id="1_3xh25"]
 [ext_resource type="PackedScene" uid="uid://dtyda8vhui1f4" path="res://scenes/music_player.tscn" id="2_ch4s1"]
@@ -41,35 +41,33 @@ _data = {
 &"fade_to_black": SubResource("Animation_f8acm")
 }
 
-[node name="FinaleHandler" type="Node2D"]
+[node name="FinaleHandler" type="Node2D" unique_id=816665173]
 script = ExtResource("1_3xh25")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1339736814]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_ch4s1")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1583395112]
+libraries/ = SubResource("AnimationLibrary_ch4s1")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1261844351]
 offset_right = 1400.0
 offset_bottom = 800.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color(0, 0, 0, 1)
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="." unique_id=331488319]
 wait_time = 1.5
 one_shot = true
 
-[node name="PlayerCannotMoveTimer" type="Timer" parent="."]
-wait_time = 6.0
+[node name="PlayerCannotMoveTimer" type="Timer" parent="." unique_id=1153315448]
+wait_time = 8.0
 one_shot = true
 
-[node name="TweenToCenterTimer" type="Timer" parent="."]
+[node name="TweenToCenterTimer" type="Timer" parent="." unique_id=719763441]
 one_shot = true
 
-[node name="MusicPlayer" parent="." instance=ExtResource("2_ch4s1")]
+[node name="MusicPlayer" parent="." unique_id=1174173901 instance=ExtResource("2_ch4s1")]
 
 [connection signal="timeout" from="PlayerCannotMoveTimer" to="." method="_on_player_cannot_move_timer_timeout"]
 [connection signal="timeout" from="TweenToCenterTimer" to="." method="_on_tween_to_center_timer_timeout"]

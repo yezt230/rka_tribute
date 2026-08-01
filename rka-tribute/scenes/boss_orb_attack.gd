@@ -19,7 +19,6 @@ var history: Array[float] = []
 func _ready() -> void:
 	#DEBUG: orb attack initial velocity
 	velocity = Vector2(get_next_velocity_x(), initial_y_velocity)
-	print("boss orb vel: " + str(velocity))
 	#velocity = Vector2(500, initial_y_velocity)
 	timer.timeout.connect(on_timer_timeout)
 
