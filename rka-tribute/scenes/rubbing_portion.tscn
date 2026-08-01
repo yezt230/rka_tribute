@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://b0dme80t0eusm" path="res://scenes/cart.tscn" id="7_fmilq"]
 [ext_resource type="PackedScene" uid="uid://brh42yhhd4r2v" path="res://scenes/dust_cloud.tscn" id="7_r2s6n"]
 [ext_resource type="Script" uid="uid://epqtokcffhqt" path="res://scenes/environment_controller.gd" id="8_os4g6"]
-[ext_resource type="PackedScene" uid="uid://fexmkvqwqj6c" path="res://scenes/track_from_single.tscn" id="9_vsaki"]
+[ext_resource type="Texture2D" uid="uid://drvf36opbdcen" path="res://assets/full_road.png" id="9_31rr2"]
 [ext_resource type="AudioStream" uid="uid://cgo6tixw4hiqh" path="res://assets/sounds/boing.mp3" id="12_fq7un"]
 [ext_resource type="PackedScene" uid="uid://b8rgo3tuypboy" path="res://scenes/touch_buttons.tscn" id="15_o4gph"]
 
@@ -50,6 +50,68 @@ shader_parameter/invert_amount = 0.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nx7g2"]
 size = Vector2(248, 951.5)
+
+[sub_resource type="Animation" id="Animation_fthhj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FullRoadSprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FullRoadSprite:position:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6000.0]
+}
+
+[sub_resource type="Animation" id="Animation_31rr2"]
+resource_name = "full_scroll"
+length = 2.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FullRoadSprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.5, 0.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FullRoadSprite:position:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [4800.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fthhj"]
+_data = {
+&"RESET": SubResource("Animation_fthhj"),
+&"full_scroll": SubResource("Animation_31rr2")
+}
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fmilq"]
 size = Vector2(38, 737)
@@ -160,6 +222,13 @@ position = Vector2(1200, 650)
 wait_time = 1.2
 one_shot = true
 
+[node name="FullRoadSprite" type="Sprite2D" parent="BG" unique_id=92601425]
+position = Vector2(6000, 636)
+texture = ExtResource("9_31rr2")
+
+[node name="FullRoadAnimationPlayer" type="AnimationPlayer" parent="BG" unique_id=433277669]
+libraries/ = SubResource("AnimationLibrary_fthhj")
+
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=118416066]
 collision_layer = 256
 collision_mask = 0
@@ -204,10 +273,6 @@ one_shot = true
 
 [node name="EnvironmentController" type="Node" parent="." unique_id=1699393067]
 script = ExtResource("8_os4g6")
-
-[node name="TrackFromSingle" parent="." unique_id=531991162 instance=ExtResource("9_vsaki")]
-position = Vector2(490, 640)
-mode = 1
 
 [node name="BoingStreamPlayer" type="AudioStreamPlayer2D" parent="." unique_id=1779390410]
 stream = ExtResource("12_fq7un")

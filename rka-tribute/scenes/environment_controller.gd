@@ -8,10 +8,8 @@ extends Node
 @onready var cart_animation_player = $"../Cart/AnimationPlayer"
 @onready var cart_sprites = $"../Cart/Sprites"
 @onready var darkening_rect : ColorRect = $"../BG/BoxContainer/ColorRect"
-#@onready var track = $"../Track"
-#@onready var track_animation_player = $"../Track/AnimationPlayer"
-@onready var track_from_single = $"../TrackFromSingle"
 @onready var action_music_timer = $"../ActionMusicTimer"
+@onready var full_road_animation_player = $"../BG/FullRoadAnimationPlayer"
 
 @onready var rubbing_portion = get_parent()
 
@@ -24,7 +22,6 @@ enum Mode {
 }
 var mode: Mode = Mode.PLAYER_CONTROL
 var override_velocity: float = 0.0
-var spawned_track_yet : bool = false
 
 func _ready():
 	cart.trigger_cart_cutscene.connect(self._on_trigger_cart_cutscene)	
@@ -61,8 +58,8 @@ func handle_player_motion():
 # --- CUTSCENE OVERRIDE ---
 func start_cart_cutscene():
 	mode = Mode.CUTSCENE
-	track_from_single.delayed_activate_spawning()
-
+	#road spawning in
+	full_road_animation_player.play("full_scroll")
 	stop()
 
 	action_music_timer.start()
@@ -108,8 +105,6 @@ func apply_override_motion():
 	else:
 		wood_scroller.velocity.x = 0
 		cart.velocity.x = 0
-	if not spawned_track_yet:
-		spawned_track_yet = true
 
 
 func stop():

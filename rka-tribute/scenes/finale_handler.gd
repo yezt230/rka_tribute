@@ -20,10 +20,12 @@ func _on_boss_defeated():
 		player_cannot_move_timer.start()
 
 
-#DEBUG: amount of time after defeating boss that
+#DEBUG: amount of time after defeating boss tha
 #player can still move (effectively, the ending cutscene)
 func _on_player_cannot_move_timer_timeout():
 	player.player_can_move = false
+	var bus_index := AudioServer.get_bus_index("SFX")
+	AudioServer.set_bus_mute(bus_index, true)
 	tween_to_center_timer.start()	
 
 
