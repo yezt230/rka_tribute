@@ -186,6 +186,7 @@ text = "SPACE
 "
 
 [node name="WLabel" type="Label" parent="MainMenu/PanelContainer/MarginContainer/VBoxContainer/Control/ControlsGraphics/KeyboardControls" unique_id=1457589642]
+visible = false
 offset_left = 390.47614
 offset_top = 17.777767
 offset_right = 430.47614
@@ -194,6 +195,7 @@ theme = ExtResource("8_ka6nf")
 text = "▲"
 
 [node name="ALabel" type="Label" parent="MainMenu/PanelContainer/MarginContainer/VBoxContainer/Control/ControlsGraphics/KeyboardControls" unique_id=1580344169]
+visible = false
 offset_left = 321.90472
 offset_top = 89.206314
 offset_right = 361.90472
@@ -202,6 +204,7 @@ theme = ExtResource("8_ka6nf")
 text = "◀"
 
 [node name="SLabel" type="Label" parent="MainMenu/PanelContainer/MarginContainer/VBoxContainer/Control/ControlsGraphics/KeyboardControls" unique_id=781547173]
+visible = false
 offset_left = 389.0476
 offset_top = 92.06345
 offset_right = 429.0476
@@ -210,6 +213,7 @@ theme = ExtResource("8_ka6nf")
 text = "▼"
 
 [node name="DLabel" type="Label" parent="MainMenu/PanelContainer/MarginContainer/VBoxContainer/Control/ControlsGraphics/KeyboardControls" unique_id=2016650252]
+visible = false
 offset_left = 456.19043
 offset_top = 87.77773
 offset_right = 496.19043

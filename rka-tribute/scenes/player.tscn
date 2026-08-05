@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://dmydmpg5baofc"]
+[gd_scene format=3 uid="uid://dmydmpg5baofc"]
 
 [ext_resource type="Script" uid="uid://cgm5y75wob1ca" path="res://scenes/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://b2ox58jfloh2c" path="res://assets/squirrel_sprite_fin.png" id="2_s4pf1"]
@@ -323,12 +323,12 @@ _data = {
 radius = 21.0
 height = 94.0
 
-[node name="Player" type="CharacterBody2D" groups=["player"]]
+[node name="Player" type="CharacterBody2D" unique_id=1919728379 groups=["player"]]
 collision_layer = 0
 collision_mask = 256
 script = ExtResource("1_g2els")
 
-[node name="DebugLabel" type="Label" parent="."]
+[node name="DebugLabel" type="Label" parent="." unique_id=534481427]
 visible = false
 offset_left = 75.0
 offset_top = -152.0
@@ -340,98 +340,96 @@ theme_override_constants/outline_size = 2
 theme_override_font_sizes/font_size = 32
 text = "state"
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1950800012]
 texture_filter = 1
 position = Vector2(8, -61)
 texture = ExtResource("2_s4pf1")
 hframes = 4
-vframes = 8
+vframes = 7
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_dqkch")
-}
-autoplay = "jump"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=218217674]
+libraries/ = SubResource("AnimationLibrary_dqkch")
+autoplay = &"jump"
 
-[node name="GroundCollider" type="CollisionShape2D" parent="."]
+[node name="GroundCollider" type="CollisionShape2D" parent="." unique_id=269153578]
 position = Vector2(-1, -37)
 scale = Vector2(4, 4)
 shape = SubResource("CircleShape2D_3vyb7")
 
-[node name="StateMachine" parent="." node_paths=PackedStringArray("starting_state") groups=["player"] instance=ExtResource("3_qlg0r")]
+[node name="StateMachine" parent="." unique_id=57616915 node_paths=PackedStringArray("starting_state") groups=["player"] instance=ExtResource("3_qlg0r")]
 starting_state = NodePath("Jump")
 
-[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("jump_state", "run_state", "shoot_state")]
+[node name="Idle" type="Node" parent="StateMachine" unique_id=303066891 node_paths=PackedStringArray("jump_state", "run_state", "shoot_state")]
 script = ExtResource("4_qlg0r")
 jump_state = NodePath("../Jump")
 run_state = NodePath("../Run")
 shoot_state = NodePath("../Shoot")
 metadata/_custom_type_script = "uid://dn5lg0ejp6p73"
 
-[node name="Hurt" type="Node" parent="StateMachine"]
+[node name="Hurt" type="Node" parent="StateMachine" unique_id=1928375121]
 script = ExtResource("5_ur7pv")
 metadata/_custom_type_script = "uid://dn5lg0ejp6p73"
 
-[node name="Jump" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "jump_shoot_state", "run_state")]
+[node name="Jump" type="Node" parent="StateMachine" unique_id=1248077700 node_paths=PackedStringArray("idle_state", "jump_shoot_state", "run_state")]
 script = ExtResource("5_tuyoq")
 idle_state = NodePath("../Idle")
 jump_shoot_state = NodePath("../JumpShoot")
 run_state = NodePath("../Run")
 metadata/_custom_type_script = "uid://dn5lg0ejp6p73"
 
-[node name="Run" type="Node" parent="StateMachine" node_paths=PackedStringArray("jump_state", "idle_state", "run_shoot_state")]
+[node name="Run" type="Node" parent="StateMachine" unique_id=970426003 node_paths=PackedStringArray("jump_state", "idle_state", "run_shoot_state")]
 script = ExtResource("6_smehm")
 jump_state = NodePath("../Jump")
 idle_state = NodePath("../Idle")
 run_shoot_state = NodePath("../RunShoot")
 metadata/_custom_type_script = "uid://dn5lg0ejp6p73"
 
-[node name="Shoot" type="Node" parent="StateMachine"]
+[node name="Shoot" type="Node" parent="StateMachine" unique_id=251588917]
 script = ExtResource("7_smehm")
 metadata/_custom_type_script = "uid://dn5lg0ejp6p73"
 
-[node name="RunShoot" type="Node" parent="StateMachine"]
+[node name="RunShoot" type="Node" parent="StateMachine" unique_id=662678445]
 script = ExtResource("9_y4r1p")
 metadata/_custom_type_script = "uid://dn5lg0ejp6p73"
 
-[node name="JumpShoot" type="Node" parent="StateMachine"]
+[node name="JumpShoot" type="Node" parent="StateMachine" unique_id=1002941047]
 script = ExtResource("10_d2wvv")
 metadata/_custom_type_script = "uid://dn5lg0ejp6p73"
 
-[node name="State" type="Node" parent="StateMachine"]
+[node name="State" type="Node" parent="StateMachine" unique_id=1808359792]
 script = ExtResource("11_3v2ag")
 metadata/_custom_type_script = "uid://dn5lg0ejp6p73"
 
-[node name="AttackManager" parent="." instance=ExtResource("3_qhqgy")]
+[node name="AttackManager" parent="." unique_id=1713819962 instance=ExtResource("3_qhqgy")]
 
-[node name="Marker2D" type="Marker2D" parent="."]
+[node name="Marker2D" type="Marker2D" parent="." unique_id=647102154]
 position = Vector2(0, -61)
 
-[node name="PlayerHurtbox" type="Area2D" parent="."]
+[node name="PlayerHurtbox" type="Area2D" parent="." unique_id=1517758628]
 collision_layer = 0
 collision_mask = 8
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerHurtbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerHurtbox" unique_id=1778715884]
 position = Vector2(0, -63)
 shape = SubResource("CapsuleShape2D_d2wvv")
 
-[node name="KnockbackStallTimer" type="Timer" parent="."]
+[node name="KnockbackStallTimer" type="Timer" parent="." unique_id=946249197]
 wait_time = 0.6
 one_shot = true
 
-[node name="AttackStreamPlayer" type="AudioStreamPlayer2D" parent="."]
+[node name="AttackStreamPlayer" type="AudioStreamPlayer2D" parent="." unique_id=149577804]
 bus = &"SFX"
 script = ExtResource("13_jej6c")
 SoundArray = Array[AudioStream]([ExtResource("14_f1ej7")])
 
-[node name="JumpStreamPlayer" type="AudioStreamPlayer2D" parent="."]
+[node name="JumpStreamPlayer" type="AudioStreamPlayer2D" parent="." unique_id=1977039295]
 stream = ExtResource("16_a8ls1")
 volume_db = -3.5
 pitch_scale = 0.85
 bus = &"SFX"
 script = ExtResource("15_oprun")
 
-[node name="HurtStreamPlayer" type="AudioStreamPlayer2D" parent="."]
+[node name="HurtStreamPlayer" type="AudioStreamPlayer2D" parent="." unique_id=357989975]
 stream = ExtResource("17_qfm1y")
 volume_db = 3.0
 

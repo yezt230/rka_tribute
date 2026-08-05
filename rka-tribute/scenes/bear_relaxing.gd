@@ -85,17 +85,17 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 
 func _on_rubbing_shake_inc_timer_timeout() -> void:
 	match bear_shake_tracker:
-		3:
+		2:
 			shake_animation_player.play("rub_5")
 			MusicPlayer.decrease_volume()
-		4:
+		3:
 			shake_animation_player.play("rub_4")
 			MusicPlayer.decrease_volume()
 			player_shake_animation_player.play("shake")
-		5:
+		4:
 			shake_animation_player.play("rub_3")
 			MusicPlayer.decrease_volume()
-		6:
+		5:
 			player_shake_animation_player.play("still")
 			spawn_and_move_train()
 			return
