@@ -15,11 +15,13 @@ func enter() -> void:
 func process_input(_event: InputEvent) -> State:
 	if Input.is_action_just_pressed("UP"):
 		return jump_state
-	elif Input.is_action_just_pressed("SPACE") and bear.is_player_overlapping:
-		if parent.is_on_belly_platform:
-			return rub_crouching_state
-		else:
-			return rub_standing_state
+	elif Input.is_action_just_pressed("SPACE"):
+		if bear:
+			if bear.is_player_overlapping:
+				if parent.is_on_belly_platform:
+					return rub_crouching_state
+				else:
+					return rub_standing_state
 	elif not Input.is_action_pressed("LEFT") and not Input.is_action_pressed("RIGHT"):
 		return idle_state
 	return null

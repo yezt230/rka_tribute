@@ -223,7 +223,7 @@ position = Vector2(1019.0668, 399)
 scale = Vector2(0.9, 0.9)
 texture = ExtResource("1_7kn5y")
 hframes = 4
-vframes = 8
+vframes = 7
 frame = 3
 
 [node name="SqrlAnimationPlayer" type="AnimationPlayer" parent="Player" unique_id=340533828]

@@ -603,7 +603,7 @@ wait_time = 0.3
 one_shot = true
 
 [node name="RubStreamPlayer" type="AudioStreamPlayer2D" parent="." unique_id=225797262]
-volume_db = 20.0
+volume_db = 16.0
 bus = &"SFX"
 script = ExtResource("3_00c77")
 streams = Array[AudioStream]([ExtResource("4_55mgc"), ExtResource("5_yynqn"), ExtResource("6_hqsls"), ExtResource("7_i7m53")])
